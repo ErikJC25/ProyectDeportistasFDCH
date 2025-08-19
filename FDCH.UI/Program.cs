@@ -1,4 +1,4 @@
-﻿using FDCH.UI.Vista;
+﻿using FDCH.UI.Vistas;
 using System;
 using System.Windows.Forms;
 

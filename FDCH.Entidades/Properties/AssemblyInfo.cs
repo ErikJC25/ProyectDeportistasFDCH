@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("FDCH.UI")]
+[assembly: AssemblyTitle("FDCH.Entidades")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("FDCH.UI")]
+[assembly: AssemblyProduct("FDCH.Entidades")]
 [assembly: AssemblyCopyright("Copyright © HP 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("fcf7be48-c9dc-4cca-b060-c569b06f41c5")]
+[assembly: Guid("a31924ef-f135-4e33-9760-868e15e4c0a4")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

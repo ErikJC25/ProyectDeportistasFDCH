@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FDCH.UI.Vista
+namespace FDCH.UI.Vistas
 {
     public partial class FrmLogin : Form
     {

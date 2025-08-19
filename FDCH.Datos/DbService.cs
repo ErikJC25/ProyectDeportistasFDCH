@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SQLite; // Asegúrate de que este using esté y apunte a la librería correcta.
 using System.IO;
 using FDCH.Entidades; // Importamos la capa de entidades
 

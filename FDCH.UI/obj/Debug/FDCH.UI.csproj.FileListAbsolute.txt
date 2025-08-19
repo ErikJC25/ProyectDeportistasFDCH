@@ -7,3 +7,5 @@ C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\
 C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\obj\Debug\FDCH.UI.csproj.CoreCompileInputs.cache
 C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\obj\Debug\FDCH.UI.exe
 C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\obj\Debug\FDCH.UI.pdb
+C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\obj\Debug\FDCH.UI.exe.config
+C:\Users\ERIK\Documents\U\Prácticas_Comunitarias\PROYECTO\ProyectoFDCH\FDCH.UI\obj\Debug\FDCH.UI.Vistas.FrmLogin.resources
