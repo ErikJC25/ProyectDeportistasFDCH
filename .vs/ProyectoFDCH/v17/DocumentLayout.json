@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|solutionrelative:fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|solutionrelative:fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B54B6C73-CBCA-4E22-9FA0-FD0B0CB76992}|FDCH.Datos\\FDCH.Datos.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.datos\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B54B6C73-CBCA-4E22-9FA0-FD0B0CB76992}|FDCH.Datos\\FDCH.Datos.csproj|solutionrelative:fdch.datos\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1D2A532-353B-4893-9E06-9B98BC1BF01B}|FDCH.Logica\\FDCH.Logica.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.logica\\cls_puente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1D2A532-353B-4893-9E06-9B98BC1BF01B}|FDCH.Logica\\FDCH.Logica.csproj|solutionrelative:fdch.logica\\cls_puente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.ui\\vistas\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|solutionrelative:fdch.ui\\vistas\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.ui\\vistas\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|solutionrelative:fdch.ui\\vistas\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,16 +34,80 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DbService.cs",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.Datos\\DbService.cs",
+              "RelativeDocumentMoniker": "FDCH.Datos\\DbService.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.Datos\\DbService.cs",
+              "RelativeToolTip": "FDCH.Datos\\DbService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAwBsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:43:08.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Cls_Puente.cs",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.Logica\\Cls_Puente.cs",
+              "RelativeDocumentMoniker": "FDCH.Logica\\Cls_Puente.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.Logica\\Cls_Puente.cs",
+              "RelativeToolTip": "FDCH.Logica\\Cls_Puente.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAgwBkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:40:16.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FrmPrincipal.cs",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "RelativeDocumentMoniker": "FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:15:23.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmPrincipal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "RelativeDocumentMoniker": "FDCH.UI\\Vistas\\FrmPrincipal.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmPrincipal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:13:26.16Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FrmLogin.cs",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs",
+              "RelativeDocumentMoniker": "FDCH.UI\\Vistas\\FrmLogin.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs",
+              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmLogin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T03:29:54.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "FrmLogin.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs",
               "RelativeDocumentMoniker": "FDCH.UI\\Vistas\\FrmLogin.cs",
-              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]*",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-19T23:24:40.647Z",
               "EditorCaption": " [Dise\u00F1o]"
