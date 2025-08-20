@@ -32,10 +32,6 @@ namespace FDCH.Datos
         /// <summary>
         /// Inserta un nuevo deportista en la base de datos.
         /// </summary>
-        /// <param name="deportista">Objeto Deportista con los datos a insertar.</param>
-        /// <returns>El ID del nuevo deportista, o 0 si falla.</returns>
-
-
         public Usuario AutenticarUsuario(string usuario, string contrasena)
         {
             // Variable para almacenar el usuario autenticado (si existe)

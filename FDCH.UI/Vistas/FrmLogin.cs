@@ -67,5 +67,33 @@ namespace FDCH.UI.Vistas
             // Si no, la muestra con asteriscos
             txtContrasena.UseSystemPasswordChar = !chBoxMostrarPassword.Checked;
         }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón de Iniciar Sesión
+                txtContrasena.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtContrasena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón de Iniciar Sesión
+                btnIniciarSesion_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
     }
 }
