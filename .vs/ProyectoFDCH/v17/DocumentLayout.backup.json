@@ -1,12 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|c:\\users\\erik\\documents\\u\\pr\u00E1cticas_comunitarias\\proyecto\\proyectofdch\\fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FCF7BE48-C9DC-4CCA-B060-C569B06F41C5}|FDCH.UI\\FDCH.UI.csproj|solutionrelative:fdch.ui\\vistas\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FrmLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs",
+              "RelativeDocumentMoniker": "FDCH.UI\\Vistas\\FrmLogin.cs",
+              "ToolTip": "C:\\Users\\ERIK\\Documents\\U\\Pr\u00E1cticas_Comunitarias\\PROYECTO\\ProyectoFDCH\\FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "FDCH.UI\\Vistas\\FrmLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T23:24:40.647Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

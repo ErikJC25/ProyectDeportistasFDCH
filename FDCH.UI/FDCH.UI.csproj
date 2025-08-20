@@ -79,5 +79,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FDCH.Entidades\FDCH.Entidades.csproj">
+      <Project>{a31924ef-f135-4e33-9760-868e15e4c0a4}</Project>
+      <Name>FDCH.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FDCH.Logica\FDCH.Logica.csproj">
+      <Project>{f1d2a532-353b-4893-9e06-9b98bc1bf01b}</Project>
+      <Name>FDCH.Logica</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
