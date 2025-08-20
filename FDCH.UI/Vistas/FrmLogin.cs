@@ -49,7 +49,7 @@ namespace FDCH.UI.Vistas
                 System.Threading.Thread.Sleep(800);
 
                 this.Hide();
-                FrmPrincipal objPrincipal = new FrmPrincipal(usuarioAutenticado);
+                FrmPrincipal objPrincipal = new FrmPrincipal(/*usuarioAutenticado*/);
                 objPrincipal.ShowDialog();
                 this.Close();
             }

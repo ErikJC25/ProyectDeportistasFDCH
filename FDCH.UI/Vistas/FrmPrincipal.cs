@@ -15,10 +15,10 @@ namespace FDCH.UI.Vistas
     {
         private Usuario _usuarioAutenticado;
 
-        public FrmPrincipal(Usuario usuario)
+        public FrmPrincipal(/*Usuario usuario*/)
         {
             InitializeComponent();
-            _usuarioAutenticado = usuario;
+            //_usuarioAutenticado = usuario;
             // Aquí puedes usar la información del usuario para personalizar la UI
             // Por ejemplo: lblUsuarioConectado.Text = "Conectado como: " + _usuarioAutenticado.NombreUsuario;
         }
