@@ -47,9 +47,11 @@
     <Compile Include="Disciplina.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Evento.cs" />
+    <Compile Include="HistorialCambio.cs" />
     <Compile Include="HistorialCambios.cs" />
     <Compile Include="LockData.cs" />
     <Compile Include="LogData.cs" />
+    <Compile Include="RegistroTotal.cs" />
     <Compile Include="Tecnico.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

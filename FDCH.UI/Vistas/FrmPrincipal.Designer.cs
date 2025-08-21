@@ -30,140 +30,163 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
             this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.btnAddTorneo = new System.Windows.Forms.Button();
+            this.btnBusqueda = new System.Windows.Forms.Button();
+            this.btnInicio = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAddParticipa = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMenu
             // 
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(4)))), ((int)(((byte)(74)))));
+            this.pnlMenu.BackColor = System.Drawing.Color.Navy;
+            this.pnlMenu.Controls.Add(this.btnAddParticipa);
+            this.pnlMenu.Controls.Add(this.btnAddTorneo);
+            this.pnlMenu.Controls.Add(this.btnBusqueda);
+            this.pnlMenu.Controls.Add(this.pnlOpcion);
             this.pnlMenu.Controls.Add(this.lblUsuarioActivo);
-            this.pnlMenu.Controls.Add(this.button5);
-            this.pnlMenu.Controls.Add(this.button4);
-            this.pnlMenu.Controls.Add(this.button3);
-            this.pnlMenu.Controls.Add(this.button2);
-            this.pnlMenu.Controls.Add(this.button1);
+            this.pnlMenu.Controls.Add(this.btnInicio);
             this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(322, 763);
+            this.pnlMenu.Size = new System.Drawing.Size(262, 763);
             this.pnlMenu.TabIndex = 0;
             // 
-            // pictureBox1
+            // pnlOpcion
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(11)))), ((int)(((byte)(16)))));
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.Logo_FDCH1;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(322, 140);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(322, 80);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 220);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(322, 80);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 300);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(322, 80);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 380);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(322, 80);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(0, 460);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(322, 80);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.pnlOpcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 116);
+            this.pnlOpcion.Name = "pnlOpcion";
+            this.pnlOpcion.Size = new System.Drawing.Size(12, 67);
+            this.pnlOpcion.TabIndex = 7;
             // 
             // lblUsuarioActivo
             // 
+            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
             this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 655);
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 669);
             this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(322, 108);
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(262, 94);
             this.lblUsuarioActivo.TabIndex = 6;
-            this.lblUsuarioActivo.Text = "label1";
+            this.lblUsuarioActivo.Text = "Conectado";
             this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlContenedorFrm
             // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(322, 0);
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(262, 0);
             this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1100, 763);
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1160, 707);
             this.pnlContenedorFrm.TabIndex = 1;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(262, 707);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(1160, 56);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.Text = "label1";
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAddTorneo
+            // 
+            this.btnAddTorneo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddTorneo.FlatAppearance.BorderSize = 0;
+            this.btnAddTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTorneo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
+            this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
+            this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddTorneo.Location = new System.Drawing.Point(12, 250);
+            this.btnAddTorneo.Name = "btnAddTorneo";
+            this.btnAddTorneo.Size = new System.Drawing.Size(250, 67);
+            this.btnAddTorneo.TabIndex = 9;
+            this.btnAddTorneo.Text = "Agregar\r\nTorneo";
+            this.btnAddTorneo.UseVisualStyleBackColor = true;
+            this.btnAddTorneo.Click += new System.EventHandler(this.btnAddTorneo_Click);
+            // 
+            // btnBusqueda
+            // 
+            this.btnBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusqueda.FlatAppearance.BorderSize = 0;
+            this.btnBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBusqueda.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBusqueda.ForeColor = System.Drawing.Color.White;
+            this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
+            this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBusqueda.Location = new System.Drawing.Point(12, 183);
+            this.btnBusqueda.Name = "btnBusqueda";
+            this.btnBusqueda.Size = new System.Drawing.Size(250, 67);
+            this.btnBusqueda.TabIndex = 8;
+            this.btnBusqueda.Text = "Busqueda";
+            this.btnBusqueda.UseVisualStyleBackColor = true;
+            this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
+            // 
+            // btnInicio
+            // 
+            this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInicio.FlatAppearance.BorderSize = 0;
+            this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicio.ForeColor = System.Drawing.Color.White;
+            this.btnInicio.Image = global::FDCH.UI.Properties.Resources.home;
+            this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInicio.Location = new System.Drawing.Point(12, 116);
+            this.btnInicio.Name = "btnInicio";
+            this.btnInicio.Size = new System.Drawing.Size(250, 67);
+            this.btnInicio.TabIndex = 1;
+            this.btnInicio.Text = "Inicio";
+            this.btnInicio.UseVisualStyleBackColor = true;
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.Logo_FDCH1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(262, 116);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnAddParticipa
+            // 
+            this.btnAddParticipa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddParticipa.FlatAppearance.BorderSize = 0;
+            this.btnAddParticipa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddParticipa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
+            this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
+            this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddParticipa.Location = new System.Drawing.Point(12, 317);
+            this.btnAddParticipa.Name = "btnAddParticipa";
+            this.btnAddParticipa.Size = new System.Drawing.Size(250, 67);
+            this.btnAddParticipa.TabIndex = 10;
+            this.btnAddParticipa.Text = "Agregar\r\nParticipación";
+            this.btnAddParticipa.UseVisualStyleBackColor = true;
+            this.btnAddParticipa.Click += new System.EventHandler(this.btnAddParticipa_Click);
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1422, 763);
+            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.pnlContenedorFrm);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -183,12 +206,13 @@
 
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Label lblUsuarioActivo;
         private System.Windows.Forms.Panel pnlContenedorFrm;
+        private System.Windows.Forms.Panel pnlOpcion;
+        private System.Windows.Forms.Button btnBusqueda;
+        private System.Windows.Forms.Button btnAddTorneo;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Button btnAddParticipa;
     }
 }

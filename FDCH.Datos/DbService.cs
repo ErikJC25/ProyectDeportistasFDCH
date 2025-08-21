@@ -29,9 +29,7 @@ namespace FDCH.Datos
             return new SQLiteConnection($"Data Source={DbPath};Version=3;");
         }
 
-        /// <summary>
-        /// Inserta un nuevo deportista en la base de datos.
-        /// </summary>
+        
         public Usuario AutenticarUsuario(string usuario, string contrasena)
         {
             // Variable para almacenar el usuario autenticado (si existe)
@@ -40,7 +38,7 @@ namespace FDCH.Datos
             using (SQLiteConnection connection = GetConnection())
             {
                 // Consulta para buscar el usuario por nombre de usuario
-                string query = "SELECT id_usuario, nombre_usuario, contrasena_hash, rol FROM Usuario WHERE nombre_usuario = @Usuario LIMIT 1";
+                string query = "SELECT id_usuario, nombre_usuario, contrasena_hash, rol FROM Usuarios WHERE nombre_usuario = @Usuario LIMIT 1";
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     // Se agrega el parámetro del nombre de usuario
@@ -101,6 +99,9 @@ namespace FDCH.Datos
             }
         }
 
+        /// <summary>
+        /// Inserta un nuevo deportista en la base de datos.
+        /// </summary>
         public int InsertarDeportista(Deportista deportista)
         {
             int nuevoId = 0;
@@ -169,6 +170,627 @@ namespace FDCH.Datos
                 }
             }
             return listaDeportistas;
+        }
+
+        public List<RegistroTotal> ObtenerRegistrosCompletosDB()
+        {
+            var lista = new List<RegistroTotal>();
+            using (var connection = GetConnection())
+            {
+                string query = @"
+                    SELECT 
+                        d.id_deportista AS IdDeportista,
+                        d.cedula AS Cedula,
+                        d.nombres AS Nombres,
+                        d.apellidos AS Apellidos,
+                        d.genero AS Genero,
+                        d.tipo_discapacidad AS TipoDiscapacidad,
+                        t.id_tecnico AS IdTecnico,
+                        t.nombre_completo AS NombreCompletoTecnico,
+                        e.id_evento AS IdEvento,
+                        e.nombre_evento AS NombreEvento,
+                        e.lugar AS Lugar,
+                        e.fecha_inicio AS FechaInicio,
+                        e.fecha_fin AS FechaFin,
+                        e.tipo_evento AS TipoEvento,
+                        e.nivel_evento AS NivelEvento,
+                        dis.id_disciplina AS IdDisciplina,
+                        dis.nombre_disciplina AS NombreDisciplina,
+                        esp.id_especialidad AS IdEspecialidad,
+                        esp.nombre_especialidad AS NombreEspecialidad,
+                        esp.modalidad AS Modalidad,
+                        c.id_competencia AS IdCompetencia,
+                        c.categoria AS Categoria,
+                        c.division AS Division,
+                        c.numero_participantes AS NumeroParticipantes,
+                        c.record AS Record,
+                        des.id_desempeno AS IdDesempeno,
+                        des.puntos AS Puntos,
+                        des.medalla AS Medalla,
+                        des.observaciones AS Observaciones,
+                        des.tiempo AS Tiempo,
+                        des.ubicacion AS Ubicacion
+                    FROM Desempeno des
+                    INNER JOIN Deportistas d ON des.id_deportista = d.id_deportista
+                    INNER JOIN Competencias c ON des.id_competencia = c.id_competencia
+                    INNER JOIN Tecnicos t ON des.id_tecnico = t.id_tecnico
+                    INNER JOIN Eventos e ON c.id_evento = e.id_evento
+                    INNER JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
+                    INNER JOIN Disciplinas dis ON esp.id_disciplina = dis.id_disciplina
+                ";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var registro = new RegistroTotal
+                                {
+                                    IdDeportista = reader["IdDeportista"] != DBNull.Value ? Convert.ToInt32(reader["IdDeportista"]) : 0,
+                                    Cedula = reader["Cedula"]?.ToString(),
+                                    Nombres = reader["Nombres"]?.ToString(),
+                                    Apellidos = reader["Apellidos"]?.ToString(),
+                                    Genero = reader["Genero"]?.ToString(),
+                                    TipoDiscapacidad = reader["TipoDiscapacidad"]?.ToString(),
+                                    IdTecnico = reader["IdTecnico"] != DBNull.Value ? Convert.ToInt32(reader["IdTecnico"]) : 0,
+                                    NombreCompletoTecnico = reader["NombreCompletoTecnico"]?.ToString(),
+                                    IdEvento = reader["IdEvento"] != DBNull.Value ? Convert.ToInt32(reader["IdEvento"]) : 0,
+                                    NombreEvento = reader["NombreEvento"]?.ToString(),
+                                    Lugar = reader["Lugar"]?.ToString(),
+                                    FechaInicio = reader["FechaInicio"] != DBNull.Value ? Convert.ToDateTime(reader["FechaInicio"]) : DateTime.MinValue,
+                                    FechaFin = reader["FechaFin"] != DBNull.Value ? Convert.ToDateTime(reader["FechaFin"]) : DateTime.MinValue,
+                                    TipoEvento = reader["TipoEvento"]?.ToString(),
+                                    NivelEvento = reader["NivelEvento"]?.ToString(),
+                                    IdDisciplina = reader["IdDisciplina"] != DBNull.Value ? Convert.ToInt32(reader["IdDisciplina"]) : 0,
+                                    NombreDisciplina = reader["NombreDisciplina"]?.ToString(),
+                                    IdEspecialidad = reader["IdEspecialidad"] != DBNull.Value ? Convert.ToInt32(reader["IdEspecialidad"]) : 0,
+                                    NombreEspecialidad = reader["NombreEspecialidad"]?.ToString(),
+                                    Modalidad = reader["Modalidad"]?.ToString(),
+                                    IdCompetencia = reader["IdCompetencia"] != DBNull.Value ? Convert.ToInt32(reader["IdCompetencia"]) : 0,
+                                    Categoria = reader["Categoria"]?.ToString(),
+                                    Division = reader["Division"]?.ToString(),
+                                    NumeroParticipantes = reader["NumeroParticipantes"] != DBNull.Value ? Convert.ToInt32(reader["NumeroParticipantes"]) : 0,
+                                    Record = reader["Record"]?.ToString(),
+                                    IdDesempeno = reader["IdDesempeno"] != DBNull.Value ? Convert.ToInt32(reader["IdDesempeno"]) : 0,
+                                    Puntos = reader["Puntos"] != DBNull.Value ? Convert.ToInt32(reader["Puntos"]) : 0,
+                                    Medalla = reader["Medalla"]?.ToString(),
+                                    Observaciones = reader["Observaciones"]?.ToString(),
+                                    Tiempo = reader["Tiempo"]?.ToString(),
+                                    Ubicacion = reader["Ubicacion"]?.ToString()
+                                };
+                                lista.Add(registro);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener registros completos: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta un nuevo técnico
+        public int InsertarTecnico(Tecnico tecnico)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = "INSERT INTO Tecnicos (nombre_completo) VALUES (@NombreCompleto); SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreCompleto", tecnico.nombre_completo);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar técnico: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todos los técnicos
+        public List<Tecnico> ObtenerTecnicos()
+        {
+            var lista = new List<Tecnico>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Tecnicos";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Tecnico
+                                {
+                                    id_tecnico = Convert.ToInt32(reader["id_tecnico"]),
+                                    nombre_completo = reader["nombre_completo"].ToString()
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener técnicos: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta un nuevo evento
+        public int InsertarEvento(Evento evento)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Eventos (nombre_evento, lugar, fecha_inicio, fecha_fin, tipo_evento, nivel_evento)
+                                 VALUES (@NombreEvento, @Lugar, @FechaInicio, @FechaFin, @TipoEvento, @NivelEvento);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreEvento", evento.nombre_evento);
+                    command.Parameters.AddWithValue("@Lugar", evento.lugar);
+                    command.Parameters.AddWithValue("@FechaInicio", evento.fecha_inicio);
+                    command.Parameters.AddWithValue("@FechaFin", evento.fecha_fin);
+                    command.Parameters.AddWithValue("@TipoEvento", evento.tipo_evento);
+                    command.Parameters.AddWithValue("@NivelEvento", evento.nivel_evento);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar evento: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todos los eventos
+        public List<Evento> ObtenerEventos()
+        {
+            var lista = new List<Evento>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Eventos";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Evento
+                                {
+                                    id_evento = Convert.ToInt32(reader["id_evento"]),
+                                    nombre_evento = reader["nombre_evento"].ToString(),
+                                    lugar = reader["lugar"].ToString(),
+                                    fecha_inicio = Convert.ToDateTime(reader["fecha_inicio"]),
+                                    fecha_fin = Convert.ToDateTime(reader["fecha_fin"]),
+                                    tipo_evento = reader["tipo_evento"].ToString(),
+                                    nivel_evento = reader["nivel_evento"].ToString()
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener eventos: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta una nueva disciplina
+        public int InsertarDisciplina(Disciplina disciplina)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = "INSERT INTO Disciplinas (nombre_disciplina) VALUES (@NombreDisciplina); SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreDisciplina", disciplina.nombre_disciplina);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar disciplina: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todas las disciplinas
+        public List<Disciplina> ObtenerDisciplinas()
+        {
+            var lista = new List<Disciplina>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Disciplinas";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Disciplina
+                                {
+                                    id_disciplina = Convert.ToInt32(reader["id_disciplina"]),
+                                    nombre_disciplina = reader["nombre_disciplina"].ToString()
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener disciplinas: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta una nueva especialidad
+        public int InsertarEspecialidad(Especialidad especialidad)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Especialidades (nombre_especialidad, modalidad, id_disciplina)
+                                 VALUES (@NombreEspecialidad, @Modalidad, @IdDisciplina);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreEspecialidad", especialidad.nombre_especialidad);
+                    command.Parameters.AddWithValue("@Modalidad", especialidad.modalidad);
+                    command.Parameters.AddWithValue("@IdDisciplina", especialidad.id_disciplina);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar especialidad: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todas las especialidades
+        public List<Especialidad> ObtenerEspecialidades()
+        {
+            var lista = new List<Especialidad>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Especialidades";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Especialidad
+                                {
+                                    id_especialidad = Convert.ToInt32(reader["id_especialidad"]),
+                                    nombre_especialidad = reader["nombre_especialidad"].ToString(),
+                                    modalidad = reader["modalidad"].ToString(),
+                                    id_disciplina = Convert.ToInt32(reader["id_disciplina"])
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener especialidades: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta una nueva competencia
+        public int InsertarCompetencia(Competencia competencia)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Competencias (categoria, division, numero_participantes, record, id_evento, id_especialidad)
+                                 VALUES (@Categoria, @Division, @NumeroParticipantes, @Record, @IdEvento, @IdEspecialidad);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Categoria", competencia.categoria);
+                    command.Parameters.AddWithValue("@Division", competencia.division);
+                    command.Parameters.AddWithValue("@NumeroParticipantes", competencia.numero_participantes);
+                    command.Parameters.AddWithValue("@Record", competencia.record);
+                    command.Parameters.AddWithValue("@IdEvento", competencia.id_evento);
+                    command.Parameters.AddWithValue("@IdEspecialidad", competencia.id_especialidad);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar competencia: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todas las competencias
+        public List<Competencia> ObtenerCompetencias()
+        {
+            var lista = new List<Competencia>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Competencias";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Competencia
+                                {
+                                    id_competencia = Convert.ToInt32(reader["id_competencia"]),
+                                    categoria = reader["categoria"].ToString(),
+                                    division = reader["division"].ToString(),
+                                    numero_participantes = Convert.ToInt32(reader["numero_participantes"]),
+                                    record = reader["record"].ToString(),
+                                    id_evento = Convert.ToInt32(reader["id_evento"]),
+                                    id_especialidad = Convert.ToInt32(reader["id_especialidad"])
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener competencias: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta un nuevo desempeño
+        public int InsertarDesempeno(Desempeno desempeno)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Desempeno (puntos, medalla, observaciones, tiempo, ubicacion, id_deportista, id_competencia, id_tecnico)
+                                 VALUES (@Puntos, @Medalla, @Observaciones, @Tiempo, @Ubicacion, @IdDeportista, @IdCompetencia, @IdTecnico);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Puntos", desempeno.puntos);
+                    command.Parameters.AddWithValue("@Medalla", desempeno.medalla);
+                    command.Parameters.AddWithValue("@Observaciones", desempeno.observaciones);
+                    command.Parameters.AddWithValue("@Tiempo", desempeno.tiempo);
+                    command.Parameters.AddWithValue("@Ubicacion", desempeno.ubicacion);
+                    command.Parameters.AddWithValue("@IdDeportista", desempeno.id_deportista);
+                    command.Parameters.AddWithValue("@IdCompetencia", desempeno.id_competencia);
+                    command.Parameters.AddWithValue("@IdTecnico", desempeno.id_tecnico);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar desempeño: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todos los desempeños
+        public List<Desempeno> ObtenerDesempenos()
+        {
+            var lista = new List<Desempeno>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Desempeno";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Desempeno
+                                {
+                                    id_desempeno = Convert.ToInt32(reader["id_desempeno"]),
+                                    puntos = Convert.ToInt32(reader["puntos"]),
+                                    medalla = reader["medalla"].ToString(),
+                                    observaciones = reader["observaciones"].ToString(),
+                                    tiempo = reader["tiempo"].ToString(),
+                                    ubicacion = reader["ubicacion"].ToString(),
+                                    id_deportista = Convert.ToInt32(reader["id_deportista"]),
+                                    id_competencia = Convert.ToInt32(reader["id_competencia"]),
+                                    id_tecnico = Convert.ToInt32(reader["id_tecnico"])
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener desempenhos: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta un nuevo usuario
+        public int InsertarUsuario(Usuario usuario)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Usuarios (nombre_usuario, contrasena_hash, rol)
+                                 VALUES (@NombreUsuario, @ContrasenaHash, @Rol);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreUsuario", usuario.nombre_usuario);
+                    command.Parameters.AddWithValue("@ContrasenaHash", usuario.contrasena_hash);
+                    command.Parameters.AddWithValue("@Rol", usuario.rol);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar usuario: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todos los usuarios
+        public List<Usuario> ObtenerUsuarios()
+        {
+            var lista = new List<Usuario>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Usuarios";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Usuario
+                                {
+                                    id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                    nombre_usuario = reader["nombre_usuario"].ToString(),
+                                    contrasena_hash = reader["contrasena_hash"].ToString(),
+                                    rol = reader["rol"].ToString()
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener usuarios: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Inserta un nuevo registro en el historial de cambios
+        public int InsertarHistorialCambio(HistorialCambio cambio)
+        {
+            int nuevoId = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"INSERT INTO Historial_Cambios (id_usuario, tabla_afectada, id_registro_afectado, accion, fecha_cambio)
+                                 VALUES (@IdUsuario, @TablaAfectada, @IdRegistroAfectado, @Accion, @FechaCambio);
+                                 SELECT last_insert_rowid();";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdUsuario", cambio.id_usuario);
+                    command.Parameters.AddWithValue("@TablaAfectada", cambio.tabla_afectada);
+                    command.Parameters.AddWithValue("@IdRegistroAfectado", cambio.id_registro_afectado);
+                    command.Parameters.AddWithValue("@Accion", cambio.accion);
+                    command.Parameters.AddWithValue("@FechaCambio", cambio.fecha_cambio);
+                    try
+                    {
+                        connection.Open();
+                        nuevoId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al insertar historial de cambio: " + ex.Message);
+                    }
+                }
+            }
+            return nuevoId;
+        }
+
+        // Consulta todos los registros del historial de cambios
+        public List<HistorialCambio> ObtenerHistorialCambios()
+        {
+            var lista = new List<HistorialCambio>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM Historial_Cambios";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new HistorialCambio
+                                {
+                                    id_log = Convert.ToInt32(reader["id_log"]),
+                                    id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                    tabla_afectada = reader["tabla_afectada"].ToString(),
+                                    id_registro_afectado = Convert.ToInt32(reader["id_registro_afectado"]),
+                                    accion = reader["accion"].ToString(),
+                                    fecha_cambio = Convert.ToDateTime(reader["fecha_cambio"])
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener historial de cambios: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
         }
 
         // Aquí irían los demás métodos para las operaciones CRUD de las otras tablas

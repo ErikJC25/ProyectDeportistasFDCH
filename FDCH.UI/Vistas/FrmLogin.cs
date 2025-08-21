@@ -95,5 +95,10 @@ namespace FDCH.UI.Vistas
                 e.Handled = true;
             }
         }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

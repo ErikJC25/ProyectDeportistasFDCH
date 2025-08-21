@@ -14,19 +14,93 @@ namespace FDCH.UI.Vistas
     public partial class FrmPrincipal : Form
     {
         private Usuario _usuarioAutenticado;
+        private Form formularioActivo = null; // Referencia al form actual
 
         public FrmPrincipal(/*Usuario usuario*/)
         {
             InitializeComponent();
             //_usuarioAutenticado = usuario;
-            // Aquí puedes usar la información del usuario para personalizar la UI
-            // Por ejemplo: lblUsuarioConectado.Text = "Conectado como: " + _usuarioAutenticado.NombreUsuario;
-        }
+            //lblUsuarioActivo.Text = "Conectado como: " + _usuarioAutenticado.NombreUsuario;
 
+            pnlOpcion.Height = btnInicio.Height;
+            pnlOpcion.Top = btnInicio.Top;
+            AbrirFormularioEnPanel(new FrmInicio());
+
+            this.FormClosing += FrmPrincipal_FormClosing;
+        }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void AbrirFormularioEnPanel(Form formulario)
+        {
+            // Cierra el formulario actual si existe
+            if (formularioActivo != null)
+            {
+                formularioActivo.Close();
+                formularioActivo.Dispose();
+            }
+
+            formularioActivo = formulario;
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            pnlContenedorFrm.Controls.Clear();
+            pnlContenedorFrm.Controls.Add(formulario);
+            formulario.Show();
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            pnlOpcion.Height = btnInicio.Height;
+            pnlOpcion.Top = btnInicio.Top;
+            AbrirFormularioEnPanel(new FrmInicio());
+        }
+
+        private void btnBusqueda_Click(object sender, EventArgs e)
+        {
+            pnlOpcion.Height = btnBusqueda.Height;
+            pnlOpcion.Top = btnBusqueda.Top;
+            // Abrir el formulario correspondiente a búsqueda
+            // AbrirFormularioEnPanel(new FrmBusqueda());
+        }
+
+        
+        private void btnAddTorneo_Click(object sender, EventArgs e)
+        {
+            pnlOpcion.Height = btnAddTorneo.Height;
+            pnlOpcion.Top = btnAddTorneo.Top;
+            var frmAddTorneo = new FrmAddTorneo();
+            frmAddTorneo.EventoAgregado += idNuevo =>
+            {
+                AbrirFormularioEnPanel(new FrmAddDeportista(idNuevo));
+            };
+            AbrirFormularioEnPanel(frmAddTorneo);
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "¿Está seguro/a que desea salir de la aplicación?",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void btnAddParticipa_Click(object sender, EventArgs e)
+        {
+            pnlOpcion.Height = btnAddTorneo.Height;
+            pnlOpcion.Top = btnAddTorneo.Top;
+            // Abrir el formulario correspondiente a agregar torneo
+            // AbrirFormularioEnPanel(new FrmAddTorneo());
         }
     }
 }
