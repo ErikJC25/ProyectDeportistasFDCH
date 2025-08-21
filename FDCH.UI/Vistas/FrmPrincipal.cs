@@ -56,7 +56,17 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
-            AbrirFormularioEnPanel(new FrmInicio());
+            var frmInicio = new FrmInicio();
+            frmInicio.EventoPerfil += idDeportista =>
+            {
+                AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
+            };
+
+            frmInicio.EventoEditar += registroCompleto =>
+            {
+                AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
+            };
+            AbrirFormularioEnPanel(frmInicio);
         }
 
         private void btnBusqueda_Click(object sender, EventArgs e)

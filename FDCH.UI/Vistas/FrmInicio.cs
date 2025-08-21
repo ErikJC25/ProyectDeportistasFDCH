@@ -19,7 +19,7 @@ namespace FDCH.UI.Vistas
         public FrmInicio()
         {
             InitializeComponent();
-            this.Load += FrmInicio_Load; // Suscribe el evento Load
+            CargarDatosEnDataGridView();
         }
 
         private void FrmInicio_Load(object sender, EventArgs e)
@@ -29,9 +29,57 @@ namespace FDCH.UI.Vistas
             //dataGridView1.DataSource = registros;
         }
 
+        public void CargarDatosEnDataGridView()
+        {
+            // Llama al método y asigna los datos al DataGridView
+            List<RegistroTotal> registros = puente.ObtenerRegistrosCompletos();
+            dataGridView1.DataSource = registros;
+        }
+
+
+        public event Action<RegistroTotal> EventoEditar;
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Verifica que el clic haya sido en la columna de tu botón (ej. "colEditar")
+            // y que no haya sido en la fila de encabezado.
+            if (e.ColumnIndex == dataGridView1.Columns["colEditar"].Index && e.RowIndex >= 0)
+            {
+                // 1. Obtén el objeto de datos completo de la fila
+                // DataBoundItem es la propiedad que contiene el objeto al que está enlazada la fila.
+                RegistroTotal registroCompleto = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
+                // 2. Extrae los IDs y datos que necesitas del objeto 'registroCompleto'
+                int idDeportista = registroCompleto.IdDeportista;
+                string nombreDeportista = registroCompleto.Nombres + " " + registroCompleto.Apellidos;
+
+                // 3. Pasa los datos (los IDs ocultos y la información visible) al formulario de edición.
+                EventoEditar?.Invoke(registroCompleto); // Notifica al principal
+                this.Close();
+
+                // Refresca el DataGridView para reflejar los cambios hechos en el otro formulario.
+                CargarDatosEnDataGridView();
+            }
+        }
+
+        public event Action<int> EventoPerfil;
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Verifica que el clic fue en la fila de datos (no en el encabezado) y en la columna correcta.
+            // Reemplaza "colNombreDeportista" con el nombre de tu columna.
+            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "colNombreDeportista")
+            {
+                // 2. Obtén el objeto de datos completo de la fila seleccionada.
+                RegistroTotal registro = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+                // 3. Extrae el ID del deportista desde el objeto.
+                int idDeportista = registro.IdDeportista;
+
+                // 4. Abre el nuevo formulario y pásale el ID del deportista.
+                // Crea un nuevo formulario para el historial, por ejemplo, FrmHistorialDeportista
+                // Abre el nuevo formulario y cierra el actual
+                EventoPerfil?.Invoke(idDeportista); // Notifica al principal
+                this.Close();
+            }
         }
     }
 }

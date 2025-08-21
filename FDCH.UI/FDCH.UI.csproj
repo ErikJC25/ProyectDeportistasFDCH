@@ -66,6 +66,18 @@
     <Compile Include="Vistas\FrmAddTorneo.Designer.cs">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmEditarRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarRegistro.Designer.cs">
+      <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmHistorialDeportista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmHistorialDeportista.Designer.cs">
+      <DependentUpon>FrmHistorialDeportista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmAddTorneo.resx">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarRegistro.resx">
+      <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmHistorialDeportista.resx">
+      <DependentUpon>FrmHistorialDeportista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmInicio.resx">
       <DependentUpon>FrmInicio.cs</DependentUpon>
