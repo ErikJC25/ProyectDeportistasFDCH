@@ -123,7 +123,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(181, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(807, 48);
+            this.label1.Size = new System.Drawing.Size(782, 46);
             this.label1.TabIndex = 1;
             this.label1.Text = "Registro de resultados de Participaciones";
             // 
@@ -420,7 +420,9 @@
             this.colEditar.MinimumWidth = 6;
             this.colEditar.Name = "colEditar";
             this.colEditar.ReadOnly = true;
+            this.colEditar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colEditar.Text = "Editar";
+            this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
             // FrmInicio

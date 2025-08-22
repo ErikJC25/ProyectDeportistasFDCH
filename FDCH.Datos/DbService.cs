@@ -10,7 +10,7 @@ namespace FDCH.Datos
 {
     public class DbService
     {
-        private const string DbFileName = "semifinal.db"; // Nombre del archivo de la BD
+        public const string DbFileName = "semifinal.db"; // Nombre del archivo de la BD
         //private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
 
         // Ruta absoluta (a nivel local UNICA MAQUINA)
@@ -21,10 +21,17 @@ namespace FDCH.Datos
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../BaseDatos", DbFileName)
         );
 
+        // Ruta absoluta (a nivel local, para todos los usuarios)
+        //public static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
+
+        //public static readonly string DbPath = Path.Combine(Environment.CurrentDirectory, DbFileName);
+
+
+
         /// <summary>
         /// Obtiene una conexión a la base de datos SQLite.
         /// </summary>
-        private static SQLiteConnection GetConnection()
+        public static SQLiteConnection GetConnection()
         {
             return new SQLiteConnection($"Data Source={DbPath};Version=3;");
         }

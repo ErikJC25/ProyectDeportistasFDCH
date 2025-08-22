@@ -105,9 +105,6 @@ namespace FDCH.UI.Vistas
         {
             // Definición de placeholders actuales
             string placeholderNombre = "Torneo Canto...";
-            string placeholderLugar = "Riobamba";
-            string placeholderTipo = "Oficial";
-            string placeholderNivel = "Regional, Cantonal, ...";
             string placeholderFecha = "dd/MM/yyyy";
 
             // --- 1. Validación de nombre (obligatorio) ---
@@ -118,44 +115,37 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            // --- 2. Validación y conversión de fechas ---
-            DateTime fechaInicio, fechaFin;
-            bool fechaInicioValida = true, fechaFinValida = true;
+            // --- 2. Validar y convertir fechas si se ingresaron
+            DateTime fechaInicioDT = DateTime.MinValue;
+            DateTime fechaFinDT = DateTime.MinValue;
 
+            // Validar la fecha de inicio si el campo no está vacío
             if (!string.IsNullOrWhiteSpace(txtFechaInicio.Text) && txtFechaInicio.Text != placeholderFecha)
             {
-                if (!DateTime.TryParseExact(txtFechaInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicio))
+                if (!DateTime.TryParseExact(txtFechaInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicioDT))
                 {
                     MessageBox.Show("El formato de la fecha de inicio es incorrecto. Use dd/MM/yyyy.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtFechaInicio.Focus();
-                    fechaInicioValida = false;
                     return;
                 }
             }
-            else
-            {
-                fechaInicio = DateTime.MinValue; // Si no se ingresa, se asigna un valor por defecto
-            }
 
+            // Validar la fecha de fin si el campo no está vacío
             if (!string.IsNullOrWhiteSpace(txtFechaFin.Text) && txtFechaFin.Text != placeholderFecha)
             {
-                if (!DateTime.TryParseExact(txtFechaFin.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                if (!DateTime.TryParseExact(txtFechaFin.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFinDT))
                 {
                     MessageBox.Show("El formato de la fecha de fin es incorrecto. Use dd/MM/yyyy.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtFechaFin.Focus();
-                    fechaFinValida = false;
                     return;
                 }
             }
-            else
-            {
-                fechaFin = DateTime.MinValue;
-            }
 
             // --- 3. Validación de lógica de fechas (si ambas son válidas) ---
-            if (fechaInicioValida && fechaFinValida && fechaInicio != DateTime.MinValue && fechaFin != DateTime.MinValue)
+            // Solo se valida si ambas fechas tienen un valor real
+            if (fechaInicioDT != DateTime.MinValue && fechaFinDT != DateTime.MinValue)
             {
-                if (fechaInicio > fechaFin)
+                if (fechaInicioDT > fechaFinDT)
                 {
                     MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.", "Fechas Inválidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtFechaInicio.Focus();
@@ -163,16 +153,22 @@ namespace FDCH.UI.Vistas
                 }
             }
 
-            // Crear el objeto Evento con los datos validados
+            // Crear el objeto Evento
             Evento evento = new Evento
             {
                 nombre_evento = txtNombre.Text.Trim(),
-                lugar = (txtLugar.Text == placeholderLugar) ? "" : txtLugar.Text.Trim(),
-                fecha_inicio = fechaInicio,
-                fecha_fin = fechaFin,
-                tipo_evento = (txtTipo.Text == placeholderTipo) ? "" : txtTipo.Text.Trim(),
-                nivel_evento = (txtNivel.Text == placeholderNivel) ? "" : txtNivel.Text.Trim()
+                lugar = txtLugar.Text.Trim(),
+                // Guardar las fechas como STRING, tal como lo solicitaste
+                fecha_inicio = (txtFechaInicio.Text == placeholderFecha) ? "" : txtFechaInicio.Text.Trim(),
+                fecha_fin = (txtFechaFin.Text == placeholderFecha) ? "" : txtFechaFin.Text.Trim(),
+                tipo_evento = txtTipo.Text.Trim(),
+                nivel_evento = txtNivel.Text.Trim()
             };
+
+            // Si el texto de los campos de ayuda es lo que se envía, guárdalo como cadena vacía.
+            if (evento.lugar == "Riobamba") evento.lugar = "";
+            if (evento.tipo_evento == "Oficial") evento.tipo_evento = "";
+            if (evento.nivel_evento == "Regional, Cantonal, ...") evento.nivel_evento = "";
 
             int resultado = puente.InsertarEvento(evento);
 
