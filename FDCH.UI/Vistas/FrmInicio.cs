@@ -64,21 +64,24 @@ namespace FDCH.UI.Vistas
         public event Action<int> EventoPerfil;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // 1. Verifica que el clic fue en la fila de datos (no en el encabezado) y en la columna correcta.
-            // Reemplaza "colNombreDeportista" con el nombre de tu columna.
-            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "colNombreDeportista")
+            // Verifica que el clic fue en la fila de datos (no en el encabezado).
+            // Y que la columna no es la primera columna en blanco (la de la selección de fila).
+            if (e.RowIndex >= 0 && e.ColumnIndex > 0)
             {
-                // 2. Obtén el objeto de datos completo de la fila seleccionada.
-                RegistroTotal registro = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+                // 1. Obtén el objeto de datos completo de la fila seleccionada.
+                // Reemplaza "colNombreDeportista" con el nombre de tu columna
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Nombres")
+                {
+                    // 2. Obtén el objeto de datos completo de la fila seleccionada.
+                    RegistroTotal registro = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
-                // 3. Extrae el ID del deportista desde el objeto.
-                int idDeportista = registro.IdDeportista;
+                    // 3. Extrae el ID del deportista desde el objeto.
+                    int idDeportista = registro.IdDeportista;
 
-                // 4. Abre el nuevo formulario y pásale el ID del deportista.
-                // Crea un nuevo formulario para el historial, por ejemplo, FrmHistorialDeportista
-                // Abre el nuevo formulario y cierra el actual
-                EventoPerfil?.Invoke(idDeportista); // Notifica al principal
-                this.Close();
+                    // 4. Abre el nuevo formulario y pásale el ID del deportista.
+                    EventoPerfil?.Invoke(idDeportista); // Notifica al principal
+                    this.Close();
+                }
             }
         }
     }

@@ -39,7 +39,7 @@ namespace FDCH.UI.Vistas
             // Cierra el formulario actual si existe
             if (formularioActivo != null)
             {
-                formularioActivo.Close();
+                // No es necesario llamar a Close() si solo se va a limpiar el panel
                 formularioActivo.Dispose();
             }
 
@@ -49,6 +49,21 @@ namespace FDCH.UI.Vistas
             formulario.Dock = DockStyle.Fill;
             pnlContenedorFrm.Controls.Clear();
             pnlContenedorFrm.Controls.Add(formulario);
+
+            // Si el formulario que se abre es FrmInicio, suscribe los eventos
+            if (formulario is FrmInicio)
+            {
+                var frmInicio = (FrmInicio)formulario;
+                frmInicio.EventoPerfil += idDeportista =>
+                {
+                    AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
+                };
+
+                frmInicio.EventoEditar += registroCompleto =>
+                {
+                    AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
+                };
+            }
             formulario.Show();
         }
 
@@ -56,17 +71,7 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
-            var frmInicio = new FrmInicio();
-            frmInicio.EventoPerfil += idDeportista =>
-            {
-                AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
-            };
-
-            frmInicio.EventoEditar += registroCompleto =>
-            {
-                AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
-            };
-            AbrirFormularioEnPanel(frmInicio);
+            AbrirFormularioEnPanel(new FrmInicio());
         }
 
         private void btnBusqueda_Click(object sender, EventArgs e)
