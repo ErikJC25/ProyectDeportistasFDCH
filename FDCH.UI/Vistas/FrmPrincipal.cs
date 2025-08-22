@@ -13,14 +13,14 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmPrincipal : Form
     {
-        private Usuario _usuarioAutenticado;
-        private Form formularioActivo = null; // Referencia al form actual
+        Usuario _usuarioAutenticado;
+        Form formularioActivo = null; // Referencia al form actual
 
-        public FrmPrincipal(/*Usuario usuario*/)
+        public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
-            //_usuarioAutenticado = usuario;
-            //lblUsuarioActivo.Text = "Conectado como: " + _usuarioAutenticado.NombreUsuario;
+            _usuarioAutenticado = usuario;
+            lblUsuarioActivo.Text = "Conectado como: " + _usuarioAutenticado.nombre_usuario;
 
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;

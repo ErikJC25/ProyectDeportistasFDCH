@@ -6,7 +6,7 @@ namespace FDCH.Entidades
     public class Desempeno
     {
         public int id_desempeno { get; set; }
-        public int puntos { get; set; }
+        public string puntos { get; set; }
         public string medalla { get; set; }
         public string observaciones { get; set; }
         public string tiempo { get; set; }

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using FDCH.Entidades;
+using FDCH.Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FDCH.Entidades;
-using FDCH.Logica;
 
 namespace FDCH.UI.Vistas
 {
@@ -102,62 +103,125 @@ namespace FDCH.UI.Vistas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            // Definición de placeholders actuales
+            string placeholderNombre = "Torneo Canto...";
+            string placeholderLugar = "Riobamba";
+            string placeholderTipo = "Oficial";
+            string placeholderNivel = "Regional, Cantonal, ...";
+            string placeholderFecha = "dd/MM/yyyy";
+
+            // --- 1. Validación de nombre (obligatorio) ---
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == placeholderNombre)
             {
-                // Placeholders actuales
-                string placeholderNombre = "Torneo Canto...";
-                string placeholderLugar = "Riobamba";
-                string placeholderTipo = "Oficial";
-                string placeholderNivel = "Regional, Cantonal, ...";
+                MessageBox.Show("El campo 'Nombre del torneo' es obligatorio.", "Falta Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return;
+            }
 
-                // Validación de campos obligatorios
-                if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == placeholderNombre)
+            // --- 2. Validación y conversión de fechas ---
+            DateTime fechaInicio, fechaFin;
+            bool fechaInicioValida = true, fechaFinValida = true;
+
+            if (!string.IsNullOrWhiteSpace(txtFechaInicio.Text) && txtFechaInicio.Text != placeholderFecha)
+            {
+                if (!DateTime.TryParseExact(txtFechaInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicio))
                 {
-                    MessageBox.Show("Ingrese el nombre del torneo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtNombre.Focus();
+                    MessageBox.Show("El formato de la fecha de inicio es incorrecto. Use dd/MM/yyyy.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtFechaInicio.Focus();
+                    fechaInicioValida = false;
                     return;
-                }
-                if (string.IsNullOrWhiteSpace(txtLugar.Text) || txtLugar.Text == placeholderLugar)
-                {
-                    MessageBox.Show("Ingrese el lugar del torneo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtLugar.Focus();
-                    return;
-                }
-                if (dtpInicio.Value.Date > dtpFin.Value.Date)
-                {
-                    MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dtpInicio.Focus();
-                    return;
-                }
-
-                // Crear el objeto Evento
-                Evento evento = new Evento
-                {
-                    nombre_evento = txtNombre.Text,
-                    lugar = txtLugar.Text,
-                    fecha_inicio = dtpInicio.Value.Date,
-                    fecha_fin = dtpFin.Value.Date,
-                    tipo_evento = (txtTipo.Text == placeholderTipo) ? "" : txtTipo.Text,
-                    nivel_evento = (txtNivel.Text == placeholderNivel) ? "" : txtNivel.Text
-                };
-
-                int resultado = puente.InsertarEvento(evento);
-
-                if (resultado > 0)
-                {
-                    MessageBox.Show("Torneo agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Abre el nuevo formulario y cierra el actual
-                    EventoAgregado?.Invoke(resultado); // Notifica al principal
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo agregar el torneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error al agregar el torneo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fechaInicio = DateTime.MinValue; // Si no se ingresa, se asigna un valor por defecto
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtFechaFin.Text) && txtFechaFin.Text != placeholderFecha)
+            {
+                if (!DateTime.TryParseExact(txtFechaFin.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFin))
+                {
+                    MessageBox.Show("El formato de la fecha de fin es incorrecto. Use dd/MM/yyyy.", "Formato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtFechaFin.Focus();
+                    fechaFinValida = false;
+                    return;
+                }
+            }
+            else
+            {
+                fechaFin = DateTime.MinValue;
+            }
+
+            // --- 3. Validación de lógica de fechas (si ambas son válidas) ---
+            if (fechaInicioValida && fechaFinValida && fechaInicio != DateTime.MinValue && fechaFin != DateTime.MinValue)
+            {
+                if (fechaInicio > fechaFin)
+                {
+                    MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.", "Fechas Inválidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtFechaInicio.Focus();
+                    return;
+                }
+            }
+
+            // Crear el objeto Evento con los datos validados
+            Evento evento = new Evento
+            {
+                nombre_evento = txtNombre.Text.Trim(),
+                lugar = (txtLugar.Text == placeholderLugar) ? "" : txtLugar.Text.Trim(),
+                fecha_inicio = fechaInicio,
+                fecha_fin = fechaFin,
+                tipo_evento = (txtTipo.Text == placeholderTipo) ? "" : txtTipo.Text.Trim(),
+                nivel_evento = (txtNivel.Text == placeholderNivel) ? "" : txtNivel.Text.Trim()
+            };
+
+            int resultado = puente.InsertarEvento(evento);
+
+            if (resultado > 0)
+            {
+                MessageBox.Show("Torneo agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EventoAgregado?.Invoke(resultado);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo agregar el torneo. Intente de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtFechInicio_Enter(object sender, EventArgs e)
+        {
+            if (txtFechaInicio.Text == "04/08/2025")
+            {
+                txtFechaInicio.Text = "";
+                txtFechaInicio.ForeColor = Color.Black;
+            }
+
+        }
+
+        private void txtFechaInicio_Leave(object sender, EventArgs e)
+        {
+            if (txtFechaInicio.Text == "")
+            {
+                txtFechaInicio.Text = "04/08/2025";
+                txtFechaInicio.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtFechaFin_Enter(object sender, EventArgs e)
+        {
+            if (txtFechaFin.Text == "29/08/2025")
+            {
+                txtFechaFin.Text = "";
+                txtFechaFin.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtFechaFin_Leave(object sender, EventArgs e)
+        {
+            if (txtFechaFin.Text == "")
+            {
+                txtFechaFin.Text = "29/08/2025";
+                txtFechaFin.ForeColor = Color.DarkGray;
             }
         }
     }

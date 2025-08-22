@@ -24,14 +24,14 @@ namespace FDCH.Entidades
         public int IdEvento { get; set; }
         public string NombreEvento { get; set; }
         public string Lugar { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
+        public string FechaInicio { get; set; }
+        public string FechaFin { get; set; }
         public string TipoEvento { get; set; }
         public string NivelEvento { get; set; }
 
 
         public string MesInicioEvento { get; set; }
-        public int AnioInicioEvento { get; set; }
+        public string AnioInicioEvento { get; set; }
 
 
         // Atributos de la tabla de Disciplinas
@@ -47,12 +47,12 @@ namespace FDCH.Entidades
         public int IdCompetencia { get; set; }
         public string Categoria { get; set; }
         public string Division { get; set; }
-        public int NumeroParticipantes { get; set; }
+        public string NumeroParticipantes { get; set; }
         public string Record { get; set; }
 
         // Atributos de la tabla de Desempeno
         public int IdDesempeno { get; set; }
-        public int Puntos { get; set; }
+        public string Puntos { get; set; }
         public string Medalla { get; set; }
         public string Observaciones { get; set; }
         public string Tiempo { get; set; }

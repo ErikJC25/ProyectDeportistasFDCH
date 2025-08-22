@@ -10,7 +10,7 @@ namespace FDCH.Datos
 {
     public class DbService
     {
-        private const string DbFileName = "deportistas.db"; // Nombre del archivo de la BD
+        private const string DbFileName = "semifinal.db"; // Nombre del archivo de la BD
         //private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
 
         // Ruta absoluta (a nivel local UNICA MAQUINA)
@@ -241,8 +241,8 @@ namespace FDCH.Datos
                                     IdEvento = reader["IdEvento"] != DBNull.Value ? Convert.ToInt32(reader["IdEvento"]) : 0,
                                     NombreEvento = reader["NombreEvento"]?.ToString(),
                                     Lugar = reader["Lugar"]?.ToString(),
-                                    FechaInicio = reader["FechaInicio"] != DBNull.Value ? Convert.ToDateTime(reader["FechaInicio"]) : DateTime.MinValue,
-                                    FechaFin = reader["FechaFin"] != DBNull.Value ? Convert.ToDateTime(reader["FechaFin"]) : DateTime.MinValue,
+                                    FechaInicio = reader["FechaInicio"]?.ToString(),
+                                    FechaFin = reader["FechaFin"]?.ToString(),
                                     TipoEvento = reader["TipoEvento"]?.ToString(),
                                     NivelEvento = reader["NivelEvento"]?.ToString(),
                                     IdDisciplina = reader["IdDisciplina"] != DBNull.Value ? Convert.ToInt32(reader["IdDisciplina"]) : 0,
@@ -253,10 +253,10 @@ namespace FDCH.Datos
                                     IdCompetencia = reader["IdCompetencia"] != DBNull.Value ? Convert.ToInt32(reader["IdCompetencia"]) : 0,
                                     Categoria = reader["Categoria"]?.ToString(),
                                     Division = reader["Division"]?.ToString(),
-                                    NumeroParticipantes = reader["NumeroParticipantes"] != DBNull.Value ? Convert.ToInt32(reader["NumeroParticipantes"]) : 0,
+                                    NumeroParticipantes = reader["NumeroParticipantes"]?.ToString(),
                                     Record = reader["Record"]?.ToString(),
                                     IdDesempeno = reader["IdDesempeno"] != DBNull.Value ? Convert.ToInt32(reader["IdDesempeno"]) : 0,
-                                    Puntos = reader["Puntos"] != DBNull.Value ? Convert.ToInt32(reader["Puntos"]) : 0,
+                                    Puntos = reader["Puntos"]?.ToString(),
                                     Medalla = reader["Medalla"]?.ToString(),
                                     Observaciones = reader["Observaciones"]?.ToString(),
                                     Tiempo = reader["Tiempo"]?.ToString(),
@@ -384,8 +384,8 @@ namespace FDCH.Datos
                                     id_evento = Convert.ToInt32(reader["id_evento"]),
                                     nombre_evento = reader["nombre_evento"].ToString(),
                                     lugar = reader["lugar"].ToString(),
-                                    fecha_inicio = Convert.ToDateTime(reader["fecha_inicio"]),
-                                    fecha_fin = Convert.ToDateTime(reader["fecha_fin"]),
+                                    fecha_inicio = reader["fecha_inicio"].ToString(),
+                                    fecha_fin = reader["fecha_fin"].ToString(),
                                     tipo_evento = reader["tipo_evento"].ToString(),
                                     nivel_evento = reader["nivel_evento"].ToString()
                                 });
@@ -573,7 +573,7 @@ namespace FDCH.Datos
                                     id_competencia = Convert.ToInt32(reader["id_competencia"]),
                                     categoria = reader["categoria"].ToString(),
                                     division = reader["division"].ToString(),
-                                    numero_participantes = Convert.ToInt32(reader["numero_participantes"]),
+                                    numero_participantes = reader["numero_participantes"].ToString(),
                                     record = reader["record"].ToString(),
                                     id_evento = Convert.ToInt32(reader["id_evento"]),
                                     id_especialidad = Convert.ToInt32(reader["id_especialidad"])
@@ -642,7 +642,7 @@ namespace FDCH.Datos
                                 lista.Add(new Desempeno
                                 {
                                     id_desempeno = Convert.ToInt32(reader["id_desempeno"]),
-                                    puntos = Convert.ToInt32(reader["puntos"]),
+                                    puntos = reader["puntos"].ToString(),
                                     medalla = reader["medalla"].ToString(),
                                     observaciones = reader["observaciones"].ToString(),
                                     tiempo = reader["tiempo"].ToString(),
@@ -793,6 +793,140 @@ namespace FDCH.Datos
             return lista;
         }
 
-        // Aquí irían los demás métodos para las operaciones CRUD de las otras tablas
+
+        public bool InsertarRegistroDeportistaCompleto(
+            Deportista deportista,
+            Tecnico tecnico,
+            Disciplina disciplina,
+            Especialidad especialidad,
+            Competencia competencia,
+            Desempeno desempeno)
+        {
+            try
+            {
+                // 1. Insertar Deportista
+                int idDeportista = InsertarDeportista(deportista);
+
+                // 2. Insertar Técnico
+                int idTecnico = InsertarTecnico(tecnico);
+
+                // 3. Insertar Disciplina
+                int idDisciplina = InsertarDisciplina(disciplina);
+
+                // 4. Insertar Especialidad (requiere idDisciplina)
+                especialidad.id_disciplina = idDisciplina;
+                int idEspecialidad = InsertarEspecialidad(especialidad);
+
+                // 5. Insertar Competencia (requiere idEvento y idEspecialidad)
+                competencia.id_especialidad = idEspecialidad;
+                int idCompetencia = InsertarCompetencia(competencia);
+
+                // 6. Insertar Desempeño (requiere idDeportista, idCompetencia, idTecnico)
+                desempeno.id_deportista = idDeportista;
+                desempeno.id_competencia = idCompetencia;
+                desempeno.id_tecnico = idTecnico;
+                int idDesempeno = InsertarDesempeno(desempeno);
+
+                // Si todo fue bien
+                return idDeportista > 0 && idTecnico > 0 && idDisciplina > 0 && idEspecialidad > 0 && idCompetencia > 0 && idDesempeno > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Especialidad> ObtenerEspecialidadesPorDisciplina(int idDisciplina)
+        {
+            var especialidades = new List<Especialidad>();
+            using (var connection = GetConnection()) // Asumo que tienes un método GetConnection()
+            {
+                string query = "SELECT id_especialidad, nombre_especialidad, modalidad FROM Especialidades WHERE id_disciplina = @idDisciplina";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var especialidad = new Especialidad
+                                {
+                                    id_especialidad = Convert.ToInt32(reader["id_especialidad"]),
+                                    nombre_especialidad = reader["nombre_especialidad"]?.ToString(),
+                                    modalidad = reader["modalidad"]?.ToString()
+                                };
+                                especialidades.Add(especialidad);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener especialidades por disciplina: " + ex.Message);
+                    }
+                }
+            }
+            return especialidades;
+        }
+
+        public int ObtenerIdDisciplinaPorNombre(string nombre)
+        {
+            int id = 0;
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT id_disciplina FROM Disciplinas WHERE nombre_disciplina = @nombre";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nombre", nombre);
+                    try
+                    {
+                        connection.Open();
+                        var result = command.ExecuteScalar(); // Devuelve el primer valor de la primera fila
+                        if (result != null && result != DBNull.Value)
+                        {
+                            id = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener el ID de la disciplina: " + ex.Message);
+                    }
+                }
+            }
+            return id;
+        }
+
+        public int ObtenerIdEspecialidadPorNombre(string nombre, int idDisciplina)
+        {
+            int id = 0;
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT id_especialidad FROM Especialidades WHERE nombre_especialidad = @nombre AND id_disciplina = @idDisciplina";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nombre", nombre);
+                    command.Parameters.AddWithValue("@idDisciplina", idDisciplina);
+                    try
+                    {
+                        connection.Open();
+                        var result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            id = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener el ID de la especialidad: " + ex.Message);
+                    }
+                }
+            }
+            return id;
+        }
+
+
+
     }
 }

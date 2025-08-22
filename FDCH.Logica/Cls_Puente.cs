@@ -123,17 +123,30 @@ namespace FDCH.Logica
 
         public List<RegistroTotal> ObtenerRegistrosCompletos()
         {
-            // Supongamos que tienes un método en DbService que trae los datos completos
             List<RegistroTotal> listaRegistros = _dbService.ObtenerRegistrosCompletosDB();
 
             // Recorremos la lista para calcular los campos extras
             foreach (var registro in listaRegistros)
             {
-                // Usa la propiedad de fecha de inicio del evento para calcular el mes y el año
-                registro.MesInicioEvento = registro.FechaInicio.ToString("MMMM"); // 'MMMM' para el nombre completo del mes
-                registro.AnioInicioEvento = registro.FechaInicio.Year;
-            }
+                // Variable para almacenar la fecha parseada
+                DateTime fechaInicio;
 
+                // Intenta convertir el string a DateTime de forma segura
+                // El formato "dd/MM/yyyy" es crucial para que la conversión funcione
+                if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
+                {
+                    // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM");
+                    registro.AnioInicioEvento = fechaInicio.Year.ToString();
+                }
+                else
+                {
+                    // Manejar el caso de que el formato de fecha sea inválido
+                    // Asignar un valor por defecto o mostrar un error
+                    registro.MesInicioEvento = "Desconocido";
+                    registro.AnioInicioEvento = "Desconocido";
+                }
+            }
             return listaRegistros;
         }
 
@@ -164,5 +177,83 @@ namespace FDCH.Logica
             _driveService.SubirArchivoDB(usuario);
             _driveService.SubirLogYLock(usuario);
         }
+
+        public bool InsertarRegistroDeportistaCompleto(
+            Deportista deportista,
+            Tecnico tecnico,
+            Disciplina disciplina,
+            Especialidad especialidad,
+            Competencia competencia,
+            Desempeno desempeno)
+        {
+            return _dbService.InsertarRegistroDeportistaCompleto(
+                deportista, tecnico, disciplina, especialidad, competencia, desempeno);
+        }
+
+        // Método para obtener todas las disciplinas
+        public List<Disciplina> ObtenerTodasDisciplinas()
+        {
+            return _dbService.ObtenerDisciplinas();
+        }
+
+        // Método para obtener especialidades por disciplina
+        public List<Especialidad> ObtenerEspecialidadesPorDisciplina(int idDisciplina)
+        {
+            return _dbService.ObtenerEspecialidadesPorDisciplina(idDisciplina);
+        }
+
+        public bool InsertarRegistroComplejo(Deportista deportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
+        {
+            try
+            {
+                // 1. Insertar Deportista y Tecnico (si no existen)
+                int idDeportista = _dbService.InsertarDeportista(deportista);
+                int idTecnico = _dbService.InsertarTecnico(tecnico);
+
+                // 2. Lógica para Disciplina y Especialidad
+                int idDisciplina = _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
+                if (idDisciplina == 0) // La disciplina no existe, es nueva
+                {
+                    // Insertar la nueva disciplina
+                    Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
+                    idDisciplina = _dbService.InsertarDisciplina(nuevaDisciplina);
+
+                    // Insertar la nueva especialidad asociada a la nueva disciplina
+                    especialidad.id_disciplina = idDisciplina;
+                    int idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
+                    competencia.id_especialidad = idEspecialidad;
+                }
+                else // La disciplina ya existe
+                {
+                    // Verificar si la especialidad ya existe para esta disciplina
+                    int idEspecialidad = _dbService.ObtenerIdEspecialidadPorNombre(especialidad.nombre_especialidad, idDisciplina);
+                    if (idEspecialidad == 0) // La especialidad es nueva para esta disciplina
+                    {
+                        // Insertar la nueva especialidad asociada a la disciplina existente
+                        especialidad.id_disciplina = idDisciplina;
+                        idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
+                    }
+                    competencia.id_especialidad = idEspecialidad;
+                }
+
+                // 3. Insertar Competencia
+                int idCompetencia = _dbService.InsertarCompetencia(competencia);
+
+                // 4. Insertar Desempeño
+                desempeno.id_deportista = idDeportista;
+                desempeno.id_competencia = idCompetencia;
+                desempeno.id_tecnico = idTecnico;
+                _dbService.InsertarDesempeno(desempeno);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

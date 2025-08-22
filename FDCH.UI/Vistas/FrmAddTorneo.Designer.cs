@@ -31,8 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dtpInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.grpbFecha = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +42,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtFechaInicio = new System.Windows.Forms.TextBox();
+            this.txtFechaFin = new System.Windows.Forms.TextBox();
             this.grpbFecha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(692, 9);
+            this.label1.Location = new System.Drawing.Point(696, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(305, 46);
             this.label1.TabIndex = 0;
@@ -64,7 +64,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(565, 65);
+            this.label2.Location = new System.Drawing.Point(565, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 27);
             this.label2.TabIndex = 3;
@@ -75,37 +75,18 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(17, 58);
+            this.label3.Location = new System.Drawing.Point(14, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 27);
             this.label3.TabIndex = 5;
             this.label3.Text = "Inicio:";
-            // 
-            // dtpInicio
-            // 
-            this.dtpInicio.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dtpInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpInicio.Location = new System.Drawing.Point(100, 55);
-            this.dtpInicio.Name = "dtpInicio";
-            this.dtpInicio.Size = new System.Drawing.Size(442, 30);
-            this.dtpInicio.TabIndex = 6;
-            this.dtpInicio.Value = new System.DateTime(2025, 8, 21, 0, 0, 0, 0);
-            // 
-            // dtpFin
-            // 
-            this.dtpFin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFin.Location = new System.Drawing.Point(100, 117);
-            this.dtpFin.Name = "dtpFin";
-            this.dtpFin.Size = new System.Drawing.Size(442, 30);
-            this.dtpFin.TabIndex = 8;
-            this.dtpFin.Value = new System.DateTime(2025, 8, 21, 0, 0, 0, 0);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(17, 120);
+            this.label4.Location = new System.Drawing.Point(298, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 27);
             this.label4.TabIndex = 7;
@@ -113,15 +94,15 @@
             // 
             // grpbFecha
             // 
-            this.grpbFecha.BackColor = System.Drawing.SystemColors.Control;
+            this.grpbFecha.BackColor = System.Drawing.Color.Transparent;
+            this.grpbFecha.Controls.Add(this.txtFechaFin);
+            this.grpbFecha.Controls.Add(this.txtFechaInicio);
             this.grpbFecha.Controls.Add(this.label3);
-            this.grpbFecha.Controls.Add(this.dtpFin);
-            this.grpbFecha.Controls.Add(this.dtpInicio);
             this.grpbFecha.Controls.Add(this.label4);
             this.grpbFecha.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpbFecha.Location = new System.Drawing.Point(570, 178);
+            this.grpbFecha.Location = new System.Drawing.Point(570, 221);
             this.grpbFecha.Name = "grpbFecha";
-            this.grpbFecha.Size = new System.Drawing.Size(558, 181);
+            this.grpbFecha.Size = new System.Drawing.Size(558, 101);
             this.grpbFecha.TabIndex = 9;
             this.grpbFecha.TabStop = false;
             this.grpbFecha.Text = "Fecha";
@@ -131,7 +112,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(565, 372);
+            this.label5.Location = new System.Drawing.Point(565, 344);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 27);
             this.label5.TabIndex = 10;
@@ -142,10 +123,10 @@
             this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombre.Location = new System.Drawing.Point(570, 95);
+            this.txtNombre.Location = new System.Drawing.Point(570, 120);
             this.txtNombre.Multiline = true;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(558, 68);
+            this.txtNombre.Size = new System.Drawing.Size(558, 72);
             this.txtNombre.TabIndex = 11;
             this.txtNombre.Text = "Torneo Canto...";
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
@@ -156,7 +137,7 @@
             this.txtLugar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtLugar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLugar.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtLugar.Location = new System.Drawing.Point(570, 410);
+            this.txtLugar.Location = new System.Drawing.Point(570, 382);
             this.txtLugar.Name = "txtLugar";
             this.txtLugar.Size = new System.Drawing.Size(558, 30);
             this.txtLugar.TabIndex = 12;
@@ -169,7 +150,7 @@
             this.txtTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtTipo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTipo.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtTipo.Location = new System.Drawing.Point(570, 493);
+            this.txtTipo.Location = new System.Drawing.Point(570, 478);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(558, 30);
             this.txtTipo.TabIndex = 14;
@@ -182,7 +163,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(565, 455);
+            this.label6.Location = new System.Drawing.Point(565, 440);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(153, 27);
             this.label6.TabIndex = 13;
@@ -193,7 +174,7 @@
             this.txtNivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNivel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNivel.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNivel.Location = new System.Drawing.Point(570, 576);
+            this.txtNivel.Location = new System.Drawing.Point(570, 572);
             this.txtNivel.Name = "txtNivel";
             this.txtNivel.Size = new System.Drawing.Size(558, 30);
             this.txtNivel.TabIndex = 16;
@@ -206,7 +187,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(565, 538);
+            this.label7.Location = new System.Drawing.Point(565, 534);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 27);
             this.label7.TabIndex = 15;
@@ -219,7 +200,7 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(570, 651);
+            this.btnAgregar.Location = new System.Drawing.Point(569, 631);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(558, 44);
             this.btnAgregar.TabIndex = 17;
@@ -238,6 +219,32 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // txtFechaInicio
+            // 
+            this.txtFechaInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtFechaInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaInicio.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtFechaInicio.Location = new System.Drawing.Point(100, 48);
+            this.txtFechaInicio.Name = "txtFechaInicio";
+            this.txtFechaInicio.Size = new System.Drawing.Size(177, 30);
+            this.txtFechaInicio.TabIndex = 18;
+            this.txtFechaInicio.Text = "04/08/2025";
+            this.txtFechaInicio.Enter += new System.EventHandler(this.txtFechInicio_Enter);
+            this.txtFechaInicio.Leave += new System.EventHandler(this.txtFechaInicio_Leave);
+            // 
+            // txtFechaFin
+            // 
+            this.txtFechaFin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtFechaFin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaFin.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtFechaFin.Location = new System.Drawing.Point(359, 48);
+            this.txtFechaFin.Name = "txtFechaFin";
+            this.txtFechaFin.Size = new System.Drawing.Size(177, 30);
+            this.txtFechaFin.TabIndex = 19;
+            this.txtFechaFin.Text = "29/08/2025";
+            this.txtFechaFin.Enter += new System.EventHandler(this.txtFechaFin_Enter);
+            this.txtFechaFin.Leave += new System.EventHandler(this.txtFechaFin_Leave);
             // 
             // FrmAddTorneo
             // 
@@ -275,8 +282,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpInicio;
-        private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox grpbFecha;
         private System.Windows.Forms.Label label5;
@@ -287,5 +292,7 @@
         private System.Windows.Forms.TextBox txtNivel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.TextBox txtFechaFin;
+        private System.Windows.Forms.TextBox txtFechaInicio;
     }
 }
