@@ -16,12 +16,17 @@ namespace FDCH.UI.Vistas
     {
         private int _idEvento;
         private Cls_Puente puente = new Cls_Puente();
+        Evento objEvento = new Evento();
 
         public FrmAddDeportista(int idTorneo)
         {
             InitializeComponent();
             _idEvento = idTorneo;
+            objEvento = puente.ObtenerEventoPorId(idTorneo);
+            cmbTorneo.Text = objEvento.nombre_evento;
             txtCedula.Focus();
+            CargarDisciplinas();
+            cmbEspecialidad.Enabled = false; // Deshabilitar el ComboBox de especialidades al inicio
         }
 
         // Nuevo: Método para cargar las disciplinas al inicio
@@ -405,14 +410,17 @@ namespace FDCH.UI.Vistas
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbDisciplina.SelectedIndex != -1)
+            // Verifica si hay un elemento seleccionado y si su valor es válido.
+            // El 'SelectedValue' podría ser nulo si se limpia el DataSource.
+            if (cmbDisciplina.SelectedIndex != -1 && cmbDisciplina.SelectedValue is int idDisciplina)
             {
                 cmbEspecialidad.Enabled = true;
-                CargarEspecialidadesPorDisciplina((int)cmbDisciplina.SelectedValue);
+                CargarEspecialidadesPorDisciplina(idDisciplina);
             }
             else
             {
-                // Si el usuario borra la selección (escribe algo nuevo), deshabilita el de especialidades
+                // Si no hay una selección válida o el valor es nulo,
+                // deshabilita y limpia el ComboBox de especialidades.
                 cmbEspecialidad.Enabled = false;
                 cmbEspecialidad.DataSource = null;
                 cmbEspecialidad.Text = "";

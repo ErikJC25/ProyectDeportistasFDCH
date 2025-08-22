@@ -38,6 +38,17 @@ namespace FDCH.Logica
             return _dbService.InsertarDeportista(deportista);
         }
 
+        public Deportista ObtenerDeportistaPorId(int id)
+        {
+            return _dbService.ObtieneDeportista(id);
+        }
+
+        public Evento ObtenerEventoPorId(int id)
+        {
+            return _dbService.ObtieneTorneo(id);
+        }
+
+
         public List<Deportista> ObtenerDeportistas()
         {
             return _dbService.ObtenerDeportistas();

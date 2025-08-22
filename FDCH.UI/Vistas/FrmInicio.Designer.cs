@@ -50,6 +50,9 @@
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NivelEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCompletoTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Division = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +95,9 @@
             this.Lugar,
             this.Genero,
             this.NivelEvento,
+            this.Modalidad,
+            this.NombreCompletoTecnico,
+            this.TipoEvento,
             this.Categoria,
             this.Division,
             this.NombreEspecialidad,
@@ -315,6 +321,33 @@
             this.NivelEvento.ReadOnly = true;
             this.NivelEvento.Width = 125;
             // 
+            // Modalidad
+            // 
+            this.Modalidad.DataPropertyName = "Modalidad";
+            this.Modalidad.HeaderText = "MODALIDAD";
+            this.Modalidad.MinimumWidth = 6;
+            this.Modalidad.Name = "Modalidad";
+            this.Modalidad.ReadOnly = true;
+            this.Modalidad.Width = 125;
+            // 
+            // NombreCompletoTecnico
+            // 
+            this.NombreCompletoTecnico.DataPropertyName = "NombreCompletoTecnico";
+            this.NombreCompletoTecnico.HeaderText = "TECNICO";
+            this.NombreCompletoTecnico.MinimumWidth = 6;
+            this.NombreCompletoTecnico.Name = "NombreCompletoTecnico";
+            this.NombreCompletoTecnico.ReadOnly = true;
+            this.NombreCompletoTecnico.Width = 125;
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.DataPropertyName = "TipoEvento";
+            this.TipoEvento.HeaderText = "TIPO";
+            this.TipoEvento.MinimumWidth = 6;
+            this.TipoEvento.Name = "TipoEvento";
+            this.TipoEvento.ReadOnly = true;
+            this.TipoEvento.Width = 125;
+            // 
             // Categoria
             // 
             this.Categoria.DataPropertyName = "Categoria";
@@ -468,6 +501,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Genero;
         private System.Windows.Forms.DataGridViewTextBoxColumn NivelEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modalidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCompletoTecnico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Division;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreEspecialidad;

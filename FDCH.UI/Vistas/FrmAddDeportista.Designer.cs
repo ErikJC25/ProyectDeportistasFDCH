@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCedula = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -82,15 +82,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Agregar Deportista al Torneo:";
             // 
-            // comboBox1
+            // cmbTorneo
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(409, 31);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(722, 35);
-            this.comboBox1.TabIndex = 1;
+            this.cmbTorneo.BackColor = System.Drawing.Color.White;
+            this.cmbTorneo.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTorneo.FormattingEnabled = true;
+            this.cmbTorneo.Location = new System.Drawing.Point(409, 31);
+            this.cmbTorneo.Name = "cmbTorneo";
+            this.cmbTorneo.Size = new System.Drawing.Size(722, 35);
+            this.cmbTorneo.TabIndex = 1;
             // 
             // label2
             // 
@@ -106,7 +106,7 @@
             // 
             this.txtCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtCedula.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtCedula.ForeColor = System.Drawing.Color.Black;
             this.txtCedula.Location = new System.Drawing.Point(24, 141);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(331, 30);
@@ -127,7 +127,7 @@
             // 
             this.txtNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNombres.ForeColor = System.Drawing.Color.Black;
             this.txtNombres.Location = new System.Drawing.Point(800, 141);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(331, 30);
@@ -147,7 +147,7 @@
             // 
             this.txtApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtApellidos.ForeColor = System.Drawing.Color.Black;
             this.txtApellidos.Location = new System.Drawing.Point(411, 141);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(330, 30);
@@ -446,7 +446,7 @@
             // pnlCabecera
             // 
             this.pnlCabecera.BackColor = System.Drawing.Color.Crimson;
-            this.pnlCabecera.Controls.Add(this.comboBox1);
+            this.pnlCabecera.Controls.Add(this.cmbTorneo);
             this.pnlCabecera.Controls.Add(this.label1);
             this.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCabecera.Location = new System.Drawing.Point(0, 0);
@@ -579,7 +579,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbTorneo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label label3;

@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,9 @@
             this.Lugar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NivelEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCompletoTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Division = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,11 +104,9 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdDeportista,
             this.IdTecnico,
             this.IdEvento,
             this.IdDisciplina,
@@ -125,6 +125,9 @@
             this.Lugar,
             this.Genero,
             this.NivelEvento,
+            this.Modalidad,
+            this.NombreCompletoTecnico,
+            this.TipoEvento,
             this.Categoria,
             this.Division,
             this.NombreEspecialidad,
@@ -138,23 +141,13 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(12, 186);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 156);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1136, 509);
+            this.dataGridView1.Size = new System.Drawing.Size(1136, 539);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // IdDeportista
-            // 
-            this.IdDeportista.DataPropertyName = "IdDeportista";
-            this.IdDeportista.HeaderText = "IdDeportista";
-            this.IdDeportista.MinimumWidth = 6;
-            this.IdDeportista.Name = "IdDeportista";
-            this.IdDeportista.ReadOnly = true;
-            this.IdDeportista.Visible = false;
-            this.IdDeportista.Width = 125;
             // 
             // IdTecnico
             // 
@@ -324,6 +317,33 @@
             this.NivelEvento.ReadOnly = true;
             this.NivelEvento.Width = 125;
             // 
+            // Modalidad
+            // 
+            this.Modalidad.DataPropertyName = "Modalidad";
+            this.Modalidad.HeaderText = "MODALIDAD";
+            this.Modalidad.MinimumWidth = 6;
+            this.Modalidad.Name = "Modalidad";
+            this.Modalidad.ReadOnly = true;
+            this.Modalidad.Width = 125;
+            // 
+            // NombreCompletoTecnico
+            // 
+            this.NombreCompletoTecnico.DataPropertyName = "NombreCompletoTecnico";
+            this.NombreCompletoTecnico.HeaderText = "TECNICO";
+            this.NombreCompletoTecnico.MinimumWidth = 6;
+            this.NombreCompletoTecnico.Name = "NombreCompletoTecnico";
+            this.NombreCompletoTecnico.ReadOnly = true;
+            this.NombreCompletoTecnico.Width = 125;
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.DataPropertyName = "TipoEvento";
+            this.TipoEvento.HeaderText = "TIPO";
+            this.TipoEvento.MinimumWidth = 6;
+            this.TipoEvento.Name = "TipoEvento";
+            this.TipoEvento.ReadOnly = true;
+            this.TipoEvento.Width = 125;
+            // 
             // Categoria
             // 
             this.Categoria.DataPropertyName = "Categoria";
@@ -458,7 +478,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdDeportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTecnico;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDisciplina;
@@ -477,6 +496,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Lugar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Genero;
         private System.Windows.Forms.DataGridViewTextBoxColumn NivelEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modalidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCompletoTecnico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Division;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreEspecialidad;

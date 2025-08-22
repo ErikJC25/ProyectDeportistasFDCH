@@ -140,6 +140,44 @@ namespace FDCH.Datos
             return nuevoId;
         }
 
+
+        public Deportista ObtieneDeportista(int idBusca)
+        {
+            Deportista objDeportista = new Deportista();
+            using (SQLiteConnection connection = GetConnection())
+            {
+                string query = "SELECT * FROM Deportistas WHERE id_deportista = @IdDeportista";
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdDeportista", idBusca);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                objDeportista.id_deportista = Convert.ToInt32(reader["id_deportista"]);
+                                objDeportista.cedula = reader["cedula"].ToString();
+                                objDeportista.nombres = reader["nombres"].ToString();
+                                objDeportista.apellidos = reader["apellidos"].ToString();
+                                objDeportista.genero = reader["genero"].ToString();
+                                objDeportista.tipo_discapacidad = reader["tipo_discapacidad"].ToString();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener deportista: " + ex.Message);
+                    }
+                }
+            }
+            return objDeportista;
+        }
+
+
+
         /// <summary>
         /// Obtiene una lista de todos los deportistas de la base de datos.
         /// </summary>
@@ -224,6 +262,7 @@ namespace FDCH.Datos
                     INNER JOIN Eventos e ON c.id_evento = e.id_evento
                     INNER JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
                     INNER JOIN Disciplinas dis ON esp.id_disciplina = dis.id_disciplina
+                    ORDER BY des.id_desempeno DESC
                 ";
 
                 using (var command = new SQLiteCommand(query, connection))
@@ -330,6 +369,7 @@ namespace FDCH.Datos
                     INNER JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
                     INNER JOIN Disciplinas dis ON esp.id_disciplina = dis.id_disciplina
                     WHERE d.id_deportista = @IdDeportista
+                    ORDER BY des.id_desempeno DESC
                 ";
 
                 using (var command = new SQLiteCommand(query, connection))
@@ -479,6 +519,45 @@ namespace FDCH.Datos
             }
             return nuevoId;
         }
+
+        public Evento ObtieneTorneo(int idBusca)
+        {
+            Evento objevento = new Evento();
+            using (var connection = GetConnection())
+            {
+
+                string query = "SELECT * FROM Eventos WHERE id_evento = @IdEvento";
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdEvento", idBusca);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                objevento.id_evento = Convert.ToInt32(reader["id_evento"]);
+                                objevento.nombre_evento = reader["nombre_evento"].ToString();
+                                objevento.lugar = reader["lugar"].ToString();
+                                objevento.fecha_inicio = reader["fecha_inicio"].ToString();
+                                objevento.fecha_fin = reader["fecha_fin"].ToString();
+                                objevento.tipo_evento = reader["tipo_evento"].ToString();
+                                objevento.nivel_evento = reader["nivel_evento"].ToString();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener evento: " + ex.Message);
+                    }
+                }
+            }
+            return objevento;
+        }
+
+
 
         // Consulta todos los eventos
         public List<Evento> ObtenerEventos()

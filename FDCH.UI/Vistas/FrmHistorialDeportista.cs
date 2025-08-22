@@ -15,12 +15,15 @@ namespace FDCH.UI.Vistas
     public partial class FrmHistorialDeportista : Form
     {
         Cls_Puente puente = new Cls_Puente(); // Instancia de Cls_Puente
+        Deportista deportista = new Deportista(); // Instancia de Deportista
         int idDeportista;
 
         public FrmHistorialDeportista(int idDeportista)
         {
             InitializeComponent();
             this.idDeportista = idDeportista;
+            deportista = puente.ObtenerDeportistaPorId(idDeportista);
+            lblNombre.Text = deportista.nombres + " " + deportista.apellidos;
             CargarDatosEnDataGridView();
         }
 
