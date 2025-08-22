@@ -22,13 +22,6 @@ namespace FDCH.UI.Vistas
             CargarDatosEnDataGridView();
         }
 
-        private void FrmInicio_Load(object sender, EventArgs e)
-        {
-            // Llama al método y asigna los datos al DataGridView
-            List<RegistroTotal> registros = puente.ObtenerRegistrosCompletos();
-            dataGridView1.DataSource = registros;
-        }
-
         public void CargarDatosEnDataGridView()
         {
             // Llama al método y asigna los datos al DataGridView

@@ -150,6 +150,35 @@ namespace FDCH.Logica
             return listaRegistros;
         }
 
+        public List<RegistroTotal> ObtenerRegistrosCompletosIdDeportista(int idDeportista)
+        {
+            List<RegistroTotal> listaRegistros = _dbService.ObtenerRegistrosCompletosDBPersonal(idDeportista);
+
+            // Recorremos la lista para calcular los campos extras
+            foreach (var registro in listaRegistros)
+            {
+                // Variable para almacenar la fecha parseada
+                DateTime fechaInicio;
+
+                // Intenta convertir el string a DateTime de forma segura
+                // El formato "dd/MM/yyyy" es crucial para que la conversión funcione
+                if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
+                {
+                    // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM");
+                    registro.AnioInicioEvento = fechaInicio.Year.ToString();
+                }
+                else
+                {
+                    // Manejar el caso de que el formato de fecha sea inválido
+                    // Asignar un valor por defecto o mostrar un error
+                    registro.MesInicioEvento = "Desconocido";
+                    registro.AnioInicioEvento = "Desconocido";
+                }
+            }
+            return listaRegistros;
+        }
+
 
         //public bool AdquirirBloqueo(string usuario)
         //{
@@ -254,6 +283,7 @@ namespace FDCH.Logica
         }
 
 
+        
 
     }
 }

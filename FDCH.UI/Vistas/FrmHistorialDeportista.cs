@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FDCH.Entidades;
+using FDCH.Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +14,26 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmHistorialDeportista : Form
     {
+        Cls_Puente puente = new Cls_Puente(); // Instancia de Cls_Puente
+        int idDeportista;
+
         public FrmHistorialDeportista(int idDeportista)
         {
             InitializeComponent();
+            this.idDeportista = idDeportista;
+            CargarDatosEnDataGridView();
         }
 
         private void FrmHistorialDeportista_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void CargarDatosEnDataGridView()
+        {
+            // Llama al método y asigna los datos al DataGridView
+            List<RegistroTotal> registros = puente.ObtenerRegistrosCompletosIdDeportista(idDeportista);
+            dataGridView1.DataSource = registros;
         }
     }
 }
