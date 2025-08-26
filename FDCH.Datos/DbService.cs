@@ -10,7 +10,7 @@ namespace FDCH.Datos
 {
     public class DbService
     {
-        public const string DbFileName = "semifinal.db"; // Nombre del archivo de la BD
+        public const string DbFileName = "BDCompetencias.db"; // Nombre del archivo de la BD
         //private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
 
         // Ruta absoluta (a nivel local UNICA MAQUINA)
