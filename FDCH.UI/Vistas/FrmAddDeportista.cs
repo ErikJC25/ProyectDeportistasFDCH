@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,9 @@ namespace FDCH.UI.Vistas
     {
         private int _idEvento;
         private Cls_Puente puente = new Cls_Puente();
-        Evento objEvento = new Evento();
+        private Evento objEvento = new Evento();
+        private List<Evento> listaeventos;
+        private Deportista deportistaActual = null; // Almacena el deportista si existe
 
         public FrmAddDeportista(int idTorneo)
         {
@@ -24,16 +27,63 @@ namespace FDCH.UI.Vistas
             _idEvento = idTorneo;
             objEvento = puente.ObtenerEventoPorId(idTorneo);
             cmbTorneo.Text = objEvento.nombre_evento;
-            txtCedula.Focus();
+            cmbTorneo.Enabled = false; // Deshabilitar el ComboBox de torneos
+            cmbCedula.Focus();
             CargarDisciplinas();
-            cmbEspecialidad.Enabled = false; // Deshabilitar el ComboBox de especialidades al inicio
+            CargarEspecialidades(); // Cargar la lista completa de especialidades
+            cmbEspecialidad.Enabled = true; // Habilitar desde el inicio
+            CargarDeportistas();
         }
 
-        // Nuevo: Método para cargar las disciplinas al inicio
-        private void FrmAddDeportista_Load(object sender, EventArgs e)
+        public FrmAddDeportista()
         {
+            InitializeComponent();
+            cmbTorneo.Focus();
+            CargarEventos();
             CargarDisciplinas();
-            cmbEspecialidad.Enabled = false; // Deshabilitar el ComboBox de especialidades al inicio
+            CargarEspecialidades(); // Cargar la lista completa de especialidades
+            cmbEspecialidad.Enabled = true; // Habilitar desde el inicio
+            CargarDeportistas();
+        }
+
+        private void CargarEventos()
+        {
+            try
+            {
+                listaeventos = puente.ObtenerEventos();
+                cmbTorneo.DataSource = listaeventos;
+                cmbTorneo.DisplayMember = "nombre_torneo";
+                cmbTorneo.ValueMember = "id_evento";
+                cmbTorneo.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los eventos: " + ex.Message);
+            }
+        }
+
+        private void CargarDeportistas()
+        {
+            try
+            {
+                var deportistas = puente.ObtenerTodosDeportistas();
+                // Enlazar los 3 ComboBox al mismo DataSource
+                cmbCedula.DataSource = new BindingSource(deportistas, null);
+                cmbNombres.DataSource = new BindingSource(deportistas, null);
+                cmbApellidos.DataSource = new BindingSource(deportistas, null);
+
+                cmbCedula.DisplayMember = "cedula";
+                cmbNombres.DisplayMember = "nombres";
+                cmbApellidos.DisplayMember = "apellidos";
+
+                cmbCedula.ValueMember = "cedula";
+                cmbNombres.ValueMember = "nombres";
+                cmbApellidos.ValueMember = "apellidos";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los deportistas: " + ex.Message);
+            }
         }
 
         private void CargarDisciplinas()
@@ -44,7 +94,7 @@ namespace FDCH.UI.Vistas
                 cmbDisciplina.DataSource = disciplinas;
                 cmbDisciplina.DisplayMember = "nombre_disciplina";
                 cmbDisciplina.ValueMember = "id_disciplina";
-                cmbDisciplina.SelectedIndex = -1; // Para que no seleccione nada por defecto
+                cmbDisciplina.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -52,23 +102,154 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void CargarEspecialidades()
         {
-
+            try
+            {
+                var especialidades = puente.ObtenerTodasEspecialidades();
+                cmbEspecialidad.DataSource = especialidades;
+                cmbEspecialidad.DisplayMember = "nombre_especialidad";
+                cmbEspecialidad.ValueMember = "id_especialidad";
+                cmbEspecialidad.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar especialidades: " + ex.Message);
+            }
         }
 
+        private void CargarEspecialidadesPorDisciplina(int idDisciplina)
+        {
+            try
+            {
+                var especialidades = puente.ObtenerEspecialidadesPorDisciplina(idDisciplina);
+                cmbEspecialidad.DataSource = especialidades;
+                cmbEspecialidad.DisplayMember = "nombre_especialidad";
+                cmbEspecialidad.ValueMember = "id_especialidad";
+                cmbEspecialidad.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar especialidades: " + ex.Message);
+            }
+        }
+
+        private void CargarModalidadPorEspecialidad(int idEspecialidad)
+        {
+            try
+            {
+                var especialidad = puente.ObtenerEspecialidadPorId(idEspecialidad);
+                if (especialidad != null && !string.IsNullOrEmpty(especialidad.modalidad))
+                {
+                    txtModalidad.Text = especialidad.modalidad;
+                    txtModalidad.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la modalidad: " + ex.Message);
+            }
+        }
+
+        private void AutocompletarDeportista(string cedula, string nombres, string apellidos)
+        {
+            // Busca primero por cédula, luego por nombres y apellidos
+            deportistaActual = puente.BuscarDeportista(cedula, nombres, apellidos);
+            if (deportistaActual != null)
+            {
+                // Autocompleta los campos si se encuentra un deportista
+                cmbCedula.Text = deportistaActual.cedula ?? "";
+                cmbNombres.Text = deportistaActual.nombres ?? "";
+                cmbApellidos.Text = deportistaActual.apellidos ?? "";
+                txtGenero.Text = deportistaActual.genero ?? "";
+                txtDiscapacidad.Text = deportistaActual.tipo_discapacidad ?? "";
+
+                // Cambia el color del texto si se autocompleta con valores existentes
+                if (!string.IsNullOrEmpty(txtGenero.Text) && txtGenero.Text != "Masculino / Femenino") txtGenero.ForeColor = Color.Black;
+                if (!string.IsNullOrEmpty(txtDiscapacidad.Text) && txtDiscapacidad.Text != "Ninguna") txtDiscapacidad.ForeColor = Color.Black;
+            }
+        }
+
+        // Evento para el ComboBox de Cédula
+        private void cmbCedula_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCedula.SelectedIndex != -1 && cmbCedula.SelectedValue != null)
+            {
+                AutocompletarDeportista(cmbCedula.SelectedValue.ToString(), null, null);
+            }
+        }
+
+        // Evento para el ComboBox de Nombres
+        private void cmbNombres_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbNombres.SelectedIndex != -1 && cmbNombres.SelectedValue != null)
+            {
+                AutocompletarDeportista(null, cmbNombres.SelectedValue.ToString(), null);
+            }
+        }
+
+        // Evento para el ComboBox de Apellidos
+        private void cmbApellidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbApellidos.SelectedIndex != -1 && cmbApellidos.SelectedValue != null)
+            {
+                AutocompletarDeportista(null, null, cmbApellidos.SelectedValue.ToString());
+            }
+        }
+
+        // Evento para el ComboBox de Disciplina
+        private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDisciplina.SelectedIndex != -1 && cmbDisciplina.SelectedValue is int idDisciplina)
+            {
+                CargarEspecialidadesPorDisciplina(idDisciplina);
+            }
+            else
+            {
+                // Si la selección se borra, recarga todas las especialidades
+                CargarEspecialidades();
+            }
+        }
+
+        // Evento para el ComboBox de Especialidad
+        private void cmbEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbEspecialidad.SelectedIndex != -1 && cmbEspecialidad.SelectedValue is int idEspecialidad)
+            {
+                CargarModalidadPorEspecialidad(idEspecialidad);
+            }
+        }
+
+        // Evento principal para agregar o actualizar
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Reemplazamos los TextBox por ComboBox para Disciplina y Especialidad
-            string nombreDisciplina = cmbDisciplina.Text;
-            string nombreEspecialidad = cmbEspecialidad.Text;
-
-            // Recoge todos los demás datos como antes
-            Deportista deportista = new Deportista
+            // Validaciones de campos obligatorios
+            if (string.IsNullOrWhiteSpace(cmbNombres.Text) ||
+                string.IsNullOrWhiteSpace(cmbApellidos.Text) ||
+                string.IsNullOrWhiteSpace(txtGenero.Text) ||
+                string.IsNullOrWhiteSpace(cmbDisciplina.Text) ||
+                string.IsNullOrWhiteSpace(cmbEspecialidad.Text) ||
+                string.IsNullOrWhiteSpace(txtModalidad.Text))
             {
-                cedula = txtCedula.Text ?? "",
-                nombres = txtNombres.Text ?? "",
-                apellidos = txtApellidos.Text ?? "",
+                MessageBox.Show("Por favor, complete todos los campos obligatorios (nombres, apellidos, género, disciplina, especialidad y modalidad).", "Campos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validar si el torneo existe
+            if (cmbTorneo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un torneo existente de la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _idEvento = (int)cmbTorneo.SelectedValue;
+
+            // Mapeo de datos desde el formulario a las entidades
+            Deportista nuevoDeportista = new Deportista
+            {
+                cedula = cmbCedula.Text ?? "",
+                nombres = cmbNombres.Text ?? "",
+                apellidos = cmbApellidos.Text ?? "",
                 genero = txtGenero.Text ?? "",
                 tipo_discapacidad = txtDiscapacidad.Text ?? ""
             };
@@ -80,7 +261,7 @@ namespace FDCH.UI.Vistas
 
             Especialidad especialidad = new Especialidad
             {
-                nombre_especialidad = nombreEspecialidad,
+                nombre_especialidad = cmbEspecialidad.Text,
                 modalidad = txtModalidad.Text ?? ""
             };
 
@@ -107,13 +288,22 @@ namespace FDCH.UI.Vistas
             if (confirm != DialogResult.Yes)
                 return;
 
-            bool exito = puente.InsertarRegistroComplejo(deportista, tecnico, nombreDisciplina, especialidad, competencia, desempeno);
+            bool exito;
+            if (deportistaActual != null)
+            {
+                // Lógica de actualización si el deportista existe
+                exito = puente.ActualizarRegistroComplejo(deportistaActual, nuevoDeportista, tecnico, cmbDisciplina.Text, especialidad, competencia, desempeno);
+            }
+            else
+            {
+                // Lógica de inserción si el deportista es nuevo
+                exito = puente.InsertarRegistroComplejo(nuevoDeportista, tecnico, cmbDisciplina.Text, especialidad, competencia, desempeno);
+            }
 
             if (exito)
             {
                 MessageBox.Show("Registro guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // --- Lógica para continuar agregando deportistas ---
                 var continuar = MessageBox.Show(
                     "¿Desea agregar otro deportista a este mismo torneo?",
                     "Continuar Agregando",
@@ -123,26 +313,32 @@ namespace FDCH.UI.Vistas
 
                 if (continuar == DialogResult.Yes)
                 {
-                    LimpiarFormulario(); // Nuevo método para limpiar los campos
+                    LimpiarFormulario();
+                    CargarDeportistas(); // Recargar la lista de deportistas
                 }
                 else
                 {
-                    this.Close(); // Cierra el formulario si el usuario no desea continuar
+                    this.Close();
                 }
             }
             else
             {
                 MessageBox.Show("Ocurrió un error al guardar el registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
 
         private void LimpiarFormulario()
         {
             // Limpia los TextBox principales
-            txtCedula.Text = "";
-            txtNombres.Text = "";
-            txtApellidos.Text = "";
+            cmbCedula.Text = "";
+            cmbNombres.Text = "";
+            cmbApellidos.Text = "";
 
             // Restablece los TextBox con texto de ayuda a sus valores por defecto
             txtGenero.Text = "Masculino / Femenino";
@@ -189,12 +385,12 @@ namespace FDCH.UI.Vistas
             cmbEspecialidad.Enabled = false; // Deshabilita el de especialidades como al inicio
 
             // Opcional: enfoca el cursor en el primer campo para facilitar la entrada de datos
-            txtCedula.Focus();
+            cmbCedula.Focus();
         }
 
         private void txtGenero_Enter(object sender, EventArgs e)
         {
-            if(txtGenero.Text == "Masculino / Femenino")
+            if(txtGenero.Text == "Masculino / Femenino" && txtGenero.ForeColor == Color.DarkGray)
             {
                 txtGenero.Text = "";
                 txtGenero.ForeColor = Color.Black;
@@ -212,7 +408,7 @@ namespace FDCH.UI.Vistas
 
         private void txtModalidad_Enter(object sender, EventArgs e)
         {
-            if (txtModalidad.Text == "Individual / Equipo")
+            if (txtModalidad.Text == "Individual / Equipo" && txtModalidad.ForeColor == Color.DarkGray)
             {
                 txtModalidad.Text = "";
                 txtModalidad.ForeColor = Color.Black;
@@ -230,7 +426,7 @@ namespace FDCH.UI.Vistas
 
         private void txtCategoria_Enter(object sender, EventArgs e)
         {
-            if (txtCategoria.Text == "Sub21 / Menor...")
+            if (txtCategoria.Text == "Sub21 / Menor..." && txtCategoria.ForeColor == Color.DarkGray)
             {
                 txtCategoria.Text = "";
                 txtCategoria.ForeColor = Color.Black;
@@ -248,7 +444,7 @@ namespace FDCH.UI.Vistas
 
         private void txtDivision_Enter(object sender, EventArgs e)
         {
-            if (txtDivision.Text == "55 kg")
+            if (txtDivision.Text == "55 kg" && txtDivision.ForeColor == Color.DarkGray)
             {
                 txtDivision.Text = "";
                 txtDivision.ForeColor = Color.Black;
@@ -266,7 +462,7 @@ namespace FDCH.UI.Vistas
 
         private void txtParticipantes_Enter(object sender, EventArgs e)
         {
-            if (txtParticipantes.Text == "12")
+            if (txtParticipantes.Text == "12" && txtParticipantes.ForeColor == Color.DarkGray)
             {
                 txtParticipantes.Text = "";
                 txtParticipantes.ForeColor = Color.Black;
@@ -284,7 +480,7 @@ namespace FDCH.UI.Vistas
 
         private void txtRecord_Enter(object sender, EventArgs e)
         {
-            if (txtRecord.Text == "10")
+            if (txtRecord.Text == "10" && txtRecord.ForeColor == Color.DarkGray)
             {
                 txtRecord.Text = "";
                 txtRecord.ForeColor = Color.Black;
@@ -302,7 +498,7 @@ namespace FDCH.UI.Vistas
 
         private void txtPuntos_Enter(object sender, EventArgs e)
         {
-            if (txtPuntos.Text == "5")
+            if (txtPuntos.Text == "5" && txtPuntos.ForeColor == Color.DarkGray)
             {
                 txtPuntos.Text = "";
                 txtPuntos.ForeColor = Color.Black;
@@ -320,7 +516,7 @@ namespace FDCH.UI.Vistas
 
         private void txtMedalla_Enter(object sender, EventArgs e)
         {
-            if (txtMedalla.Text == "Oro / Plata / Bronce")
+            if (txtMedalla.Text == "Oro / Plata / Bronce" && txtMedalla.ForeColor == Color.DarkGray)
             {
                 txtMedalla.Text = "";
                 txtMedalla.ForeColor = Color.Black;
@@ -338,7 +534,7 @@ namespace FDCH.UI.Vistas
 
         private void txtUbicacion_Enter(object sender, EventArgs e)
         {
-            if (txtUbicacion.Text == "3")
+            if (txtUbicacion.Text == "3" && txtUbicacion.ForeColor == Color.DarkGray)
             {
                 txtUbicacion.Text = "";
                 txtUbicacion.ForeColor = Color.Black;
@@ -356,7 +552,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTimeMarca_Enter(object sender, EventArgs e)
         {
-            if (txtTimeMarca.Text == "55 seg / 120 kg")
+            if (txtTimeMarca.Text == "55 seg / 120 kg" && txtTimeMarca.ForeColor == Color.DarkGray)
             {
                 txtTimeMarca.Text = "";
                 txtTimeMarca.ForeColor = Color.Black;
@@ -374,7 +570,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTecnico_Enter(object sender, EventArgs e)
         {
-            if (txtTecnico.Text == "Nombre Apellido")
+            if (txtTecnico.Text == "Nombre Apellido" && txtTecnico.ForeColor == Color.DarkGray)
             {
                 txtTecnico.Text = "";
                 txtTecnico.ForeColor = Color.Black;
@@ -392,7 +588,7 @@ namespace FDCH.UI.Vistas
 
         private void txtDiscapacidad_Enter(object sender, EventArgs e)
         {
-            if (txtDiscapacidad.Text == "Ninguna")
+            if (txtDiscapacidad.Text == "Ninguna" && txtDiscapacidad.ForeColor == Color.DarkGray)
             {
                 txtDiscapacidad.Text = "";
                 txtDiscapacidad.ForeColor = Color.Black;
@@ -405,41 +601,6 @@ namespace FDCH.UI.Vistas
             {
                 txtDiscapacidad.Text = "Ninguna";
                 txtDiscapacidad.ForeColor = Color.DarkGray;
-            }
-        }
-
-        private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Verifica si hay un elemento seleccionado y si su valor es válido.
-            // El 'SelectedValue' podría ser nulo si se limpia el DataSource.
-            if (cmbDisciplina.SelectedIndex != -1 && cmbDisciplina.SelectedValue is int idDisciplina)
-            {
-                cmbEspecialidad.Enabled = true;
-                CargarEspecialidadesPorDisciplina(idDisciplina);
-            }
-            else
-            {
-                // Si no hay una selección válida o el valor es nulo,
-                // deshabilita y limpia el ComboBox de especialidades.
-                cmbEspecialidad.Enabled = false;
-                cmbEspecialidad.DataSource = null;
-                cmbEspecialidad.Text = "";
-            }
-        }
-
-        private void CargarEspecialidadesPorDisciplina(int idDisciplina)
-        {
-            try
-            {
-                var especialidades = puente.ObtenerEspecialidadesPorDisciplina(idDisciplina);
-                cmbEspecialidad.DataSource = especialidades;
-                cmbEspecialidad.DisplayMember = "nombre_especialidad";
-                cmbEspecialidad.ValueMember = "id_especialidad";
-                cmbEspecialidad.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar especialidades: " + ex.Message);
             }
         }
 

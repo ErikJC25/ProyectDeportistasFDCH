@@ -28,7 +28,7 @@ namespace FDCH.UI.Vistas
 
         private void txtLugar_Enter_1(object sender, EventArgs e)
         {
-            if(txtLugar.Text == "Riobamba")
+            if(txtLugar.Text == "Riobamba" && txtLugar.ForeColor == Color.DarkGray)
             {
                 txtLugar.Text = "";
                 txtLugar.ForeColor = Color.Black;
@@ -37,7 +37,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNombre_Enter(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "Torneo Canto...")
+            if (txtNombre.Text == "Torneo Canto..." && txtNombre.ForeColor == Color.DarkGray)
             {
                 txtNombre.Text = "";
                 txtNombre.ForeColor = Color.Black;
@@ -46,7 +46,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTipo_Enter(object sender, EventArgs e)
         {
-            if (txtTipo.Text == "Oficial")
+            if (txtTipo.Text == "Oficial" && txtTipo.ForeColor == Color.DarkGray)
             {
                 txtTipo.Text = "";
                 txtTipo.ForeColor = Color.Black;
@@ -55,7 +55,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNivel_Enter(object sender, EventArgs e)
         {
-            if (txtNivel.Text == "Regional, Cantonal, ...")
+            if (txtNivel.Text == "Regional, Cantonal, ..." && txtNivel.ForeColor == Color.DarkGray)
             {
                 txtNivel.Text = "";
                 txtNivel.ForeColor = Color.Black;
@@ -105,7 +105,8 @@ namespace FDCH.UI.Vistas
         {
             // Definición de placeholders actuales
             string placeholderNombre = "Torneo Canto...";
-            string placeholderFecha = "dd/MM/yyyy";
+            string placeholderFechaIncio = "04/08/2025";
+            string placeholderFechaFin = "29/08/2025";
 
             // --- 1. Validación de nombre (obligatorio) ---
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == placeholderNombre)
@@ -120,7 +121,7 @@ namespace FDCH.UI.Vistas
             DateTime fechaFinDT = DateTime.MinValue;
 
             // Validar la fecha de inicio si el campo no está vacío
-            if (!string.IsNullOrWhiteSpace(txtFechaInicio.Text) && txtFechaInicio.Text != placeholderFecha)
+            if (!string.IsNullOrWhiteSpace(txtFechaInicio.Text) && txtFechaInicio.Text != placeholderFechaIncio && txtFechaInicio.ForeColor != Color.DarkGray)
             {
                 if (!DateTime.TryParseExact(txtFechaInicio.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaInicioDT))
                 {
@@ -131,7 +132,7 @@ namespace FDCH.UI.Vistas
             }
 
             // Validar la fecha de fin si el campo no está vacío
-            if (!string.IsNullOrWhiteSpace(txtFechaFin.Text) && txtFechaFin.Text != placeholderFecha)
+            if (!string.IsNullOrWhiteSpace(txtFechaFin.Text) && txtFechaFin.Text != placeholderFechaFin && txtFechaFin.ForeColor != Color.DarkGray)
             {
                 if (!DateTime.TryParseExact(txtFechaFin.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fechaFinDT))
                 {
@@ -157,18 +158,13 @@ namespace FDCH.UI.Vistas
             Evento evento = new Evento
             {
                 nombre_evento = txtNombre.Text.Trim(),
-                lugar = txtLugar.Text.Trim(),
+                lugar = (txtLugar.Text == "Riobamba" && txtLugar.ForeColor == Color.DarkGray) ? "" : txtLugar.Text.Trim(),
                 // Guardar las fechas como STRING, tal como lo solicitaste
-                fecha_inicio = (txtFechaInicio.Text == placeholderFecha) ? "" : txtFechaInicio.Text.Trim(),
-                fecha_fin = (txtFechaFin.Text == placeholderFecha) ? "" : txtFechaFin.Text.Trim(),
-                tipo_evento = txtTipo.Text.Trim(),
-                nivel_evento = txtNivel.Text.Trim()
+                fecha_inicio = (txtFechaInicio.Text == placeholderFechaIncio && txtFechaInicio.ForeColor == Color.DarkGray) ? "" : txtFechaInicio.Text.Trim(),
+                fecha_fin = (txtFechaFin.Text == placeholderFechaFin && txtFechaFin.ForeColor == Color.DarkGray) ? "" : txtFechaFin.Text.Trim(),
+                tipo_evento = (txtTipo.Text == "Oficial" && txtTipo.ForeColor == Color.DarkGray) ? "" : txtTipo.Text.Trim(),
+                nivel_evento = (txtNivel.Text == "Regional, Cantonal, ..." && txtNivel.ForeColor == Color.DarkGray) ? "" : txtNivel.Text.Trim()
             };
-
-            // Si el texto de los campos de ayuda es lo que se envía, guárdalo como cadena vacía.
-            if (evento.lugar == "Riobamba") evento.lugar = "";
-            if (evento.tipo_evento == "Oficial") evento.tipo_evento = "";
-            if (evento.nivel_evento == "Regional, Cantonal, ...") evento.nivel_evento = "";
 
             int resultado = puente.InsertarEvento(evento);
 
@@ -186,7 +182,7 @@ namespace FDCH.UI.Vistas
 
         private void txtFechInicio_Enter(object sender, EventArgs e)
         {
-            if (txtFechaInicio.Text == "04/08/2025")
+            if (txtFechaInicio.Text == "04/08/2025" && txtFechaInicio.ForeColor == Color.DarkGray)
             {
                 txtFechaInicio.Text = "";
                 txtFechaInicio.ForeColor = Color.Black;
@@ -205,7 +201,7 @@ namespace FDCH.UI.Vistas
 
         private void txtFechaFin_Enter(object sender, EventArgs e)
         {
-            if (txtFechaFin.Text == "29/08/2025")
+            if (txtFechaFin.Text == "29/08/2025" && txtFechaFin.ForeColor == Color.DarkGray)
             {
                 txtFechaFin.Text = "";
                 txtFechaFin.ForeColor = Color.Black;

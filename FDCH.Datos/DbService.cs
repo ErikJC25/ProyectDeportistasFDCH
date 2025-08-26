@@ -59,23 +59,43 @@ namespace FDCH.Datos
                         {
                             if (reader.Read())
                             {
-                                // Se obtiene el hash de la contraseña almacenada
-                                string contrasenaHashAlmacenada = reader["contrasena_hash"].ToString();
-                                // Se calcula el hash de la contraseña ingresada
-                                string contrasenaHashIngresada = CalcularSHA256(contrasena);
+//IMPORTANTE --------------->
 
-                                // Se compara el hash ingresado con el almacenado
-                                if (contrasenaHashIngresada == contrasenaHashAlmacenada)
+                                //SIGUIENTE BLOQUE PARA PROBAR SIN HASH DE CONTRASEÑAS (BORRAR AL FINAL)
+
+                                if (contrasena == reader["contrasena_hash"].ToString())
                                 {
                                     // Si coinciden, se crea el objeto Usuario con los datos de la BD
                                     usuarioEncontrado = new Usuario
                                     {
                                         id_usuario = Convert.ToInt32(reader["id_usuario"]),
                                         nombre_usuario = reader["nombre_usuario"].ToString(),
-                                        contrasena_hash = contrasenaHashAlmacenada,
+                                        contrasena_hash = reader["contrasena_hash"].ToString(),
                                         rol = reader["rol"].ToString()
                                     };
                                 }
+
+
+
+                                //DESCOMENTAR EL SIGUIETE BLOQUE PARA HACER HASH DE CONTRASEÑAS (FINAL)
+
+                                //// Se obtiene el hash de la contraseña almacenada
+                                //string contrasenaHashAlmacenada = reader["contrasena_hash"].ToString();
+                                //// Se calcula el hash de la contraseña ingresada
+                                //string contrasenaHashIngresada = CalcularSHA256(contrasena);
+
+                                //// Se compara el hash ingresado con el almacenado
+                                //if (contrasenaHashIngresada == contrasenaHashAlmacenada)
+                                //{
+                                //    // Si coinciden, se crea el objeto Usuario con los datos de la BD
+                                //    usuarioEncontrado = new Usuario
+                                //    {
+                                //        id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                //        nombre_usuario = reader["nombre_usuario"].ToString(),
+                                //        contrasena_hash = contrasenaHashAlmacenada,
+                                //        rol = reader["rol"].ToString()
+                                //    };
+                                //}
                             }
                         }
                     }
@@ -1121,6 +1141,133 @@ namespace FDCH.Datos
             }
             return id;
         }
+
+
+
+
+
+        /// <summary>
+        /// Obtiene una especialidad de la base de datos por su ID.
+        /// </summary>
+        public Especialidad ObtenerEspecialidadPorId(int idEspecialidad)
+        {
+            Especialidad especialidad = null;
+            string query = "SELECT * FROM Especialidad WHERE id_especialidad = @id";
+
+            using (SQLiteConnection connection = GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", idEspecialidad);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                especialidad = new Especialidad
+                                {
+                                    id_especialidad = reader.GetInt32(reader.GetOrdinal("id_especialidad")),
+                                    id_disciplina = reader.GetInt32(reader.GetOrdinal("id_disciplina")),
+                                    nombre_especialidad = reader.GetString(reader.GetOrdinal("nombre_especialidad")),
+                                    modalidad = reader.IsDBNull(reader.GetOrdinal("modalidad")) ? null : reader.GetString(reader.GetOrdinal("modalidad"))
+                                };
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en ObtenerEspecialidadPorId: " + ex.Message);
+                    }
+                }
+            }
+            return especialidad;
+        }
+
+        /// <summary>
+        /// Busca un deportista en la base de datos por cédula, nombres o apellidos.
+        /// Retorna el primer resultado encontrado.
+        /// </summary>
+        public Deportista BuscarDeportista(string cedula, string nombres, string apellidos)
+        {
+            Deportista deportista = null;
+            string query = "SELECT * FROM Deportistas WHERE (cedula = @cedula OR nombres = @nombres OR apellidos = @apellidos) LIMIT 1";
+
+            using (SQLiteConnection connection = GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@cedula", cedula);
+                    command.Parameters.AddWithValue("@nombres", nombres);
+                    command.Parameters.AddWithValue("@apellidos", apellidos);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                deportista = new Deportista
+                                {
+                                    id_deportista = reader.IsDBNull(reader.GetOrdinal("id_deportista")) ? 0 : reader.GetInt32(reader.GetOrdinal("id_deportista")),
+                                    cedula = reader.IsDBNull(reader.GetOrdinal("cedula")) ? null : reader.GetString(reader.GetOrdinal("cedula")),
+                                    nombres = reader.IsDBNull(reader.GetOrdinal("nombres")) ? null : reader.GetString(reader.GetOrdinal("nombres")),
+                                    apellidos = reader.IsDBNull(reader.GetOrdinal("apellidos")) ? null : reader.GetString(reader.GetOrdinal("apellidos")),
+                                    genero = reader.IsDBNull(reader.GetOrdinal("genero")) ? null : reader.GetString(reader.GetOrdinal("genero")),
+                                    tipo_discapacidad = reader.IsDBNull(reader.GetOrdinal("tipo_discapacidad")) ? null : reader.GetString(reader.GetOrdinal("tipo_discapacidad"))
+                                };
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en BuscarDeportista: " + ex.Message);
+                    }
+                }
+            }
+            return deportista;
+        }
+
+        /// <summary>
+        /// Actualiza un deportista en la base de datos usando la cédula como identificador principal.
+        /// </summary>
+        public bool ActualizarDeportista(Deportista deportista)
+        {
+            string query = "UPDATE Deportistas SET nombres = @nombres, apellidos = @apellidos, genero = @genero, tipo_discapacidad = @discapacidad WHERE cedula = @cedula";
+            int rowsAffected = 0;
+
+            using (SQLiteConnection connection = GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@cedula", deportista.cedula);
+                    command.Parameters.AddWithValue("@nombres", deportista.nombres);
+                    command.Parameters.AddWithValue("@apellidos", deportista.apellidos);
+                    command.Parameters.AddWithValue("@genero", deportista.genero);
+                    command.Parameters.AddWithValue("@discapacidad", deportista.tipo_discapacidad);
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al actualizar deportista: " + ex.Message);
+                    }
+                }
+            }
+            return rowsAffected > 0;
+        }
+
+
+
+
+
+
 
 
 

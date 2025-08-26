@@ -49,7 +49,7 @@ namespace FDCH.Logica
         }
 
 
-        public List<Deportista> ObtenerDeportistas()
+        public List<Deportista> ObtenerTodosDeportistas()
         {
             return _dbService.ObtenerDeportistas();
         }
@@ -93,7 +93,7 @@ namespace FDCH.Logica
             return _dbService.InsertarEspecialidad(especialidad);
         }
 
-        public List<Especialidad> ObtenerEspecialidades()
+        public List<Especialidad> ObtenerTodasEspecialidades()
         {
             return _dbService.ObtenerEspecialidades();
         }
@@ -242,44 +242,94 @@ namespace FDCH.Logica
             return _dbService.ObtenerEspecialidadesPorDisciplina(idDisciplina);
         }
 
-        public bool InsertarRegistroComplejo(Deportista deportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
+        public Especialidad ObtenerEspecialidadPorId(int idEspecialidad)
+        {
+            // Este método actúa como puente, llamando al servicio de la base de datos para obtener una especialidad por su ID.
+            return _dbService.ObtenerEspecialidadPorId(idEspecialidad);
+        }
+
+        public Deportista BuscarDeportista(string cedula, string nombres, string apellidos)
+        {
+            // Este método busca un deportista en la base de datos a través del servicio.
+            return _dbService.BuscarDeportista(cedula, nombres, apellidos);
+        }
+
+        public bool ActualizarRegistroComplejo(Deportista deportistaActual, Deportista nuevoDeportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
         {
             try
             {
-                // 1. Insertar Deportista y Tecnico (si no existen)
-                int idDeportista = _dbService.InsertarDeportista(deportista);
-                int idTecnico = _dbService.InsertarTecnico(tecnico);
-
-                // 2. Lógica para Disciplina y Especialidad
+                // 1. Lógica para Disciplina y Especialidad
                 int idDisciplina = _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
-                if (idDisciplina == 0) // La disciplina no existe, es nueva
+                if (idDisciplina == 0) // La disciplina no existe, se inserta
                 {
-                    // Insertar la nueva disciplina
                     Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
                     idDisciplina = _dbService.InsertarDisciplina(nuevaDisciplina);
 
-                    // Insertar la nueva especialidad asociada a la nueva disciplina
                     especialidad.id_disciplina = idDisciplina;
                     int idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
                     competencia.id_especialidad = idEspecialidad;
                 }
                 else // La disciplina ya existe
                 {
-                    // Verificar si la especialidad ya existe para esta disciplina
                     int idEspecialidad = _dbService.ObtenerIdEspecialidadPorNombre(especialidad.nombre_especialidad, idDisciplina);
-                    if (idEspecialidad == 0) // La especialidad es nueva para esta disciplina
+                    if (idEspecialidad == 0) // La especialidad no existe para esta disciplina, se inserta
                     {
-                        // Insertar la nueva especialidad asociada a la disciplina existente
                         especialidad.id_disciplina = idDisciplina;
                         idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
                     }
                     competencia.id_especialidad = idEspecialidad;
                 }
 
-                // 3. Insertar Competencia
+                // 2. Actualizar el Deportista
+                // Se usa la cédula del deportista actual para encontrar el registro
+                // y se actualizan los datos con los del nuevoDeportista
+                _dbService.ActualizarDeportista(nuevoDeportista);
+
+                // 3. Insertar o actualizar otras entidades
+                // Para las entidades que siempre son nuevas por registro (Competencia, Desempeño, Tecnico), se insertan.
+                _dbService.InsertarCompetencia(competencia);
+                _dbService.InsertarDesempeno(desempeno);
+                _dbService.InsertarTecnico(tecnico);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en ActualizarRegistroComplejo: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool InsertarRegistroComplejo(Deportista deportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
+        {
+            try
+            {
+                int idDeportista = _dbService.InsertarDeportista(deportista);
+                int idTecnico = _dbService.InsertarTecnico(tecnico);
+
+                int idDisciplina = _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
+                if (idDisciplina == 0)
+                {
+                    Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
+                    idDisciplina = _dbService.InsertarDisciplina(nuevaDisciplina);
+
+                    especialidad.id_disciplina = idDisciplina;
+                    int idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
+                    competencia.id_especialidad = idEspecialidad;
+                }
+                else
+                {
+                    int idEspecialidad = _dbService.ObtenerIdEspecialidadPorNombre(especialidad.nombre_especialidad, idDisciplina);
+                    if (idEspecialidad == 0)
+                    {
+                        especialidad.id_disciplina = idDisciplina;
+                        idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
+                    }
+                    competencia.id_especialidad = idEspecialidad;
+                }
+
                 int idCompetencia = _dbService.InsertarCompetencia(competencia);
 
-                // 4. Insertar Desempeño
                 desempeno.id_deportista = idDeportista;
                 desempeno.id_competencia = idCompetencia;
                 desempeno.id_tecnico = idTecnico;
@@ -294,7 +344,7 @@ namespace FDCH.Logica
         }
 
 
-        
+
 
     }
 }

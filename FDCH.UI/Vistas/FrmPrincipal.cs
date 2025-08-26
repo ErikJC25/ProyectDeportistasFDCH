@@ -114,8 +114,7 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnAddTorneo.Height;
             pnlOpcion.Top = btnAddTorneo.Top;
-            // Abrir el formulario correspondiente a agregar torneo
-            // AbrirFormularioEnPanel(new FrmAddTorneo());
+            AbrirFormularioEnPanel(new FrmAddDeportista());
         }
     }
 }

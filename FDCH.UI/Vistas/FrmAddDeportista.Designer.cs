@@ -31,11 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCedula = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNombres = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtApellidos = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtGenero = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -68,6 +65,9 @@
             this.txtTecnico = new System.Windows.Forms.TextBox();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.cmbDisciplina = new System.Windows.Forms.ComboBox();
+            this.cmbApellidos = new System.Windows.Forms.ComboBox();
+            this.cmbNombres = new System.Windows.Forms.ComboBox();
+            this.cmbCedula = new System.Windows.Forms.ComboBox();
             this.pnlCabecera.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,16 +102,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Cédula:";
             // 
-            // txtCedula
-            // 
-            this.txtCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtCedula.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.ForeColor = System.Drawing.Color.Black;
-            this.txtCedula.Location = new System.Drawing.Point(24, 141);
-            this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(331, 30);
-            this.txtCedula.TabIndex = 3;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -123,16 +113,6 @@
             this.label3.Text = "Nombres:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // txtNombres
-            // 
-            this.txtNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombres.ForeColor = System.Drawing.Color.Black;
-            this.txtNombres.Location = new System.Drawing.Point(800, 141);
-            this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(331, 30);
-            this.txtNombres.TabIndex = 3;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -142,16 +122,6 @@
             this.label4.Size = new System.Drawing.Size(125, 27);
             this.label4.TabIndex = 2;
             this.label4.Text = "Apellidos:";
-            // 
-            // txtApellidos
-            // 
-            this.txtApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtApellidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidos.ForeColor = System.Drawing.Color.Black;
-            this.txtApellidos.Location = new System.Drawing.Point(411, 141);
-            this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(330, 30);
-            this.txtApellidos.TabIndex = 3;
             // 
             // label5
             // 
@@ -522,19 +492,54 @@
             this.cmbDisciplina.TabIndex = 6;
             this.cmbDisciplina.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged);
             // 
+            // cmbApellidos
+            // 
+            this.cmbApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cmbApellidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbApellidos.FormattingEnabled = true;
+            this.cmbApellidos.Location = new System.Drawing.Point(412, 141);
+            this.cmbApellidos.Name = "cmbApellidos";
+            this.cmbApellidos.Size = new System.Drawing.Size(329, 31);
+            this.cmbApellidos.TabIndex = 6;
+            this.cmbApellidos.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged);
+            // 
+            // cmbNombres
+            // 
+            this.cmbNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cmbNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbNombres.FormattingEnabled = true;
+            this.cmbNombres.Location = new System.Drawing.Point(800, 141);
+            this.cmbNombres.Name = "cmbNombres";
+            this.cmbNombres.Size = new System.Drawing.Size(331, 31);
+            this.cmbNombres.TabIndex = 6;
+            this.cmbNombres.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged);
+            // 
+            // cmbCedula
+            // 
+            this.cmbCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cmbCedula.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCedula.FormattingEnabled = true;
+            this.cmbCedula.Location = new System.Drawing.Point(25, 141);
+            this.cmbCedula.Name = "cmbCedula";
+            this.cmbCedula.Size = new System.Drawing.Size(329, 31);
+            this.cmbCedula.TabIndex = 6;
+            this.cmbCedula.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged);
+            // 
             // FrmAddDeportista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1160, 707);
+            this.Controls.Add(this.cmbNombres);
+            this.Controls.Add(this.cmbCedula);
+            this.Controls.Add(this.cmbApellidos);
             this.Controls.Add(this.cmbDisciplina);
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.pnlCabecera);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtDiscapacidad);
             this.Controls.Add(this.txtTimeMarca);
-            this.Controls.Add(this.txtApellidos);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
@@ -552,7 +557,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDivision);
             this.Controls.Add(this.txtMedalla);
-            this.Controls.Add(this.txtNombres);
             this.Controls.Add(this.txtTecnico);
             this.Controls.Add(this.txtObservacion);
             this.Controls.Add(this.txtPuntos);
@@ -564,7 +568,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAddDeportista";
@@ -581,11 +584,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbTorneo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtCedula;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtNombres;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtApellidos;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtGenero;
         private System.Windows.Forms.Label label6;
@@ -618,5 +618,8 @@
         private System.Windows.Forms.TextBox txtTecnico;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.ComboBox cmbDisciplina;
+        private System.Windows.Forms.ComboBox cmbApellidos;
+        private System.Windows.Forms.ComboBox cmbNombres;
+        private System.Windows.Forms.ComboBox cmbCedula;
     }
 }
