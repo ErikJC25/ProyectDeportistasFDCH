@@ -18,7 +18,7 @@ namespace FDCH.Datos
 
         // Ruta relativa a la raíz del proyecto
         private static readonly string DbPath = Path.GetFullPath(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../BaseDatos", DbFileName)
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos", DbFileName)
         );
 
         // Ruta absoluta (a nivel local, para todos los usuarios)

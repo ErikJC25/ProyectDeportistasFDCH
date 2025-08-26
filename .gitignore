@@ -3,7 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-
 # Archivos de caché y bases de datos temporales
 *.db
 *.suo
@@ -13,7 +12,8 @@
 
 *.cache
 
-*.db
+# NO ignorar este archivo .db específico
+!BDCompetencias.db
 
 **/bin/
 
