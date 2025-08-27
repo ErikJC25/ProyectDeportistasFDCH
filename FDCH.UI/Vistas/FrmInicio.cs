@@ -19,6 +19,7 @@ namespace FDCH.UI.Vistas
         public FrmInicio()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false;
             CargarDatosEnDataGridView();
         }
 

@@ -351,6 +351,19 @@ namespace FDCH.UI.Vistas
             if (confirmar != DialogResult.Yes) return;
 
 
+            // Reemplazar los valores de placeholder con cadenas vacías si no han sido modificados
+            string tipoDiscapacidad = (txtDiscapacidad.Text == "NINGUNA" && txtDiscapacidad.ForeColor == Color.DarkGray) ? "" : txtDiscapacidad.Text;
+            string categoria = (txtCategoria.Text == "SUB21 / MENOR..." && txtCategoria.ForeColor == Color.DarkGray) ? "" : txtCategoria.Text;
+            string division = (txtDivision.Text == "55 KG" && txtDivision.ForeColor == Color.DarkGray) ? "" : txtDivision.Text;
+            string participantes = (txtParticipantes.Text == "12" && txtParticipantes.ForeColor == Color.DarkGray) ? "" : txtParticipantes.Text;
+            string record = (txtRecord.Text == "10" && txtRecord.ForeColor == Color.DarkGray) ? "" : txtRecord.Text;
+            string puntos = (txtPuntos.Text == "5" && txtPuntos.ForeColor == Color.DarkGray) ? "" : txtPuntos.Text;
+            string medalla = (txtMedalla.Text == "ORO / PLATA / BRONCE" && txtMedalla.ForeColor == Color.DarkGray) ? "" : txtMedalla.Text;
+            string ubicacion = (txtUbicacion.Text == "3" && txtUbicacion.ForeColor == Color.DarkGray) ? "" : txtUbicacion.Text;
+            string tiempoMarca = (txtTimeMarca.Text == "55 SEG / 120 KG" && txtTimeMarca.ForeColor == Color.DarkGray) ? "" : txtTimeMarca.Text;
+
+
+
             // Lógica de guardado
             try
             {
@@ -363,7 +376,7 @@ namespace FDCH.UI.Vistas
                     nombres = cmbNombres.Text,
                     apellidos = cmbApellidos.Text,
                     genero = txtGenero.Text,
-                    tipo_discapacidad = txtDiscapacidad.Text
+                    tipo_discapacidad = tipoDiscapacidad
                 };
 
                 int deportistaId;
@@ -466,10 +479,10 @@ namespace FDCH.UI.Vistas
                 // =================================================================
                 Competencia competencia = new Competencia
                 {
-                    categoria = txtCategoria.Text,
-                    division = txtDivision.Text,
-                    numero_participantes = txtParticipantes.Text,
-                    record = txtRecord.Text,
+                    categoria = categoria,
+                    division = division,
+                    numero_participantes = participantes,
+                    record = record,
                     id_evento = _idEvento,
                     id_especialidad = especialidadId // Usamos el ID de la especialidad
                 };
@@ -478,11 +491,11 @@ namespace FDCH.UI.Vistas
 
                 Desempeno desempeno = new Desempeno
                 {
-                    puntos = txtPuntos.Text,
-                    medalla = txtMedalla.Text,
+                    puntos = puntos,
+                    medalla = medalla,
                     observaciones = txtObservacion.Text,
-                    tiempo = txtTimeMarca.Text,
-                    ubicacion = txtUbicacion.Text,
+                    tiempo = tiempoMarca,
+                    ubicacion = ubicacion,
                     id_deportista = deportistaId,   // Usamos el ID del deportista
                     id_competencia = competenciaId, // Usamos el nuevo ID de competencia
                     id_tecnico = tecnicoId          // Usamos el ID del técnico

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.IdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +63,8 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -111,37 +111,16 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(12, 81);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1136, 614);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 587);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(181, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(782, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Registro de resultados de Participaciones";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SpringGreen;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1160, 72);
-            this.panel1.TabIndex = 2;
             // 
             // IdDeportista
             // 
@@ -151,7 +130,7 @@
             this.IdDeportista.Name = "IdDeportista";
             this.IdDeportista.ReadOnly = true;
             this.IdDeportista.Visible = false;
-            this.IdDeportista.Width = 125;
+            this.IdDeportista.Width = 109;
             // 
             // IdTecnico
             // 
@@ -161,7 +140,7 @@
             this.IdTecnico.Name = "IdTecnico";
             this.IdTecnico.ReadOnly = true;
             this.IdTecnico.Visible = false;
-            this.IdTecnico.Width = 125;
+            this.IdTecnico.Width = 96;
             // 
             // IdEvento
             // 
@@ -171,7 +150,7 @@
             this.IdEvento.Name = "IdEvento";
             this.IdEvento.ReadOnly = true;
             this.IdEvento.Visible = false;
-            this.IdEvento.Width = 125;
+            this.IdEvento.Width = 89;
             // 
             // IdDisciplina
             // 
@@ -181,7 +160,7 @@
             this.IdDisciplina.Name = "IdDisciplina";
             this.IdDisciplina.ReadOnly = true;
             this.IdDisciplina.Visible = false;
-            this.IdDisciplina.Width = 125;
+            this.IdDisciplina.Width = 106;
             // 
             // IdEspecialidad
             // 
@@ -191,7 +170,7 @@
             this.IdEspecialidad.Name = "IdEspecialidad";
             this.IdEspecialidad.ReadOnly = true;
             this.IdEspecialidad.Visible = false;
-            this.IdEspecialidad.Width = 125;
+            this.IdEspecialidad.Width = 127;
             // 
             // IdCompetencia
             // 
@@ -201,7 +180,7 @@
             this.IdCompetencia.Name = "IdCompetencia";
             this.IdCompetencia.ReadOnly = true;
             this.IdCompetencia.Visible = false;
-            this.IdCompetencia.Width = 125;
+            this.IdCompetencia.Width = 127;
             // 
             // IdDesempeno
             // 
@@ -211,7 +190,7 @@
             this.IdDesempeno.Name = "IdDesempeno";
             this.IdDesempeno.ReadOnly = true;
             this.IdDesempeno.Visible = false;
-            this.IdDesempeno.Width = 125;
+            this.IdDesempeno.Width = 122;
             // 
             // NombreDisciplina
             // 
@@ -458,12 +437,34 @@
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(181, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(782, 46);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Registro de resultados de Participaciones";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Blue;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1196, 72);
+            this.panel1.TabIndex = 2;
+            // 
             // FrmInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1160, 707);
+            this.ClientSize = new System.Drawing.Size(1196, 707);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

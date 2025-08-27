@@ -90,7 +90,7 @@
             this.cmbTorneo.FormattingEnabled = true;
             this.cmbTorneo.Location = new System.Drawing.Point(409, 31);
             this.cmbTorneo.Name = "cmbTorneo";
-            this.cmbTorneo.Size = new System.Drawing.Size(722, 35);
+            this.cmbTorneo.Size = new System.Drawing.Size(760, 35);
             this.cmbTorneo.TabIndex = 1;
             this.cmbTorneo.TextChanged += new System.EventHandler(this.cmbTorneo_TextChanged);
             // 
@@ -108,7 +108,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(796, 105);
+            this.label3.Location = new System.Drawing.Point(815, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 27);
             this.label3.TabIndex = 2;
@@ -143,7 +143,7 @@
             this.txtGenero.ForeColor = System.Drawing.Color.DarkGray;
             this.txtGenero.Location = new System.Drawing.Point(25, 210);
             this.txtGenero.Name = "txtGenero";
-            this.txtGenero.Size = new System.Drawing.Size(330, 30);
+            this.txtGenero.Size = new System.Drawing.Size(335, 30);
             this.txtGenero.TabIndex = 3;
             this.txtGenero.Text = "MASCULINO / FEMENINO";
             this.txtGenero.Enter += new System.EventHandler(this.txtGenero_Enter);
@@ -168,7 +168,7 @@
             this.txtModalidad.ForeColor = System.Drawing.Color.DarkGray;
             this.txtModalidad.Location = new System.Drawing.Point(25, 290);
             this.txtModalidad.Name = "txtModalidad";
-            this.txtModalidad.Size = new System.Drawing.Size(330, 30);
+            this.txtModalidad.Size = new System.Drawing.Size(335, 30);
             this.txtModalidad.TabIndex = 3;
             this.txtModalidad.Text = "INDIVIDUAL / EQUIPO";
             this.txtModalidad.Enter += new System.EventHandler(this.txtModalidad_Enter);
@@ -178,7 +178,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(796, 180);
+            this.label7.Location = new System.Drawing.Point(815, 180);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(162, 27);
             this.label7.TabIndex = 2;
@@ -188,7 +188,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(795, 342);
+            this.label8.Location = new System.Drawing.Point(815, 342);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(99, 27);
             this.label8.TabIndex = 2;
@@ -200,9 +200,9 @@
             this.txtPuntos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPuntos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPuntos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtPuntos.Location = new System.Drawing.Point(800, 372);
+            this.txtPuntos.Location = new System.Drawing.Point(819, 372);
             this.txtPuntos.Name = "txtPuntos";
-            this.txtPuntos.Size = new System.Drawing.Size(331, 30);
+            this.txtPuntos.Size = new System.Drawing.Size(350, 30);
             this.txtPuntos.TabIndex = 3;
             this.txtPuntos.Text = "5";
             this.txtPuntos.Enter += new System.EventHandler(this.txtPuntos_Enter);
@@ -227,7 +227,7 @@
             this.txtUbicacion.ForeColor = System.Drawing.Color.DarkGray;
             this.txtUbicacion.Location = new System.Drawing.Point(409, 453);
             this.txtUbicacion.Name = "txtUbicacion";
-            this.txtUbicacion.Size = new System.Drawing.Size(332, 30);
+            this.txtUbicacion.Size = new System.Drawing.Size(350, 30);
             this.txtUbicacion.TabIndex = 3;
             this.txtUbicacion.Text = "3";
             this.txtUbicacion.Enter += new System.EventHandler(this.txtUbicacion_Enter);
@@ -237,7 +237,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(796, 423);
+            this.label10.Location = new System.Drawing.Point(815, 423);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(186, 27);
             this.label10.TabIndex = 2;
@@ -249,9 +249,9 @@
             this.txtTimeMarca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTimeMarca.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimeMarca.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtTimeMarca.Location = new System.Drawing.Point(801, 453);
+            this.txtTimeMarca.Location = new System.Drawing.Point(819, 453);
             this.txtTimeMarca.Name = "txtTimeMarca";
-            this.txtTimeMarca.Size = new System.Drawing.Size(330, 30);
+            this.txtTimeMarca.Size = new System.Drawing.Size(350, 30);
             this.txtTimeMarca.TabIndex = 3;
             this.txtTimeMarca.Text = "55 SEG / 120 KG";
             this.txtTimeMarca.Enter += new System.EventHandler(this.txtTimeMarca_Enter);
@@ -284,9 +284,9 @@
             this.txtCategoria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCategoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoria.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtCategoria.Location = new System.Drawing.Point(411, 290);
+            this.txtCategoria.Location = new System.Drawing.Point(412, 290);
             this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(330, 30);
+            this.txtCategoria.Size = new System.Drawing.Size(350, 30);
             this.txtCategoria.TabIndex = 3;
             this.txtCategoria.Text = "SUB21 / MENOR...";
             this.txtCategoria.Enter += new System.EventHandler(this.txtCategoria_Enter);
@@ -320,7 +320,7 @@
             this.txtMedalla.ForeColor = System.Drawing.Color.DarkGray;
             this.txtMedalla.Location = new System.Drawing.Point(25, 453);
             this.txtMedalla.Name = "txtMedalla";
-            this.txtMedalla.Size = new System.Drawing.Size(330, 30);
+            this.txtMedalla.Size = new System.Drawing.Size(335, 30);
             this.txtMedalla.TabIndex = 3;
             this.txtMedalla.Text = "ORO / PLATA / BRONCE";
             this.txtMedalla.Enter += new System.EventHandler(this.txtMedalla_Enter);
@@ -345,7 +345,7 @@
             this.txtParticipantes.ForeColor = System.Drawing.Color.DarkGray;
             this.txtParticipantes.Location = new System.Drawing.Point(24, 372);
             this.txtParticipantes.Name = "txtParticipantes";
-            this.txtParticipantes.Size = new System.Drawing.Size(330, 30);
+            this.txtParticipantes.Size = new System.Drawing.Size(335, 30);
             this.txtParticipantes.TabIndex = 3;
             this.txtParticipantes.Text = "12";
             this.txtParticipantes.Enter += new System.EventHandler(this.txtParticipantes_Enter);
@@ -369,7 +369,7 @@
             this.txtDiscapacidad.ForeColor = System.Drawing.Color.DarkGray;
             this.txtDiscapacidad.Location = new System.Drawing.Point(25, 619);
             this.txtDiscapacidad.Name = "txtDiscapacidad";
-            this.txtDiscapacidad.Size = new System.Drawing.Size(330, 30);
+            this.txtDiscapacidad.Size = new System.Drawing.Size(335, 30);
             this.txtDiscapacidad.TabIndex = 3;
             this.txtDiscapacidad.Text = "NINGUNA";
             this.txtDiscapacidad.Enter += new System.EventHandler(this.txtDiscapacidad_Enter);
@@ -379,7 +379,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(796, 260);
+            this.label17.Location = new System.Drawing.Point(815, 260);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(112, 27);
             this.label17.TabIndex = 2;
@@ -391,9 +391,9 @@
             this.txtDivision.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDivision.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDivision.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtDivision.Location = new System.Drawing.Point(801, 290);
+            this.txtDivision.Location = new System.Drawing.Point(820, 290);
             this.txtDivision.Name = "txtDivision";
-            this.txtDivision.Size = new System.Drawing.Size(330, 30);
+            this.txtDivision.Size = new System.Drawing.Size(350, 30);
             this.txtDivision.TabIndex = 3;
             this.txtDivision.Text = "55 KG";
             this.txtDivision.Enter += new System.EventHandler(this.txtDivision_Enter);
@@ -408,7 +408,7 @@
             this.txtObservacion.Location = new System.Drawing.Point(409, 533);
             this.txtObservacion.Multiline = true;
             this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(722, 78);
+            this.txtObservacion.Size = new System.Drawing.Size(760, 78);
             this.txtObservacion.TabIndex = 3;
             // 
             // btnAgregar
@@ -420,7 +420,7 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.Location = new System.Drawing.Point(409, 623);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(722, 35);
+            this.btnAgregar.Size = new System.Drawing.Size(760, 35);
             this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -434,7 +434,7 @@
             this.pnlCabecera.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCabecera.Location = new System.Drawing.Point(0, 0);
             this.pnlCabecera.Name = "pnlCabecera";
-            this.pnlCabecera.Size = new System.Drawing.Size(1160, 95);
+            this.pnlCabecera.Size = new System.Drawing.Size(1196, 95);
             this.pnlCabecera.TabIndex = 5;
             // 
             // label18
@@ -456,7 +456,7 @@
             this.txtRecord.ForeColor = System.Drawing.Color.DarkGray;
             this.txtRecord.Location = new System.Drawing.Point(411, 372);
             this.txtRecord.Name = "txtRecord";
-            this.txtRecord.Size = new System.Drawing.Size(330, 30);
+            this.txtRecord.Size = new System.Drawing.Size(350, 30);
             this.txtRecord.TabIndex = 3;
             this.txtRecord.Text = "10";
             this.txtRecord.Enter += new System.EventHandler(this.txtRecord_Enter);
@@ -477,9 +477,9 @@
             this.cmbEspecialidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cmbEspecialidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEspecialidad.FormattingEnabled = true;
-            this.cmbEspecialidad.Location = new System.Drawing.Point(800, 210);
+            this.cmbEspecialidad.Location = new System.Drawing.Point(819, 210);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
-            this.cmbEspecialidad.Size = new System.Drawing.Size(331, 31);
+            this.cmbEspecialidad.Size = new System.Drawing.Size(350, 31);
             this.cmbEspecialidad.TabIndex = 6;
             this.cmbEspecialidad.SelectedIndexChanged += new System.EventHandler(this.cmbEspecialidad_SelectedIndexChanged);
             this.cmbEspecialidad.TextChanged += new System.EventHandler(this.cmbEspecialidad_TextChanged);
@@ -491,7 +491,7 @@
             this.cmbDisciplina.FormattingEnabled = true;
             this.cmbDisciplina.Location = new System.Drawing.Point(412, 210);
             this.cmbDisciplina.Name = "cmbDisciplina";
-            this.cmbDisciplina.Size = new System.Drawing.Size(329, 31);
+            this.cmbDisciplina.Size = new System.Drawing.Size(350, 31);
             this.cmbDisciplina.TabIndex = 6;
             this.cmbDisciplina.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged);
             this.cmbDisciplina.TextChanged += new System.EventHandler(this.cmbDisciplina_TextChanged);
@@ -503,7 +503,7 @@
             this.cmbApellidos.FormattingEnabled = true;
             this.cmbApellidos.Location = new System.Drawing.Point(412, 135);
             this.cmbApellidos.Name = "cmbApellidos";
-            this.cmbApellidos.Size = new System.Drawing.Size(329, 31);
+            this.cmbApellidos.Size = new System.Drawing.Size(350, 31);
             this.cmbApellidos.TabIndex = 6;
             this.cmbApellidos.SelectedIndexChanged += new System.EventHandler(this.cmbApellidos_SelectedIndexChanged);
             this.cmbApellidos.TextChanged += new System.EventHandler(this.cmbApellidos_TextChanged);
@@ -513,9 +513,9 @@
             this.cmbNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cmbNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNombres.FormattingEnabled = true;
-            this.cmbNombres.Location = new System.Drawing.Point(800, 135);
+            this.cmbNombres.Location = new System.Drawing.Point(819, 135);
             this.cmbNombres.Name = "cmbNombres";
-            this.cmbNombres.Size = new System.Drawing.Size(331, 31);
+            this.cmbNombres.Size = new System.Drawing.Size(350, 31);
             this.cmbNombres.TabIndex = 6;
             this.cmbNombres.SelectedIndexChanged += new System.EventHandler(this.cmbNombres_SelectedIndexChanged);
             this.cmbNombres.TextChanged += new System.EventHandler(this.cmbNombres_TextChanged);
@@ -527,7 +527,7 @@
             this.cmbCedula.FormattingEnabled = true;
             this.cmbCedula.Location = new System.Drawing.Point(25, 135);
             this.cmbCedula.Name = "cmbCedula";
-            this.cmbCedula.Size = new System.Drawing.Size(329, 31);
+            this.cmbCedula.Size = new System.Drawing.Size(335, 31);
             this.cmbCedula.TabIndex = 6;
             this.cmbCedula.SelectedIndexChanged += new System.EventHandler(this.cmbCedula_SelectedIndexChanged);
             this.cmbCedula.TextChanged += new System.EventHandler(this.cmbCedula_TextChanged);
@@ -541,7 +541,7 @@
             this.btnLimpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnLimpiar.Location = new System.Drawing.Point(409, 664);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(722, 30);
+            this.btnLimpiar.Size = new System.Drawing.Size(760, 30);
             this.btnLimpiar.TabIndex = 7;
             this.btnLimpiar.Text = "Limpiar Campos";
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -554,7 +554,7 @@
             this.cmbTecnico.FormattingEnabled = true;
             this.cmbTecnico.Location = new System.Drawing.Point(25, 533);
             this.cmbTecnico.Name = "cmbTecnico";
-            this.cmbTecnico.Size = new System.Drawing.Size(329, 31);
+            this.cmbTecnico.Size = new System.Drawing.Size(335, 31);
             this.cmbTecnico.TabIndex = 6;
             this.cmbTecnico.SelectedIndexChanged += new System.EventHandler(this.cmbCedula_SelectedIndexChanged);
             this.cmbTecnico.TextChanged += new System.EventHandler(this.cmbTecnico_TextChanged);
@@ -564,7 +564,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1160, 707);
+            this.ClientSize = new System.Drawing.Size(1196, 707);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.cmbNombres);
             this.Controls.Add(this.cmbTecnico);

@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\exportar.png" />
     <None Include="Resources\torneo_frm.png" />
     <None Include="Resources\mas.png" />
     <None Include="Resources\fondo_inicio.png" />

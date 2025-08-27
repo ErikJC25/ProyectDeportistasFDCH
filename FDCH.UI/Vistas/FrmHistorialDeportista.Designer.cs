@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.IdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,20 +65,32 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnExportarDeportista = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Navy;
+            this.panel1.BackColor = System.Drawing.Color.Red;
             this.panel1.Controls.Add(this.lblNombre);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1160, 112);
+            this.panel1.Size = new System.Drawing.Size(1196, 112);
             this.panel1.TabIndex = 0;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.Color.White;
+            this.lblNombre.Location = new System.Drawing.Point(412, 25);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(736, 69);
+            this.lblNombre.TabIndex = 0;
             // 
             // label1
             // 
@@ -87,18 +99,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(17, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(438, 40);
+            this.label1.Size = new System.Drawing.Size(398, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Información del Deportista:";
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(461, 25);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(687, 69);
-            this.lblNombre.TabIndex = 0;
+            this.label1.Text = "Registros del Deportista:";
             // 
             // dataGridView1
             // 
@@ -141,12 +144,13 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(12, 156);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 118);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1136, 539);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1172, 517);
             this.dataGridView1.TabIndex = 1;
             // 
             // IdTecnico
@@ -454,11 +458,40 @@
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
+            // btnExportarDeportista
+            // 
+            this.btnExportarDeportista.BackColor = System.Drawing.Color.Red;
+            this.btnExportarDeportista.FlatAppearance.BorderSize = 0;
+            this.btnExportarDeportista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarDeportista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarDeportista.ForeColor = System.Drawing.Color.White;
+            this.btnExportarDeportista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarDeportista.Location = new System.Drawing.Point(1031, 641);
+            this.btnExportarDeportista.Name = "btnExportarDeportista";
+            this.btnExportarDeportista.Size = new System.Drawing.Size(153, 54);
+            this.btnExportarDeportista.TabIndex = 2;
+            this.btnExportarDeportista.Text = "Exportar";
+            this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarDeportista.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Red;
+            this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.exportar;
+            this.pictureBox1.Location = new System.Drawing.Point(1126, 647);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(57, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmHistorialDeportista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1160, 707);
+            this.ClientSize = new System.Drawing.Size(1196, 707);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnExportarDeportista);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -468,6 +501,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -511,5 +545,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDiscapacidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
+        private System.Windows.Forms.Button btnExportarDeportista;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

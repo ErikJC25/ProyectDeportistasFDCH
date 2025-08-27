@@ -24,6 +24,7 @@ namespace FDCH.UI.Vistas
             this.idDeportista = idDeportista;
             deportista = puente.ObtenerDeportistaPorId(idDeportista);
             lblNombre.Text = deportista.nombres + " " + deportista.apellidos;
+            dataGridView1.AutoGenerateColumns = false;
             CargarDatosEnDataGridView();
         }
 
