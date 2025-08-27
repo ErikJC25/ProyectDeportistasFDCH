@@ -28,7 +28,7 @@ namespace FDCH.UI.Vistas
 
         private void txtLugar_Enter_1(object sender, EventArgs e)
         {
-            if(txtLugar.Text == "Riobamba" && txtLugar.ForeColor == Color.DarkGray)
+            if(txtLugar.Text == "RIOBAMBA" && txtLugar.ForeColor == Color.DarkGray)
             {
                 txtLugar.Text = "";
                 txtLugar.ForeColor = Color.Black;
@@ -37,7 +37,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNombre_Enter(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "Torneo Canto..." && txtNombre.ForeColor == Color.DarkGray)
+            if (txtNombre.Text == "TORNEO CANTO..." && txtNombre.ForeColor == Color.DarkGray)
             {
                 txtNombre.Text = "";
                 txtNombre.ForeColor = Color.Black;
@@ -46,7 +46,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTipo_Enter(object sender, EventArgs e)
         {
-            if (txtTipo.Text == "Oficial" && txtTipo.ForeColor == Color.DarkGray)
+            if (txtTipo.Text == "OFICIAL" && txtTipo.ForeColor == Color.DarkGray)
             {
                 txtTipo.Text = "";
                 txtTipo.ForeColor = Color.Black;
@@ -55,7 +55,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNivel_Enter(object sender, EventArgs e)
         {
-            if (txtNivel.Text == "Regional, Cantonal, ..." && txtNivel.ForeColor == Color.DarkGray)
+            if (txtNivel.Text == "REGIONAL, CANTONAL, ..." && txtNivel.ForeColor == Color.DarkGray)
             {
                 txtNivel.Text = "";
                 txtNivel.ForeColor = Color.Black;
@@ -66,7 +66,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtNombre.Text == "")
             {
-                txtNombre.Text = "Torneo Canto...";
+                txtNombre.Text = "TORNEO CANTO...";
                 txtNombre.ForeColor = Color.DarkGray;
             }
         }
@@ -75,7 +75,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtLugar.Text == "")
             {
-                txtLugar.Text = "Riobamba";
+                txtLugar.Text = "RIOBAMBA";
                 txtLugar.ForeColor = Color.DarkGray;
             }
         }
@@ -84,7 +84,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtTipo.Text == "")
             {
-                txtTipo.Text = "Oficial";
+                txtTipo.Text = "OFICIAL";
                 txtTipo.ForeColor = Color.DarkGray;
             }
         }
@@ -93,7 +93,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtNivel.Text == "")
             {
-                txtNivel.Text = "Regional, Cantonal, ...";
+                txtNivel.Text = "REGIONAL, CANTONAL, ...";
                 txtNivel.ForeColor = Color.DarkGray;
             }
         }
@@ -104,7 +104,7 @@ namespace FDCH.UI.Vistas
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             // Definición de placeholders actuales
-            string placeholderNombre = "Torneo Canto...";
+            string placeholderNombre = "TORNEO CANTO...";
             string placeholderFechaIncio = "04/08/2025";
             string placeholderFechaFin = "29/08/2025";
 
@@ -142,6 +142,16 @@ namespace FDCH.UI.Vistas
                 }
             }
 
+
+            // Preguntar si esta seguro de agregar el torneo
+            var confirmResult = MessageBox.Show("¿Está seguro de agregar este torneo?", "Confirmar Agregar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes)
+            {
+                return; // Si el usuario selecciona "No", se detiene el proceso
+            }
+
+
+
             // --- 3. Validación de lógica de fechas (si ambas son válidas) ---
             // Solo se valida si ambas fechas tienen un valor real
             if (fechaInicioDT != DateTime.MinValue && fechaFinDT != DateTime.MinValue)
@@ -158,12 +168,12 @@ namespace FDCH.UI.Vistas
             Evento evento = new Evento
             {
                 nombre_evento = txtNombre.Text.Trim(),
-                lugar = (txtLugar.Text == "Riobamba" && txtLugar.ForeColor == Color.DarkGray) ? "" : txtLugar.Text.Trim(),
+                lugar = (txtLugar.Text == "RIOBAMBA" && txtLugar.ForeColor == Color.DarkGray) ? "" : txtLugar.Text.Trim(),
                 // Guardar las fechas como STRING, tal como lo solicitaste
                 fecha_inicio = (txtFechaInicio.Text == placeholderFechaIncio && txtFechaInicio.ForeColor == Color.DarkGray) ? "" : txtFechaInicio.Text.Trim(),
                 fecha_fin = (txtFechaFin.Text == placeholderFechaFin && txtFechaFin.ForeColor == Color.DarkGray) ? "" : txtFechaFin.Text.Trim(),
-                tipo_evento = (txtTipo.Text == "Oficial" && txtTipo.ForeColor == Color.DarkGray) ? "" : txtTipo.Text.Trim(),
-                nivel_evento = (txtNivel.Text == "Regional, Cantonal, ..." && txtNivel.ForeColor == Color.DarkGray) ? "" : txtNivel.Text.Trim()
+                tipo_evento = (txtTipo.Text == "OFICIAL" && txtTipo.ForeColor == Color.DarkGray) ? "" : txtTipo.Text.Trim(),
+                nivel_evento = (txtNivel.Text == "REGIONAL, CANTONAL, ..." && txtNivel.ForeColor == Color.DarkGray) ? "" : txtNivel.Text.Trim()
             };
 
             int resultado = puente.InsertarEvento(evento);
@@ -214,6 +224,120 @@ namespace FDCH.UI.Vistas
             {
                 txtFechaFin.Text = "29/08/2025";
                 txtFechaFin.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                txtFechaInicio.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtFechaInicio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                txtFechaFin.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtFechaFin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                txtLugar.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtLugar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                txtTipo.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtTipo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                txtNivel.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtNivel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
+            }
+
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Llama al método que maneja el clic del botón
+                btnAgregar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
             }
         }
     }

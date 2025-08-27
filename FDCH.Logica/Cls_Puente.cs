@@ -248,103 +248,61 @@ namespace FDCH.Logica
             return _dbService.ObtenerEspecialidadPorId(idEspecialidad);
         }
 
-        public Deportista BuscarDeportista(string cedula, string nombres, string apellidos)
+        
+
+        public bool ActualizarDeportista(Deportista deportista)
         {
-            // Este método busca un deportista en la base de datos a través del servicio.
-            return _dbService.BuscarDeportista(cedula, nombres, apellidos);
+            return _dbService.ActualizarDeportista(deportista);
         }
 
-        public bool ActualizarRegistroComplejo(Deportista deportistaActual, Deportista nuevoDeportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
+        
+
+        public List<Deportista> ObtenerDeportistasPorFiltro(string filtro, string campo)
         {
-            try
-            {
-                // 1. Lógica para Disciplina y Especialidad
-                int idDisciplina = _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
-                if (idDisciplina == 0) // La disciplina no existe, se inserta
-                {
-                    Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
-                    idDisciplina = _dbService.InsertarDisciplina(nuevaDisciplina);
-
-                    especialidad.id_disciplina = idDisciplina;
-                    int idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
-                    competencia.id_especialidad = idEspecialidad;
-                }
-                else // La disciplina ya existe
-                {
-                    int idEspecialidad = _dbService.ObtenerIdEspecialidadPorNombre(especialidad.nombre_especialidad, idDisciplina);
-                    if (idEspecialidad == 0) // La especialidad no existe para esta disciplina, se inserta
-                    {
-                        especialidad.id_disciplina = idDisciplina;
-                        idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
-                    }
-                    competencia.id_especialidad = idEspecialidad;
-                }
-
-                // 2. Actualizar el Deportista
-                // Se usa la cédula del deportista actual para encontrar el registro
-                // y se actualizan los datos con los del nuevoDeportista
-                _dbService.ActualizarDeportista(nuevoDeportista);
-
-                // 3. Insertar o actualizar otras entidades
-                // Para las entidades que siempre son nuevas por registro (Competencia, Desempeño, Tecnico), se insertan.
-                _dbService.InsertarCompetencia(competencia);
-                _dbService.InsertarDesempeno(desempeno);
-                _dbService.InsertarTecnico(tecnico);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error en ActualizarRegistroComplejo: " + ex.Message);
-                return false;
-            }
-        }
-
-        public bool InsertarRegistroComplejo(Deportista deportista, Tecnico tecnico, string nombreDisciplina, Especialidad especialidad, Competencia competencia, Desempeno desempeno)
-        {
-            try
-            {
-                int idDeportista = _dbService.InsertarDeportista(deportista);
-                int idTecnico = _dbService.InsertarTecnico(tecnico);
-
-                int idDisciplina = _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
-                if (idDisciplina == 0)
-                {
-                    Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
-                    idDisciplina = _dbService.InsertarDisciplina(nuevaDisciplina);
-
-                    especialidad.id_disciplina = idDisciplina;
-                    int idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
-                    competencia.id_especialidad = idEspecialidad;
-                }
-                else
-                {
-                    int idEspecialidad = _dbService.ObtenerIdEspecialidadPorNombre(especialidad.nombre_especialidad, idDisciplina);
-                    if (idEspecialidad == 0)
-                    {
-                        especialidad.id_disciplina = idDisciplina;
-                        idEspecialidad = _dbService.InsertarEspecialidad(especialidad);
-                    }
-                    competencia.id_especialidad = idEspecialidad;
-                }
-
-                int idCompetencia = _dbService.InsertarCompetencia(competencia);
-
-                desempeno.id_deportista = idDeportista;
-                desempeno.id_competencia = idCompetencia;
-                desempeno.id_tecnico = idTecnico;
-                _dbService.InsertarDesempeno(desempeno);
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            // Llama a la capa de datos para obtener deportistas filtrados
+            return _dbService.ObtenerDeportistasPorFiltro(filtro, campo);
         }
 
 
+        public List<string> ObtenerCedulas()
+        {
+            return _dbService.ObtenerCedulas();
+        }
 
+        public List<string> ObtenerApellidosUnicos()
+        {
+            return _dbService.ObtenerApellidosUnicos();
+        }
+
+        public List<string> ObtenerNombresPorApellido(string apellido)
+        {
+            return _dbService.ObtenerNombresPorApellido(apellido);
+        }
+        public Deportista BuscarDeportistaPorCedula(string cedula)
+        {
+            return _dbService.BuscarDeportistaPorCedula(cedula);
+        }
+
+        public Deportista BuscarDeportistaPorNombreCompleto(string nombres, string apellidos)
+        {
+            return _dbService.BuscarDeportistaPorNombreCompleto(nombres, apellidos);
+        }
+
+
+        public int ObtenerIdDisciplinaPorNombre(string nombreDisciplina)
+        {
+            return _dbService.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
+        }
+
+        public int ObtenerIdEspecialidadPorNombre(string nombreEspecialidad, int disciplinaId)
+        {
+            return _dbService.ObtenerIdEspecialidadPorNombre(nombreEspecialidad, disciplinaId);
+        }
+
+        public int ObtenerIdTecnicoPorNombre(string nombreTecnico)
+        {
+            return _dbService.ObtenerIdTecnicoPorNombre(nombreTecnico);
+        }
 
     }
 }

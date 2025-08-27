@@ -16,11 +16,11 @@ namespace FDCH.UI.Vistas
         Usuario _usuarioAutenticado;
         Form formularioActivo = null; // Referencia al form actual
 
-        public FrmPrincipal(/*Usuario usuario*/)
+        public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
-            //_usuarioAutenticado = usuario;
-            //lblUsuarioActivo.Text = "Conectado como: " + _usuarioAutenticado.nombre_usuario;
+            _usuarioAutenticado = usuario;
+            lblUsuarioActivo.Text = "Conectado como: " + _usuarioAutenticado.nombre_usuario;
 
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
@@ -36,10 +36,9 @@ namespace FDCH.UI.Vistas
 
         private void AbrirFormularioEnPanel(Form formulario)
         {
-            // Cierra el formulario actual si existe
-            if (formularioActivo != null)
+            // Cierra el formulario actual si existe y no es el mismo que se va a abrir
+            if (formularioActivo != null && formularioActivo.GetType() != formulario.GetType())
             {
-                // No es necesario llamar a Close() si solo se va a limpiar el panel
                 formularioActivo.Dispose();
             }
 
@@ -50,10 +49,12 @@ namespace FDCH.UI.Vistas
             pnlContenedorFrm.Controls.Clear();
             pnlContenedorFrm.Controls.Add(formulario);
 
-            // Si el formulario que se abre es FrmInicio, suscribe los eventos
-            if (formulario is FrmInicio)
+            // Suscribir al evento FormClosed para abrir FrmInicio al cerrar el formulario hijo
+            formulario.FormClosed += FormularioHijoCerrado;
+
+            // Lógica de suscripción a eventos específicos de formularios
+            if (formulario is FrmInicio frmInicio)
             {
-                var frmInicio = (FrmInicio)formulario;
                 frmInicio.EventoPerfil += idDeportista =>
                 {
                     AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
@@ -64,8 +65,34 @@ namespace FDCH.UI.Vistas
                     AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
                 };
             }
+            else if (formulario is FrmAddTorneo frmAddTorneo)
+            {
+                frmAddTorneo.EventoAgregado += idNuevo =>
+                {
+                    // Abrir FrmAddDeportista desde FrmAddTorneo
+                    AbrirFormularioEnPanel(new FrmAddDeportista(idNuevo));
+                };
+            }
+
             formulario.Show();
         }
+
+
+        private void FormularioHijoCerrado(object sender, FormClosedEventArgs e)
+        {
+            // Remover la suscripción al evento para evitar fugas de memoria
+            Form formularioCerrado = sender as Form;
+            if (formularioCerrado != null)
+            {
+                formularioCerrado.FormClosed -= FormularioHijoCerrado;
+            }
+
+            // Abrir FrmInicio de nuevo en el panel principal
+            AbrirFormularioEnPanel(new FrmInicio());
+        }
+
+
+
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
@@ -87,12 +114,7 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnAddTorneo.Height;
             pnlOpcion.Top = btnAddTorneo.Top;
-            var frmAddTorneo = new FrmAddTorneo();
-            frmAddTorneo.EventoAgregado += idNuevo =>
-            {
-                AbrirFormularioEnPanel(new FrmAddDeportista(idNuevo));
-            };
-            AbrirFormularioEnPanel(frmAddTorneo);
+            AbrirFormularioEnPanel(new FrmAddTorneo());
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -112,8 +134,8 @@ namespace FDCH.UI.Vistas
 
         private void btnAddParticipa_Click(object sender, EventArgs e)
         {
-            pnlOpcion.Height = btnAddTorneo.Height;
-            pnlOpcion.Top = btnAddTorneo.Top;
+            pnlOpcion.Height = btnAddParticipa.Height;
+            pnlOpcion.Top = btnAddParticipa.Top;
             AbrirFormularioEnPanel(new FrmAddDeportista());
         }
     }

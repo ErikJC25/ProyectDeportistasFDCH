@@ -482,7 +482,7 @@ namespace FDCH.Datos
             var lista = new List<Tecnico>();
             using (var connection = GetConnection())
             {
-                string query = "SELECT * FROM Tecnicos";
+                string query = "SELECT * FROM Tecnicos ORDER BY nombre_completo ASC";
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     try
@@ -585,7 +585,7 @@ namespace FDCH.Datos
             var lista = new List<Evento>();
             using (var connection = GetConnection())
             {
-                string query = "SELECT * FROM Eventos";
+                string query = "SELECT * FROM Eventos ORDER BY nombre_evento ASC";
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     try
@@ -1143,7 +1143,32 @@ namespace FDCH.Datos
         }
 
 
-
+        public int ObtenerIdTecnicoPorNombre(string nombre)
+        {
+            int id = 0;
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT id_tecnico FROM Tecnicos WHERE nombre_completo = @nombre";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nombre", nombre);
+                    try
+                    {
+                        connection.Open();
+                        var result = command.ExecuteScalar(); // Devuelve el primer valor de la primera fila
+                        if (result != null && result != DBNull.Value)
+                        {
+                            id = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener el ID de la disciplina: " + ex.Message);
+                    }
+                }
+            }
+            return id;
+        }
 
 
         /// <summary>
@@ -1152,7 +1177,7 @@ namespace FDCH.Datos
         public Especialidad ObtenerEspecialidadPorId(int idEspecialidad)
         {
             Especialidad especialidad = null;
-            string query = "SELECT * FROM Especialidad WHERE id_especialidad = @id";
+            string query = "SELECT * FROM Especialidades WHERE id_especialidad = @id";
 
             using (SQLiteConnection connection = GetConnection())
             {
@@ -1190,16 +1215,54 @@ namespace FDCH.Datos
         /// Busca un deportista en la base de datos por cédula, nombres o apellidos.
         /// Retorna el primer resultado encontrado.
         /// </summary>
-        public Deportista BuscarDeportista(string cedula, string nombres, string apellidos)
+        public Deportista BuscarDeportistaPorCedula(string cedula)
         {
             Deportista deportista = null;
-            string query = "SELECT * FROM Deportistas WHERE (cedula = @cedula OR nombres = @nombres OR apellidos = @apellidos) LIMIT 1";
+            string query = "SELECT * FROM Deportistas WHERE cedula = @cedula LIMIT 1";
 
             using (SQLiteConnection connection = GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@cedula", cedula);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                deportista = new Deportista
+                                {
+                                    id_deportista = reader.IsDBNull(reader.GetOrdinal("id_deportista")) ? 0 : reader.GetInt32(reader.GetOrdinal("id_deportista")),
+                                    cedula = reader.IsDBNull(reader.GetOrdinal("cedula")) ? null : reader.GetString(reader.GetOrdinal("cedula")),
+                                    nombres = reader.IsDBNull(reader.GetOrdinal("nombres")) ? null : reader.GetString(reader.GetOrdinal("nombres")),
+                                    apellidos = reader.IsDBNull(reader.GetOrdinal("apellidos")) ? null : reader.GetString(reader.GetOrdinal("apellidos")),
+                                    genero = reader.IsDBNull(reader.GetOrdinal("genero")) ? null : reader.GetString(reader.GetOrdinal("genero")),
+                                    tipo_discapacidad = reader.IsDBNull(reader.GetOrdinal("tipo_discapacidad")) ? null : reader.GetString(reader.GetOrdinal("tipo_discapacidad"))
+                                };
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en BuscarDeportista: " + ex.Message);
+                    }
+                }
+            }
+            return deportista;
+        }
+
+
+        public Deportista BuscarDeportistaPorNombreCompleto(string nombres, string apellidos)
+        {
+            Deportista deportista = null;
+            string query = "SELECT * FROM Deportistas WHERE nombres = @nombres AND apellidos = @apellidos LIMIT 1";
+            using (SQLiteConnection connection = GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
                     command.Parameters.AddWithValue("@nombres", nombres);
                     command.Parameters.AddWithValue("@apellidos", apellidos);
 
@@ -1231,18 +1294,21 @@ namespace FDCH.Datos
             return deportista;
         }
 
+
+
         /// <summary>
         /// Actualiza un deportista en la base de datos usando la cédula como identificador principal.
         /// </summary>
         public bool ActualizarDeportista(Deportista deportista)
         {
-            string query = "UPDATE Deportistas SET nombres = @nombres, apellidos = @apellidos, genero = @genero, tipo_discapacidad = @discapacidad WHERE cedula = @cedula";
+            string query = "UPDATE Deportistas SET cedula = @cedula, nombres = @nombres, apellidos = @apellidos, genero = @genero, tipo_discapacidad = @discapacidad WHERE id_deportista = @id_deportista";
             int rowsAffected = 0;
 
             using (SQLiteConnection connection = GetConnection())
             {
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@id_deportista", deportista.id_deportista);
                     command.Parameters.AddWithValue("@cedula", deportista.cedula);
                     command.Parameters.AddWithValue("@nombres", deportista.nombres);
                     command.Parameters.AddWithValue("@apellidos", deportista.apellidos);
@@ -1263,10 +1329,131 @@ namespace FDCH.Datos
             return rowsAffected > 0;
         }
 
+        public List<Deportista> ObtenerDeportistasPorFiltro(string filtro, string campo)
+        {
+            var deportistas = new List<Deportista>();
+            using (var connection = GetConnection())
+            {
+                string query = $"SELECT * FROM Deportistas WHERE {campo} LIKE @filtro";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@filtro", $"%{filtro}%");
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                deportistas.Add(new Deportista
+                                {
+                                    id_deportista = reader.GetInt32(reader.GetOrdinal("id_deportista")),
+                                    cedula = reader.GetString(reader.GetOrdinal("cedula")),
+                                    nombres = reader.GetString(reader.GetOrdinal("nombres")),
+                                    apellidos = reader.GetString(reader.GetOrdinal("apellidos")),
+                                    genero = reader.GetString(reader.GetOrdinal("genero")),
+                                    tipo_discapacidad = reader.GetString(reader.GetOrdinal("tipo_discapacidad"))
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener deportistas por filtro: " + ex.Message);
+                    }
+                }
+            }
+            return deportistas;
+        }
 
 
+        // Obtiene una lista de todas las cédulas para el ComboBox
+        public List<string> ObtenerCedulas()
+        {
+            var cedulas = new List<string>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT cedula FROM Deportistas WHERE cedula IS NOT NULL AND cedula != '' ORDER BY cedula ASC";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                cedulas.Add(reader["cedula"].ToString());
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener cédulas: " + ex.Message);
+                    }
+                }
+            }
+            return cedulas;
+        }
 
+        // Obtiene una lista de apellidos únicos y ordenados
+        public List<string> ObtenerApellidosUnicos()
+        {
+            var apellidos = new List<string>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT DISTINCT apellidos FROM Deportistas ORDER BY apellidos ASC";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                apellidos.Add(reader["apellidos"].ToString());
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener apellidos: " + ex.Message);
+                    }
+                }
+            }
+            return apellidos;
+        }
 
+        // Obtiene nombres basados en un apellido específico, ordenados
+        public List<string> ObtenerNombresPorApellido(string apellido)
+        {
+            var nombres = new List<string>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombres FROM Deportistas WHERE apellidos = @apellido ORDER BY nombres ASC";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@apellido", apellido);
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                nombres.Add(reader["nombres"].ToString());
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener nombres por apellido: " + ex.Message);
+                    }
+                }
+            }
+            return nombres;
+        }
 
 
 

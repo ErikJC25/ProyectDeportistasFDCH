@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FDCH.Entidades;
+using FDCH.Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,8 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FDCH.Entidades;
-using FDCH.Logica;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FDCH.UI.Vistas
 {
@@ -17,42 +18,68 @@ namespace FDCH.UI.Vistas
     {
         private int _idEvento;
         private Cls_Puente puente = new Cls_Puente();
-        private Evento objEvento = new Evento();
-        private List<Evento> listaeventos;
-        private Deportista deportistaActual = null; // Almacena el deportista si existe
+        private Deportista deportistaActual = null; // Almacena el deportista cargado para comparar cambios
+        // variable "bandera" al inicio de tu clase
+        private bool _isProgrammaticallyChanging = false;
 
-        public FrmAddDeportista(int idTorneo)
+
+        public FrmAddDeportista(int idTorneo) : this() // Llama al constructor por defecto
         {
-            InitializeComponent();
             _idEvento = idTorneo;
-            objEvento = puente.ObtenerEventoPorId(idTorneo);
-            cmbTorneo.Text = objEvento.nombre_evento;
-            cmbTorneo.Enabled = false; // Deshabilitar el ComboBox de torneos
-            cmbCedula.Focus();
-            CargarDisciplinas();
-            CargarEspecialidades(); // Cargar la lista completa de especialidades
-            cmbEspecialidad.Enabled = true; // Habilitar desde el inicio
-            CargarDeportistas();
+            var objEvento = puente.ObtenerEventoPorId(idTorneo);
+            if (objEvento != null)
+            {
+                cmbTorneo.SelectedValue = objEvento.id_evento;
+                cmbTorneo.Enabled = false;
+            }
         }
 
         public FrmAddDeportista()
         {
             InitializeComponent();
-            cmbTorneo.Focus();
+            ConfiguracionInicial();
+        }
+
+        private void ConfiguracionInicial()
+        {
             CargarEventos();
             CargarDisciplinas();
-            CargarEspecialidades(); // Cargar la lista completa de especialidades
-            cmbEspecialidad.Enabled = true; // Habilitar desde el inicio
-            CargarDeportistas();
+            CargarListasDeportistas(); // Carga cédulas y apellidos
+            CargarTecnicos();
+            cmbNombres.Enabled = false;
+            cmbEspecialidad.Enabled = false;
+            cmbTorneo.Focus();
+
+            cmbTorneo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbTorneo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbCedula.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbCedula.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbApellidos.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbApellidos.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbNombres.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbNombres.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbDisciplina.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbDisciplina.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbEspecialidad.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbEspecialidad.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cmbTecnico.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbTecnico.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
+
 
         private void CargarEventos()
         {
             try
             {
-                listaeventos = puente.ObtenerEventos();
+                var listaeventos = puente.ObtenerEventos();
                 cmbTorneo.DataSource = listaeventos;
-                cmbTorneo.DisplayMember = "nombre_torneo";
+                cmbTorneo.DisplayMember = "nombre_evento";
                 cmbTorneo.ValueMember = "id_evento";
                 cmbTorneo.SelectedIndex = -1;
             }
@@ -62,27 +89,19 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        private void CargarDeportistas()
+        private void CargarTecnicos()
         {
             try
             {
-                var deportistas = puente.ObtenerTodosDeportistas();
-                // Enlazar los 3 ComboBox al mismo DataSource
-                cmbCedula.DataSource = new BindingSource(deportistas, null);
-                cmbNombres.DataSource = new BindingSource(deportistas, null);
-                cmbApellidos.DataSource = new BindingSource(deportistas, null);
-
-                cmbCedula.DisplayMember = "cedula";
-                cmbNombres.DisplayMember = "nombres";
-                cmbApellidos.DisplayMember = "apellidos";
-
-                cmbCedula.ValueMember = "cedula";
-                cmbNombres.ValueMember = "nombres";
-                cmbApellidos.ValueMember = "apellidos";
+                var listatecnicos = puente.ObtenerTecnicos();
+                cmbTecnico.DataSource = listatecnicos;
+                cmbTecnico.DisplayMember = "nombre_completo";
+                cmbTecnico.ValueMember = "id_tecnico";
+                cmbTecnico.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los deportistas: " + ex.Message);
+                MessageBox.Show("Error al cargar los técnicos: " + ex.Message);
             }
         }
 
@@ -102,21 +121,23 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        private void CargarEspecialidades()
+        // Carga las listas iniciales para autocompletar deportistas
+        private void CargarListasDeportistas()
         {
             try
             {
-                var especialidades = puente.ObtenerTodasEspecialidades();
-                cmbEspecialidad.DataSource = especialidades;
-                cmbEspecialidad.DisplayMember = "nombre_especialidad";
-                cmbEspecialidad.ValueMember = "id_especialidad";
-                cmbEspecialidad.SelectedIndex = -1;
+                cmbCedula.DataSource = puente.ObtenerCedulas();
+                cmbCedula.SelectedIndex = -1;
+
+                cmbApellidos.DataSource = puente.ObtenerApellidosUnicos();
+                cmbApellidos.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar especialidades: " + ex.Message);
+                MessageBox.Show("Error al cargar listas de deportistas: " + ex.Message);
             }
         }
+
 
         private void CargarEspecialidadesPorDisciplina(int idDisciplina)
         {
@@ -139,9 +160,9 @@ namespace FDCH.UI.Vistas
             try
             {
                 var especialidad = puente.ObtenerEspecialidadPorId(idEspecialidad);
-                if (especialidad != null && !string.IsNullOrEmpty(especialidad.modalidad))
+                if (especialidad != null)
                 {
-                    txtModalidad.Text = especialidad.modalidad;
+                    txtModalidad.Text = especialidad.modalidad ?? "";
                     txtModalidad.ForeColor = Color.Black;
                 }
             }
@@ -151,70 +172,150 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        private void AutocompletarDeportista(string cedula, string nombres, string apellidos)
+        // Rellena los campos del formulario con los datos de un deportista
+        private void LlenarCamposDeportista(Deportista dep)
         {
-            // Busca primero por cédula, luego por nombres y apellidos
-            deportistaActual = puente.BuscarDeportista(cedula, nombres, apellidos);
-            if (deportistaActual != null)
+            deportistaActual = dep; // Guardamos el estado original
+            if (dep != null)
             {
-                // Autocompleta los campos si se encuentra un deportista
-                cmbCedula.Text = deportistaActual.cedula ?? "";
-                cmbNombres.Text = deportistaActual.nombres ?? "";
-                cmbApellidos.Text = deportistaActual.apellidos ?? "";
-                txtGenero.Text = deportistaActual.genero ?? "";
-                txtDiscapacidad.Text = deportistaActual.tipo_discapacidad ?? "";
+                cmbCedula.Text = dep.cedula ?? "";
+                cmbNombres.Text = dep.nombres ?? "";
+                cmbApellidos.Text = dep.apellidos ?? "";
+                txtGenero.Text = dep.genero ?? "";
+                txtDiscapacidad.Text = dep.tipo_discapacidad ?? "";
 
-                // Cambia el color del texto si se autocompleta con valores existentes
-                if (!string.IsNullOrEmpty(txtGenero.Text) && txtGenero.Text != "Masculino / Femenino") txtGenero.ForeColor = Color.Black;
-                if (!string.IsNullOrEmpty(txtDiscapacidad.Text) && txtDiscapacidad.Text != "Ninguna") txtDiscapacidad.ForeColor = Color.Black;
+                txtGenero.ForeColor = Color.Black;
+                txtDiscapacidad.ForeColor = Color.Black;
             }
         }
 
-        // Evento para el ComboBox de Cédula
+
+        // Eventos de SelectedIndexChanged para el autocompletado
         private void cmbCedula_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbCedula.SelectedIndex != -1 && cmbCedula.SelectedValue != null)
+            // Si el cambio lo está haciendo nuestro propio código, lo ignoramos.
+            if (_isProgrammaticallyChanging) return;
+            if (cmbCedula.SelectedItem == null) return;
+
+            var deportista = puente.BuscarDeportistaPorCedula(cmbCedula.SelectedItem.ToString());
+            if (deportista != null)
             {
-                AutocompletarDeportista(cmbCedula.SelectedValue.ToString(), null, null);
+                try
+                {
+                    // Activamos la bandera para tener el control
+                    _isProgrammaticallyChanging = true;
+
+                    // 1. Llenamos todos los campos
+                    LlenarCamposDeportista(deportista);
+
+                    // 2. Deshabilitamos el combo de nombres porque ya identificamos al deportista.
+                    cmbNombres.Enabled = false;
+                }
+                finally
+                {
+                    // Desactivamos la bandera, devolviendo el control a los eventos del usuario.
+                    _isProgrammaticallyChanging = false;
+                }
             }
         }
 
-        // Evento para el ComboBox de Nombres
+
         private void cmbNombres_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbNombres.SelectedIndex != -1 && cmbNombres.SelectedValue != null)
+            if (_isProgrammaticallyChanging) return;
+            if (cmbNombres.SelectedItem == null || cmbApellidos.SelectedItem == null) return;
+
+            var deportista = puente.BuscarDeportistaPorNombreCompleto(
+                cmbNombres.SelectedItem.ToString(),
+                cmbApellidos.SelectedItem.ToString()
+            );
+
+            if (deportista != null)
             {
-                AutocompletarDeportista(null, cmbNombres.SelectedValue.ToString(), null);
+                try
+                {
+                    _isProgrammaticallyChanging = true;
+                    LlenarCamposDeportista(deportista);
+                }
+                finally
+                {
+                    _isProgrammaticallyChanging = false;
+                }
             }
         }
 
-        // Evento para el ComboBox de Apellidos
+
         private void cmbApellidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbApellidos.SelectedIndex != -1 && cmbApellidos.SelectedValue != null)
+            if (_isProgrammaticallyChanging) return;
+            if (cmbApellidos.SelectedItem == null)
             {
-                AutocompletarDeportista(null, null, cmbApellidos.SelectedValue.ToString());
+                cmbNombres.DataSource = null;
+                cmbNombres.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                _isProgrammaticallyChanging = true;
+
+                // Si el usuario elige un apellido, reseteamos la ruta de la cédula.
+                cmbCedula.SelectedIndex = -1;
+                deportistaActual = null; // Limpiamos el deportista actual
+                LimpiarCamposParcialmente(); // Limpiamos campos dependientes
+            }
+            finally
+            {
+                _isProgrammaticallyChanging = false;
+            }
+
+            try
+            {
+                // Cargamos los nombres correspondientes al apellido y habilitamos el combo.
+                var nombres = puente.ObtenerNombresPorApellido(cmbApellidos.SelectedItem.ToString());
+                cmbNombres.DataSource = nombres;
+                cmbNombres.SelectedIndex = -1;
+                cmbNombres.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar nombres: " + ex.Message);
             }
         }
+
+        // Pequeño método para limpiar solo los campos que dependen de la selección.
+        private void LimpiarCamposParcialmente()
+        {
+            cmbNombres.Text = "";
+            txtGenero.Text = "MASCULINO / FEMENINO";
+            txtGenero.ForeColor = Color.DarkGray;
+            txtDiscapacidad.Text = "NINGUNA";
+            txtDiscapacidad.ForeColor = Color.DarkGray;
+        }
+
+
 
         // Evento para el ComboBox de Disciplina
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbDisciplina.SelectedIndex != -1 && cmbDisciplina.SelectedValue is int idDisciplina)
+            if (cmbDisciplina.SelectedValue is int idDisciplina)
             {
                 CargarEspecialidadesPorDisciplina(idDisciplina);
+                cmbEspecialidad.Enabled = true;
             }
             else
             {
-                // Si la selección se borra, recarga todas las especialidades
-                CargarEspecialidades();
+                cmbEspecialidad.DataSource = null;
+                cmbEspecialidad.Enabled = false;
             }
         }
+
+
 
         // Evento para el ComboBox de Especialidad
         private void cmbEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbEspecialidad.SelectedIndex != -1 && cmbEspecialidad.SelectedValue is int idEspecialidad)
+            if (cmbEspecialidad.SelectedValue is int idEspecialidad)
             {
                 CargarModalidadPorEspecialidad(idEspecialidad);
             }
@@ -244,87 +345,170 @@ namespace FDCH.UI.Vistas
 
             _idEvento = (int)cmbTorneo.SelectedValue;
 
-            // Mapeo de datos desde el formulario a las entidades
-            Deportista nuevoDeportista = new Deportista
-            {
-                cedula = cmbCedula.Text ?? "",
-                nombres = cmbNombres.Text ?? "",
-                apellidos = cmbApellidos.Text ?? "",
-                genero = txtGenero.Text ?? "",
-                tipo_discapacidad = txtDiscapacidad.Text ?? ""
-            };
 
-            Tecnico tecnico = new Tecnico
-            {
-                nombre_completo = txtTecnico.Text ?? ""
-            };
+            // Preguntar si esta seguro de agregar los datos
+            var confirmar = MessageBox.Show("¿Está seguro/a que desea guardar este registro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmar != DialogResult.Yes) return;
 
-            Especialidad especialidad = new Especialidad
-            {
-                nombre_especialidad = cmbEspecialidad.Text,
-                modalidad = txtModalidad.Text ?? ""
-            };
 
-            Competencia competencia = new Competencia
+            // Lógica de guardado
+            try
             {
-                categoria = txtCategoria.Text ?? "",
-                division = txtDivision.Text ?? "",
-                numero_participantes = txtParticipantes.Text ?? "",
-                record = txtRecord.Text ?? "",
-                id_evento = _idEvento
-            };
+                // =================================================================
+                // PARTE 1: OBTENER O GUARDAR DEPORTISTA (Lógica existente)
+                // =================================================================
+                Deportista deportistaParaGuardar = new Deportista
+                {
+                    cedula = cmbCedula.Text,
+                    nombres = cmbNombres.Text,
+                    apellidos = cmbApellidos.Text,
+                    genero = txtGenero.Text,
+                    tipo_discapacidad = txtDiscapacidad.Text
+                };
 
-            Desempeno desempeno = new Desempeno
-            {
-                puntos = txtPuntos.Text ?? "",
-                medalla = txtMedalla.Text ?? "",
-                observaciones = "",
-                tiempo = txtTimeMarca.Text ?? "",
-                ubicacion = txtUbicacion.Text ?? ""
-            };
+                int deportistaId;
+                if (deportistaActual == null)
+                {
+                    deportistaId = puente.InsertarDeportista(deportistaParaGuardar);
+                }
+                else
+                {
+                    deportistaId = deportistaActual.id_deportista;
+                    if (deportistaActual.nombres != deportistaParaGuardar.nombres ||
+                        deportistaActual.apellidos != deportistaParaGuardar.apellidos ||
+                        deportistaActual.genero != deportistaParaGuardar.genero ||
+                        deportistaActual.tipo_discapacidad != deportistaParaGuardar.tipo_discapacidad ||
+                        deportistaActual.cedula != deportistaParaGuardar.cedula)
+                    {
+                        deportistaParaGuardar.id_deportista = deportistaId;
+                        puente.ActualizarDeportista(deportistaParaGuardar);
+                    }
+                }
+                if (deportistaId == 0) throw new Exception("No se pudo guardar el deportista.");
 
-            // Confirmación
-            var confirm = MessageBox.Show("¿Desea guardar este registro?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
+                // =================================================================
+                // PARTE 2: OBTENER O GUARDAR TÉCNICO
+                // =================================================================
+                int tecnicoId;
+                string nombreTecnico = cmbTecnico.Text;
 
-            bool exito;
-            if (deportistaActual != null)
-            {
-                // Lógica de actualización si el deportista existe
-                exito = puente.ActualizarRegistroComplejo(deportistaActual, nuevoDeportista, tecnico, cmbDisciplina.Text, especialidad, competencia, desempeno);
-            }
-            else
-            {
-                // Lógica de inserción si el deportista es nuevo
-                exito = puente.InsertarRegistroComplejo(nuevoDeportista, tecnico, cmbDisciplina.Text, especialidad, competencia, desempeno);
-            }
+                // Comprobamos si el técnico seleccionado ya tiene un ID (si el usuario eligió de la lista)
+                if (cmbTecnico.SelectedValue != null)
+                {
+                    tecnicoId = (int)cmbTecnico.SelectedValue;
+                }
+                else
+                {
+                    // Si no, es porque el usuario escribió uno nuevo. Buscamos por nombre.
+                    tecnicoId = puente.ObtenerIdTecnicoPorNombre(nombreTecnico);
+                }
 
-            if (exito)
-            {
+                if (tecnicoId == 0) // El técnico no existe
+                {
+                    // El técnico es nuevo, lo insertamos y obtenemos el nuevo ID
+                    Tecnico nuevoTecnico = new Tecnico { nombre_completo = nombreTecnico };
+                    tecnicoId = puente.InsertarTecnico(nuevoTecnico);
+                }
+                if (tecnicoId == 0) throw new Exception("No se pudo guardar el técnico.");
+
+                // =================================================================
+                // PARTE 3: OBTENER O GUARDAR DISCIPLINA Y ESPECIALIDAD (Nueva lógica)
+                // =================================================================
+                // --- Disciplina ---
+                int disciplinaId;
+                string nombreDisciplina = cmbDisciplina.Text;
+
+                // Comprobamos si la disciplina seleccionada ya tiene un ID (si el usuario eligió de la lista)
+                if (cmbDisciplina.SelectedValue != null)
+                {
+                    disciplinaId = (int)cmbDisciplina.SelectedValue;
+                }
+                else
+                {
+                    // Si no, es porque el usuario escribió una nueva. Buscamos por nombre.
+                    disciplinaId = puente.ObtenerIdDisciplinaPorNombre(nombreDisciplina);
+                }
+
+                if (disciplinaId == 0) // La disciplina no existe
+                {
+                    Disciplina nuevaDisciplina = new Disciplina { nombre_disciplina = nombreDisciplina };
+                    disciplinaId = puente.InsertarDisciplina(nuevaDisciplina);
+                }
+                if (disciplinaId == 0) throw new Exception("No se pudo guardar la disciplina.");
+
+                // --- Especialidad ---
+                int especialidadId;
+                string nombreEspecialidad = cmbEspecialidad.Text;
+
+                if (cmbEspecialidad.SelectedValue != null)
+                {
+                    especialidadId = (int)cmbEspecialidad.SelectedValue;
+                }
+                else
+                {
+                    especialidadId = puente.ObtenerIdEspecialidadPorNombre(nombreEspecialidad, disciplinaId);
+                }
+
+                if (especialidadId == 0) // La especialidad no existe para esta disciplina
+                {
+                    Especialidad nuevaEspecialidad = new Especialidad
+                    {
+                        nombre_especialidad = nombreEspecialidad,
+                        modalidad = txtModalidad.Text,
+                        id_disciplina = disciplinaId
+                    };
+                    especialidadId = puente.InsertarEspecialidad(nuevaEspecialidad);
+                }
+                if (especialidadId == 0) throw new Exception("No se pudo guardar la especialidad.");
+
+                // =================================================================
+                // PARTE 4: GUARDAR COMPETENCIA Y DESEMPEÑO (Usando los IDs obtenidos)
+                // =================================================================
+                Competencia competencia = new Competencia
+                {
+                    categoria = txtCategoria.Text,
+                    division = txtDivision.Text,
+                    numero_participantes = txtParticipantes.Text,
+                    record = txtRecord.Text,
+                    id_evento = _idEvento,
+                    id_especialidad = especialidadId // Usamos el ID de la especialidad
+                };
+                int competenciaId = puente.InsertarCompetencia(competencia);
+                if (competenciaId == 0) throw new Exception("No se pudo guardar la competencia.");
+
+                Desempeno desempeno = new Desempeno
+                {
+                    puntos = txtPuntos.Text,
+                    medalla = txtMedalla.Text,
+                    observaciones = txtObservacion.Text,
+                    tiempo = txtTimeMarca.Text,
+                    ubicacion = txtUbicacion.Text,
+                    id_deportista = deportistaId,   // Usamos el ID del deportista
+                    id_competencia = competenciaId, // Usamos el nuevo ID de competencia
+                    id_tecnico = tecnicoId          // Usamos el ID del técnico
+                };
+                puente.InsertarDesempeno(desempeno);
+
+                // --- (Mensajes de éxito y opción de continuar se mantienen igual) ---
                 MessageBox.Show("Registro guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                var continuar = MessageBox.Show(
-                    "¿Desea agregar otro deportista a este mismo torneo?",
-                    "Continuar Agregando",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
+                var continuar = MessageBox.Show("¿Desea agregar otro deportista a este mismo torneo?", "Continuar Agregando", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (continuar == DialogResult.Yes)
                 {
                     LimpiarFormulario();
-                    CargarDeportistas(); // Recargar la lista de deportistas
+                    cmbTorneo.SelectedValue = _idEvento; // Mantenemos el torneo seleccionado
                 }
                 else
                 {
                     this.Close();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al guardar el registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al guardar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
 
 
@@ -335,62 +519,91 @@ namespace FDCH.UI.Vistas
 
         private void LimpiarFormulario()
         {
-            // Limpia los TextBox principales
-            cmbCedula.Text = "";
-            cmbNombres.Text = "";
-            cmbApellidos.Text = "";
+            // 1. Limpia el objeto del deportista que se había cargado
+            deportistaActual = null;
 
-            // Restablece los TextBox con texto de ayuda a sus valores por defecto
-            txtGenero.Text = "Masculino / Femenino";
-            txtGenero.ForeColor = Color.DarkGray;
+            // 2. Usamos la bandera para evitar que se disparen eventos de autocompletado mientras limpiamos
+            _isProgrammaticallyChanging = true;
 
-            txtDiscapacidad.Text = "Ninguna";
-            txtDiscapacidad.ForeColor = Color.DarkGray;
+            try
+            {
+                // --- Restablece la sección del Deportista ---
+                // Limpiamos la SELECCIÓN y el TEXTO, pero NO el DataSource (la lista de ítems)
+                cmbCedula.SelectedIndex = -1;
+                cmbApellidos.SelectedIndex = -1;
+                cmbTecnico.SelectedIndex = -1;
+                cmbCedula.Text = "";
+                cmbApellidos.Text = "";
+                cmbTecnico.Text = "";
 
-            txtTecnico.Text = "Nombre Apellido";
-            txtTecnico.ForeColor = Color.DarkGray;
+                // El ComboBox de nombres sí se vacía y deshabilita, porque depende del apellido
+                cmbNombres.DataSource = null;
+                cmbNombres.Enabled = false;
+                cmbNombres.Text = "";
 
-            txtModalidad.Text = "Individual / Equipo";
-            txtModalidad.ForeColor = Color.DarkGray;
+                // --- Restablece la sección de Disciplina ---
+                cmbDisciplina.SelectedIndex = -1;
+                // El ComboBox de especialidad también se vacía y deshabilita
+                cmbEspecialidad.DataSource = null;
+                cmbEspecialidad.Enabled = false;
+                cmbEspecialidad.Text = "";
 
-            txtCategoria.Text = "Sub21 / Menor...";
-            txtCategoria.ForeColor = Color.DarkGray;
+                // --- Restablece TODOS los TextBox a su estado inicial (con texto de ayuda) ---
+                txtGenero.Text = "MASCULINO / FEMENINO";
+                txtGenero.ForeColor = Color.DarkGray;
 
-            txtDivision.Text = "55 kg";
-            txtDivision.ForeColor = Color.DarkGray;
+                txtDiscapacidad.Text = "NINGUNA";
+                txtDiscapacidad.ForeColor = Color.DarkGray;
 
-            txtParticipantes.Text = "12";
-            txtParticipantes.ForeColor = Color.DarkGray;
+                txtModalidad.Text = "INDIVIDUAL / EQUIPO";
+                txtModalidad.ForeColor = Color.DarkGray;
 
-            txtRecord.Text = "10";
-            txtRecord.ForeColor = Color.DarkGray;
+                txtCategoria.Text = "SUB21 / MENOR...";
+                txtCategoria.ForeColor = Color.DarkGray;
 
-            txtPuntos.Text = "5";
-            txtPuntos.ForeColor = Color.DarkGray;
+                txtDivision.Text = "55 KG";
+                txtDivision.ForeColor = Color.DarkGray;
 
-            txtMedalla.Text = "Oro / Plata / Bronce";
-            txtMedalla.ForeColor = Color.DarkGray;
+                txtParticipantes.Text = "12";
+                txtParticipantes.ForeColor = Color.DarkGray;
 
-            txtUbicacion.Text = "3";
-            txtUbicacion.ForeColor = Color.DarkGray;
+                txtRecord.Text = "10";
+                txtRecord.ForeColor = Color.DarkGray;
 
-            txtTimeMarca.Text = "55 seg / 120 kg";
-            txtTimeMarca.ForeColor = Color.DarkGray;
+                txtPuntos.Text = "5";
+                txtPuntos.ForeColor = Color.DarkGray;
 
-            // Resetea los ComboBox de Disciplina y Especialidad
-            cmbDisciplina.SelectedIndex = -1;
-            cmbDisciplina.Text = "";
-            cmbEspecialidad.SelectedIndex = -1;
-            cmbEspecialidad.Text = "";
-            cmbEspecialidad.Enabled = false; // Deshabilita el de especialidades como al inicio
+                txtMedalla.Text = "ORO / PLATA / BRONCE";
+                txtMedalla.ForeColor = Color.DarkGray;
 
-            // Opcional: enfoca el cursor en el primer campo para facilitar la entrada de datos
-            cmbCedula.Focus();
+                txtUbicacion.Text = "3";
+                txtUbicacion.ForeColor = Color.DarkGray;
+
+                txtTimeMarca.Text = "55 SEG / 120 KG";
+                txtTimeMarca.ForeColor = Color.DarkGray;
+
+                txtObservacion.Text = "";
+
+                // Si el torneo no está bloqueado, también lo limpiamos
+                if (cmbTorneo.Enabled)
+                {
+                    //cmbTorneo.SelectedIndex = -1;
+                }
+
+                // 3. Enfoca el cursor en el primer campo para facilitar la siguiente entrada
+                cmbCedula.Focus();
+            }
+            finally
+            {
+                // 4. Al final, devolvemos el control a los eventos del usuario
+                _isProgrammaticallyChanging = false;
+            }
         }
+
 
         private void txtGenero_Enter(object sender, EventArgs e)
         {
-            if(txtGenero.Text == "Masculino / Femenino" && txtGenero.ForeColor == Color.DarkGray)
+            if (txtGenero.Text == "MASCULINO / FEMENINO" && txtGenero.ForeColor == Color.DarkGray)
             {
                 txtGenero.Text = "";
                 txtGenero.ForeColor = Color.Black;
@@ -401,14 +614,14 @@ namespace FDCH.UI.Vistas
         {
             if (txtGenero.Text == "")
             {
-                txtGenero.Text = "Masculino / Femenino";
+                txtGenero.Text = "MASCULINO / FEMENINO";
                 txtGenero.ForeColor = Color.DarkGray;
             }
         }
 
         private void txtModalidad_Enter(object sender, EventArgs e)
         {
-            if (txtModalidad.Text == "Individual / Equipo" && txtModalidad.ForeColor == Color.DarkGray)
+            if (txtModalidad.Text == "INDIVIDUAL / EQUIPO" && txtModalidad.ForeColor == Color.DarkGray)
             {
                 txtModalidad.Text = "";
                 txtModalidad.ForeColor = Color.Black;
@@ -419,14 +632,14 @@ namespace FDCH.UI.Vistas
         {
             if (txtModalidad.Text == "")
             {
-                txtModalidad.Text = "Individual / Equipo";
+                txtModalidad.Text = "INDIVIDUAL / EQUIPO";
                 txtModalidad.ForeColor = Color.DarkGray;
             }
         }
 
         private void txtCategoria_Enter(object sender, EventArgs e)
         {
-            if (txtCategoria.Text == "Sub21 / Menor..." && txtCategoria.ForeColor == Color.DarkGray)
+            if (txtCategoria.Text == "SUB21 / MENOR..." && txtCategoria.ForeColor == Color.DarkGray)
             {
                 txtCategoria.Text = "";
                 txtCategoria.ForeColor = Color.Black;
@@ -437,14 +650,14 @@ namespace FDCH.UI.Vistas
         {
             if (txtCategoria.Text == "")
             {
-                txtCategoria.Text = "Sub21 / Menor...";
+                txtCategoria.Text = "SUB21 / MENOR...";
                 txtCategoria.ForeColor = Color.DarkGray;
             }
         }
 
         private void txtDivision_Enter(object sender, EventArgs e)
         {
-            if (txtDivision.Text == "55 kg" && txtDivision.ForeColor == Color.DarkGray)
+            if (txtDivision.Text == "55 KG" && txtDivision.ForeColor == Color.DarkGray)
             {
                 txtDivision.Text = "";
                 txtDivision.ForeColor = Color.Black;
@@ -455,7 +668,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtDivision.Text == "")
             {
-                txtDivision.Text = "55 kg";
+                txtDivision.Text = "55 KG";
                 txtDivision.ForeColor = Color.DarkGray;
             }
         }
@@ -516,7 +729,7 @@ namespace FDCH.UI.Vistas
 
         private void txtMedalla_Enter(object sender, EventArgs e)
         {
-            if (txtMedalla.Text == "Oro / Plata / Bronce" && txtMedalla.ForeColor == Color.DarkGray)
+            if (txtMedalla.Text == "ORO / PLATA / BRONCE" && txtMedalla.ForeColor == Color.DarkGray)
             {
                 txtMedalla.Text = "";
                 txtMedalla.ForeColor = Color.Black;
@@ -527,7 +740,7 @@ namespace FDCH.UI.Vistas
         {
             if (txtMedalla.Text == "")
             {
-                txtMedalla.Text = "Oro / Plata / Bronce";
+                txtMedalla.Text = "ORO / PLATA / BRONCE";
                 txtMedalla.ForeColor = Color.DarkGray;
             }
         }
@@ -552,7 +765,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTimeMarca_Enter(object sender, EventArgs e)
         {
-            if (txtTimeMarca.Text == "55 seg / 120 kg" && txtTimeMarca.ForeColor == Color.DarkGray)
+            if (txtTimeMarca.Text == "55 SEG / 120 KG" && txtTimeMarca.ForeColor == Color.DarkGray)
             {
                 txtTimeMarca.Text = "";
                 txtTimeMarca.ForeColor = Color.Black;
@@ -563,32 +776,14 @@ namespace FDCH.UI.Vistas
         {
             if (txtTimeMarca.Text == "")
             {
-                txtTimeMarca.Text = "55 seg / 120 kg";
+                txtTimeMarca.Text = "55 SEG / 120 KG";
                 txtTimeMarca.ForeColor = Color.DarkGray;
-            }
-        }
-
-        private void txtTecnico_Enter(object sender, EventArgs e)
-        {
-            if (txtTecnico.Text == "Nombre Apellido" && txtTecnico.ForeColor == Color.DarkGray)
-            {
-                txtTecnico.Text = "";
-                txtTecnico.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtTecnico_Leave(object sender, EventArgs e)
-        {
-            if (txtTecnico.Text == "")
-            {
-                txtTecnico.Text = "Nombre Apellido";
-                txtTecnico.ForeColor = Color.DarkGray;
             }
         }
 
         private void txtDiscapacidad_Enter(object sender, EventArgs e)
         {
-            if (txtDiscapacidad.Text == "Ninguna" && txtDiscapacidad.ForeColor == Color.DarkGray)
+            if (txtDiscapacidad.Text == "NINGUNA" && txtDiscapacidad.ForeColor == Color.DarkGray)
             {
                 txtDiscapacidad.Text = "";
                 txtDiscapacidad.ForeColor = Color.Black;
@@ -599,10 +794,245 @@ namespace FDCH.UI.Vistas
         {
             if (txtDiscapacidad.Text == "")
             {
-                txtDiscapacidad.Text = "Ninguna";
+                txtDiscapacidad.Text = "NINGUNA";
                 txtDiscapacidad.ForeColor = Color.DarkGray;
             }
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
+        private void cmbCedula_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbCedula.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbCedula.TextChanged -= cmbCedula_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbCedula.SelectionStart;
+                int selectionLength = cmbCedula.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbCedula.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbCedula.Text.Length)
+                {
+                    cursorPosition = cmbCedula.Text.Length;
+                }
+                cmbCedula.SelectionStart = cursorPosition;
+                cmbCedula.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbCedula.TextChanged += cmbCedula_TextChanged;
+            }
+        }
+
+        private void cmbApellidos_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbApellidos.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbApellidos.TextChanged -= cmbApellidos_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbApellidos.SelectionStart;
+                int selectionLength = cmbApellidos.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbApellidos.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbApellidos.Text.Length)
+                {
+                    cursorPosition = cmbApellidos.Text.Length;
+                }
+                cmbApellidos.SelectionStart = cursorPosition;
+                cmbApellidos.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbApellidos.TextChanged += cmbApellidos_TextChanged;
+            }
+        }
+
+        private void cmbNombres_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbNombres.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbNombres.TextChanged -= cmbNombres_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbNombres.SelectionStart;
+                int selectionLength = cmbNombres.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbNombres.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbNombres.Text.Length)
+                {
+                    cursorPosition = cmbNombres.Text.Length;
+                }
+                cmbNombres.SelectionStart = cursorPosition;
+                cmbNombres.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbNombres.TextChanged += cmbNombres_TextChanged;
+            }
+        }
+
+        private void cmbDisciplina_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbDisciplina.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbDisciplina.TextChanged -= cmbDisciplina_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbDisciplina.SelectionStart;
+                int selectionLength = cmbDisciplina.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbDisciplina.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbDisciplina.Text.Length)
+                {
+                    cursorPosition = cmbDisciplina.Text.Length;
+                }
+                cmbDisciplina.SelectionStart = cursorPosition;
+                cmbDisciplina.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbDisciplina.TextChanged += cmbDisciplina_TextChanged;
+            }
+        }
+
+        private void cmbEspecialidad_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbEspecialidad.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbEspecialidad.TextChanged -= cmbEspecialidad_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbEspecialidad.SelectionStart;
+                int selectionLength = cmbEspecialidad.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbEspecialidad.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbEspecialidad.Text.Length)
+                {
+                    cursorPosition = cmbEspecialidad.Text.Length;
+                }
+                cmbEspecialidad.SelectionStart = cursorPosition;
+                cmbEspecialidad.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbEspecialidad.TextChanged += cmbEspecialidad_TextChanged;
+            }
+        }
+
+        private void cmbTecnico_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbTecnico.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbTecnico.TextChanged -= cmbTecnico_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbTecnico.SelectionStart;
+                int selectionLength = cmbTecnico.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbTecnico.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbTecnico.Text.Length)
+                {
+                    cursorPosition = cmbTecnico.Text.Length;
+                }
+                cmbTecnico.SelectionStart = cursorPosition;
+                cmbTecnico.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbTecnico.TextChanged += cmbTecnico_TextChanged;
+            }
+        }
+
+        private void cmbTorneo_TextChanged(object sender, EventArgs e)
+        {
+            string currentText = cmbTorneo.Text;
+            string upperText = currentText.ToUpper();
+
+            // Solo si el texto actual es diferente de su versión en mayúsculas, procedemos
+            if (currentText != upperText)
+            {
+                // 1. MUY IMPORTANTE: Desuscribir el evento TextChanged temporalmente
+                //    Esto evita que la siguiente línea (comboBox1.Text = ...) vuelva a disparar este mismo evento.
+                cmbTorneo.TextChanged -= cmbTorneo_TextChanged;
+
+                // 2. Guardar la posición actual del cursor y la longitud de la selección
+                int cursorPosition = cmbTorneo.SelectionStart;
+                int selectionLength = cmbTorneo.SelectionLength;
+
+                // 3. Aplicar el texto en mayúsculas
+                cmbTorneo.Text = upperText;
+
+                // 4. Restaurar la posición del cursor y la selección
+                if (cursorPosition > cmbTorneo.Text.Length)
+                {
+                    cursorPosition = cmbTorneo.Text.Length;
+                }
+                cmbTorneo.SelectionStart = cursorPosition;
+                cmbTorneo.SelectionLength = selectionLength;
+
+                // 5. MUY IMPORTANTE: Volver a suscribir el evento TextChanged
+                //    Para que siga funcionando cuando el usuario escriba.
+                cmbTorneo.TextChanged += cmbTorneo_TextChanged;
+            }
+        }
     }
 }
