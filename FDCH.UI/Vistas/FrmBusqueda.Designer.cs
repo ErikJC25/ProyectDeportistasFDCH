@@ -445,7 +445,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(357, 9);
+            this.label1.Location = new System.Drawing.Point(357, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(482, 46);
             this.label1.TabIndex = 0;
@@ -519,11 +519,11 @@
             this.btnFiltrar.ForeColor = System.Drawing.Color.White;
             this.btnFiltrar.Image = global::FDCH.UI.Properties.Resources.filtrar;
             this.btnFiltrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFiltrar.Location = new System.Drawing.Point(1086, 88);
+            this.btnFiltrar.Location = new System.Drawing.Point(1074, 88);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(98, 32);
+            this.btnFiltrar.Size = new System.Drawing.Size(110, 32);
             this.btnFiltrar.TabIndex = 6;
-            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.Text = "Filtrado";
             this.btnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFiltrar.UseVisualStyleBackColor = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);

@@ -310,5 +310,10 @@ namespace FDCH.Logica
             return _dbService.BuscarRegistrosDeportista(clausula, parametros);
         }
 
+        public List<RegistroTotal> BuscarParticipacionesDeportistaFiltrado(string clausula, List<System.Data.SQLite.SQLiteParameter> parametros, string clausulaOrder)
+        {
+            return _dbService.BuscarRegistrosDeportistaFiltrado(clausula, parametros, clausulaOrder);
+        }
+
     }
 }

@@ -64,6 +64,16 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtNombres = new System.Windows.Forms.TextBox();
+            this.txtApellidos = new System.Windows.Forms.TextBox();
+            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
+            this.chkAntiguoActual = new System.Windows.Forms.CheckBox();
+            this.chkMasculino = new System.Windows.Forms.CheckBox();
+            this.chkFemenino = new System.Windows.Forms.CheckBox();
+            this.chkAlfabeticamente = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +95,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(413, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(370, 48);
+            this.label1.Size = new System.Drawing.Size(361, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Filtrar Información";
             // 
@@ -130,13 +140,13 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 209);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 160);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 498);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 547);
             this.dataGridView1.TabIndex = 5;
             // 
             // IdTecnico
@@ -444,11 +454,170 @@
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
+            this.btnLimpiar.Location = new System.Drawing.Point(1134, 101);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(44, 30);
+            this.btnLimpiar.TabIndex = 10;
+            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.Location = new System.Drawing.Point(1023, 101);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(105, 30);
+            this.btnBuscar.TabIndex = 9;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtNombres
+            // 
+            this.txtNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombres.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNombres.Location = new System.Drawing.Point(567, 82);
+            this.txtNombres.Name = "txtNombres";
+            this.txtNombres.Size = new System.Drawing.Size(300, 28);
+            this.txtNombres.TabIndex = 3;
+            this.txtNombres.Text = "NOMBRES";
+            this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
+            this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombres_KeyPress);
+            this.txtNombres.Leave += new System.EventHandler(this.txtNombres_Leave);
+            // 
+            // txtApellidos
+            // 
+            this.txtApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApellidos.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtApellidos.Location = new System.Drawing.Point(254, 83);
+            this.txtApellidos.Name = "txtApellidos";
+            this.txtApellidos.Size = new System.Drawing.Size(300, 28);
+            this.txtApellidos.TabIndex = 2;
+            this.txtApellidos.Text = "APELLIDOS";
+            this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
+            this.txtApellidos.Leave += new System.EventHandler(this.txtApellidos_Leave);
+            // 
+            // txtCedula
+            // 
+            this.txtCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCedula.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtCedula.Location = new System.Drawing.Point(18, 82);
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(219, 28);
+            this.txtCedula.TabIndex = 1;
+            this.txtCedula.Text = "CEDULA";
+            this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
+            this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
+            this.txtCedula.Leave += new System.EventHandler(this.txtCedula_Leave);
+            // 
+            // txtEdad
+            // 
+            this.txtEdad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtEdad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEdad.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEdad.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtEdad.Location = new System.Drawing.Point(18, 121);
+            this.txtEdad.Name = "txtEdad";
+            this.txtEdad.Size = new System.Drawing.Size(89, 28);
+            this.txtEdad.TabIndex = 4;
+            this.txtEdad.Text = "EDAD";
+            this.txtEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEdad.Enter += new System.EventHandler(this.txtEdad_Enter);
+            this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
+            this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
+            // 
+            // chkAntiguoActual
+            // 
+            this.chkAntiguoActual.AutoSize = true;
+            this.chkAntiguoActual.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAntiguoActual.ForeColor = System.Drawing.Color.DarkGray;
+            this.chkAntiguoActual.Location = new System.Drawing.Point(615, 124);
+            this.chkAntiguoActual.Name = "chkAntiguoActual";
+            this.chkAntiguoActual.Size = new System.Drawing.Size(159, 23);
+            this.chkAntiguoActual.TabIndex = 8;
+            this.chkAntiguoActual.Text = "Antiguo a Actual";
+            this.chkAntiguoActual.UseVisualStyleBackColor = true;
+            this.chkAntiguoActual.CheckedChanged += new System.EventHandler(this.chkAntiguoActual_CheckedChanged);
+            // 
+            // chkMasculino
+            // 
+            this.chkMasculino.AutoSize = true;
+            this.chkMasculino.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMasculino.ForeColor = System.Drawing.Color.DarkGray;
+            this.chkMasculino.Location = new System.Drawing.Point(144, 124);
+            this.chkMasculino.Name = "chkMasculino";
+            this.chkMasculino.Size = new System.Drawing.Size(109, 23);
+            this.chkMasculino.TabIndex = 5;
+            this.chkMasculino.Text = "Masculino";
+            this.chkMasculino.UseVisualStyleBackColor = true;
+            this.chkMasculino.CheckedChanged += new System.EventHandler(this.chkMasculino_CheckedChanged);
+            // 
+            // chkFemenino
+            // 
+            this.chkFemenino.AutoSize = true;
+            this.chkFemenino.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFemenino.ForeColor = System.Drawing.Color.DarkGray;
+            this.chkFemenino.Location = new System.Drawing.Point(278, 125);
+            this.chkFemenino.Name = "chkFemenino";
+            this.chkFemenino.Size = new System.Drawing.Size(107, 23);
+            this.chkFemenino.TabIndex = 6;
+            this.chkFemenino.Text = "Femenino";
+            this.chkFemenino.UseVisualStyleBackColor = true;
+            this.chkFemenino.CheckedChanged += new System.EventHandler(this.chkFemenino_CheckedChanged);
+            // 
+            // chkAlfabeticamente
+            // 
+            this.chkAlfabeticamente.AutoSize = true;
+            this.chkAlfabeticamente.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAlfabeticamente.ForeColor = System.Drawing.Color.DarkGray;
+            this.chkAlfabeticamente.Location = new System.Drawing.Point(447, 124);
+            this.chkAlfabeticamente.Name = "chkAlfabeticamente";
+            this.chkAlfabeticamente.Size = new System.Drawing.Size(155, 23);
+            this.chkAlfabeticamente.TabIndex = 7;
+            this.chkAlfabeticamente.Text = "Alfabeticamente";
+            this.chkAlfabeticamente.UseVisualStyleBackColor = true;
+            this.chkAlfabeticamente.CheckedChanged += new System.EventHandler(this.chkAlfabeticamente_CheckedChanged);
+            // 
             // FrmFiltrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 707);
+            this.Controls.Add(this.chkAlfabeticamente);
+            this.Controls.Add(this.chkFemenino);
+            this.Controls.Add(this.chkMasculino);
+            this.Controls.Add(this.chkAntiguoActual);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtNombres);
+            this.Controls.Add(this.txtApellidos);
+            this.Controls.Add(this.txtEdad);
+            this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -458,6 +627,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -499,5 +669,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDiscapacidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox txtNombres;
+        private System.Windows.Forms.TextBox txtApellidos;
+        private System.Windows.Forms.TextBox txtCedula;
+        private System.Windows.Forms.TextBox txtEdad;
+        private System.Windows.Forms.CheckBox chkAntiguoActual;
+        private System.Windows.Forms.CheckBox chkMasculino;
+        private System.Windows.Forms.CheckBox chkFemenino;
+        private System.Windows.Forms.CheckBox chkAlfabeticamente;
     }
 }
