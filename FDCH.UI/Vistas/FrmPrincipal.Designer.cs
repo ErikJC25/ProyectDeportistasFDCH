@@ -75,6 +75,7 @@
             this.btnupdateDrive.Size = new System.Drawing.Size(48, 43);
             this.btnupdateDrive.TabIndex = 13;
             this.btnupdateDrive.UseVisualStyleBackColor = true;
+            this.btnupdateDrive.Click += new System.EventHandler(this.btnupdateDrive_Click);
             // 
             // btnActualizarbase
             // 

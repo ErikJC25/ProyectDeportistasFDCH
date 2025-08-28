@@ -104,20 +104,18 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-                string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                string dbPath = Path.Combine(basePath, "semifinal.db");
+                string dbPath = Path.GetFullPath(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db")
+                );
 
-                // 🔹 Cerrar todas las conexiones existentes
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
 
-                // 🔹 Descargar última base desde Drive
                 string lastFileId = DriveServiceHelper.GetLastFileId();
                 if (!string.IsNullOrEmpty(lastFileId))
                 {
                     await DriveServiceHelper.DownloadFile(lastFileId, dbPath);
 
-                    // 🔹 Refrescar formulario activo
                     if (formularioActivo != null)
                     {
                         formularioActivo.Dispose();
@@ -130,6 +128,33 @@ namespace FDCH.UI.Vistas
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al actualizar BD: {ex.Message}");
+            }
+        }
+
+        private async void btnupdateDrive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dbPath = Path.GetFullPath(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db")
+                );
+
+                SQLiteConnection.ClearAllPools();
+                DbService.ForzarReconectar();
+
+                // Copiar a archivo temporal para evitar bloqueos
+                string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
+                File.Copy(dbPath, tempPath, true);
+
+                string fileId = await DriveServiceHelper.UploadFile(tempPath);
+
+                File.Delete(tempPath);
+
+                MessageBox.Show($"Archivo subido con éxito. ID: {fileId}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error: {ex.Message}");
             }
         }
     }

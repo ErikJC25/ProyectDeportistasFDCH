@@ -16,9 +16,8 @@ namespace FDCH.Datos
         //private static readonly string DbPath = @"C:\Ruta\A\TuProyecto\Data\deportistas.db";
 
         // Ruta relativa a la raíz del proyecto
-        private static readonly string DbPath = Path.GetFullPath(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos", DbFileName)
-        );
+        private static readonly string DbPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos", DbFileName));
+        //bryan private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "semifinal.db");
 
         // Ruta absoluta (a nivel local, para todos los usuarios)
         //public static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DbFileName);
@@ -29,10 +28,8 @@ namespace FDCH.Datos
         /// <summary>
         /// Obtiene una conexión a la base de datos SQLite.
         /// </summary>
-        public static SQLiteConnection GetConnection()
-        {
-            return new SQLiteConnection($"Data Source={DbPath};Version=3;");
-        }
+        public static SQLiteConnection GetConnection(){return new SQLiteConnection($"Data Source={DbPath};Version=3;"); }
+        //BRYAN public static SQLiteConnection GetConnection(){var connectionString = $"Data Source={DbPath};Version=3;Pooling=true;Max Pool Size=100;Connection Timeout=30;"; return new SQLiteConnection(connectionString);}
 
         public static void ForzarReconectar()
         {
