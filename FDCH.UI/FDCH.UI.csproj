@@ -135,17 +135,9 @@
     <Compile Include="Vistas\FrmBusqueda.Designer.cs">
       <DependentUpon>FrmBusqueda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FrmEditarCompetencia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\FrmEditarCompetencia.Designer.cs">
-      <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\FrmEditarEvento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\FrmEditarEvento.Designer.cs">
-      <DependentUpon>FrmEditarEvento.cs</DependentUpon>
+    <Compile Include="Vistas\FrmEditarRegistro.cs" />
+    <Compile Include="Vistas\FrmEditarRegistro.Designer.cs">
+      <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FrmFiltrar.cs">
       <SubType>Form</SubType>
@@ -177,12 +169,6 @@
     <Compile Include="Vistas\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\FrmSeleccionEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\FrmSeleccionEditor.Designer.cs">
-      <DependentUpon>FrmSeleccionEditor.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -202,11 +188,8 @@
     <EmbeddedResource Include="Vistas\FrmBusqueda.resx">
       <DependentUpon>FrmBusqueda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmEditarCompetencia.resx">
-      <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmEditarEvento.resx">
-      <DependentUpon>FrmEditarEvento.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\FrmEditarRegistro.resx">
+      <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmFiltrar.resx">
       <DependentUpon>FrmFiltrar.cs</DependentUpon>
@@ -222,9 +205,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\FrmSeleccionEditor.resx">
-      <DependentUpon>FrmSeleccionEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
