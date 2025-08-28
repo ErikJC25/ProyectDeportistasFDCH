@@ -123,7 +123,7 @@ namespace FDCH.UI.Vistas
             {
                 // 1. Obtén el objeto de datos completo de la fila seleccionada.
                 // Reemplaza "colNombreDeportista" con el nombre de tu columna
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "Nombres")
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Apellidos" || dataGridView1.Columns[e.ColumnIndex].Name == "Nombres")
                 {
                     // 2. Obtén el objeto de datos completo de la fila seleccionada.
                     RegistroTotal registro = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
