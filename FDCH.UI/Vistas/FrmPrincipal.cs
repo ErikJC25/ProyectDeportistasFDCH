@@ -33,7 +33,16 @@ namespace FDCH.UI.Vistas
 
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
-            
+
+            if (_usuarioAutenticado.rol == "consultor")
+            {
+                btnAddTorneo.Visible = false;
+                btnAddParticipa.Visible = false;
+                btnActualizarbase.Visible = false;
+                btnupdateDrive.Visible = false;
+                btnGetBloqueo.Visible = false;
+            }
+
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

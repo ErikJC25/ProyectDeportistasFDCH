@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FDCH.Entidades; // Importamos la capa de entidades
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using FDCH.Entidades; // Importamos la capa de entidades
 
 namespace FDCH.Datos
 {
@@ -1522,6 +1523,129 @@ namespace FDCH.Datos
                 {
                     // Agregar los parámetros a la consulta
                     if (parametros != null)
+                    {
+                        command.Parameters.AddRange(parametros.ToArray());
+                    }
+
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var registro = new RegistroTotal
+                                {
+                                    IdDeportista = reader["IdDeportista"] != DBNull.Value ? Convert.ToInt32(reader["IdDeportista"]) : 0,
+                                    Cedula = reader["Cedula"]?.ToString(),
+                                    Nombres = reader["Nombres"]?.ToString(),
+                                    Apellidos = reader["Apellidos"]?.ToString(),
+                                    Genero = reader["Genero"]?.ToString(),
+                                    TipoDiscapacidad = reader["TipoDiscapacidad"]?.ToString(),
+                                    IdTecnico = reader["IdTecnico"] != DBNull.Value ? Convert.ToInt32(reader["IdTecnico"]) : 0,
+                                    NombreCompletoTecnico = reader["NombreCompletoTecnico"]?.ToString(),
+                                    IdEvento = reader["IdEvento"] != DBNull.Value ? Convert.ToInt32(reader["IdEvento"]) : 0,
+                                    NombreEvento = reader["NombreEvento"]?.ToString(),
+                                    Lugar = reader["Lugar"]?.ToString(),
+                                    FechaInicio = reader["FechaInicio"]?.ToString(),
+                                    FechaFin = reader["FechaFin"]?.ToString(),
+                                    TipoEvento = reader["TipoEvento"]?.ToString(),
+                                    NivelEvento = reader["NivelEvento"]?.ToString(),
+                                    IdDisciplina = reader["IdDisciplina"] != DBNull.Value ? Convert.ToInt32(reader["IdDisciplina"]) : 0,
+                                    NombreDisciplina = reader["NombreDisciplina"]?.ToString(),
+                                    IdEspecialidad = reader["IdEspecialidad"] != DBNull.Value ? Convert.ToInt32(reader["IdEspecialidad"]) : 0,
+                                    NombreEspecialidad = reader["NombreEspecialidad"]?.ToString(),
+                                    Modalidad = reader["Modalidad"]?.ToString(),
+                                    IdCompetencia = reader["IdCompetencia"] != DBNull.Value ? Convert.ToInt32(reader["IdCompetencia"]) : 0,
+                                    Categoria = reader["Categoria"]?.ToString(),
+                                    Division = reader["Division"]?.ToString(),
+                                    NumeroParticipantes = reader["NumeroParticipantes"]?.ToString(),
+                                    Record = reader["Record"]?.ToString(),
+                                    IdDesempeno = reader["IdDesempeno"] != DBNull.Value ? Convert.ToInt32(reader["IdDesempeno"]) : 0,
+                                    Puntos = reader["Puntos"]?.ToString(),
+                                    Medalla = reader["Medalla"]?.ToString(),
+                                    Observaciones = reader["Observaciones"]?.ToString(),
+                                    Tiempo = reader["Tiempo"]?.ToString(),
+                                    Ubicacion = reader["Ubicacion"]?.ToString()
+                                };
+                                lista.Add(registro);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener registros completos: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<RegistroTotal> BuscarRegistrosDeportistaFiltrado(string whereClause, List<System.Data.SQLite.SQLiteParameter> parametros, string orderByClause)
+        {
+            var lista = new List<RegistroTotal>();
+            using (var connection = GetConnection())
+            {
+                string query = @"
+                    SELECT 
+                        d.id_deportista AS IdDeportista,
+                        d.cedula AS Cedula,
+                        d.nombres AS Nombres,
+                        d.apellidos AS Apellidos,
+                        d.genero AS Genero,
+                        d.tipo_discapacidad AS TipoDiscapacidad,
+                        t.id_tecnico AS IdTecnico,
+                        t.nombre_completo AS NombreCompletoTecnico,
+                        e.id_evento AS IdEvento,
+                        e.nombre_evento AS NombreEvento,
+                        e.lugar AS Lugar,
+                        e.fecha_inicio AS FechaInicio,
+                        e.fecha_fin AS FechaFin,
+                        e.tipo_evento AS TipoEvento,
+                        e.nivel_evento AS NivelEvento,
+                        dis.id_disciplina AS IdDisciplina,
+                        dis.nombre_disciplina AS NombreDisciplina,
+                        esp.id_especialidad AS IdEspecialidad,
+                        esp.nombre_especialidad AS NombreEspecialidad,
+                        esp.modalidad AS Modalidad,
+                        c.id_competencia AS IdCompetencia,
+                        c.categoria AS Categoria,
+                        c.division AS Division,
+                        c.numero_participantes AS NumeroParticipantes,
+                        c.record AS Record,
+                        des.id_desempeno AS IdDesempeno,
+                        des.puntos AS Puntos,
+                        des.medalla AS Medalla,
+                        des.observaciones AS Observaciones,
+                        des.tiempo AS Tiempo,
+                        des.ubicacion AS Ubicacion
+                    FROM Desempeno des
+                    INNER JOIN Deportistas d ON des.id_deportista = d.id_deportista
+                    INNER JOIN Competencias c ON des.id_competencia = c.id_competencia
+                    INNER JOIN Tecnicos t ON des.id_tecnico = t.id_tecnico
+                    INNER JOIN Eventos e ON c.id_evento = e.id_evento
+                    INNER JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
+                    INNER JOIN Disciplinas dis ON esp.id_disciplina = dis.id_disciplina
+                ";
+
+                // Añadir la cláusula WHERE si existe.
+                if (!string.IsNullOrEmpty(whereClause))
+                {
+                    query += " WHERE " + whereClause;
+                }
+
+                // Añadir la cláusula ORDER BY si existe.
+                if (!string.IsNullOrEmpty(orderByClause))
+                {
+                    query += " " + orderByClause;
+                }
+
+
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    // Agregar los parámetros a la consulta de forma segura.
+                    if (parametros != null && parametros.Any())
                     {
                         command.Parameters.AddRange(parametros.ToArray());
                     }
