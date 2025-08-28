@@ -22,8 +22,6 @@ namespace FDCH.UI.Vistas
             InitializeComponent();
             _frmprincipal = principal;
             dataGridView1.AutoGenerateColumns = false;
-
-            
         }
 
         private void FrmInicio_Load(object sender, EventArgs e)
@@ -41,6 +39,8 @@ namespace FDCH.UI.Vistas
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            /*  PARTE DE CODIGO MODIFICADA PARA QUE PERMITA ELEGIR SI DESEA EDITAR TORNEO O COMPETENCIA
+            
             // Verifica que el clic haya sido en la columna de tu botón (ej. "colEditar")
             // y que no haya sido en la fila de encabezado.
             if (e.ColumnIndex == dataGridView1.Columns["colEditar"].Index && e.RowIndex >= 0)
@@ -52,6 +52,66 @@ namespace FDCH.UI.Vistas
                 // 2. Pasa los datos (los IDs ocultos y la información visible) al formulario de edición.
                 _frmprincipal.AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
                 this.Close();
+            }
+            */
+            // Comprueba que la columna "colEditar" exista y que el clic sea en una fila de datos
+            if (e.RowIndex < 0) return;
+            if (!dataGridView1.Columns.Contains("colEditar")) return;
+
+            if (e.ColumnIndex == dataGridView1.Columns["colEditar"].Index && e.RowIndex >= 0)
+            {
+                // Obtener el registro completo de la fila
+                RegistroTotal registroCompleto = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+                // Opciones personalizadas
+                string[] opciones = new string[] { "Editor completo", "Editor rápido", "Ver sólo" };
+
+                // Personalización de botones (opcional)
+                Action<Button, int> customizer = (btn, idx) =>
+                {
+                    if (idx == 0)
+                    {
+                        btn.BackColor = Color.FromArgb(255, 160, 122);
+                        btn.ForeColor = Color.White;
+                        btn.FlatStyle = FlatStyle.Flat;
+                    }
+                    else if (idx == 1)
+                    {
+                        btn.BackColor = Color.FromArgb(100, 149, 237);
+                        btn.ForeColor = Color.White;
+                        btn.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    var t = new ToolTip();
+                    t.SetToolTip(btn, $"Abrir: {btn.Text}");
+                };
+
+                using (var dlg = new FrmSeleccionEditor("Elegir editor", "Seleccione la acción para este registro:", opciones, customizer))
+                {
+                    var r = dlg.ShowDialog(this);
+                    if (r == DialogResult.OK)
+                    {
+                        if (dlg.SelectedIndex == 0)
+                        {
+                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarEvento(registroCompleto));
+                            this.Close();
+                        }
+                        else if (dlg.SelectedIndex == 1)
+                        {
+                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarCompetencia(registroCompleto));
+                            this.Close();
+                        }
+                        /*else if (dlg.SelectedIndex == 2)
+                        {
+                            _frmprincipal.AbrirFormularioEnPanel(new FrmVerSolo(registroCompleto));
+                            this.Close();
+                        }*/
+                    }
+                    else
+                    {
+                        // Cancel: no hacer nada
+                    }
+                }
             }
         }
 
