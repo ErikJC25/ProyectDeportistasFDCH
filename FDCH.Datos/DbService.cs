@@ -1455,7 +1455,7 @@ namespace FDCH.Datos
 
 
 
-        public List<RegistroTotal> BuscarRegistrosDeportista(string condicion)
+        public List<RegistroTotal> BuscarRegistrosDeportista(string whereClause, List<System.Data.SQLite.SQLiteParameter> parametros)
         {
             var lista = new List<RegistroTotal>();
             using (var connection = GetConnection())
@@ -1500,13 +1500,26 @@ namespace FDCH.Datos
                     INNER JOIN Eventos e ON c.id_evento = e.id_evento
                     INNER JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
                     INNER JOIN Disciplinas dis ON esp.id_disciplina = dis.id_disciplina
-                    @condicionBusqueda
-                    ORDER BY des.id_desempeno DESC
                 ";
+
+                // Agregar la cláusula WHERE si no está vacía
+                if (!string.IsNullOrEmpty(whereClause))
+                {
+                    query += " WHERE " + whereClause;
+                }
+
+                query += " ORDER BY des.id_desempeno DESC";
+
+
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@condicionBusqueda", condicion);
+                    // Agregar los parámetros a la consulta
+                    if (parametros != null)
+                    {
+                        command.Parameters.AddRange(parametros.ToArray());
+                    }
+
                     try
                     {
                         connection.Open();

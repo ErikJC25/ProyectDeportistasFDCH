@@ -129,9 +129,9 @@
             this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
             this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddParticipa.Location = new System.Drawing.Point(12, 311);
+            this.btnAddParticipa.Location = new System.Drawing.Point(12, 313);
             this.btnAddParticipa.Name = "btnAddParticipa";
-            this.btnAddParticipa.Size = new System.Drawing.Size(229, 67);
+            this.btnAddParticipa.Size = new System.Drawing.Size(229, 70);
             this.btnAddParticipa.TabIndex = 10;
             this.btnAddParticipa.Text = "Agregar\r\nParticipación";
             this.btnAddParticipa.UseVisualStyleBackColor = true;
@@ -146,9 +146,9 @@
             this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
             this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
             this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddTorneo.Location = new System.Drawing.Point(12, 244);
+            this.btnAddTorneo.Location = new System.Drawing.Point(12, 243);
             this.btnAddTorneo.Name = "btnAddTorneo";
-            this.btnAddTorneo.Size = new System.Drawing.Size(229, 67);
+            this.btnAddTorneo.Size = new System.Drawing.Size(229, 70);
             this.btnAddTorneo.TabIndex = 9;
             this.btnAddTorneo.Text = "Agregar\r\nTorneo";
             this.btnAddTorneo.UseVisualStyleBackColor = true;

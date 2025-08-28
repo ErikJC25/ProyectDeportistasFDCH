@@ -69,6 +69,7 @@
             this.txtNombres = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -122,7 +123,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1196, 565);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.TabIndex = 7;
             // 
             // IdTecnico
             // 
@@ -459,9 +460,10 @@
             this.txtCedula.Location = new System.Drawing.Point(12, 89);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(219, 30);
-            this.txtCedula.TabIndex = 4;
+            this.txtCedula.TabIndex = 1;
             this.txtCedula.Text = "CEDULA";
             this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
+            this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
             this.txtCedula.Leave += new System.EventHandler(this.txtCedula_Leave);
             // 
             // txtApellidos
@@ -473,9 +475,10 @@
             this.txtApellidos.Location = new System.Drawing.Point(265, 89);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(300, 30);
-            this.txtApellidos.TabIndex = 4;
+            this.txtApellidos.TabIndex = 2;
             this.txtApellidos.Text = "APELLIDOS";
             this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             this.txtApellidos.Leave += new System.EventHandler(this.txtApellidos_Leave);
             // 
             // txtNombres
@@ -487,9 +490,10 @@
             this.txtNombres.Location = new System.Drawing.Point(571, 89);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(300, 30);
-            this.txtNombres.TabIndex = 4;
+            this.txtNombres.TabIndex = 3;
             this.txtNombres.Text = "NOMBRES";
             this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
+            this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombres_KeyPress);
             this.txtNombres.Leave += new System.EventHandler(this.txtNombres_Leave);
             // 
             // label2
@@ -515,14 +519,31 @@
             this.btnFiltrar.ForeColor = System.Drawing.Color.White;
             this.btnFiltrar.Image = global::FDCH.UI.Properties.Resources.filtrar;
             this.btnFiltrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFiltrar.Location = new System.Drawing.Point(1057, 88);
+            this.btnFiltrar.Location = new System.Drawing.Point(1086, 88);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(127, 32);
+            this.btnFiltrar.Size = new System.Drawing.Size(98, 32);
             this.btnFiltrar.TabIndex = 6;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFiltrar.UseVisualStyleBackColor = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
+            this.btnLimpiar.Location = new System.Drawing.Point(988, 89);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(44, 30);
+            this.btnLimpiar.TabIndex = 5;
+            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBuscar
             // 
@@ -534,10 +555,10 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(893, 89);
+            this.btnBuscar.Location = new System.Drawing.Point(877, 89);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(105, 30);
-            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -550,6 +571,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 707);
             this.Controls.Add(this.btnFiltrar);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNombres);
@@ -612,5 +634,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

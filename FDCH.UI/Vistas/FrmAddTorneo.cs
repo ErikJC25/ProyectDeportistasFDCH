@@ -231,10 +231,6 @@ namespace FDCH.UI.Vistas
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
 
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
@@ -250,15 +246,11 @@ namespace FDCH.UI.Vistas
 
         private void txtFechaInicio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
 
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
             {
-                // Llama al método que maneja el clic del botón
+                // Pone el foco de control en el siguiente campo
                 txtFechaFin.Focus();
 
                 // Importante: establece e.Handled en true para evitar el sonido
@@ -269,15 +261,10 @@ namespace FDCH.UI.Vistas
 
         private void txtFechaFin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
-
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
             {
-                // Llama al método que maneja el clic del botón
+                // Pone el foco de control en el siguiente campo
                 txtLugar.Focus();
 
                 // Importante: establece e.Handled en true para evitar el sonido
@@ -288,15 +275,11 @@ namespace FDCH.UI.Vistas
 
         private void txtLugar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
 
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
             {
-                // Llama al método que maneja el clic del botón
+                // Pone el foco de control en el siguiente campo
                 txtTipo.Focus();
 
                 // Importante: establece e.Handled en true para evitar el sonido
@@ -307,15 +290,11 @@ namespace FDCH.UI.Vistas
 
         private void txtTipo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
 
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
             {
-                // Llama al método que maneja el clic del botón
+                // Pone el foco de control en el siguiente campo
                 txtNivel.Focus();
 
                 // Importante: establece e.Handled en true para evitar el sonido
@@ -326,16 +305,22 @@ namespace FDCH.UI.Vistas
 
         private void txtNivel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true; // Ignora el carácter si no es letra, control o espacio
-            }
 
             // Verifica si la tecla presionada es la tecla Enter
-            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 // Llama al método que maneja el clic del botón
                 btnAgregar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el boton Agregar
+                btnAgregar.Focus();
 
                 // Importante: establece e.Handled en true para evitar el sonido
                 // y para que la tecla Enter / Tab no se procese como un carácter de entrada.

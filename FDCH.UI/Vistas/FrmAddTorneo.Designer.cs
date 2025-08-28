@@ -119,7 +119,7 @@
             this.txtFechaFin.Location = new System.Drawing.Point(364, 48);
             this.txtFechaFin.Name = "txtFechaFin";
             this.txtFechaFin.Size = new System.Drawing.Size(187, 30);
-            this.txtFechaFin.TabIndex = 19;
+            this.txtFechaFin.TabIndex = 2;
             this.txtFechaFin.Text = "29/08/2025";
             this.txtFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFechaFin.Enter += new System.EventHandler(this.txtFechaFin_Enter);
@@ -135,7 +135,7 @@
             this.txtFechaInicio.Location = new System.Drawing.Point(95, 48);
             this.txtFechaInicio.Name = "txtFechaInicio";
             this.txtFechaInicio.Size = new System.Drawing.Size(187, 30);
-            this.txtFechaInicio.TabIndex = 18;
+            this.txtFechaInicio.TabIndex = 1;
             this.txtFechaInicio.Text = "04/08/2025";
             this.txtFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFechaInicio.Enter += new System.EventHandler(this.txtFechInicio_Enter);
@@ -163,7 +163,7 @@
             this.txtNombre.Multiline = true;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(578, 72);
-            this.txtNombre.TabIndex = 11;
+            this.txtNombre.TabIndex = 0;
             this.txtNombre.Text = "TORNEO CANTO...";
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
@@ -178,7 +178,7 @@
             this.txtLugar.Location = new System.Drawing.Point(578, 381);
             this.txtLugar.Name = "txtLugar";
             this.txtLugar.Size = new System.Drawing.Size(578, 30);
-            this.txtLugar.TabIndex = 12;
+            this.txtLugar.TabIndex = 3;
             this.txtLugar.Text = "RIOBAMBA";
             this.txtLugar.Enter += new System.EventHandler(this.txtLugar_Enter_1);
             this.txtLugar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLugar_KeyPress);
@@ -193,7 +193,7 @@
             this.txtTipo.Location = new System.Drawing.Point(578, 477);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(578, 30);
-            this.txtTipo.TabIndex = 14;
+            this.txtTipo.TabIndex = 4;
             this.txtTipo.Text = "OFICIAL";
             this.txtTipo.Enter += new System.EventHandler(this.txtTipo_Enter);
             this.txtTipo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTipo_KeyPress);
@@ -219,7 +219,7 @@
             this.txtNivel.Location = new System.Drawing.Point(578, 571);
             this.txtNivel.Name = "txtNivel";
             this.txtNivel.Size = new System.Drawing.Size(578, 30);
-            this.txtNivel.TabIndex = 16;
+            this.txtNivel.TabIndex = 5;
             this.txtNivel.Text = "REGIONAL, CANTONAL, ...";
             this.txtNivel.Enter += new System.EventHandler(this.txtNivel_Enter);
             this.txtNivel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNivel_KeyPress);
@@ -246,7 +246,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(578, 631);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(578, 44);
-            this.btnAgregar.TabIndex = 17;
+            this.btnAgregar.TabIndex = 6;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);

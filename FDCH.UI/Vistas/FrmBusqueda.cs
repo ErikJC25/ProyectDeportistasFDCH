@@ -99,42 +99,41 @@ namespace FDCH.UI.Vistas
                 return; // Salir del método si la validación falla
             }
 
-            string condicionBusqueda = "WHERE ";
-            int bandera = 0;
+            var parametros = new List<System.Data.SQLite.SQLiteParameter>();
+            string whereClause = "";
+
 
             if (!string.IsNullOrWhiteSpace(txtCedula.Text) && txtCedula.Text != placeholderCedula && txtCedula.ForeColor != Color.DarkGray)
             {
-                condicionBusqueda += $"d.cedula LIKE '%{txtCedula.Text}%'"; // Usar LIKE para coincidencia parcial
-                bandera += 1;
+                whereClause += "d.cedula LIKE @cedula";
+                parametros.Add(new System.Data.SQLite.SQLiteParameter("@cedula", $"%{txtCedula.Text}%"));
             }
 
-            if(!string.IsNullOrWhiteSpace(txtApellidos.Text) && txtApellidos.Text != placeholderApellidos && txtApellidos.ForeColor != Color.DarkGray)
+            if (!string.IsNullOrWhiteSpace(txtApellidos.Text) && txtApellidos.Text != placeholderApellidos && txtApellidos.ForeColor != Color.DarkGray)
             {
-                if (bandera > 0)
-                {
-                    condicionBusqueda += " AND ";
-                }
-                condicionBusqueda += $"d.apellidos LIKE '%{txtApellidos.Text}%'"; // Usar LIKE para coincidencia parcial
-                bandera += 1;
+                if (!string.IsNullOrEmpty(whereClause)) whereClause += " AND ";
+                whereClause += "d.apellidos LIKE @apellidos";
+                parametros.Add(new System.Data.SQLite.SQLiteParameter("@apellidos", $"%{txtApellidos.Text}%"));
+
             }
 
             if (!string.IsNullOrWhiteSpace(txtNombres.Text) && txtNombres.Text != placeholderNombres && txtNombres.ForeColor != Color.DarkGray)
             {
-                if (bandera > 0)
-                {
-                    condicionBusqueda += " AND ";
-                }
-                condicionBusqueda += $"d.nombres LIKE '%{txtNombres.Text}%'"; // Usar LIKE para coincidencia parcial
-                bandera += 1;
+                if (!string.IsNullOrEmpty(whereClause)) whereClause += " AND ";
+                whereClause += "d.nombres LIKE @nombres";
+                parametros.Add(new System.Data.SQLite.SQLiteParameter("@nombres", $"%{txtNombres.Text}%"));
+
             }
 
             // Aquí se llamaría al método de búsqueda con la condición construida
-            var resultados = puente.BuscarParticipacionesDeportista(condicionBusqueda);
+            var resultados = puente.BuscarParticipacionesDeportista(whereClause, parametros);
 
             if (resultados == null || resultados.Count == 0)
             {
                 MessageBox.Show("No se encontraron resultados para los criterios de búsqueda proporcionados.",
                                 "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                dataGridView1.DataSource = null; // Limpia el DataGridView si no hay resultados
                 return;
             }
 
@@ -145,7 +144,85 @@ namespace FDCH.UI.Vistas
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
+            this.Close();
             _frmprincipal.AbrirFormularioEnPanel(new FrmFiltrar());
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            // Restablecer los campos de texto a sus valores predeterminados
+            txtCedula.Text = "CEDULA";
+            txtCedula.ForeColor = Color.DarkGray;
+            txtApellidos.Text = "APELLIDOS";
+            txtApellidos.ForeColor = Color.DarkGray;
+            txtNombres.Text = "NOMBRES";
+            txtNombres.ForeColor = Color.DarkGray;
+
+        }
+
+        private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón
+                btnBuscar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el siguiente campos
+                txtApellidos.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+
+        }
+
+        private void txtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el siguiente campos
+                txtNombres.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón
+                btnBuscar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el boton Buscar
+                btnBuscar.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
         }
     }
 }
