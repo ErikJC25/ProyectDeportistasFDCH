@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlOpcion = new System.Windows.Forms.Panel();
-            this.lblUsuarioActivo = new System.Windows.Forms.Label();
-            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
-            this.lblEstado = new System.Windows.Forms.Label();
+            this.btnupdateDrive = new System.Windows.Forms.Button();
+            this.btnActualizarbase = new System.Windows.Forms.Button();
             this.btnGetBloqueo = new System.Windows.Forms.Button();
             this.btnAddParticipa = new System.Windows.Forms.Button();
             this.btnAddTorneo = new System.Windows.Forms.Button();
             this.btnBusqueda = new System.Windows.Forms.Button();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
+            this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.btnInicio = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnActualizarbase = new System.Windows.Forms.Button();
-            this.btnupdateDrive = new System.Windows.Forms.Button();
+            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -61,55 +61,31 @@
             this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(181, 620);
             this.pnlMenu.TabIndex = 0;
             // 
-            // pnlOpcion
+            // btnupdateDrive
             // 
-            this.pnlOpcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.pnlOpcion.Location = new System.Drawing.Point(0, 89);
-            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pnlOpcion.Name = "pnlOpcion";
-            this.pnlOpcion.Size = new System.Drawing.Size(9, 54);
-            this.pnlOpcion.TabIndex = 7;
+            this.btnupdateDrive.BackgroundImage = global::FDCH.UI.Properties.Resources.subidaArchivoDrive;
+            this.btnupdateDrive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnupdateDrive.Location = new System.Drawing.Point(35, 412);
+            this.btnupdateDrive.Name = "btnupdateDrive";
+            this.btnupdateDrive.Size = new System.Drawing.Size(48, 43);
+            this.btnupdateDrive.TabIndex = 13;
+            this.btnupdateDrive.UseVisualStyleBackColor = true;
             // 
-            // lblUsuarioActivo
+            // btnActualizarbase
             // 
-            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
-            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 544);
-            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(181, 76);
-            this.lblUsuarioActivo.TabIndex = 6;
-            this.lblUsuarioActivo.Text = "Conectado";
-            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlContenedorFrm
-            // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(181, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(897, 574);
-            this.pnlContenedorFrm.TabIndex = 1;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
-            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(181, 574);
-            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(897, 46);
-            this.lblEstado.TabIndex = 2;
-            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnActualizarbase.BackgroundImage = global::FDCH.UI.Properties.Resources.actualizarBaseDatos;
+            this.btnActualizarbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActualizarbase.Location = new System.Drawing.Point(104, 412);
+            this.btnActualizarbase.Name = "btnActualizarbase";
+            this.btnActualizarbase.Size = new System.Drawing.Size(48, 43);
+            this.btnActualizarbase.TabIndex = 12;
+            this.btnActualizarbase.UseVisualStyleBackColor = true;
+            this.btnActualizarbase.Click += new System.EventHandler(this.btnActualizarbase_Click);
             // 
             // btnGetBloqueo
             // 
@@ -184,6 +160,29 @@
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
+            // pnlOpcion
+            // 
+            this.pnlOpcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 89);
+            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlOpcion.Name = "pnlOpcion";
+            this.pnlOpcion.Size = new System.Drawing.Size(9, 54);
+            this.pnlOpcion.TabIndex = 7;
+            // 
+            // lblUsuarioActivo
+            // 
+            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
+            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 544);
+            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(181, 76);
+            this.lblUsuarioActivo.TabIndex = 6;
+            this.lblUsuarioActivo.Text = "Conectado";
+            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnInicio
             // 
             this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -215,25 +214,27 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnActualizarbase
+            // pnlContenedorFrm
             // 
-            this.btnActualizarbase.BackgroundImage = global::FDCH.UI.Properties.Resources.actualizarBaseDatos;
-            this.btnActualizarbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnActualizarbase.Location = new System.Drawing.Point(104, 412);
-            this.btnActualizarbase.Name = "btnActualizarbase";
-            this.btnActualizarbase.Size = new System.Drawing.Size(48, 43);
-            this.btnActualizarbase.TabIndex = 12;
-            this.btnActualizarbase.UseVisualStyleBackColor = true;
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(181, 0);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(897, 574);
+            this.pnlContenedorFrm.TabIndex = 1;
             // 
-            // btnupdateDrive
+            // lblEstado
             // 
-            this.btnupdateDrive.BackgroundImage = global::FDCH.UI.Properties.Resources.subidaArchivoDrive;
-            this.btnupdateDrive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnupdateDrive.Location = new System.Drawing.Point(35, 412);
-            this.btnupdateDrive.Name = "btnupdateDrive";
-            this.btnupdateDrive.Size = new System.Drawing.Size(48, 43);
-            this.btnupdateDrive.TabIndex = 13;
-            this.btnupdateDrive.UseVisualStyleBackColor = true;
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(181, 574);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(897, 46);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 
@@ -245,7 +246,7 @@
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

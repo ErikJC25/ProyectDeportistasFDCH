@@ -34,7 +34,13 @@ namespace FDCH.Datos
             return new SQLiteConnection($"Data Source={DbPath};Version=3;");
         }
 
-        
+        public static void ForzarReconectar()
+        {
+            // Esto cierra todas las conexiones antiguas que SQLite tenga en caché
+            SQLiteConnection.ClearAllPools();
+        }
+
+
         public Usuario AutenticarUsuario(string usuario, string contrasena)
         {
             // Variable para almacenar el usuario autenticado (si existe)

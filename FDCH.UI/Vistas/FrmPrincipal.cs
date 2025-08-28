@@ -1,13 +1,16 @@
-﻿using FDCH.Entidades;
+﻿using FDCH.Datos;
+using FDCH.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace FDCH.UI.Vistas
 {
@@ -95,6 +98,39 @@ namespace FDCH.UI.Vistas
             pnlOpcion.Height = btnAddParticipa.Height;
             pnlOpcion.Top = btnAddParticipa.Top;
             AbrirFormularioEnPanel(new FrmAddDeportista(this));
+        }
+
+        private async void btnActualizarbase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string dbPath = Path.Combine(basePath, "semifinal.db");
+
+                // 🔹 Cerrar todas las conexiones existentes
+                SQLiteConnection.ClearAllPools();
+                DbService.ForzarReconectar();
+
+                // 🔹 Descargar última base desde Drive
+                string lastFileId = DriveServiceHelper.GetLastFileId();
+                if (!string.IsNullOrEmpty(lastFileId))
+                {
+                    await DriveServiceHelper.DownloadFile(lastFileId, dbPath);
+
+                    // 🔹 Refrescar formulario activo
+                    if (formularioActivo != null)
+                    {
+                        formularioActivo.Dispose();
+                        AbrirFormularioEnPanel(new FrmInicio(this));
+                    }
+
+                    MessageBox.Show("Base de datos actualizada desde Drive. Conexiones reiniciadas.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar BD: {ex.Message}");
+            }
         }
     }
 }

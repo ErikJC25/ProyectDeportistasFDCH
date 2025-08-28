@@ -114,6 +114,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DriveServiceHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vistas\FrmAddDeportista.cs">
@@ -223,6 +224,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FDCH.Datos\FDCH.Datos.csproj">
+      <Project>{b54b6c73-cbca-4e22-9fa0-fd0b0cb76992}</Project>
+      <Name>FDCH.Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FDCH.Entidades\FDCH.Entidades.csproj">
       <Project>{a31924ef-f135-4e33-9760-868e15e4c0a4}</Project>
       <Name>FDCH.Entidades</Name>
