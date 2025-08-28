@@ -30,7 +30,10 @@ namespace FDCH.Datos
         /// </summary>
         public static SQLiteConnection GetConnection(){return new SQLiteConnection($"Data Source={DbPath};Version=3;"); }
         //BRYAN public static SQLiteConnection GetConnection(){var connectionString = $"Data Source={DbPath};Version=3;Pooling=true;Max Pool Size=100;Connection Timeout=30;"; return new SQLiteConnection(connectionString);}
-
+        public static string GetDbPath()
+        {
+            return DbPath;
+        }
         public static void ForzarReconectar()
         {
             // Esto cierra todas las conexiones antiguas que SQLite tenga en caché

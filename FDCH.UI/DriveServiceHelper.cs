@@ -9,6 +9,7 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using FDCH.UI.Vistas;
 using FDCH.Datos;
+using System.Security.Cryptography;
 namespace FDCH.UI
 {
     public class DriveServiceHelper
@@ -51,20 +52,55 @@ namespace FDCH.UI
 
             return _service;
         }
+        // 🔹 Calcular hash MD5 de un archivo (para evitar duplicados)
+        public static string CalcularMD5(string filePath)
+        {
+            using (var md5 = MD5.Create())
+            using (var stream = File.OpenRead(filePath))
+            {
+                byte[] hash = md5.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            }
+        }
 
         // 🔹 Subir archivo a Google Drive
+        // 🔹 Subir archivo a Google Drive (con timestamp y control de duplicados)
         public static async Task<string> UploadFile(string filePath, string folderId = null)
         {
             var service = GetDriveService();
 
+            // 📌 Generar nombre con timestamp
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string extension = Path.GetExtension(filePath);
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            string finalName = $"{fileName}_{timestamp}{extension}";
+
+            // 📌 Verificar duplicado (comparando MD5 con el último archivo en la carpeta)
+            string localHash = CalcularMD5(filePath);
+            var lastId = GetLastFileId(folderId);
+            if (lastId != null)
+            {
+                var file = service.Files.Get(lastId);
+                file.Fields = "id, md5Checksum";
+                var lastFile = file.Execute();
+
+                if (lastFile.Md5Checksum == localHash)
+                {
+                    Console.WriteLine("⚠ La base de datos no cambió, no se subirá un duplicado.");
+                    return lastId; // se devuelve el ID existente
+                }
+            }
+
+            // 📌 Metadata del archivo
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
-                Name = Path.GetFileName(filePath)
+                Name = finalName
             };
 
             if (folderId != null)
                 fileMetadata.Parents = new[] { folderId };
 
+            // 📌 Subida real
             FilesResource.CreateMediaUpload request;
             using (var stream = new FileStream(filePath, FileMode.Open))
             {
@@ -73,8 +109,9 @@ namespace FDCH.UI
                 await request.UploadAsync();
             }
 
-            var file = request.ResponseBody;
-            return file.Id;
+            var uploadedFile = request.ResponseBody;
+            Console.WriteLine($"✅ Archivo subido: {uploadedFile.Id}");
+            return uploadedFile.Id;
         }
 
         // 🔹 Descargar archivo desde Google Drive
@@ -111,15 +148,15 @@ namespace FDCH.UI
 
             var result = request.Execute();
             var file = result.Files.FirstOrDefault();
-
+            /*cambio 
             if (file != null)
             {
                 var fecha = file.CreatedTimeDateTimeOffset?.UtcDateTime; // 👈 usar propiedad nueva aquí
                 Console.WriteLine($"Último archivo: {file.Name}, Fecha: {fecha}");
                 return file.Id;
-            }
+            } */
 
-            return null;
+            return file?.Id;
         }
         // 🔹 Eliminar archivos viejos en una carpeta de Drive
         public static void DeleteOldBackups(string folderId, int daysToKeep = 7)
@@ -140,6 +177,7 @@ namespace FDCH.UI
                 if (file.CreatedTimeDateTimeOffset?.UtcDateTime < limitDate)
                 {
                     service.Files.Delete(file.Id).Execute();
+                    Console.WriteLine($"🗑 Eliminado: {file.Name}");
                 }
             }
         }

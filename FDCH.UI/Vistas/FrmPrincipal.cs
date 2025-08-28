@@ -16,6 +16,12 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmPrincipal : Form
     {
+        // Carpeta principal de respaldos
+        private readonly string folderRespaldo = "1xa2g-odHTRsxcfIHvFAIp0CO2__ep-s7";
+
+        // Carpeta de respaldos automáticos por tiempo
+        private readonly string folderRespaldoPorTiempo = "1n9nClQJDUljOIZoo-e6z2earBzHYsTPr";
+
         Usuario _usuarioAutenticado;
         Form formularioActivo = null; // Referencia al form actual
 
@@ -33,6 +39,11 @@ namespace FDCH.UI.Vistas
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             AbrirFormularioEnPanel(new FrmInicio(this));
+
+            respaldoTimer = new System.Windows.Forms.Timer();
+            respaldoTimer.Interval = 150000; // 1 hora en milisegundos
+            respaldoTimer.Tick += async (s, ev) => await HacerRespaldoAutomatico();
+            respaldoTimer.Start();
         }
 
         public void AbrirFormularioEnPanel(Form formulario)
@@ -78,6 +89,8 @@ namespace FDCH.UI.Vistas
             AbrirFormularioEnPanel(new FrmAddTorneo(this));
         }
 
+
+
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             var result = MessageBox.Show(
@@ -90,8 +103,12 @@ namespace FDCH.UI.Vistas
             if (result == DialogResult.No)
             {
                 e.Cancel = true;
+                return;
             }
+
+            
         }
+
 
         private void btnAddParticipa_Click(object sender, EventArgs e)
         {
@@ -135,9 +152,8 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-                string dbPath = Path.GetFullPath(
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db")
-                );
+                // ✅ Usamos DbService.DbPath
+                string dbPath = DbService.GetDbPath();
 
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
@@ -146,7 +162,8 @@ namespace FDCH.UI.Vistas
                 string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
                 File.Copy(dbPath, tempPath, true);
 
-                string fileId = await DriveServiceHelper.UploadFile(tempPath);
+                string fileId = await DriveServiceHelper.UploadFile(dbPath, null);
+
 
                 File.Delete(tempPath);
 
@@ -156,6 +173,43 @@ namespace FDCH.UI.Vistas
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}");
             }
+
         }
+
+        private System.Windows.Forms.Timer respaldoTimer;
+
+        
+
+        private async Task HacerRespaldoAutomatico()
+        {
+            try
+            {
+                string dbPath = DbService.GetDbPath();
+                string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
+
+                // Copiar a archivo temporal para evitar bloqueos
+                SQLiteConnection.ClearAllPools();
+                DbService.ForzarReconectar();
+                File.Copy(dbPath, tempPath, true);
+
+                // Subir al Drive en la carpeta de respaldo por tiempo
+                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderRespaldoPorTiempo);
+
+                // Eliminar temporal
+                File.Delete(tempPath);
+
+                // Eliminar respaldos viejos de 7 días
+                DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 7);
+
+                Console.WriteLine($"[Respaldo automático] Subido correctamente. ID: {fileId}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en respaldo automático: {ex.Message}");
+            }
+        }
+
+        
+
     }
 }
