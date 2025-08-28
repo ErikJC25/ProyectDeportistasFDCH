@@ -238,6 +238,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\subidaArchivo.png" />
+    <None Include="Resources\actualizar.png" />
     <None Include="Resources\limpiar.png" />
     <None Include="Resources\filtrar.png" />
     <None Include="Resources\busqueda.png" />
