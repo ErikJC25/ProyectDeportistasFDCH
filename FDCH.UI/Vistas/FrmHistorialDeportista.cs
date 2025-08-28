@@ -22,8 +22,6 @@ namespace FDCH.UI.Vistas
         {
             InitializeComponent();
             this.idDeportista = idDeportista;
-            deportista = puente.ObtenerDeportistaPorId(idDeportista);
-            lblNombre.Text = deportista.nombres + " " + deportista.apellidos;
             dataGridView1.AutoGenerateColumns = false;
             CargarDatosEnDataGridView();
         }
@@ -37,6 +35,9 @@ namespace FDCH.UI.Vistas
         {
             // Llama al método y asigna los datos al DataGridView
             List<RegistroTotal> registros = puente.ObtenerRegistrosCompletosIdDeportista(idDeportista);
+
+            lblNombre.Text = registros[0].Nombres + " " + registros[0].Apellidos;
+
             dataGridView1.DataSource = registros;
         }
     }

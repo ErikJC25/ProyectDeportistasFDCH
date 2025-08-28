@@ -15,9 +15,13 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmAddTorneo : Form
     {
-        public FrmAddTorneo()
+        Cls_Puente puente = new Cls_Puente();
+        FrmPrincipal _frmprincipal;
+
+        public FrmAddTorneo(FrmPrincipal principal)
         {
             InitializeComponent();
+            _frmprincipal = principal;
         }
 
         private void FrmAddTorneo_Load(object sender, EventArgs e)
@@ -98,8 +102,6 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        Cls_Puente puente = new Cls_Puente();
-        public event Action<int> EventoAgregado;
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -109,7 +111,7 @@ namespace FDCH.UI.Vistas
             string placeholderFechaFin = "29/08/2025";
 
             // --- 1. Validación de nombre (obligatorio) ---
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == placeholderNombre)
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || txtNombre.Text == placeholderNombre && txtNombre.ForeColor == Color.DarkGray)
             {
                 MessageBox.Show("El campo 'Nombre del torneo' es obligatorio.", "Falta Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNombre.Focus();
@@ -181,7 +183,7 @@ namespace FDCH.UI.Vistas
             if (resultado > 0)
             {
                 MessageBox.Show("Torneo agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EventoAgregado?.Invoke(resultado);
+                _frmprincipal.AbrirFormularioEnPanel(new FrmAddDeportista(resultado, _frmprincipal));
                 this.Close();
             }
             else
@@ -229,7 +231,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }
@@ -248,7 +250,7 @@ namespace FDCH.UI.Vistas
 
         private void txtFechaInicio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }
@@ -267,7 +269,7 @@ namespace FDCH.UI.Vistas
 
         private void txtFechaFin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }
@@ -286,7 +288,7 @@ namespace FDCH.UI.Vistas
 
         private void txtLugar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }
@@ -305,7 +307,7 @@ namespace FDCH.UI.Vistas
 
         private void txtTipo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }
@@ -324,7 +326,7 @@ namespace FDCH.UI.Vistas
 
         private void txtNivel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true; // Ignora el carácter si no es letra, control o espacio
             }

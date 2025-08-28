@@ -109,11 +109,23 @@
     <Compile Include="Vistas\FrmAddTorneo.Designer.cs">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmBusqueda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmBusqueda.Designer.cs">
+      <DependentUpon>FrmBusqueda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmEditarRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vistas\FrmEditarRegistro.Designer.cs">
       <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmFiltrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmFiltrar.Designer.cs">
+      <DependentUpon>FrmFiltrar.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FrmHistorialDeportista.cs">
       <SubType>Form</SubType>
@@ -155,8 +167,14 @@
     <EmbeddedResource Include="Vistas\FrmAddTorneo.resx">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmBusqueda.resx">
+      <DependentUpon>FrmBusqueda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmEditarRegistro.resx">
       <DependentUpon>FrmEditarRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmFiltrar.resx">
+      <DependentUpon>FrmFiltrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmHistorialDeportista.resx">
       <DependentUpon>FrmHistorialDeportista.cs</DependentUpon>
@@ -201,6 +219,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\filtrar.png" />
+    <None Include="Resources\busqueda.png" />
+    <None Include="Resources\desbloqueado.png" />
+    <None Include="Resources\bloqueado.png" />
+    <None Include="Resources\dowload.png" />
+    <None Include="Resources\descargar_red.png" />
+    <None Include="Resources\descargar %281%29.png" />
+    <None Include="Resources\descargar.png" />
     <None Include="Resources\exportar.png" />
     <None Include="Resources\torneo_frm.png" />
     <None Include="Resources\mas.png" />

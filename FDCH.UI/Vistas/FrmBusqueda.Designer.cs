@@ -1,6 +1,6 @@
 ﻿namespace FDCH.UI.Vistas
 {
-    partial class FrmInicio
+    partial class FrmBusqueda
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,8 +62,14 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.txtApellidos = new System.Windows.Forms.TextBox();
+            this.txtNombres = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +81,6 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdDeportista,
             this.IdTecnico,
             this.IdEvento,
             this.IdDisciplina,
@@ -111,26 +115,14 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 72);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 142);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 587);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 565);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // IdDeportista
-            // 
-            this.IdDeportista.DataPropertyName = "IdDeportista";
-            this.IdDeportista.HeaderText = "IdDeportista";
-            this.IdDeportista.MinimumWidth = 6;
-            this.IdDeportista.Name = "IdDeportista";
-            this.IdDeportista.ReadOnly = true;
-            this.IdDeportista.Visible = false;
-            this.IdDeportista.Width = 109;
             // 
             // IdTecnico
             // 
@@ -140,7 +132,7 @@
             this.IdTecnico.Name = "IdTecnico";
             this.IdTecnico.ReadOnly = true;
             this.IdTecnico.Visible = false;
-            this.IdTecnico.Width = 96;
+            this.IdTecnico.Width = 125;
             // 
             // IdEvento
             // 
@@ -150,7 +142,7 @@
             this.IdEvento.Name = "IdEvento";
             this.IdEvento.ReadOnly = true;
             this.IdEvento.Visible = false;
-            this.IdEvento.Width = 89;
+            this.IdEvento.Width = 125;
             // 
             // IdDisciplina
             // 
@@ -160,7 +152,7 @@
             this.IdDisciplina.Name = "IdDisciplina";
             this.IdDisciplina.ReadOnly = true;
             this.IdDisciplina.Visible = false;
-            this.IdDisciplina.Width = 106;
+            this.IdDisciplina.Width = 125;
             // 
             // IdEspecialidad
             // 
@@ -170,7 +162,7 @@
             this.IdEspecialidad.Name = "IdEspecialidad";
             this.IdEspecialidad.ReadOnly = true;
             this.IdEspecialidad.Visible = false;
-            this.IdEspecialidad.Width = 127;
+            this.IdEspecialidad.Width = 125;
             // 
             // IdCompetencia
             // 
@@ -180,7 +172,7 @@
             this.IdCompetencia.Name = "IdCompetencia";
             this.IdCompetencia.ReadOnly = true;
             this.IdCompetencia.Visible = false;
-            this.IdCompetencia.Width = 127;
+            this.IdCompetencia.Width = 125;
             // 
             // IdDesempeno
             // 
@@ -190,7 +182,7 @@
             this.IdDesempeno.Name = "IdDesempeno";
             this.IdDesempeno.ReadOnly = true;
             this.IdDesempeno.Visible = false;
-            this.IdDesempeno.Width = 122;
+            this.IdDesempeno.Width = 125;
             // 
             // NombreDisciplina
             // 
@@ -437,54 +429,148 @@
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(181, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(782, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Registro de resultados de Participaciones";
-            // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Blue;
+            this.panel1.BackColor = System.Drawing.Color.Indigo;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 72);
-            this.panel1.TabIndex = 2;
+            this.panel1.Size = new System.Drawing.Size(1196, 75);
+            this.panel1.TabIndex = 3;
             // 
-            // FrmInicio
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(346, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(498, 48);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Busqueda de Información";
+            // 
+            // txtCedula
+            // 
+            this.txtCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCedula.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtCedula.Location = new System.Drawing.Point(12, 89);
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(219, 30);
+            this.txtCedula.TabIndex = 4;
+            this.txtCedula.Text = "CEDULA";
+            this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
+            this.txtCedula.Leave += new System.EventHandler(this.txtCedula_Leave);
+            // 
+            // txtApellidos
+            // 
+            this.txtApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApellidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtApellidos.Location = new System.Drawing.Point(265, 89);
+            this.txtApellidos.Name = "txtApellidos";
+            this.txtApellidos.Size = new System.Drawing.Size(300, 30);
+            this.txtApellidos.TabIndex = 4;
+            this.txtApellidos.Text = "APELLIDOS";
+            this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
+            this.txtApellidos.Leave += new System.EventHandler(this.txtApellidos_Leave);
+            // 
+            // txtNombres
+            // 
+            this.txtNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNombres.Location = new System.Drawing.Point(571, 89);
+            this.txtNombres.Name = "txtNombres";
+            this.txtNombres.Size = new System.Drawing.Size(300, 30);
+            this.txtNombres.TabIndex = 4;
+            this.txtNombres.Text = "NOMBRES";
+            this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
+            this.txtNombres.Leave += new System.EventHandler(this.txtNombres_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(237, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 24);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "o";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.BackColor = System.Drawing.Color.MediumBlue;
+            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltrar.FlatAppearance.BorderSize = 0;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltrar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrar.ForeColor = System.Drawing.Color.White;
+            this.btnFiltrar.Image = global::FDCH.UI.Properties.Resources.filtrar;
+            this.btnFiltrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFiltrar.Location = new System.Drawing.Point(1057, 88);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(127, 32);
+            this.btnFiltrar.TabIndex = 6;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.Location = new System.Drawing.Point(893, 89);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(105, 30);
+            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // FrmBusqueda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 707);
+            this.Controls.Add(this.btnFiltrar);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtNombres);
+            this.Controls.Add(this.txtApellidos);
+            this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.Name = "FrmInicio";
-            this.Text = "FrmInicio";
-            this.Load += new System.EventHandler(this.FrmInicio_Load);
+            this.Name = "FrmBusqueda";
+            this.Text = "FrmBusqueda";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdDeportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTecnico;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEvento;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDisciplina;
@@ -518,5 +604,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDiscapacidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCedula;
+        private System.Windows.Forms.TextBox txtApellidos;
+        private System.Windows.Forms.TextBox txtNombres;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }

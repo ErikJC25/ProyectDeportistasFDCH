@@ -46,7 +46,7 @@ namespace FDCH.UI.Vistas
                 lblMensaje.Visible = true;
                 // Permite que el usuario vea el mensaje antes de continuar
                 Application.DoEvents();
-                System.Threading.Thread.Sleep(800);
+                System.Threading.Thread.Sleep(900);
 
                 this.Hide();
                 FrmPrincipal objPrincipal = new FrmPrincipal(usuarioAutenticado);

@@ -22,8 +22,10 @@ namespace FDCH.UI.Vistas
         // variable "bandera" al inicio de tu clase
         private bool _isProgrammaticallyChanging = false;
 
+        FrmPrincipal _frmprincipal;
 
-        public FrmAddDeportista(int idTorneo) : this() // Llama al constructor por defecto
+
+        public FrmAddDeportista(int idTorneo, FrmPrincipal principal) : this(principal) // Llama al constructor por defecto
         {
             _idEvento = idTorneo;
             var objEvento = puente.ObtenerEventoPorId(idTorneo);
@@ -34,21 +36,25 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        public FrmAddDeportista()
+        public FrmAddDeportista(FrmPrincipal principal)
         {
             InitializeComponent();
+            _frmprincipal = principal;
+            cmbTorneo.Focus();
             ConfiguracionInicial();
         }
 
+        private void FrmAddDeportista_Shown(object sender, EventArgs e)
+        {
+            CargarListasDeportistas(); // Carga cédulas y apellidos
+        }
+
+        // Carga los datos iniciales en los ComboBox
         private void ConfiguracionInicial()
         {
             CargarEventos();
             CargarDisciplinas();
-            CargarListasDeportistas(); // Carga cédulas y apellidos
             CargarTecnicos();
-            cmbNombres.Enabled = false;
-            cmbEspecialidad.Enabled = false;
-            cmbTorneo.Focus();
 
             cmbTorneo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbTorneo.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -514,6 +520,7 @@ namespace FDCH.UI.Vistas
                 else
                 {
                     this.Close();
+                    _frmprincipal.AbrirFormularioEnPanel(new FrmInicio(_frmprincipal));
                 }
             }
             catch (Exception ex)
@@ -1047,5 +1054,7 @@ namespace FDCH.UI.Vistas
                 cmbTorneo.TextChanged += cmbTorneo_TextChanged;
             }
         }
+
+        
     }
 }

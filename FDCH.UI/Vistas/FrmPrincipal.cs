@@ -24,17 +24,15 @@ namespace FDCH.UI.Vistas
 
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
-            AbrirFormularioEnPanel(new FrmInicio());
-
-            this.FormClosing += FrmPrincipal_FormClosing;
+            
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            AbrirFormularioEnPanel(new FrmInicio(this));
         }
 
-        private void AbrirFormularioEnPanel(Form formulario)
+        public void AbrirFormularioEnPanel(Form formulario)
         {
             // Cierra el formulario actual si existe y no es el mismo que se va a abrir
             if (formularioActivo != null && formularioActivo.GetType() != formulario.GetType())
@@ -49,48 +47,9 @@ namespace FDCH.UI.Vistas
             pnlContenedorFrm.Controls.Clear();
             pnlContenedorFrm.Controls.Add(formulario);
 
-            // Suscribir al evento FormClosed para abrir FrmInicio al cerrar el formulario hijo
-            formulario.FormClosed += FormularioHijoCerrado;
-
-            // Lógica de suscripción a eventos específicos de formularios
-            if (formulario is FrmInicio frmInicio)
-            {
-                frmInicio.EventoPerfil += idDeportista =>
-                {
-                    AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
-                };
-
-                frmInicio.EventoEditar += registroCompleto =>
-                {
-                    AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
-                };
-            }
-            else if (formulario is FrmAddTorneo frmAddTorneo)
-            {
-                frmAddTorneo.EventoAgregado += idNuevo =>
-                {
-                    // Abrir FrmAddDeportista desde FrmAddTorneo
-                    AbrirFormularioEnPanel(new FrmAddDeportista(idNuevo));
-                };
-            }
 
             formulario.Show();
         }
-
-
-        private void FormularioHijoCerrado(object sender, FormClosedEventArgs e)
-        {
-            // Remover la suscripción al evento para evitar fugas de memoria
-            Form formularioCerrado = sender as Form;
-            if (formularioCerrado != null)
-            {
-                formularioCerrado.FormClosed -= FormularioHijoCerrado;
-            }
-
-            // Abrir FrmInicio de nuevo en el panel principal
-            AbrirFormularioEnPanel(new FrmInicio());
-        }
-
 
 
 
@@ -98,15 +57,14 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
-            AbrirFormularioEnPanel(new FrmInicio());
+            AbrirFormularioEnPanel(new FrmInicio(this));
         }
 
         private void btnBusqueda_Click(object sender, EventArgs e)
         {
             pnlOpcion.Height = btnBusqueda.Height;
             pnlOpcion.Top = btnBusqueda.Top;
-            // Abrir el formulario correspondiente a búsqueda
-            // AbrirFormularioEnPanel(new FrmBusqueda());
+            AbrirFormularioEnPanel(new FrmBusqueda(this));
         }
 
         
@@ -114,7 +72,7 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnAddTorneo.Height;
             pnlOpcion.Top = btnAddTorneo.Top;
-            AbrirFormularioEnPanel(new FrmAddTorneo());
+            AbrirFormularioEnPanel(new FrmAddTorneo(this));
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -136,7 +94,7 @@ namespace FDCH.UI.Vistas
         {
             pnlOpcion.Height = btnAddParticipa.Height;
             pnlOpcion.Top = btnAddParticipa.Top;
-            AbrirFormularioEnPanel(new FrmAddDeportista());
+            AbrirFormularioEnPanel(new FrmAddDeportista(this));
         }
     }
 }

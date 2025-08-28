@@ -304,5 +304,11 @@ namespace FDCH.Logica
             return _dbService.ObtenerIdTecnicoPorNombre(nombreTecnico);
         }
 
+
+        public List<RegistroTotal> BuscarParticipacionesDeportista(string condicionBusqueda)
+        {
+            return _dbService.BuscarRegistrosDeportista(condicionBusqueda);
+        }
+
     }
 }

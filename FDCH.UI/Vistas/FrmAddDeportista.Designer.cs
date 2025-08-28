@@ -475,6 +475,7 @@
             // cmbEspecialidad
             // 
             this.cmbEspecialidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cmbEspecialidad.Enabled = false;
             this.cmbEspecialidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEspecialidad.FormattingEnabled = true;
             this.cmbEspecialidad.Location = new System.Drawing.Point(819, 210);
@@ -511,6 +512,7 @@
             // cmbNombres
             // 
             this.cmbNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cmbNombres.Enabled = false;
             this.cmbNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNombres.FormattingEnabled = true;
             this.cmbNombres.Location = new System.Drawing.Point(819, 135);
@@ -607,6 +609,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAddDeportista";
             this.Text = "FrmAddDeportista";
+            this.Shown += new System.EventHandler(this.FrmAddDeportista_Shown);
             this.pnlCabecera.ResumeLayout(false);
             this.pnlCabecera.PerformLayout();
             this.ResumeLayout(false);
