@@ -93,12 +93,12 @@ namespace FDCH.UI.Vistas
                     {
                         if (dlg.SelectedIndex == 0)
                         {
-                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarEvento(registroCompleto));
+                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarEvento(registroCompleto, _frmprincipal));
                             this.Close();
                         }
                         else if (dlg.SelectedIndex == 1)
                         {
-                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarCompetencia(registroCompleto));
+                            _frmprincipal.AbrirFormularioEnPanel(new FrmEditarCompetencia(registroCompleto, _frmprincipal));
                             this.Close();
                         }
                         /*else if (dlg.SelectedIndex == 2)

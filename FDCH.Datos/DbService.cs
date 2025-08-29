@@ -1750,6 +1750,52 @@ namespace FDCH.Datos
         }
 
 
+        /// <summary>
+        /// Actualiza un registro de la tabla Eventos usando el id_evento del objeto.
+        /// Retorna true si se actualizó al menos una fila.
+        /// </summary>
+        public bool ActualizarEvento(Evento evento)
+        {
+            if (evento == null) return false;
+
+            int rowsAffected = 0;
+            using (var connection = GetConnection())
+            {
+                string query = @"
+            UPDATE Eventos
+            SET nombre_evento = @NombreEvento,
+                lugar = @Lugar,
+                fecha_inicio = @FechaInicio,
+                fecha_fin = @FechaFin,
+                tipo_evento = @TipoEvento,
+                nivel_evento = @NivelEvento
+            WHERE id_evento = @IdEvento;
+        ";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NombreEvento", evento.nombre_evento ?? string.Empty);
+                    command.Parameters.AddWithValue("@Lugar", evento.lugar ?? string.Empty);
+                    command.Parameters.AddWithValue("@FechaInicio", evento.fecha_inicio ?? string.Empty);
+                    command.Parameters.AddWithValue("@FechaFin", evento.fecha_fin ?? string.Empty);
+                    command.Parameters.AddWithValue("@TipoEvento", evento.tipo_evento ?? string.Empty);
+                    command.Parameters.AddWithValue("@NivelEvento", evento.nivel_evento ?? string.Empty);
+                    command.Parameters.AddWithValue("@IdEvento", evento.id_evento);
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log en consola; en producción puedes usar un logger
+                        Console.WriteLine("Error al actualizar evento: " + ex.Message);
+                    }
+                }
+            }
+            return rowsAffected > 0;
+        }
 
 
 

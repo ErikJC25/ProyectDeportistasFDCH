@@ -18,7 +18,7 @@ namespace FDCH.UI.Vistas
         private readonly RegistroTotal _registro;
         //Se instancia la capa lógica
         private readonly Cls_Puente _puente = new Cls_Puente();
-        public FrmEditarCompetencia(RegistroTotal registroCompleto)
+        public FrmEditarCompetencia(RegistroTotal registroCompleto, FrmPrincipal parent = null)
         {
             InitializeComponent();
             //Se asigna _registro

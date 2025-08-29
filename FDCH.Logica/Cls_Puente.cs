@@ -321,5 +321,15 @@ namespace FDCH.Logica
             return _dbService.BuscarIdCompetenciaExacta(categoria, division, participantes, record, idEvento, especialidadId);
         }
 
+        // Evento - actualizar
+        public bool ActualizarEvento(Evento evento)
+        {
+            // Puedes agregar validaciones aquí si lo deseas, ej:
+            // if (evento == null || evento.id_evento <= 0) return false;
+
+            return _dbService.ActualizarEvento(evento);
+        }
+
+
     }
 }
