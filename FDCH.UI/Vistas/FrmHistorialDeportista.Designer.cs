@@ -463,7 +463,7 @@
             // 
             // btnExportarDeportista
             // 
-            this.btnExportarDeportista.BackColor = System.Drawing.Color.Red;
+            this.btnExportarDeportista.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnExportarDeportista.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarDeportista.FlatAppearance.BorderSize = 0;
             this.btnExportarDeportista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -477,6 +477,7 @@
             this.btnExportarDeportista.TabIndex = 2;
             this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarDeportista.UseVisualStyleBackColor = false;
+            this.btnExportarDeportista.Click += new System.EventHandler(this.btnExportarDeportista_Click);
             // 
             // btnExportExcel
             // 

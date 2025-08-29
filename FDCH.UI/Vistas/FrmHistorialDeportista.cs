@@ -45,5 +45,10 @@ namespace FDCH.UI.Vistas
         {
             ExportarExcel.ExportarAExcel(dataGridView1);
         }
+
+        private void btnExportarDeportista_Click(object sender, EventArgs e)
+        {
+            ExportarWord.ExportarAWord(dataGridView1);
+        }
     }
 }
