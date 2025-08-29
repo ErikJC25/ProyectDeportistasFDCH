@@ -50,7 +50,7 @@ namespace FDCH.UI.Vistas
             AbrirFormularioEnPanel(new FrmInicio(this));
 
             respaldoTimer = new System.Windows.Forms.Timer();
-            respaldoTimer.Interval = 150000; // 1 hora en milisegundos
+            respaldoTimer.Interval = 600000; // 1 hora en milisegundos
             respaldoTimer.Tick += async (s, ev) => await HacerRespaldoAutomatico();
             respaldoTimer.Start();
         }
