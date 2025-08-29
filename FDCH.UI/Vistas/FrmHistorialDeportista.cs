@@ -40,5 +40,10 @@ namespace FDCH.UI.Vistas
 
             dataGridView1.DataSource = registros;
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            ExportarExcel.ExportarAExcel(dataGridView1);
+        }
     }
 }
