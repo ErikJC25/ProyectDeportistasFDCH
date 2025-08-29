@@ -138,6 +138,9 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        
+        private void btnExportExcelGeneral_Click(object sender, EventArgs e)
+        {
+            ExportarExcel.ExportarAExcelGeneral(dataGridView1);
+        }
     }
 }

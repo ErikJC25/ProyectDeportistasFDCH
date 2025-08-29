@@ -61,7 +61,7 @@
             this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(181, 620);
             this.pnlMenu.TabIndex = 0;
@@ -99,7 +99,7 @@
             this.btnGetBloqueo.Image = global::FDCH.UI.Properties.Resources.desbloqueado;
             this.btnGetBloqueo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGetBloqueo.Location = new System.Drawing.Point(0, 495);
-            this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetBloqueo.Name = "btnGetBloqueo";
             this.btnGetBloqueo.Size = new System.Drawing.Size(181, 49);
             this.btnGetBloqueo.TabIndex = 11;
@@ -118,7 +118,7 @@
             this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddParticipa.Location = new System.Drawing.Point(9, 254);
-            this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddParticipa.Name = "btnAddParticipa";
             this.btnAddParticipa.Size = new System.Drawing.Size(172, 57);
             this.btnAddParticipa.TabIndex = 10;
@@ -136,7 +136,7 @@
             this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
             this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddTorneo.Location = new System.Drawing.Point(9, 197);
-            this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddTorneo.Name = "btnAddTorneo";
             this.btnAddTorneo.Size = new System.Drawing.Size(172, 57);
             this.btnAddTorneo.TabIndex = 9;
@@ -154,7 +154,7 @@
             this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
             this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBusqueda.Location = new System.Drawing.Point(9, 144);
-            this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.btnBusqueda.Name = "btnBusqueda";
             this.btnBusqueda.Size = new System.Drawing.Size(172, 54);
             this.btnBusqueda.TabIndex = 8;
@@ -166,7 +166,7 @@
             // 
             this.pnlOpcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
             this.pnlOpcion.Location = new System.Drawing.Point(0, 89);
-            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
             this.pnlOpcion.Name = "pnlOpcion";
             this.pnlOpcion.Size = new System.Drawing.Size(9, 54);
             this.pnlOpcion.TabIndex = 7;
@@ -195,7 +195,7 @@
             this.btnInicio.Image = global::FDCH.UI.Properties.Resources.home;
             this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInicio.Location = new System.Drawing.Point(9, 89);
-            this.btnInicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInicio.Margin = new System.Windows.Forms.Padding(2);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(172, 54);
             this.btnInicio.TabIndex = 1;
@@ -209,7 +209,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.Logo_FDCH1;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(181, 89);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -220,7 +220,7 @@
             // 
             this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlContenedorFrm.Location = new System.Drawing.Point(181, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContenedorFrm.Name = "pnlContenedorFrm";
             this.pnlContenedorFrm.Size = new System.Drawing.Size(897, 574);
             this.pnlContenedorFrm.TabIndex = 1;
@@ -248,7 +248,7 @@
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
