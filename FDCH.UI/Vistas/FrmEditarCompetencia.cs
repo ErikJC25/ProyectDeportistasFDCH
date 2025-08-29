@@ -96,5 +96,15 @@ namespace FDCH.UI.Vistas
             cmbMedalla.Items.AddRange(new object[] { "Oro", "Plata", "Bronce", "Ninguna" });
             */
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
