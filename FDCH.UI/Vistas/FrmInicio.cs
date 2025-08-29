@@ -64,20 +64,20 @@ namespace FDCH.UI.Vistas
                 RegistroTotal registroCompleto = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
                 // Opciones personalizadas
-                string[] opciones = new string[] { "Editor completo", "Editor rápido", "Ver sólo" };
+                string[] opciones = new string[] { "Editar Torneo", "Editar Desempeño Deportista", "Ver sólo" };
 
                 // Personalización de botones (opcional)
                 Action<Button, int> customizer = (btn, idx) =>
                 {
                     if (idx == 0)
                     {
-                        btn.BackColor = Color.FromArgb(255, 160, 122);
+                        btn.BackColor = Color.Green;
                         btn.ForeColor = Color.White;
                         btn.FlatStyle = FlatStyle.Flat;
                     }
                     else if (idx == 1)
                     {
-                        btn.BackColor = Color.FromArgb(100, 149, 237);
+                        btn.BackColor = Color.Blue;
                         btn.ForeColor = Color.White;
                         btn.FlatStyle = FlatStyle.Flat;
                     }
@@ -86,7 +86,7 @@ namespace FDCH.UI.Vistas
                     t.SetToolTip(btn, $"Abrir: {btn.Text}");
                 };
 
-                using (var dlg = new FrmSeleccionEditor("Elegir editor", "Seleccione la acción para este registro:", opciones, customizer))
+                using (var dlg = new FrmSeleccionEditor("Opciones de Edición", "Seleccione la acción para este registro", opciones, customizer))
                 {
                     var r = dlg.ShowDialog(this);
                     if (r == DialogResult.OK)

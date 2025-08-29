@@ -55,7 +55,12 @@
             this.ClientSize = new System.Drawing.Size(231, 150);
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.lblMessage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmSeleccionEditor";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmSeleccionEditor";
             this.ResumeLayout(false);
             this.PerformLayout();
