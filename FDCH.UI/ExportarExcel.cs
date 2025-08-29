@@ -48,19 +48,21 @@ namespace FDCH.UI
         {
             DataTable dt = new DataTable();
 
-            foreach (DataGridViewColumn column in dgv.Columns)
+            // 🚀 Exportamos solo las 26 columnas intermedias (del índice 6 al 31 incluido)
+            for (int i = 6; i < dgv.Columns.Count - 1; i++)
             {
-                dt.Columns.Add(column.HeaderText);
+                dt.Columns.Add(dgv.Columns[i].HeaderText);
             }
 
+            // 🚀 Llenamos las filas con esas mismas columnas
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (!row.IsNewRow)
                 {
                     DataRow dr = dt.NewRow();
-                    for (int i = 0; i < dgv.Columns.Count; i++)
+                    for (int i = 6; i < dgv.Columns.Count - 1; i++)
                     {
-                        dr[i] = row.Cells[i].Value ?? DBNull.Value;
+                        dr[i - 6] = row.Cells[i].Value ?? DBNull.Value;
                     }
                     dt.Rows.Add(dr);
                 }
@@ -68,5 +70,6 @@ namespace FDCH.UI
 
             return dt;
         }
+
     }
 }
