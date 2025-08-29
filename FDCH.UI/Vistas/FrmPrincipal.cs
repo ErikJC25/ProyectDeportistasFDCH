@@ -217,8 +217,30 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
+        /*
+        private async void btnGetBloqueo_Click(object sender, EventArgs e)
+        {
+            // 1️⃣ Intentar crear lock automáticamente
+            bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+            if (!tieneLock)
+            {
+                MessageBox.Show("Otro usuario ya está subiendo cambios. Intenta más tarde.");
+                return;
+            }
 
-        
+            try
+            {
+                // 2️⃣ Subida normal de tu base de datos (tu código actual no cambia)
+                await DriveServiceHelper.UploadFile(DbService.GetDbPath(), folderRespaldo);
+                MessageBox.Show("Base subida correctamente.");
+            }
+            finally
+            {
+                // 3️⃣ Liberar lock al finalizar
+                await DriveServiceHelper.ReleaseLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+            }
+        }
+        */
 
     }
 }

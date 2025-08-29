@@ -181,6 +181,76 @@ namespace FDCH.UI
                 }
             }
         }
+        /*
+        public static async Task<bool> TryLock(string usuario, string folderId)
+        {
+            var service = GetDriveService();
+            var lockFileId = GetFileIdByName("lock.json", folderId); // busca lock.json
+
+            DateTime now = DateTime.UtcNow;
+
+            if (lockFileId != null)
+            {
+                string tempPath = Path.Combine(Path.GetTempPath(), "lock.json");
+                await DownloadFile(lockFileId, tempPath);
+                string json = File.ReadAllText(tempPath);
+                dynamic lockData = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+                string currentUser = lockData.usuario;
+                DateTime lockTime = lockData.timestamp;
+
+                // Si otro usuario tiene lock vigente
+                if (currentUser != usuario && lockTime.AddMinutes(30) > now)
+                {
+                    return false;
+                }
+            }
+
+            // Crear lock con tu usuario y timestamp
+            var newLock = new
+            {
+                usuario = usuario,
+                timestamp = now.ToString("o")
+            };
+            string lockTempPath = Path.Combine(Path.GetTempPath(), "lock.json");
+            File.WriteAllText(lockTempPath, Newtonsoft.Json.JsonConvert.SerializeObject(newLock));
+
+            await UploadFile(lockTempPath, folderId); // crea o sobrescribe lock.json
+            File.Delete(lockTempPath);
+
+            return true;
+        }
+
+        // 🔹 Buscar archivo por nombre en una carpeta
+        public static string GetFileIdByName(string fileName, string folderId)
+        {
+            var service = GetDriveService();
+            string query = $"name = '{fileName}' and '{folderId}' in parents and trashed = false";
+
+            var request = service.Files.List();
+            request.Q = query;
+            request.Fields = "files(id, name)";
+            request.PageSize = 1;
+
+            var result = request.Execute();
+            var file = result.Files.FirstOrDefault();
+            return file?.Id;
+        }
+
+        // 🔹 Liberar lock al terminar
+        public static async Task ReleaseLock(string usuario, string folderId)
+        {
+            var lockFileId = GetFileIdByName("lock.json", folderId);
+            if (lockFileId != null)
+            {
+                var service = GetDriveService();
+                await service.Files.Delete(lockFileId).ExecuteAsync();
+            }
+        }
+        */
+
+
+
 
     }
 }
