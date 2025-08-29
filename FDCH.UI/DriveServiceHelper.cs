@@ -65,6 +65,7 @@ namespace FDCH.UI
 
         // 🔹 Subir archivo a Google Drive
         // 🔹 Subir archivo a Google Drive (con timestamp y control de duplicados)
+        // 🔹 Subir archivo a Google Drive (con timestamp y control de duplicados)
         public static async Task<string> UploadFile(string filePath, string folderId = null)
         {
             var service = GetDriveService();
@@ -100,9 +101,9 @@ namespace FDCH.UI
             if (folderId != null)
                 fileMetadata.Parents = new[] { folderId };
 
-            // 📌 Subida real
-            FilesResource.CreateMediaUpload request;
-            using (var stream = new FileStream(filePath, FileMode.Open))
+            // 📌 Subida real con using
+            Google.Apis.Drive.v3.FilesResource.CreateMediaUpload request;
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 request = service.Files.Create(fileMetadata, stream, "application/octet-stream");
                 request.Fields = "id";
@@ -114,6 +115,7 @@ namespace FDCH.UI
             return uploadedFile.Id;
         }
 
+
         // 🔹 Descargar archivo desde Google Drive
         public static async Task DownloadFile(string fileId, string saveToPath)
         {
@@ -123,13 +125,16 @@ namespace FDCH.UI
             using (var stream = new MemoryStream())
             {
                 await request.DownloadAsync(stream);
-                using (var fileStream = new FileStream(saveToPath, FileMode.Create, FileAccess.Write))
+                stream.Position = 0; // 👈 rebobinar memoria
+
+                // ⚠ siempre sobrescribir con using para liberar bien
+                using (var fileStream = new FileStream(saveToPath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    stream.Position = 0; // 👈 rebobinar memoria
-                    stream.CopyTo(fileStream);
+                    await stream.CopyToAsync(fileStream);
                 }
             }
         }
+
 
         // 🔹 Obtener el ID del último archivo subido
         public static string GetLastFileId(string folderId = null)
@@ -181,45 +186,47 @@ namespace FDCH.UI
                 }
             }
         }
-        /*
+
         public static async Task<bool> TryLock(string usuario, string folderId)
         {
-            var service = GetDriveService();
-            var lockFileId = GetFileIdByName("lock.json", folderId); // busca lock.json
-
+            var lockFileId = GetFileIdByName("lock.json", folderId);
             DateTime now = DateTime.UtcNow;
 
             if (lockFileId != null)
             {
-                string tempPath = Path.Combine(Path.GetTempPath(), "lock.json");
-                await DownloadFile(lockFileId, tempPath);
-                string json = File.ReadAllText(tempPath);
+                string tempReadPath = Path.Combine(Path.GetTempPath(), "lock_read.json");
+                await DownloadFile(lockFileId, tempReadPath);
+
+                string json = File.ReadAllText(tempReadPath);
                 dynamic lockData = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
 
                 string currentUser = lockData.usuario;
-                DateTime lockTime = lockData.timestamp;
+                DateTime lockTime = DateTime.Parse(lockData.timestamp.ToString(), null, System.Globalization.DateTimeStyles.RoundtripKind);
 
-                // Si otro usuario tiene lock vigente
+                File.Delete(tempReadPath);
+
                 if (currentUser != usuario && lockTime.AddMinutes(30) > now)
-                {
-                    return false;
-                }
+                    return false; // Otro usuario tiene lock vigente
             }
 
-            // Crear lock con tu usuario y timestamp
+            // Crear lock con tu usuario
             var newLock = new
             {
                 usuario = usuario,
                 timestamp = now.ToString("o")
             };
-            string lockTempPath = Path.Combine(Path.GetTempPath(), "lock.json");
-            File.WriteAllText(lockTempPath, Newtonsoft.Json.JsonConvert.SerializeObject(newLock));
 
-            await UploadFile(lockTempPath, folderId); // crea o sobrescribe lock.json
-            File.Delete(lockTempPath);
+            string tempWritePath = Path.Combine(Path.GetTempPath(), "lock_write.json");
+            File.WriteAllText(tempWritePath, Newtonsoft.Json.JsonConvert.SerializeObject(newLock));
+
+            // 🔹 Reemplaza lock.json en lugar de usar UploadFile normal
+            await UploadOrUpdateFile(tempWritePath, folderId, "lock.json");
+            File.Delete(tempWritePath);
 
             return true;
         }
+
+
 
         // 🔹 Buscar archivo por nombre en una carpeta
         public static string GetFileIdByName(string fileName, string folderId)
@@ -241,13 +248,73 @@ namespace FDCH.UI
         public static async Task ReleaseLock(string usuario, string folderId)
         {
             var lockFileId = GetFileIdByName("lock.json", folderId);
-            if (lockFileId != null)
+            if (lockFileId == null) return;
+
+            string tempPath = Path.Combine(Path.GetTempPath(), "lock_check.json");
+            await DownloadFile(lockFileId, tempPath);
+
+            dynamic lockData = Newtonsoft.Json.JsonConvert.DeserializeObject(File.ReadAllText(tempPath));
+            File.Delete(tempPath);
+
+            if (lockData.usuario == usuario)
             {
                 var service = GetDriveService();
                 await service.Files.Delete(lockFileId).ExecuteAsync();
             }
         }
-        */
+
+
+        public static async Task<bool> CheckLock(string usuario, string folderId)
+        {
+            var lockFileId = GetFileIdByName("lock.json", folderId);
+            if (lockFileId == null) return false;
+
+            string tempReadPath = Path.Combine(Path.GetTempPath(), "lock_check.json");
+            await DownloadFile(lockFileId, tempReadPath);
+
+            string json = File.ReadAllText(tempReadPath);
+            dynamic lockData = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+            string currentUser = lockData.usuario;
+            DateTime lockTime = DateTime.Parse(lockData.timestamp.ToString(), null, System.Globalization.DateTimeStyles.RoundtripKind);
+
+            File.Delete(tempReadPath);
+
+            return currentUser == usuario && lockTime.AddMinutes(30) > DateTime.UtcNow;
+        }
+
+        //agregado 11:25 pm
+        public static async Task<string> UploadOrUpdateFile(string filePath, string folderId, string fileName)
+        {
+            var service = GetDriveService();
+            var existingId = GetFileIdByName(fileName, folderId);
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File
+            {
+                Name = fileName
+            };
+            if (!string.IsNullOrEmpty(folderId))
+                fileMetadata.Parents = new[] { folderId };
+
+            using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                if (existingId != null)
+                {
+                    var updateRequest = service.Files.Update(fileMetadata, existingId, stream, "application/json");
+                    updateRequest.Fields = "id";
+                    await updateRequest.UploadAsync();
+                    return updateRequest.ResponseBody.Id;
+                }
+                else
+                {
+                    var createRequest = service.Files.Create(fileMetadata, stream, "application/json");
+                    createRequest.Fields = "id";
+                    await createRequest.UploadAsync();
+                    return createRequest.ResponseBody.Id;
+                }
+            }
+        }
+
 
 
 

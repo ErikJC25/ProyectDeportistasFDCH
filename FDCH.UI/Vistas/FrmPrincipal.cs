@@ -161,29 +161,45 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-                // ✅ Usamos DbService.DbPath
+                // 1️⃣ Verificar si el usuario actual tiene el lock
+                bool tieneLock = await DriveServiceHelper.CheckLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+
+                if (!tieneLock)
+                {
+                    MessageBox.Show("❌ No tienes el bloqueo activo. Solicítalo primero antes de subir.");
+                    return;
+                }
+
+                // 2️⃣ Subida normal de la base
                 string dbPath = DbService.GetDbPath();
 
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
 
-                // Copiar a archivo temporal para evitar bloqueos
+                // Copiar a archivo temporal para evitar bloqueos locales
                 string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
                 File.Copy(dbPath, tempPath, true);
 
-                string fileId = await DriveServiceHelper.UploadFile(dbPath, null);
-
+                // 🔹 Subir al root de Drive (sin carpeta)
+                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderId: null);
 
                 File.Delete(tempPath);
 
-                MessageBox.Show($"Archivo subido con éxito. ID: {fileId}");
+                MessageBox.Show($"✅ Archivo subido con éxito. ID: {fileId}");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error: {ex.Message}");
             }
-
+            finally
+            {
+                // 3️⃣ Liberar lock al finalizar subida
+                await DriveServiceHelper.ReleaseLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+                MessageBox.Show("🔓 Bloqueo liberado.");
+            }
         }
+
+
 
         private System.Windows.Forms.Timer respaldoTimer;
 
@@ -217,34 +233,20 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
-        
+
         private async void btnGetBloqueo_Click(object sender, EventArgs e)
         {
-            /*
-            
-            // 1️⃣ Intentar crear lock automáticamente
             bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
             if (!tieneLock)
             {
-                MessageBox.Show("Otro usuario ya está subiendo cambios. Intenta más tarde.");
+                MessageBox.Show("❌ Otro usuario ya tiene el bloqueo activo.");
                 return;
             }
 
-            try
-            {
-                // 2️⃣ Subida normal de tu base de datos (tu código actual no cambia)
-                await DriveServiceHelper.UploadFile(DbService.GetDbPath(), folderRespaldo);
-                MessageBox.Show("Base subida correctamente.");
-            }
-            finally
-            {
-                // 3️⃣ Liberar lock al finalizar
-                await DriveServiceHelper.ReleaseLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
-            }
-
-            */
+            MessageBox.Show("✅ Bloqueo obtenido correctamente. Ahora puedes subir tu base de datos.");
         }
-        
+
+
 
     }
 }
