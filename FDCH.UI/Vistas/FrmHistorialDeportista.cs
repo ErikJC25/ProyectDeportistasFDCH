@@ -48,7 +48,7 @@ namespace FDCH.UI.Vistas
 
         private void btnExportarDeportista_Click(object sender, EventArgs e)
         {
-            ExportarWord.ExportarAWord(dataGridView1);
+            //ExportarWord.ExportarAWord(dataGridView1);
         }
     }
 }

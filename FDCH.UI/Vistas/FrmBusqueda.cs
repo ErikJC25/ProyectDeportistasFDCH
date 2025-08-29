@@ -224,5 +224,28 @@ namespace FDCH.UI.Vistas
                 e.Handled = true;
             }
         }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            // Deshabilitar botón / feedback
+            btnExportarWord.Enabled = false;
+            var prevCursor = Cursor;
+            Cursor = Cursors.WaitCursor;
+
+            string titulo = "Lic. Santiago Buenaño";
+            string rol = "DIRECTOR TÉCNICO METODOLÓGICO (E)";
+
+            try
+            {
+                // Llamada al generador pasando la tabla, el form, el rol y el título
+                await FDCH.UI.ExportarWord.ExportarAWordAsync(dataGridView1, this, titulo, rol);
+            }
+            finally
+            {
+                // Restaurar estado UI
+                Cursor = prevCursor;
+                btnExportarWord.Enabled = true;
+            }
+        }
     }
 }
