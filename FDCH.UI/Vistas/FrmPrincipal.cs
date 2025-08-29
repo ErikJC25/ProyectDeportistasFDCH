@@ -217,9 +217,11 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
-        /*
+        
         private async void btnGetBloqueo_Click(object sender, EventArgs e)
         {
+            /*
+            
             // 1️⃣ Intentar crear lock automáticamente
             bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
             if (!tieneLock)
@@ -239,8 +241,10 @@ namespace FDCH.UI.Vistas
                 // 3️⃣ Liberar lock al finalizar
                 await DriveServiceHelper.ReleaseLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
             }
+
+            */
         }
-        */
+        
 
     }
 }
