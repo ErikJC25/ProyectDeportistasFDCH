@@ -315,5 +315,11 @@ namespace FDCH.Logica
             return _dbService.BuscarRegistrosDeportistaFiltrado(clausula, parametros, clausulaOrder);
         }
 
+
+        public int BuscarCompetenciaExacta(string categoria, string division, string participantes, string record, int idEvento, int especialidadId)
+        {
+            return _dbService.BuscarIdCompetenciaExacta(categoria, division, participantes, record, idEvento, especialidadId);
+        }
+
     }
 }

@@ -431,7 +431,7 @@ namespace FDCH.UI.Vistas
                 if (tecnicoId == 0) throw new Exception("No se pudo guardar el técnico.");
 
                 // =================================================================
-                // PARTE 3: OBTENER O GUARDAR DISCIPLINA Y ESPECIALIDAD (Nueva lógica)
+                // PARTE 3: OBTENER O GUARDAR DISCIPLINA Y ESPECIALIDAD
                 // =================================================================
                 // --- Disciplina ---
                 int disciplinaId;
@@ -481,18 +481,26 @@ namespace FDCH.UI.Vistas
                 if (especialidadId == 0) throw new Exception("No se pudo guardar la especialidad.");
 
                 // =================================================================
-                // PARTE 4: GUARDAR COMPETENCIA Y DESEMPEÑO (Usando los IDs obtenidos)
+                // PARTE 4: OBTENR O GUARDAR COMPETENCIA Y GUARDAR DESEMPEÑO (Usando los IDs obtenidos)
                 // =================================================================
-                Competencia competencia = new Competencia
+                int competenciaId;
+
+                competenciaId = puente.BuscarCompetenciaExacta(categoria, division, participantes, record, _idEvento, especialidadId);
+
+                if (competenciaId == 0)
                 {
-                    categoria = categoria,
-                    division = division,
-                    numero_participantes = participantes,
-                    record = record,
-                    id_evento = _idEvento,
-                    id_especialidad = especialidadId // Usamos el ID de la especialidad
-                };
-                int competenciaId = puente.InsertarCompetencia(competencia);
+                    // La competencia no existe, la creamos
+                    Competencia competencia = new Competencia
+                    {
+                        categoria = categoria,
+                        division = division,
+                        numero_participantes = participantes,
+                        record = record,
+                        id_evento = _idEvento,
+                        id_especialidad = especialidadId // Usamos el ID de la especialidad
+                    };
+                    competenciaId = puente.InsertarCompetencia(competencia);
+                }
                 if (competenciaId == 0) throw new Exception("No se pudo guardar la competencia.");
 
                 Desempeno desempeno = new Desempeno
@@ -503,7 +511,7 @@ namespace FDCH.UI.Vistas
                     tiempo = tiempoMarca,
                     ubicacion = ubicacion,
                     id_deportista = deportistaId,   // Usamos el ID del deportista
-                    id_competencia = competenciaId, // Usamos el nuevo ID de competencia
+                    id_competencia = competenciaId, // Usamos el ID de competencia
                     id_tecnico = tecnicoId          // Usamos el ID del técnico
                 };
                 puente.InsertarDesempeno(desempeno);

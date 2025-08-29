@@ -1705,6 +1705,61 @@ namespace FDCH.Datos
         }
 
 
+        // Consulta la competencia especifica
+        public int BuscarIdCompetenciaExacta(string categoria, string division, string participantes, string record, int idEvento, int especialidadId)
+        {
+            int idCompetencia = 0; // Valor por defecto si no se encuentra
+
+            using (var connection = GetConnection())
+            {
+                string query = @"
+            SELECT id_competencia FROM Competencias
+            WHERE categoria = @categoria AND
+                  division = @division AND
+                  numero_participantes = @participantes AND
+                  record = @record AND
+                  id_evento = @idEvento AND
+                  id_especialidad = @especialidadId";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@categoria", categoria);
+                    command.Parameters.AddWithValue("@division", division);
+                    command.Parameters.AddWithValue("@participantes", participantes);
+                    command.Parameters.AddWithValue("@record", record);
+                    command.Parameters.AddWithValue("@idEvento", idEvento);
+                    command.Parameters.AddWithValue("@especialidadId", especialidadId);
+
+                    try
+                    {
+                        connection.Open();
+                        var result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            idCompetencia = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al obtener el ID de la competencia: " + ex.Message);
+                    }
+                }
+            }
+            return idCompetencia;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
