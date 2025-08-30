@@ -57,9 +57,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 61);
+            this.panel1.Size = new System.Drawing.Size(1196, 75);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -68,10 +68,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Black", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(274, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(365, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 42);
+            this.label1.Size = new System.Drawing.Size(389, 52);
             this.label1.TabIndex = 1;
             this.label1.Text = "Edición de Torneo";
             // 
@@ -82,10 +81,10 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(710, 510);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGuardar.Location = new System.Drawing.Point(947, 628);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(153, 41);
+            this.btnGuardar.Size = new System.Drawing.Size(204, 50);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar cambios";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -96,10 +95,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Coral;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.torneo_frm;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 61);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 75);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(404, 513);
+            this.pictureBox1.Size = new System.Drawing.Size(539, 631);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
@@ -109,10 +108,9 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label17.Location = new System.Drawing.Point(425, 78);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Location = new System.Drawing.Point(567, 96);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(90, 22);
+            this.label17.Size = new System.Drawing.Size(105, 27);
             this.label17.TabIndex = 18;
             this.label17.Text = "Nombre:";
             // 
@@ -121,10 +119,9 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label16.Location = new System.Drawing.Point(231, 39);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(308, 48);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 22);
+            this.label16.Size = new System.Drawing.Size(55, 27);
             this.label16.TabIndex = 7;
             this.label16.Text = "Fin:";
             // 
@@ -133,10 +130,9 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label15.Location = new System.Drawing.Point(10, 39);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(13, 48);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(67, 22);
+            this.label15.Size = new System.Drawing.Size(80, 27);
             this.label15.TabIndex = 5;
             this.label15.Text = "Inicio:";
             // 
@@ -146,10 +142,10 @@
             this.txbFechaInicio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbFechaInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbFechaInicio.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbFechaInicio.Location = new System.Drawing.Point(71, 39);
-            this.txbFechaInicio.Margin = new System.Windows.Forms.Padding(2);
+            this.txbFechaInicio.Location = new System.Drawing.Point(95, 48);
+            this.txbFechaInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbFechaInicio.Name = "txbFechaInicio";
-            this.txbFechaInicio.Size = new System.Drawing.Size(141, 26);
+            this.txbFechaInicio.Size = new System.Drawing.Size(187, 30);
             this.txbFechaInicio.TabIndex = 1;
             this.txbFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -159,10 +155,10 @@
             this.txbFechaFin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbFechaFin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbFechaFin.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbFechaFin.Location = new System.Drawing.Point(273, 39);
-            this.txbFechaFin.Margin = new System.Windows.Forms.Padding(2);
+            this.txbFechaFin.Location = new System.Drawing.Point(364, 48);
+            this.txbFechaFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbFechaFin.Name = "txbFechaFin";
-            this.txbFechaFin.Size = new System.Drawing.Size(141, 26);
+            this.txbFechaFin.Size = new System.Drawing.Size(187, 30);
             this.txbFechaFin.TabIndex = 2;
             this.txbFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -174,11 +170,11 @@
             this.grpbFecha.Controls.Add(this.label15);
             this.grpbFecha.Controls.Add(this.label16);
             this.grpbFecha.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpbFecha.Location = new System.Drawing.Point(429, 186);
-            this.grpbFecha.Margin = new System.Windows.Forms.Padding(2);
+            this.grpbFecha.Location = new System.Drawing.Point(572, 229);
+            this.grpbFecha.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpbFecha.Name = "grpbFecha";
-            this.grpbFecha.Padding = new System.Windows.Forms.Padding(2);
-            this.grpbFecha.Size = new System.Drawing.Size(434, 82);
+            this.grpbFecha.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpbFecha.Size = new System.Drawing.Size(579, 101);
             this.grpbFecha.TabIndex = 21;
             this.grpbFecha.TabStop = false;
             this.grpbFecha.Text = "Fecha";
@@ -188,10 +184,9 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(425, 276);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(567, 340);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 22);
+            this.label10.Size = new System.Drawing.Size(84, 27);
             this.label10.TabIndex = 22;
             this.label10.Text = "Lugar:";
             // 
@@ -201,11 +196,11 @@
             this.txbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNombre.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbNombre.Location = new System.Drawing.Point(429, 110);
-            this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNombre.Location = new System.Drawing.Point(572, 135);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbNombre.Multiline = true;
             this.txbNombre.Name = "txbNombre";
-            this.txbNombre.Size = new System.Drawing.Size(434, 59);
+            this.txbNombre.Size = new System.Drawing.Size(577, 72);
             this.txbNombre.TabIndex = 16;
             // 
             // txbLugar
@@ -214,10 +209,10 @@
             this.txbLugar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbLugar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbLugar.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbLugar.Location = new System.Drawing.Point(429, 308);
-            this.txbLugar.Margin = new System.Windows.Forms.Padding(2);
+            this.txbLugar.Location = new System.Drawing.Point(572, 379);
+            this.txbLugar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbLugar.Name = "txbLugar";
-            this.txbLugar.Size = new System.Drawing.Size(434, 26);
+            this.txbLugar.Size = new System.Drawing.Size(577, 30);
             this.txbLugar.TabIndex = 17;
             // 
             // label4
@@ -225,10 +220,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(425, 354);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(567, 436);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 22);
+            this.label4.Size = new System.Drawing.Size(153, 27);
             this.label4.TabIndex = 23;
             this.label4.Text = "Tipo Evento:";
             // 
@@ -238,10 +232,10 @@
             this.txbTipoEvento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbTipoEvento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTipoEvento.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbTipoEvento.Location = new System.Drawing.Point(429, 386);
-            this.txbTipoEvento.Margin = new System.Windows.Forms.Padding(2);
+            this.txbTipoEvento.Location = new System.Drawing.Point(572, 475);
+            this.txbTipoEvento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbTipoEvento.Name = "txbTipoEvento";
-            this.txbTipoEvento.Size = new System.Drawing.Size(434, 26);
+            this.txbTipoEvento.Size = new System.Drawing.Size(577, 30);
             this.txbTipoEvento.TabIndex = 19;
             // 
             // label2
@@ -249,10 +243,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(425, 430);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(567, 529);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 22);
+            this.label2.Size = new System.Drawing.Size(160, 27);
             this.label2.TabIndex = 24;
             this.label2.Text = "Nivel Evento:";
             // 
@@ -262,10 +255,10 @@
             this.txbNivelEvento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbNivelEvento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNivelEvento.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbNivelEvento.Location = new System.Drawing.Point(429, 462);
-            this.txbNivelEvento.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNivelEvento.Location = new System.Drawing.Point(572, 569);
+            this.txbNivelEvento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbNivelEvento.Name = "txbNivelEvento";
-            this.txbNivelEvento.Size = new System.Drawing.Size(434, 26);
+            this.txbNivelEvento.Size = new System.Drawing.Size(577, 30);
             this.txbNivelEvento.TabIndex = 20;
             // 
             // btnCancelar
@@ -275,10 +268,10 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Coral;
-            this.btnCancelar.Location = new System.Drawing.Point(435, 510);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Location = new System.Drawing.Point(580, 628);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(153, 41);
+            this.btnCancelar.Size = new System.Drawing.Size(204, 50);
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -286,10 +279,10 @@
             // 
             // FrmEditarEvento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(897, 574);
+            this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txbNivelEvento);
@@ -304,7 +297,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmEditarEvento";
             this.Text = "FrmEditarRegistro";
             this.Load += new System.EventHandler(this.FrmEditarRegistro_Load);

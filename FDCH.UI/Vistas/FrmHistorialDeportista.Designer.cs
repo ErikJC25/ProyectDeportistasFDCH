@@ -78,19 +78,18 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 91);
+            this.panel1.Size = new System.Drawing.Size(1196, 112);
             this.panel1.TabIndex = 0;
             // 
             // lblNombre
             // 
             this.lblNombre.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(309, 20);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombre.Location = new System.Drawing.Point(412, 25);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(552, 56);
+            this.lblNombre.Size = new System.Drawing.Size(736, 69);
             this.lblNombre.TabIndex = 0;
             // 
             // label1
@@ -98,10 +97,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(17, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(315, 31);
+            this.label1.Size = new System.Drawing.Size(398, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registros del Deportista:";
             // 
@@ -146,14 +144,14 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 89);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 110);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(897, 427);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 526);
             this.dataGridView1.TabIndex = 1;
             // 
             // IdTecnico
@@ -470,10 +468,10 @@
             this.btnExportarDeportista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarDeportista.ForeColor = System.Drawing.Color.White;
             this.btnExportarDeportista.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportarDeportista.Location = new System.Drawing.Point(841, 520);
-            this.btnExportarDeportista.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportarDeportista.Location = new System.Drawing.Point(1121, 640);
+            this.btnExportarDeportista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarDeportista.Name = "btnExportarDeportista";
-            this.btnExportarDeportista.Size = new System.Drawing.Size(45, 49);
+            this.btnExportarDeportista.Size = new System.Drawing.Size(60, 60);
             this.btnExportarDeportista.TabIndex = 2;
             this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarDeportista.UseVisualStyleBackColor = false;
@@ -488,10 +486,10 @@
             this.btnExportExcel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.ForeColor = System.Drawing.Color.White;
             this.btnExportExcel.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcel.Location = new System.Drawing.Point(754, 520);
-            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportExcel.Location = new System.Drawing.Point(1005, 640);
+            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(45, 49);
+            this.btnExportExcel.Size = new System.Drawing.Size(60, 60);
             this.btnExportExcel.TabIndex = 3;
             this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportExcel.UseVisualStyleBackColor = false;
@@ -499,15 +497,15 @@
             // 
             // FrmHistorialDeportista
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 574);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.btnExportarDeportista);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmHistorialDeportista";
             this.Text = "FrmHistorialDeportista";
             this.Load += new System.EventHandler(this.FrmHistorialDeportista_Load);

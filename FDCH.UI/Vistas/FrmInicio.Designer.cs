@@ -112,14 +112,14 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 58);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 71);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(897, 477);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 587);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -445,10 +445,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(136, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(181, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(640, 38);
+            this.label1.Size = new System.Drawing.Size(782, 46);
             this.label1.TabIndex = 1;
             this.label1.Text = "Registro de resultados de Participaciones";
             // 
@@ -459,9 +458,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 58);
+            this.panel1.Size = new System.Drawing.Size(1196, 71);
             this.panel1.TabIndex = 2;
             // 
             // btnExportExcelGeneral
@@ -473,10 +472,10 @@
             this.btnExportExcelGeneral.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcelGeneral.ForeColor = System.Drawing.Color.White;
             this.btnExportExcelGeneral.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcelGeneral.Location = new System.Drawing.Point(841, 5);
-            this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1121, 6);
+            this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcelGeneral.Name = "btnExportExcelGeneral";
-            this.btnExportExcelGeneral.Size = new System.Drawing.Size(45, 44);
+            this.btnExportExcelGeneral.Size = new System.Drawing.Size(60, 54);
             this.btnExportExcelGeneral.TabIndex = 4;
             this.btnExportExcelGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportExcelGeneral.UseVisualStyleBackColor = false;
@@ -484,14 +483,14 @@
             // 
             // FrmInicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(897, 574);
+            this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "FrmInicio";
             this.Text = "FrmInicio";
