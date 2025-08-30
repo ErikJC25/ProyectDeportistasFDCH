@@ -7,9 +7,8 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using FDCH.UI.Vistas;
-using FDCH.Datos;
 using System.Security.Cryptography;
+
 namespace FDCH.UI
 {
     public class DriveServiceHelper
@@ -24,13 +23,11 @@ namespace FDCH.UI
             if (_service != null) return _service;
 
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string credentialsPath = Path.Combine(basePath, "credentials.json"); // JSON de credenciales
-            string tokenPath = Path.Combine(basePath, "token.json");             // Token OAuth2
+            string credentialsPath = Path.Combine(basePath, "credentials.json");
+            string tokenPath = Path.Combine(basePath, "token.json");
 
             if (!File.Exists(credentialsPath))
-            {
                 throw new FileNotFoundException("No se encontró el archivo credentials.json", credentialsPath);
-            }
 
             UserCredential credential;
             using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
@@ -41,7 +38,7 @@ namespace FDCH.UI
                     "user",
                     CancellationToken.None,
                     new FileDataStore(tokenPath, true)
-                ).Result; // 👈 usamos .Result para esperar
+                ).Result;
             }
 
             _service = new DriveService(new BaseClientService.Initializer()
@@ -52,7 +49,8 @@ namespace FDCH.UI
 
             return _service;
         }
-        // 🔹 Calcular hash MD5 de un archivo (para evitar duplicados)
+
+        // 🔹 Calcular hash MD5 de un archivo
         public static string CalcularMD5(string filePath)
         {
             using (var md5 = MD5.Create())
@@ -63,20 +61,17 @@ namespace FDCH.UI
             }
         }
 
-        // 🔹 Subir archivo a Google Drive
-        // 🔹 Subir archivo a Google Drive (con timestamp y control de duplicados)
-        // 🔹 Subir archivo a Google Drive (con timestamp y control de duplicados)
+        // 🔹 Subir archivo con timestamp y evitar duplicados
         public static async Task<string> UploadFile(string filePath, string folderId = null)
         {
             var service = GetDriveService();
 
-            // 📌 Generar nombre con timestamp
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string extension = Path.GetExtension(filePath);
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
             string finalName = $"{fileName}_{timestamp}{extension}";
 
-            // 📌 Verificar duplicado (comparando MD5 con el último archivo en la carpeta)
+            // ⚡ Evitar duplicados comparando MD5
             string localHash = CalcularMD5(filePath);
             var lastId = GetLastFileId(folderId);
             if (lastId != null)
@@ -87,21 +82,18 @@ namespace FDCH.UI
 
                 if (lastFile.Md5Checksum == localHash)
                 {
-                    Console.WriteLine("⚠ La base de datos no cambió, no se subirá un duplicado.");
-                    return lastId; // se devuelve el ID existente
+                    Console.WriteLine("⚠ La base no cambió, no se subirá duplicado.");
+                    return lastId;
                 }
             }
 
-            // 📌 Metadata del archivo
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
                 Name = finalName
             };
-
             if (folderId != null)
                 fileMetadata.Parents = new[] { folderId };
 
-            // 📌 Subida real con using
             Google.Apis.Drive.v3.FilesResource.CreateMediaUpload request;
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -115,8 +107,7 @@ namespace FDCH.UI
             return uploadedFile.Id;
         }
 
-
-        // 🔹 Descargar archivo desde Google Drive
+        // 🔹 Descargar archivo desde Drive
         public static async Task DownloadFile(string fileId, string saveToPath)
         {
             var service = GetDriveService();
@@ -125,9 +116,8 @@ namespace FDCH.UI
             using (var stream = new MemoryStream())
             {
                 await request.DownloadAsync(stream);
-                stream.Position = 0; // 👈 rebobinar memoria
+                stream.Position = 0;
 
-                // ⚠ siempre sobrescribir con using para liberar bien
                 using (var fileStream = new FileStream(saveToPath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     await stream.CopyToAsync(fileStream);
@@ -135,35 +125,32 @@ namespace FDCH.UI
             }
         }
 
-
-        // 🔹 Obtener el ID del último archivo subido
+        // 🔹 Obtener el último archivo .db subido
         public static string GetLastFileId(string folderId = null)
         {
             var service = GetDriveService();
-            string query = "trashed = false"; // solo archivos que no estén en la papelera
-
+            string query = "trashed = false";
             if (!string.IsNullOrEmpty(folderId))
                 query += $" and '{folderId}' in parents";
 
+            query += " and name contains '.db'"; // ⚠ Solo archivos .db
+
             var request = service.Files.List();
             request.Q = query;
-            request.OrderBy = "createdTime desc"; // sigue funcionando
+            request.OrderBy = "createdTime desc";
             request.PageSize = 1;
-            request.Fields = "files(id, name, createdTime)"; // 👈 mantener createdTime
+            request.Fields = "files(id, name, createdTime)";
 
             var result = request.Execute();
             var file = result.Files.FirstOrDefault();
-            /*cambio 
+
             if (file != null)
-            {
-                var fecha = file.CreatedTimeDateTimeOffset?.UtcDateTime; // 👈 usar propiedad nueva aquí
-                Console.WriteLine($"Último archivo: {file.Name}, Fecha: {fecha}");
-                return file.Id;
-            } */
+                Console.WriteLine($"Último archivo .db: {file.Name} ({file.Id})");
 
             return file?.Id;
         }
-        // 🔹 Eliminar archivos viejos en una carpeta de Drive
+
+        // 🔹 Eliminar backups viejos
         public static void DeleteOldBackups(string folderId, int daysToKeep = 7)
         {
             var service = GetDriveService();
@@ -187,6 +174,7 @@ namespace FDCH.UI
             }
         }
 
+        // 🔹 Lock con toggle
         public static async Task<bool> TryLock(string usuario, string folderId)
         {
             var lockFileId = GetFileIdByName("lock.json", folderId);
@@ -206,10 +194,15 @@ namespace FDCH.UI
                 File.Delete(tempReadPath);
 
                 if (currentUser != usuario && lockTime.AddMinutes(30) > now)
-                    return false; // Otro usuario tiene lock vigente
+                    return false;
+
+                if (currentUser == usuario)
+                {
+                    await ReleaseLock(usuario, folderId);
+                    return false; // lock liberado
+                }
             }
 
-            // Crear lock con tu usuario
             var newLock = new
             {
                 usuario = usuario,
@@ -219,16 +212,13 @@ namespace FDCH.UI
             string tempWritePath = Path.Combine(Path.GetTempPath(), "lock_write.json");
             File.WriteAllText(tempWritePath, Newtonsoft.Json.JsonConvert.SerializeObject(newLock));
 
-            // 🔹 Reemplaza lock.json en lugar de usar UploadFile normal
             await UploadOrUpdateFile(tempWritePath, folderId, "lock.json");
             File.Delete(tempWritePath);
 
             return true;
         }
 
-
-
-        // 🔹 Buscar archivo por nombre en una carpeta
+        // 🔹 Buscar archivo por nombre
         public static string GetFileIdByName(string fileName, string folderId)
         {
             var service = GetDriveService();
@@ -244,7 +234,7 @@ namespace FDCH.UI
             return file?.Id;
         }
 
-        // 🔹 Liberar lock al terminar
+        // 🔹 Liberar lock
         public static async Task ReleaseLock(string usuario, string folderId)
         {
             var lockFileId = GetFileIdByName("lock.json", folderId);
@@ -263,7 +253,7 @@ namespace FDCH.UI
             }
         }
 
-
+        // 🔹 Chequear lock
         public static async Task<bool> CheckLock(string usuario, string folderId)
         {
             var lockFileId = GetFileIdByName("lock.json", folderId);
@@ -283,7 +273,7 @@ namespace FDCH.UI
             return currentUser == usuario && lockTime.AddMinutes(30) > DateTime.UtcNow;
         }
 
-        //agregado 11:25 pm
+        // 🔹 Subir o actualizar archivo
         public static async Task<string> UploadOrUpdateFile(string filePath, string folderId, string fileName)
         {
             var service = GetDriveService();
@@ -293,31 +283,40 @@ namespace FDCH.UI
             {
                 Name = fileName
             };
-            if (!string.IsNullOrEmpty(folderId))
-                fileMetadata.Parents = new[] { folderId };
 
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
+                var ext = Path.GetExtension(fileName) ?? "";
+                var mimeType = ext.Equals(".json", StringComparison.OrdinalIgnoreCase)
+                    ? "application/json"
+                    : "application/octet-stream";
+
                 if (existingId != null)
                 {
-                    var updateRequest = service.Files.Update(fileMetadata, existingId, stream, "application/json");
+                    var updateRequest = service.Files.Update(fileMetadata, existingId, stream, mimeType);
                     updateRequest.Fields = "id";
-                    await updateRequest.UploadAsync();
-                    return updateRequest.ResponseBody.Id;
+
+                    var progress = await updateRequest.UploadAsync();
+                    if (progress.Status == Google.Apis.Upload.UploadStatus.Completed && updateRequest.ResponseBody != null)
+                        return updateRequest.ResponseBody.Id;
+
+                    throw new Exception($"Error al actualizar archivo: {progress.Exception?.Message}");
                 }
                 else
                 {
-                    var createRequest = service.Files.Create(fileMetadata, stream, "application/json");
+                    if (!string.IsNullOrEmpty(folderId))
+                        fileMetadata.Parents = new[] { folderId };
+
+                    var createRequest = service.Files.Create(fileMetadata, stream, mimeType);
                     createRequest.Fields = "id";
-                    await createRequest.UploadAsync();
-                    return createRequest.ResponseBody.Id;
+                    var progress = await createRequest.UploadAsync();
+
+                    if (progress.Status == Google.Apis.Upload.UploadStatus.Completed && createRequest.ResponseBody != null)
+                        return createRequest.ResponseBody.Id;
+
+                    throw new Exception($"Error al crear archivo: {progress.Exception?.Message}");
                 }
             }
         }
-
-
-
-
-
     }
 }
