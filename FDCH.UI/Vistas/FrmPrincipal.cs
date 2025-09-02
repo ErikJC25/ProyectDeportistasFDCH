@@ -111,10 +111,11 @@ namespace FDCH.UI.Vistas
 
 
 
-        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Muestra el cuadro de diálogo de confirmación de salida
             var result = MessageBox.Show(
-                "¿Está seguro/a que desea salir de la aplicación?",
+                "¿Está seguro/a que desea salir de la aplicación? Se liberará su bloqueo activo si lo tiene.",
                 "Confirmar salida",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -122,24 +123,25 @@ namespace FDCH.UI.Vistas
 
             if (result == DialogResult.No)
             {
-                e.Cancel = true;
+                e.Cancel = true; // Cancela el cierre del formulario
                 return;
             }
-            //else
-            //{
-            //    if (bloqueoActivo)
-            //    {
-            //        // Liberar el bloqueo si está activo
-            //        btnGetBloqueo_Click(sender, e);
-            //        var aceptado = MessageBox.Show("Se ha liberado el bloqueo antes de salir.","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            //        if (aceptado == DialogResult.OK)
-            //        {
-            //            Application.ExitThread();
-            //        }
-            //    }
 
-            //}
-            
+            // Si el usuario confirma la salida
+            if (bloqueoActivo)
+            {
+                // Cancelar el cierre temporalmente para realizar la operación asíncrona
+                e.Cancel = true;
+
+                // Ejecuta la liberación del bloqueo
+                await LiberarBloqueo();
+
+                // Muestra un mensaje al usuario
+                MessageBox.Show("Se ha liberado el bloqueo antes de salir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Ahora sí, cierra la aplicación
+                Application.Exit();
+            }
         }
 
 
