@@ -22,12 +22,16 @@ namespace FDCH.UI
         {
             if (_service != null) return _service;
 
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string credentialsPath = Path.Combine(basePath, "credentials.json");
-            string tokenPath = Path.Combine(basePath, "token.json");
+            // Se define la ruta base, que es el directorio de la base de datos.
+            string dbDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos"));
+
+            // credentialsPath ahora apunta a esa carpeta.
+            string credentialsPath = Path.Combine(dbDirectory, "credentials.json");
+            // tokenPath también apunta a esa carpeta para que se cree allí.
+            string tokenPath = Path.Combine(dbDirectory, "token.json");
 
             if (!File.Exists(credentialsPath))
-                throw new FileNotFoundException("No se encontró el archivo credentials.json", credentialsPath);
+                throw new FileNotFoundException("No se encontró el archivo credentials.json en la ruta de la base de datos.", credentialsPath);
 
             UserCredential credential;
             using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
@@ -37,7 +41,7 @@ namespace FDCH.UI
                     Scopes,
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(tokenPath, true)
+                    new FileDataStore(tokenPath, true) // Aquí se especifica la ruta para el token.
                 ).Result;
             }
 
