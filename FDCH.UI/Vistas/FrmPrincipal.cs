@@ -27,6 +27,9 @@ namespace FDCH.UI.Vistas
 
         public bool bloqueoActivo = false;
 
+        //Este va a servir para el boton de gestionar entidades
+        FrmPrincipal _frmprincipal;
+
         public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
@@ -315,11 +318,63 @@ namespace FDCH.UI.Vistas
             
         }
 
+        private void btnGestionarEntidades_Click(object sender, EventArgs e)
+        {
+            // Opciones personalizadas
+            string[] opciones = new string[] { "Gestionar Deportistas", "Gestionar Técnicos", "Gestionar Disciplinas y Especialidades" };
 
+            // Personalización de botones (opcional)
+            Action<Button, int> customizer = (btn, idx) =>
+            {
+                if (idx == 0)
+                {
+                    btn.BackColor = Color.Green;
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                }
+                else if (idx == 1)
+                {
+                    btn.BackColor = Color.Blue;
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                }
+                else if (idx == 2)
+                {
+                    btn.BackColor = Color.Orange;
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                }
 
+                var t = new ToolTip();
+                t.SetToolTip(btn, $"Abrir: {btn.Text}");
+            };
 
-
-
-
+            using (var dlg = new FrmSeleccionEditor("Seleccione una opción", "Seleccione la entidad a gestionar", opciones, customizer))
+            {
+                var r = dlg.ShowDialog(this);
+                if (r == DialogResult.OK)
+                {
+                    if (dlg.SelectedIndex == 0)
+                    {
+                        _frmprincipal.AbrirFormularioEnPanel(new FrmGestionarDeportistas(_frmprincipal));
+                        this.Close();
+                    }
+                    else if (dlg.SelectedIndex == 1)
+                    {
+                        _frmprincipal.AbrirFormularioEnPanel(new FrmGestionarDeportistas(_frmprincipal));
+                        this.Close();
+                    }
+                    else if (dlg.SelectedIndex == 2)
+                    {
+                        _frmprincipal.AbrirFormularioEnPanel(new FrmGestionarDeportistas(_frmprincipal));
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    // Cancel: no hacer nada
+                }
+            }
+        }
     }
 }
