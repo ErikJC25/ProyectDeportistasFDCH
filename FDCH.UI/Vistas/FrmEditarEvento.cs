@@ -201,6 +201,27 @@ namespace FDCH.UI.Vistas
                     tieneFechaFin = true;
                 }
 
+                // Preguntar si esta seguro de agregar el torneo
+                var confirmResult = MessageBox.Show("¿Está seguro de agregar este torneo?", "Confirmar Agregar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmResult != DialogResult.Yes)
+                {
+                    return; // Si el usuario selecciona "No", se detiene el proceso
+                }
+
+
+
+                // --- 3. Validación de lógica de fechas (si ambas son válidas) ---
+                // Solo se valida si ambas fechas tienen un valor real
+                if (fechaInicio != DateTime.MinValue && fechaFin != DateTime.MinValue)
+                {
+                    if (fechaInicio > fechaFin)
+                    {
+                        MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.", "Fechas Inválidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txbFechaInicio.Focus();
+                        return;
+                    }
+                }
+
                 // 4) Cultura para mayúsculas (respeta ñ y acentos)
                 var culture = new CultureInfo("es-ES");
 
