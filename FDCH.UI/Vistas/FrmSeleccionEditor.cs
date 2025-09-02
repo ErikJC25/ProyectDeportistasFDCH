@@ -19,36 +19,65 @@ namespace FDCH.UI.Vistas
         public int SelectedIndex { get; private set; } = -1;
         public string SelectedText { get; private set; } = null;
 
-        /// <summary>
-        /// Constructor principal.
-        /// options: array con los textos de los botones (ordenados).
-        /// optionally: puedes pasar un Action<Button,int> para personalizar cada botón (colores, icono, ...)
-        /// </summary>
         public FrmSeleccionEditor(string title, string message, string[] options, Action<Button, int> customizeButton = null)
         {
             if (options == null || options.Length == 0) throw new ArgumentException("Debe proveer al menos una opción", nameof(options));
 
-            InitializeComponent(); // <-- usa los controles creados por el Designer (lblMessage, pnlButtons, etc.)
-
             this.Text = title ?? "Seleccionar";
-            lblMessage.Text = message ?? string.Empty;
-            // Ajustes estéticos opcionales
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
 
-            // Limpiar y poblar panel de botones (pnlButtons debe existir en Designer)
-            pnlButtons.Controls.Clear();
+            var mainPanel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                Padding = new Padding(15)
+            };
 
+            var lblMessage = new Label
+            {
+                Text = message ?? string.Empty,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 15),
+                Font = new Font("Segoe UI", 10F, FontStyle.Regular)
+            };
+            mainPanel.Controls.Add(lblMessage);
+
+            // 1. Calcular el tamaño preferido del botón con el texto más largo
+            var tempBtn = new Button { Font = new Font("Segoe UI", 9F, FontStyle.Bold) };
+            Size largestSize = Size.Empty;
+
+            foreach (string option in options)
+            {
+                tempBtn.Text = option;
+                // GetPreferredSize() calcula el tamaño mínimo necesario para mostrar el texto
+                Size preferredSize = tempBtn.GetPreferredSize(Size.Empty);
+                if (preferredSize.Width > largestSize.Width)
+                {
+                    largestSize.Width = preferredSize.Width;
+                }
+            }
+
+            // Establecer un ancho mínimo para uniformar la apariencia y añadir un pequeño relleno
+            int finalWidth = Math.Max(largestSize.Width + 20, 200);
+            int buttonHeight = 40;
+
+            // 2. Crear y añadir los botones con el mismo tamaño uniforme
             for (int i = 0; i < options.Length; i++)
             {
                 var btn = new Button
                 {
                     Text = options[i],
                     Tag = i,
-                    AutoSize = false,
-                    Size = new Size(180, 36),
-                    Margin = new Padding(6),
-                    Font = new Font("Segoe UI", 9F, FontStyle.Regular)
+                    Size = new Size(finalWidth, buttonHeight),
+                    AutoSize = false, // Desactivamos el AutoSize individual para forzar el mismo tamaño
+                    Margin = new Padding(5),
+                    Font = new Font("Segoe UI", 9F, FontStyle.Bold)
                 };
 
                 btn.Click += (s, e) =>
@@ -60,10 +89,12 @@ namespace FDCH.UI.Vistas
                 };
 
                 customizeButton?.Invoke(btn, i);
-                pnlButtons.Controls.Add(btn);
+                mainPanel.Controls.Add(btn);
             }
 
-            
+            this.Controls.Add(mainPanel);
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
     }
 }
