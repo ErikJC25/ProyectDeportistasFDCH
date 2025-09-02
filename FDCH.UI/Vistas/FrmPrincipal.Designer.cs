@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
+            this.lblUsuarioActivo = new System.Windows.Forms.Label();
+            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.btnupdateDrive = new System.Windows.Forms.Button();
             this.btnActualizarbase = new System.Windows.Forms.Button();
             this.btnGetBloqueo = new System.Windows.Forms.Button();
             this.btnAddParticipa = new System.Windows.Forms.Button();
             this.btnAddTorneo = new System.Windows.Forms.Button();
             this.btnBusqueda = new System.Windows.Forms.Button();
-            this.pnlOpcion = new System.Windows.Forms.Panel();
-            this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.btnInicio = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,28 +66,83 @@
             this.pnlMenu.Size = new System.Drawing.Size(241, 763);
             this.pnlMenu.TabIndex = 0;
             // 
+            // pnlOpcion
+            // 
+            this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
+            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlOpcion.Name = "pnlOpcion";
+            this.pnlOpcion.Size = new System.Drawing.Size(12, 66);
+            this.pnlOpcion.TabIndex = 7;
+            // 
+            // lblUsuarioActivo
+            // 
+            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
+            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 669);
+            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
+            this.lblUsuarioActivo.TabIndex = 6;
+            this.lblUsuarioActivo.Text = "Conectado";
+            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlContenedorFrm
+            // 
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1196, 706);
+            this.pnlContenedorFrm.TabIndex = 1;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(241, 706);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(1196, 57);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnupdateDrive
             // 
+            this.btnupdateDrive.BackColor = System.Drawing.Color.Navy;
             this.btnupdateDrive.BackgroundImage = global::FDCH.UI.Properties.Resources.subidaArchivoDrive;
             this.btnupdateDrive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnupdateDrive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnupdateDrive.Enabled = false;
+            this.btnupdateDrive.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnupdateDrive.FlatAppearance.BorderSize = 0;
+            this.btnupdateDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnupdateDrive.Location = new System.Drawing.Point(47, 507);
-            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4);
             this.btnupdateDrive.Name = "btnupdateDrive";
-            this.btnupdateDrive.Size = new System.Drawing.Size(51, 50);
+            this.btnupdateDrive.Size = new System.Drawing.Size(50, 50);
             this.btnupdateDrive.TabIndex = 13;
-            this.btnupdateDrive.UseVisualStyleBackColor = true;
+            this.btnupdateDrive.UseVisualStyleBackColor = false;
             this.btnupdateDrive.Click += new System.EventHandler(this.btnupdateDrive_Click);
             // 
             // btnActualizarbase
             // 
+            this.btnActualizarbase.BackColor = System.Drawing.Color.Navy;
             this.btnActualizarbase.BackgroundImage = global::FDCH.UI.Properties.Resources.actualizarBaseDatos;
             this.btnActualizarbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActualizarbase.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizarbase.Enabled = false;
+            this.btnActualizarbase.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnActualizarbase.FlatAppearance.BorderSize = 0;
+            this.btnActualizarbase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizarbase.Location = new System.Drawing.Point(139, 507);
-            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizarbase.Name = "btnActualizarbase";
-            this.btnActualizarbase.Size = new System.Drawing.Size(51, 50);
+            this.btnActualizarbase.Size = new System.Drawing.Size(50, 50);
             this.btnActualizarbase.TabIndex = 12;
-            this.btnActualizarbase.UseVisualStyleBackColor = true;
+            this.btnActualizarbase.UseVisualStyleBackColor = false;
             this.btnActualizarbase.Click += new System.EventHandler(this.btnActualizarbase_Click);
             // 
             // btnGetBloqueo
@@ -113,6 +168,7 @@
             // btnAddParticipa
             // 
             this.btnAddParticipa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddParticipa.Enabled = false;
             this.btnAddParticipa.FlatAppearance.BorderSize = 0;
             this.btnAddParticipa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddParticipa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -131,6 +187,7 @@
             // btnAddTorneo
             // 
             this.btnAddTorneo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddTorneo.Enabled = false;
             this.btnAddTorneo.FlatAppearance.BorderSize = 0;
             this.btnAddTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTorneo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -164,28 +221,6 @@
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
-            // pnlOpcion
-            // 
-            this.pnlOpcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
-            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlOpcion.Name = "pnlOpcion";
-            this.pnlOpcion.Size = new System.Drawing.Size(12, 66);
-            this.pnlOpcion.TabIndex = 7;
-            // 
-            // lblUsuarioActivo
-            // 
-            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
-            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 669);
-            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
-            this.lblUsuarioActivo.TabIndex = 6;
-            this.lblUsuarioActivo.Text = "Conectado";
-            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnInicio
             // 
             this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -206,7 +241,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.pictureBox1.BackColor = System.Drawing.Color.Crimson;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = global::FDCH.UI.Properties.Resources.Logo_FDCH1;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -216,27 +251,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // pnlContenedorFrm
-            // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1196, 706);
-            this.pnlContenedorFrm.TabIndex = 1;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
-            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 706);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1196, 57);
-            this.lblEstado.TabIndex = 2;
-            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 

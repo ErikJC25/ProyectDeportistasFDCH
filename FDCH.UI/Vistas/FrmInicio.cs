@@ -22,6 +22,11 @@ namespace FDCH.UI.Vistas
             InitializeComponent();
             _frmprincipal = principal;
             dataGridView1.AutoGenerateColumns = false;
+
+            if (_frmprincipal.bloqueoActivo == false)
+            {
+                dataGridView1.Columns["colEditar"].Visible = false;
+            }
         }
 
         private void FrmInicio_Load(object sender, EventArgs e)

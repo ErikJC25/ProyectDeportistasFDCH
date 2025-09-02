@@ -15,7 +15,7 @@ namespace FDCH.UI.Vistas
     public partial class FrmBusqueda : Form
     {
         Cls_Puente puente = new Cls_Puente(); // Instancia de Cls_Puente
-        private FrmPrincipal _frmprincipal;
+        public FrmPrincipal _frmprincipal;
 
 
         public FrmBusqueda(FrmPrincipal principal)
@@ -23,6 +23,11 @@ namespace FDCH.UI.Vistas
             InitializeComponent();
             _frmprincipal = principal;
             dataGridView1.AutoGenerateColumns = false; // Desactivar la generación automática de columnas
+
+            if (_frmprincipal.bloqueoActivo == false)
+            {
+                dataGridView1.Columns["colEditar"].Visible = false;
+            }
         }
 
         private void txtCedula_Enter(object sender, EventArgs e)
@@ -145,7 +150,7 @@ namespace FDCH.UI.Vistas
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             this.Close();
-            _frmprincipal.AbrirFormularioEnPanel(new FrmFiltrar());
+            _frmprincipal.AbrirFormularioEnPanel(new FrmFiltrar(this));
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

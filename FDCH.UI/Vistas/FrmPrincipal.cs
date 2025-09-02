@@ -25,6 +25,8 @@ namespace FDCH.UI.Vistas
         Usuario _usuarioAutenticado;
         Form formularioActivo = null; // Referencia al form actual
 
+        public bool bloqueoActivo = false;
+
         public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
@@ -114,9 +116,23 @@ namespace FDCH.UI.Vistas
                 e.Cancel = true;
                 return;
             }
+            //else
+            //{
+            //    if (bloqueoActivo)
+            //    {
+            //        // Liberar el bloqueo si está activo
+            //        btnGetBloqueo_Click(sender, e);
+            //        var aceptado = MessageBox.Show("Se ha liberado el bloqueo antes de salir.","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            //        if (aceptado == DialogResult.OK)
+            //        {
+            //            Application.ExitThread();
+            //        }
+            //    }
 
+            //}
             
         }
+
 
 
         private void btnAddParticipa_Click(object sender, EventArgs e)
@@ -236,15 +252,72 @@ namespace FDCH.UI.Vistas
 
         private async void btnGetBloqueo_Click(object sender, EventArgs e)
         {
-            bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
-            if (!tieneLock)
+            // Si el bloqueo ya está activo, la acción del botón es liberarlo
+            if (bloqueoActivo)
             {
-                MessageBox.Show("❌ Otro usuario ya tiene el bloqueo activo.");
-                return;
+                await LiberarBloqueo();
+                // Abrir el formulario de inicio
+                AbrirFormularioEnPanel(new FrmInicio(this));
+                MessageBox.Show("🔓 Bloqueo liberado. Ya no puede editar registros ni subir la base de datos.");
             }
+            else // Si no hay bloqueo activo, la acción es intentar obtenerlo
+            {
+                bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+                if (!tieneLock)
+                {
+                    MessageBox.Show("❌ Otro usuario ya tiene el bloqueo activo.");
+                    return;
+                }
 
-            MessageBox.Show("✅ Bloqueo obtenido correctamente. Ahora puedes subir tu base de datos.");
+                MessageBox.Show("🔒 Bloqueo obtenido correctamente. Ahora puede editar registros. Y subir su base de datos a la nube.");
+
+                // Habilitar funcionalidad
+                btnAddTorneo.Enabled = true;
+                btnAddParticipa.Enabled = true;
+                btnActualizarbase.Enabled = true;
+                btnActualizarbase.BackColor = Color.White;
+                btnupdateDrive.Enabled = true;
+                btnupdateDrive.BackColor = Color.White;
+
+                // Actualizar el estado de la UI
+                bloqueoActivo = true;
+                lblEstado.Text = "Bloqueo Activo";
+                lblEstado.ForeColor = Color.SpringGreen;
+                btnGetBloqueo.BackColor = Color.SpringGreen;
+                btnGetBloqueo.Text = "Liberar Bloqueo";
+                btnGetBloqueo.Image = FDCH.UI.Properties.Resources.bloqueado;
+
+                // Abrir un nuevo formulario
+                AbrirFormularioEnPanel(new FrmInicio(this));
+            }
         }
+
+        public async Task LiberarBloqueo()
+        {
+            // Llama a TryLock para liberar el bloqueo, ya que si el usuario es el mismo, libera el bloqueo y retorna false
+            await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+
+            // Revertir la interfaz de usuario a su estado inicial
+            btnAddTorneo.Enabled = false;
+            btnAddParticipa.Enabled = false;
+            btnActualizarbase.Enabled = false;
+            btnActualizarbase.BackColor = Color.Navy;
+            btnupdateDrive.Enabled = false;
+            btnupdateDrive.BackColor = Color.Navy;
+
+            bloqueoActivo = false;
+            lblEstado.Text = "Bloqueo Inactivo";
+            lblEstado.ForeColor = Color.Red;
+            btnGetBloqueo.BackColor = Color.Crimson;
+            btnGetBloqueo.Text = "Obtener Bloqueo";
+            btnGetBloqueo.Image = FDCH.UI.Properties.Resources.desbloqueado;
+
+            
+        }
+
+
+
+
 
 
 

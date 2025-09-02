@@ -13,10 +13,15 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmFiltrar : Form
     {
-        public FrmFiltrar()
+        public FrmFiltrar(FrmBusqueda frmBuscar)
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false; // Desactivar la generación automática de columnas
+
+            if (frmBuscar._frmprincipal.bloqueoActivo == false)
+            {
+                dataGridView1.Columns["colEditar"].Visible = false;
+            }
         }
 
         private void chkAntiguoActual_CheckedChanged(object sender, EventArgs e)

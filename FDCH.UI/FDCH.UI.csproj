@@ -297,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\cargando.gif" />
     <None Include="Resources\subidaArchivo.png" />
     <None Include="Resources\actualizar.png" />
     <None Include="Resources\limpiar.png" />
