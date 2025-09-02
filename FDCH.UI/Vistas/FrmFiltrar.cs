@@ -16,6 +16,7 @@ namespace FDCH.UI.Vistas
         public FrmFiltrar()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false; // Desactivar la generación automática de columnas
         }
 
         private void chkAntiguoActual_CheckedChanged(object sender, EventArgs e)
@@ -124,23 +125,6 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        private void txtEdad_Enter(object sender, EventArgs e)
-        {
-            if (txtEdad.Text == "EDAD" && txtEdad.ForeColor == Color.DarkGray)
-            {
-                txtEdad.Text = "";
-                txtEdad.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtEdad_Leave(object sender, EventArgs e)
-        {
-            if (txtEdad.Text == "")
-            {
-                txtEdad.Text = "EDAD";
-                txtEdad.ForeColor = Color.DarkGray;
-            }
-        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -153,7 +137,6 @@ namespace FDCH.UI.Vistas
             string placeholderCedula = "CEDULA";
             string placeholderApellidos = "APELLIDOS";
             string placeholderNombres = "NOMBRES";
-            string placeholderEdad = "EDAD";
 
             // 1. Añadir condiciones para los campos de texto
             if (!string.IsNullOrWhiteSpace(txtCedula.Text) && txtCedula.Text != placeholderCedula && txtCedula.ForeColor != Color.DarkGray)
@@ -174,29 +157,15 @@ namespace FDCH.UI.Vistas
                 parametros.Add(new System.Data.SQLite.SQLiteParameter("@nombres", $"%{txtNombres.Text}%"));
             }
 
-            // Validar y añadir condición para la edad (asumiendo que es un campo numérico)
-            if (!string.IsNullOrWhiteSpace(txtEdad.Text) && txtEdad.Text != placeholderEdad && txtEdad.ForeColor != Color.DarkGray)
-            {
-                if (int.TryParse(txtEdad.Text, out int edad))
-                {
-                    condiciones.Add("d.edad = @edad");
-                    parametros.Add(new System.Data.SQLite.SQLiteParameter("@edad", edad));
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, ingrese un valor numérico válido para la Edad.", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
 
             // 2. Añadir condiciones para los CheckBox (Género)
             if (chkMasculino.Checked && !chkFemenino.Checked)
             {
-                condiciones.Add("d.genero = 'Masculino'");
+                condiciones.Add("d.genero = 'MASCULINO'");
             }
             else if (chkFemenino.Checked && !chkMasculino.Checked)
             {
-                condiciones.Add("d.genero = 'Femenino'");
+                condiciones.Add("d.genero = 'FEMENINO'");
             }
             // Si ambos o ninguno están marcados, no se añade filtro por género.
 
@@ -233,10 +202,11 @@ namespace FDCH.UI.Vistas
             if (resultados == null || resultados.Count == 0)
             {
                 MessageBox.Show("No se encontraron resultados para los criterios de búsqueda proporcionados.", "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView1.DataSource = null; // Limpiar el DataGridView si no hay resultados
                 return;
             }
 
-            // Actualizar el DataGridView con los resultados (asumiendo que está en este mismo formulario)
+            // Actualizar el DataGridView con los resultados
             dataGridView1.DataSource = resultados;
         }
 
@@ -248,29 +218,13 @@ namespace FDCH.UI.Vistas
             txtApellidos.ForeColor = Color.DarkGray;
             txtNombres.Text = "NOMBRES";
             txtNombres.ForeColor = Color.DarkGray;
-            txtEdad.Text = "EDAD";
-            txtEdad.ForeColor = Color.DarkGray;
 
             chkAntiguoActual.Checked = false;
             chkMasculino.Checked = false;
             chkFemenino.Checked = false;
             chkAlfabeticamente.Checked = false;
 
-        }
-
-        private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true; // Evita que se ingrese el carácter
-            }
-
-            // Verifica si la tecla presionada es la tecla Enter
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                btnBuscar_Click(sender, e); // Llama al método que maneja el clic del botón
-                e.Handled = true;
-            }
+            dataGridView1.DataSource = null; // Limpiar el DataGridView
         }
 
         private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
@@ -298,7 +252,7 @@ namespace FDCH.UI.Vistas
             // Verifica si la tecla presionada es la tecla Enter
             if (e.KeyChar == (char)Keys.Enter)
             {
-                txtEdad.Focus(); // Mueve el foco al siguiente campo
+                btnBuscar_Click(sender, e); // Llama al método que maneja el clic del botón
                 e.Handled = true;
             }
         }

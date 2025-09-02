@@ -19,8 +19,8 @@ namespace FDCH.UI.Vistas
         private int _idEvento;
         private Cls_Puente puente = new Cls_Puente();
         private Deportista deportistaActual = null; // Almacena el deportista cargado para comparar cambios
-        // variable "bandera" al inicio de tu clase
-        private bool _isProgrammaticallyChanging = false;
+        // variable "bandera" para saber si el cambio lo hizo el usuario o el programa
+        private bool _cambioInternoPrograma = false;
 
         FrmPrincipal _frmprincipal;
 
@@ -200,7 +200,7 @@ namespace FDCH.UI.Vistas
         private void cmbCedula_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Si el cambio lo está haciendo nuestro propio código, lo ignoramos.
-            if (_isProgrammaticallyChanging) return;
+            if (_cambioInternoPrograma) return;
             if (cmbCedula.SelectedItem == null) return;
 
             var deportista = puente.BuscarDeportistaPorCedula(cmbCedula.SelectedItem.ToString());
@@ -209,18 +209,16 @@ namespace FDCH.UI.Vistas
                 try
                 {
                     // Activamos la bandera para tener el control
-                    _isProgrammaticallyChanging = true;
+                    _cambioInternoPrograma = true;
 
-                    // 1. Llenamos todos los campos
+                    // Llenamos todos los campos
                     LlenarCamposDeportista(deportista);
 
-                    // 2. Deshabilitamos el combo de nombres porque ya identificamos al deportista.
-                    cmbNombres.Enabled = false;
                 }
                 finally
                 {
                     // Desactivamos la bandera, devolviendo el control a los eventos del usuario.
-                    _isProgrammaticallyChanging = false;
+                    _cambioInternoPrograma = false;
                 }
             }
         }
@@ -228,7 +226,7 @@ namespace FDCH.UI.Vistas
 
         private void cmbNombres_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isProgrammaticallyChanging) return;
+            if (_cambioInternoPrograma) return;
             if (cmbNombres.SelectedItem == null || cmbApellidos.SelectedItem == null) return;
 
             var deportista = puente.BuscarDeportistaPorNombreCompleto(
@@ -240,12 +238,12 @@ namespace FDCH.UI.Vistas
             {
                 try
                 {
-                    _isProgrammaticallyChanging = true;
+                    _cambioInternoPrograma = true;
                     LlenarCamposDeportista(deportista);
                 }
                 finally
                 {
-                    _isProgrammaticallyChanging = false;
+                    _cambioInternoPrograma = false;
                 }
             }
         }
@@ -253,17 +251,16 @@ namespace FDCH.UI.Vistas
 
         private void cmbApellidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isProgrammaticallyChanging) return;
+            if (_cambioInternoPrograma) return;
             if (cmbApellidos.SelectedItem == null)
             {
                 cmbNombres.DataSource = null;
-                cmbNombres.Enabled = false;
                 return;
             }
 
             try
             {
-                _isProgrammaticallyChanging = true;
+                _cambioInternoPrograma = true;
 
                 // Si el usuario elige un apellido, reseteamos la ruta de la cédula.
                 cmbCedula.SelectedIndex = -1;
@@ -272,7 +269,7 @@ namespace FDCH.UI.Vistas
             }
             finally
             {
-                _isProgrammaticallyChanging = false;
+                _cambioInternoPrograma = false;
             }
 
             try
@@ -280,8 +277,11 @@ namespace FDCH.UI.Vistas
                 // Cargamos los nombres correspondientes al apellido y habilitamos el combo.
                 var nombres = puente.ObtenerNombresPorApellido(cmbApellidos.SelectedItem.ToString());
                 cmbNombres.DataSource = nombres;
-                cmbNombres.SelectedIndex = -1;
-                cmbNombres.Enabled = true;
+
+                if(nombres.Count != 0)
+                {
+                    cmbNombres.SelectedIndex = 0;
+                }  
             }
             catch (Exception ex)
             {
@@ -307,12 +307,12 @@ namespace FDCH.UI.Vistas
             if (cmbDisciplina.SelectedValue is int idDisciplina)
             {
                 CargarEspecialidadesPorDisciplina(idDisciplina);
-                cmbEspecialidad.Enabled = true;
+                txtModalidad.Text = "INDIVIDUAL / EQUIPO";
+                txtModalidad.ForeColor = Color.DarkGray;
             }
             else
             {
                 cmbEspecialidad.DataSource = null;
-                cmbEspecialidad.Enabled = false;
             }
         }
 
@@ -374,7 +374,7 @@ namespace FDCH.UI.Vistas
             try
             {
                 // =================================================================
-                // PARTE 1: OBTENER O GUARDAR DEPORTISTA (Lógica existente)
+                // PARTE 1: OBTENER O GUARDAR DEPORTISTA
                 // =================================================================
                 Deportista deportistaParaGuardar = new Deportista
                 {
@@ -551,7 +551,7 @@ namespace FDCH.UI.Vistas
             deportistaActual = null;
 
             // 2. Usamos la bandera para evitar que se disparen eventos de autocompletado mientras limpiamos
-            _isProgrammaticallyChanging = true;
+            _cambioInternoPrograma = true;
 
             try
             {
@@ -566,14 +566,12 @@ namespace FDCH.UI.Vistas
 
                 // El ComboBox de nombres sí se vacía y deshabilita, porque depende del apellido
                 cmbNombres.DataSource = null;
-                cmbNombres.Enabled = false;
                 cmbNombres.Text = "";
 
                 // --- Restablece la sección de Disciplina ---
                 cmbDisciplina.SelectedIndex = -1;
                 // El ComboBox de especialidad también se vacía y deshabilita
                 cmbEspecialidad.DataSource = null;
-                cmbEspecialidad.Enabled = false;
                 cmbEspecialidad.Text = "";
 
                 // --- Restablece TODOS los TextBox a su estado inicial (con texto de ayuda) ---
@@ -624,7 +622,7 @@ namespace FDCH.UI.Vistas
             finally
             {
                 // 4. Al final, devolvemos el control a los eventos del usuario
-                _isProgrammaticallyChanging = false;
+                _cambioInternoPrograma = false;
             }
         }
 

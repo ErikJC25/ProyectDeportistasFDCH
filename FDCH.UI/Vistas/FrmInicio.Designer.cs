@@ -119,7 +119,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 587);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 635);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -465,7 +465,7 @@
             // 
             // btnExportExcelGeneral
             // 
-            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.Green;
+            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.LimeGreen;
             this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
             this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

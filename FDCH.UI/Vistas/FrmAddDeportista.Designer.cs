@@ -492,7 +492,6 @@
             // cmbEspecialidad
             // 
             this.cmbEspecialidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cmbEspecialidad.Enabled = false;
             this.cmbEspecialidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEspecialidad.FormattingEnabled = true;
             this.cmbEspecialidad.Location = new System.Drawing.Point(819, 206);
@@ -537,7 +536,6 @@
             // cmbNombres
             // 
             this.cmbNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cmbNombres.Enabled = false;
             this.cmbNombres.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNombres.FormattingEnabled = true;
             this.cmbNombres.IntegralHeight = false;
@@ -592,7 +590,6 @@
             this.cmbTecnico.Name = "cmbTecnico";
             this.cmbTecnico.Size = new System.Drawing.Size(335, 31);
             this.cmbTecnico.TabIndex = 17;
-            this.cmbTecnico.SelectedIndexChanged += new System.EventHandler(this.cmbCedula_SelectedIndexChanged);
             this.cmbTecnico.TextChanged += new System.EventHandler(this.cmbTecnico_TextChanged);
             // 
             // FrmAddDeportista

@@ -22,7 +22,7 @@ namespace FDCH.UI.Vistas
         {
             InitializeComponent();
             _frmprincipal = principal;
-            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AutoGenerateColumns = false; // Desactivar la generación automática de columnas
         }
 
         private void txtCedula_Enter(object sender, EventArgs e)
