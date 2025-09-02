@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
+using static FDCH.UI.DriveServiceHelper;
 
 namespace FDCH.UI.Vistas
 {
@@ -189,18 +190,17 @@ namespace FDCH.UI.Vistas
                     return;
                 }
 
-                // 2️⃣ Subida normal de la base
+                // 2️⃣ Preparar la BD para subir
                 string dbPath = DbService.GetDbPath();
 
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
 
-                // Copiar a archivo temporal para evitar bloqueos locales
                 string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
                 File.Copy(dbPath, tempPath, true);
 
-                // 🔹 Subir al root de Drive (sin carpeta)
-                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderId: null);
+                // 3️⃣ Subir al Drive en la carpeta de respaldo principal
+                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderRespaldo);
 
                 File.Delete(tempPath);
 
@@ -208,13 +208,7 @@ namespace FDCH.UI.Vistas
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error: {ex.Message}");
-            }
-            finally
-            {
-                // 3️⃣ Liberar lock al finalizar subida
-                await DriveServiceHelper.ReleaseLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
-                MessageBox.Show("🔓 Bloqueo liberado.");
+                MessageBox.Show($"Ocurrió un error al subir la BD: {ex.Message}");
             }
         }
 
@@ -255,43 +249,54 @@ namespace FDCH.UI.Vistas
 
         private async void btnGetBloqueo_Click(object sender, EventArgs e)
         {
-            // Si el bloqueo ya está activo, la acción del botón es liberarlo
             if (bloqueoActivo)
             {
                 await LiberarBloqueo();
-                // Abrir el formulario de inicio
                 AbrirFormularioEnPanel(new FrmInicio(this));
                 MessageBox.Show("🔓 Bloqueo liberado. Ya no puede editar registros ni subir la base de datos.");
+                return;
             }
-            else // Si no hay bloqueo activo, la acción es intentar obtenerlo
+
+            // Intentar obtener bloqueo
+            var lockResult = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+
+            switch (lockResult)
             {
-                bool tieneLock = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
-                if (!tieneLock)
-                {
+                case LockResult.AlreadyLocked:
                     MessageBox.Show("❌ Otro usuario ya tiene el bloqueo activo.");
                     return;
-                }
 
-                MessageBox.Show("🔒 Bloqueo obtenido correctamente. Ahora puede editar registros. Y subir su base de datos a la nube.");
+                case LockResult.Released:
+                    MessageBox.Show("🔓 Ya tenía el bloqueo, pero fue liberado.");
+                    bloqueoActivo = false;
+                    lblEstado.Text = "Sin Bloqueo";
+                    lblEstado.ForeColor = Color.Red;
+                    btnGetBloqueo.BackColor = Color.Red;
+                    btnGetBloqueo.Text = "Obtener Bloqueo";
+                    btnGetBloqueo.Image = FDCH.UI.Properties.Resources.desbloqueado;
+                    return;
 
-                // Habilitar funcionalidad
-                btnAddTorneo.Enabled = true;
-                btnAddParticipa.Enabled = true;
-                btnActualizarbase.Enabled = true;
-                btnActualizarbase.BackColor = Color.White;
-                btnupdateDrive.Enabled = true;
-                btnupdateDrive.BackColor = Color.White;
+                case LockResult.Granted:
+                    MessageBox.Show("🔒 Bloqueo obtenido correctamente. Ahora puede editar registros y subir su base de datos a la nube.");
 
-                // Actualizar el estado de la UI
-                bloqueoActivo = true;
-                lblEstado.Text = "Bloqueo Activo";
-                lblEstado.ForeColor = Color.SpringGreen;
-                btnGetBloqueo.BackColor = Color.SpringGreen;
-                btnGetBloqueo.Text = "Liberar Bloqueo";
-                btnGetBloqueo.Image = FDCH.UI.Properties.Resources.bloqueado;
+                    // Habilitar funcionalidad
+                    btnAddTorneo.Enabled = true;
+                    btnAddParticipa.Enabled = true;
+                    btnActualizarbase.Enabled = true;
+                    btnActualizarbase.BackColor = Color.White;
+                    btnupdateDrive.Enabled = true;
+                    btnupdateDrive.BackColor = Color.White;
 
-                // Abrir un nuevo formulario
-                AbrirFormularioEnPanel(new FrmInicio(this));
+                    // Actualizar el estado de la UI
+                    bloqueoActivo = true;
+                    lblEstado.Text = "Bloqueo Activo";
+                    lblEstado.ForeColor = Color.SpringGreen;
+                    btnGetBloqueo.BackColor = Color.SpringGreen;
+                    btnGetBloqueo.Text = "Liberar Bloqueo";
+                    btnGetBloqueo.Image = FDCH.UI.Properties.Resources.bloqueado;
+
+                    AbrirFormularioEnPanel(new FrmInicio(this));
+                    break;
             }
         }
 
@@ -303,8 +308,8 @@ namespace FDCH.UI.Vistas
             // Revertir la interfaz de usuario a su estado inicial
             btnAddTorneo.Enabled = false;
             btnAddParticipa.Enabled = false;
-            btnActualizarbase.Enabled = false;
-            btnActualizarbase.BackColor = Color.Navy;
+            //btnActualizarbase.Enabled = false;
+            //btnActualizarbase.BackColor = Color.Navy;
             btnupdateDrive.Enabled = false;
             btnupdateDrive.BackColor = Color.Navy;
 

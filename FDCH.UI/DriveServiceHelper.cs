@@ -175,7 +175,14 @@ namespace FDCH.UI
         }
 
         // 🔹 Lock con toggle
-        public static async Task<bool> TryLock(string usuario, string folderId)
+        public enum LockResult
+        {
+            Granted,       // Se otorgó el bloqueo
+            AlreadyLocked, // Otro usuario lo tiene activo
+            Released       // Se liberó porque el mismo usuario lo tenía
+        }
+
+        public static async Task<LockResult> TryLock(string usuario, string folderId)
         {
             var lockFileId = GetFileIdByName("lock.json", folderId);
             DateTime now = DateTime.UtcNow;
@@ -193,30 +200,47 @@ namespace FDCH.UI
 
                 File.Delete(tempReadPath);
 
+                // Otro usuario tiene el bloqueo y sigue vigente
                 if (currentUser != usuario && lockTime.AddMinutes(30) > now)
-                    return false;
+                    return LockResult.AlreadyLocked;
 
+                // Si el mismo usuario tenía el lock, lo liberamos
                 if (currentUser == usuario)
                 {
                     await ReleaseLock(usuario, folderId);
-                    return false; // lock liberado
+                    return LockResult.Released;
                 }
             }
 
+            // Crear un nuevo lock con archivo temporal único
             var newLock = new
             {
                 usuario = usuario,
                 timestamp = now.ToString("o")
             };
 
-            string tempWritePath = Path.Combine(Path.GetTempPath(), "lock_write.json");
+            string tempWritePath = Path.Combine(Path.GetTempPath(), $"lock_write_{Guid.NewGuid()}.json");
             File.WriteAllText(tempWritePath, Newtonsoft.Json.JsonConvert.SerializeObject(newLock));
 
             await UploadOrUpdateFile(tempWritePath, folderId, "lock.json");
-            File.Delete(tempWritePath);
 
-            return true;
+            // Intentar borrar el archivo temporal de forma segura
+            if (File.Exists(tempWritePath))
+            {
+                try
+                {
+                    File.Delete(tempWritePath);
+                }
+                catch (IOException)
+                {
+                    // Ignorar si el archivo aún está en uso por Windows
+                }
+            }
+
+            return LockResult.Granted;
         }
+
+
 
         // 🔹 Buscar archivo por nombre
         public static string GetFileIdByName(string fileName, string folderId)
