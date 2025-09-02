@@ -359,7 +359,7 @@ namespace FDCH.UI.Vistas
                 t.SetToolTip(btn, $"Abrir: {btn.Text}");
             };
 
-            using (var dlg = new FrmSeleccionEditor("Seleccione una opción", "Seleccione la entidad a gestionar", opciones, customizer))
+            using (var dlg = new FrmSeleccionEditor("Gestión de Entidades", "Seleccione la entidad a gestionar", opciones, customizer))
             {
                 var r = dlg.ShowDialog(this);
                 if (r == DialogResult.OK)

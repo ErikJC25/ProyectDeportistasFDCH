@@ -69,7 +69,7 @@ namespace FDCH.UI.Vistas
                 RegistroTotal registroCompleto = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
 
                 // Opciones personalizadas
-                string[] opciones = new string[] { "Editar Torneo", "Editar Desempeño Deportista", "Ver sólo" };
+                string[] opciones = new string[] { "Editar Torneo", "Editar Desempeño Deportista" };
 
                 // Personalización de botones (opcional)
                 Action<Button, int> customizer = (btn, idx) =>
