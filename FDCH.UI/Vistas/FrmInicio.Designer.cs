@@ -465,7 +465,7 @@
             // 
             // btnExportExcelGeneral
             // 
-            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.Blue;
             this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
             this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -483,8 +483,7 @@
             // 
             // FrmInicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.panel1);
