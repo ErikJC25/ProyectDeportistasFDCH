@@ -329,6 +329,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <Content Include="Resources\editar.png" />
+    <Content Include="Resources\editar2.png" />
+    <Content Include="Resources\gestionar_entidades.png" />
     <None Include="Resources\cargando.gif" />
     <None Include="Resources\subidaArchivo.png" />
     <None Include="Resources\actualizar.png" />
