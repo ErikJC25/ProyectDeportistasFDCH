@@ -17,7 +17,7 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmPrincipal : Form
     {
-        // Carpeta principal de respaldos
+        // Carpeta de usuarios que hicieron cambios
         private readonly string folderLock = "1xa2g-odHTRsxcfIHvFAIp0CO2__ep-s7";
 
         // Carpeta de respaldos automáticos por tiempo
@@ -183,16 +183,13 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-                // 1️⃣ Verificar si el usuario actual tiene el lock
                 bool tieneLock = await DriveServiceHelper.CheckLock(_usuarioAutenticado.nombre_usuario, folderLock);
-
                 if (!tieneLock)
                 {
                     MessageBox.Show("❌ No tienes el bloqueo activo. Solicítalo primero antes de subir.");
                     return;
                 }
 
-                // 2️⃣ Preparar la BD para subir
                 string dbPath = DbService.GetDbPath();
 
                 SQLiteConnection.ClearAllPools();
@@ -201,12 +198,15 @@ namespace FDCH.UI.Vistas
                 string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
                 File.Copy(dbPath, tempPath, true);
 
-                // 3️⃣ Subir al Drive en la carpeta de respaldo principal
-                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderLock);
+                // 🚀 Subir al Drive general (sin carpeta, sin usuario en nombre)
+                string fileId = await DriveServiceHelper.UploadFile(tempPath, null);
 
                 File.Delete(tempPath);
 
-                MessageBox.Show($"✅ Archivo subido con éxito. ID: {fileId}");
+                // 📝 Registrar auditoría
+                string registro = await DriveServiceHelper.SubirRegistroLock(_usuarioAutenticado.nombre_usuario, folderLock);
+
+                MessageBox.Show($"✅ Archivo subido con éxito. ID: {fileId}\n📝 Cambios registrados: {registro}");
             }
             catch (Exception ex)
             {

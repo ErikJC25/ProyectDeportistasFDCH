@@ -346,5 +346,39 @@ namespace FDCH.UI
                 }
             }
         }
+
+
+        public static async Task<string> SubirRegistroLock(string usuario, string folderLock)
+        {
+            var service = GetDriveService();
+
+            var registro = new
+            {
+                usuario = usuario,
+                fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+            };
+
+            string tempPath = Path.Combine(Path.GetTempPath(), $"actualizado_{Guid.NewGuid()}.json");
+            File.WriteAllText(tempPath, Newtonsoft.Json.JsonConvert.SerializeObject(registro, Newtonsoft.Json.Formatting.Indented));
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = $"actualizado_{usuario}_{DateTime.Now:yyyyMMdd_HHmmss}.json",
+                Parents = new[] { folderLock }
+            };
+
+            Google.Apis.Drive.v3.FilesResource.CreateMediaUpload request;
+            using (var stream = new FileStream(tempPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                request = service.Files.Create(fileMetadata, stream, "application/json");
+                request.Fields = "id";
+                await request.UploadAsync();
+            }
+
+            File.Delete(tempPath);
+
+            return fileMetadata.Name;
+        }
+
     }
 }
