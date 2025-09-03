@@ -18,7 +18,7 @@ namespace FDCH.UI.Vistas
     public partial class FrmPrincipal : Form
     {
         // Carpeta principal de respaldos
-        private readonly string folderRespaldo = "1xa2g-odHTRsxcfIHvFAIp0CO2__ep-s7";
+        private readonly string folderLock = "1xa2g-odHTRsxcfIHvFAIp0CO2__ep-s7";
 
         // Carpeta de respaldos automáticos por tiempo
         private readonly string folderRespaldoPorTiempo = "1n9nClQJDUljOIZoo-e6z2earBzHYsTPr";
@@ -184,7 +184,7 @@ namespace FDCH.UI.Vistas
             try
             {
                 // 1️⃣ Verificar si el usuario actual tiene el lock
-                bool tieneLock = await DriveServiceHelper.CheckLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+                bool tieneLock = await DriveServiceHelper.CheckLock(_usuarioAutenticado.nombre_usuario, folderLock);
 
                 if (!tieneLock)
                 {
@@ -202,7 +202,7 @@ namespace FDCH.UI.Vistas
                 File.Copy(dbPath, tempPath, true);
 
                 // 3️⃣ Subir al Drive en la carpeta de respaldo principal
-                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderRespaldo);
+                string fileId = await DriveServiceHelper.UploadFile(tempPath, folderLock);
 
                 File.Delete(tempPath);
 
@@ -260,7 +260,7 @@ namespace FDCH.UI.Vistas
             }
 
             // Intentar obtener bloqueo
-            var lockResult = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+            var lockResult = await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderLock);
 
             switch (lockResult)
             {
@@ -304,7 +304,7 @@ namespace FDCH.UI.Vistas
         public async Task LiberarBloqueo()
         {
             // Llama a TryLock para liberar el bloqueo, ya que si el usuario es el mismo, libera el bloqueo y retorna false
-            await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderRespaldo);
+            await DriveServiceHelper.TryLock(_usuarioAutenticado.nombre_usuario, folderLock);
 
             // Revertir la interfaz de usuario a su estado inicial
             btnAddTorneo.Enabled = false;
