@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
+            this.lblUsuarioActivo = new System.Windows.Forms.Label();
+            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.btnGestionarEntidades = new System.Windows.Forms.Button();
             this.btnupdateDrive = new System.Windows.Forms.Button();
             this.btnActualizarbase = new System.Windows.Forms.Button();
@@ -37,12 +41,8 @@
             this.btnAddParticipa = new System.Windows.Forms.Button();
             this.btnAddTorneo = new System.Windows.Forms.Button();
             this.btnBusqueda = new System.Windows.Forms.Button();
-            this.pnlOpcion = new System.Windows.Forms.Panel();
-            this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.btnInicio = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,136 +68,6 @@
             this.pnlMenu.Size = new System.Drawing.Size(241, 762);
             this.pnlMenu.TabIndex = 0;
             // 
-            // btnGestionarEntidades
-            // 
-            this.btnGestionarEntidades.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGestionarEntidades.FlatAppearance.BorderSize = 0;
-            this.btnGestionarEntidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionarEntidades.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGestionarEntidades.ForeColor = System.Drawing.Color.White;
-            this.btnGestionarEntidades.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnGestionarEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGestionarEntidades.Location = new System.Drawing.Point(12, 382);
-            this.btnGestionarEntidades.Margin = new System.Windows.Forms.Padding(2);
-            this.btnGestionarEntidades.Name = "btnGestionarEntidades";
-            this.btnGestionarEntidades.Size = new System.Drawing.Size(229, 70);
-            this.btnGestionarEntidades.TabIndex = 14;
-            this.btnGestionarEntidades.Text = "Gestionar\r\nEntidades";
-            this.btnGestionarEntidades.UseVisualStyleBackColor = true;
-            this.btnGestionarEntidades.Click += new System.EventHandler(this.btnGestionarEntidades_Click);
-            // 
-            // btnupdateDrive
-            // 
-            this.btnupdateDrive.BackColor = System.Drawing.Color.Navy;
-            this.btnupdateDrive.BackgroundImage = global::FDCH.UI.Properties.Resources.subidaArchivoDrive;
-            this.btnupdateDrive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnupdateDrive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnupdateDrive.Enabled = false;
-            this.btnupdateDrive.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnupdateDrive.FlatAppearance.BorderSize = 0;
-            this.btnupdateDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnupdateDrive.Location = new System.Drawing.Point(48, 508);
-            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnupdateDrive.Name = "btnupdateDrive";
-            this.btnupdateDrive.Size = new System.Drawing.Size(50, 50);
-            this.btnupdateDrive.TabIndex = 13;
-            this.btnupdateDrive.UseVisualStyleBackColor = false;
-            this.btnupdateDrive.Click += new System.EventHandler(this.btnupdateDrive_Click);
-            // 
-            // btnActualizarbase
-            // 
-            this.btnActualizarbase.BackColor = System.Drawing.Color.Navy;
-            this.btnActualizarbase.BackgroundImage = global::FDCH.UI.Properties.Resources.actualizarBaseDatos;
-            this.btnActualizarbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnActualizarbase.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActualizarbase.Enabled = false;
-            this.btnActualizarbase.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btnActualizarbase.FlatAppearance.BorderSize = 0;
-            this.btnActualizarbase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarbase.Location = new System.Drawing.Point(139, 508);
-            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnActualizarbase.Name = "btnActualizarbase";
-            this.btnActualizarbase.Size = new System.Drawing.Size(50, 50);
-            this.btnActualizarbase.TabIndex = 12;
-            this.btnActualizarbase.UseVisualStyleBackColor = false;
-            this.btnActualizarbase.Click += new System.EventHandler(this.btnActualizarbase_Click);
-            // 
-            // btnGetBloqueo
-            // 
-            this.btnGetBloqueo.BackColor = System.Drawing.Color.Crimson;
-            this.btnGetBloqueo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGetBloqueo.FlatAppearance.BorderSize = 0;
-            this.btnGetBloqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGetBloqueo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetBloqueo.ForeColor = System.Drawing.Color.White;
-            this.btnGetBloqueo.Image = global::FDCH.UI.Properties.Resources.desbloqueado;
-            this.btnGetBloqueo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 609);
-            this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2);
-            this.btnGetBloqueo.Name = "btnGetBloqueo";
-            this.btnGetBloqueo.Size = new System.Drawing.Size(241, 60);
-            this.btnGetBloqueo.TabIndex = 11;
-            this.btnGetBloqueo.Text = "Obtener Bloqueo";
-            this.btnGetBloqueo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGetBloqueo.UseVisualStyleBackColor = false;
-            this.btnGetBloqueo.Click += new System.EventHandler(this.btnGetBloqueo_Click);
-            // 
-            // btnAddParticipa
-            // 
-            this.btnAddParticipa.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddParticipa.Enabled = false;
-            this.btnAddParticipa.FlatAppearance.BorderSize = 0;
-            this.btnAddParticipa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddParticipa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
-            this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddParticipa.Location = new System.Drawing.Point(12, 312);
-            this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAddParticipa.Name = "btnAddParticipa";
-            this.btnAddParticipa.Size = new System.Drawing.Size(229, 70);
-            this.btnAddParticipa.TabIndex = 10;
-            this.btnAddParticipa.Text = "Agregar\r\nParticipación";
-            this.btnAddParticipa.UseVisualStyleBackColor = true;
-            this.btnAddParticipa.Click += new System.EventHandler(this.btnAddParticipa_Click);
-            // 
-            // btnAddTorneo
-            // 
-            this.btnAddTorneo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddTorneo.Enabled = false;
-            this.btnAddTorneo.FlatAppearance.BorderSize = 0;
-            this.btnAddTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddTorneo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
-            this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
-            this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddTorneo.Location = new System.Drawing.Point(12, 242);
-            this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAddTorneo.Name = "btnAddTorneo";
-            this.btnAddTorneo.Size = new System.Drawing.Size(229, 70);
-            this.btnAddTorneo.TabIndex = 9;
-            this.btnAddTorneo.Text = "Agregar\r\nTorneo";
-            this.btnAddTorneo.UseVisualStyleBackColor = true;
-            this.btnAddTorneo.Click += new System.EventHandler(this.btnAddTorneo_Click);
-            // 
-            // btnBusqueda
-            // 
-            this.btnBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBusqueda.FlatAppearance.BorderSize = 0;
-            this.btnBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBusqueda.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBusqueda.ForeColor = System.Drawing.Color.White;
-            this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
-            this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBusqueda.Location = new System.Drawing.Point(12, 178);
-            this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBusqueda.Name = "btnBusqueda";
-            this.btnBusqueda.Size = new System.Drawing.Size(229, 66);
-            this.btnBusqueda.TabIndex = 8;
-            this.btnBusqueda.Text = "Busqueda";
-            this.btnBusqueda.UseVisualStyleBackColor = true;
-            this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
-            // 
             // pnlOpcion
             // 
             this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
@@ -220,6 +90,158 @@
             this.lblUsuarioActivo.TabIndex = 6;
             this.lblUsuarioActivo.Text = "Conectado";
             this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlContenedorFrm
+            // 
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
+            this.pnlContenedorFrm.TabIndex = 9;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(241, 704);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnGestionarEntidades
+            // 
+            this.btnGestionarEntidades.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGestionarEntidades.Enabled = false;
+            this.btnGestionarEntidades.FlatAppearance.BorderSize = 0;
+            this.btnGestionarEntidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGestionarEntidades.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionarEntidades.ForeColor = System.Drawing.Color.White;
+            this.btnGestionarEntidades.Image = global::FDCH.UI.Properties.Resources.gestionar_entidades;
+            this.btnGestionarEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGestionarEntidades.Location = new System.Drawing.Point(12, 382);
+            this.btnGestionarEntidades.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGestionarEntidades.Name = "btnGestionarEntidades";
+            this.btnGestionarEntidades.Size = new System.Drawing.Size(229, 70);
+            this.btnGestionarEntidades.TabIndex = 5;
+            this.btnGestionarEntidades.Text = "Gestionar\r\nEntidades";
+            this.btnGestionarEntidades.UseVisualStyleBackColor = true;
+            this.btnGestionarEntidades.Click += new System.EventHandler(this.btnGestionarEntidades_Click);
+            // 
+            // btnupdateDrive
+            // 
+            this.btnupdateDrive.BackColor = System.Drawing.Color.Navy;
+            this.btnupdateDrive.BackgroundImage = global::FDCH.UI.Properties.Resources.subidaArchivoDrive;
+            this.btnupdateDrive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnupdateDrive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnupdateDrive.Enabled = false;
+            this.btnupdateDrive.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnupdateDrive.FlatAppearance.BorderSize = 0;
+            this.btnupdateDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnupdateDrive.Location = new System.Drawing.Point(48, 508);
+            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4);
+            this.btnupdateDrive.Name = "btnupdateDrive";
+            this.btnupdateDrive.Size = new System.Drawing.Size(50, 50);
+            this.btnupdateDrive.TabIndex = 6;
+            this.btnupdateDrive.UseVisualStyleBackColor = false;
+            this.btnupdateDrive.Click += new System.EventHandler(this.btnupdateDrive_Click);
+            // 
+            // btnActualizarbase
+            // 
+            this.btnActualizarbase.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnActualizarbase.BackgroundImage = global::FDCH.UI.Properties.Resources.actualizarBaseDatos;
+            this.btnActualizarbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActualizarbase.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizarbase.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btnActualizarbase.FlatAppearance.BorderSize = 0;
+            this.btnActualizarbase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarbase.Location = new System.Drawing.Point(139, 508);
+            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActualizarbase.Name = "btnActualizarbase";
+            this.btnActualizarbase.Size = new System.Drawing.Size(50, 50);
+            this.btnActualizarbase.TabIndex = 7;
+            this.btnActualizarbase.UseVisualStyleBackColor = false;
+            this.btnActualizarbase.Click += new System.EventHandler(this.btnActualizarbase_Click);
+            // 
+            // btnGetBloqueo
+            // 
+            this.btnGetBloqueo.BackColor = System.Drawing.Color.Crimson;
+            this.btnGetBloqueo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetBloqueo.FlatAppearance.BorderSize = 0;
+            this.btnGetBloqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGetBloqueo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetBloqueo.ForeColor = System.Drawing.Color.White;
+            this.btnGetBloqueo.Image = global::FDCH.UI.Properties.Resources.desbloqueado;
+            this.btnGetBloqueo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 609);
+            this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGetBloqueo.Name = "btnGetBloqueo";
+            this.btnGetBloqueo.Size = new System.Drawing.Size(241, 60);
+            this.btnGetBloqueo.TabIndex = 8;
+            this.btnGetBloqueo.Text = "Obtener Bloqueo";
+            this.btnGetBloqueo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGetBloqueo.UseVisualStyleBackColor = false;
+            this.btnGetBloqueo.Click += new System.EventHandler(this.btnGetBloqueo_Click);
+            // 
+            // btnAddParticipa
+            // 
+            this.btnAddParticipa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddParticipa.Enabled = false;
+            this.btnAddParticipa.FlatAppearance.BorderSize = 0;
+            this.btnAddParticipa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddParticipa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
+            this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
+            this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddParticipa.Location = new System.Drawing.Point(12, 312);
+            this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddParticipa.Name = "btnAddParticipa";
+            this.btnAddParticipa.Size = new System.Drawing.Size(229, 70);
+            this.btnAddParticipa.TabIndex = 4;
+            this.btnAddParticipa.Text = "Agregar\r\nParticipación";
+            this.btnAddParticipa.UseVisualStyleBackColor = true;
+            this.btnAddParticipa.Click += new System.EventHandler(this.btnAddParticipa_Click);
+            // 
+            // btnAddTorneo
+            // 
+            this.btnAddTorneo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddTorneo.Enabled = false;
+            this.btnAddTorneo.FlatAppearance.BorderSize = 0;
+            this.btnAddTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTorneo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
+            this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
+            this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddTorneo.Location = new System.Drawing.Point(12, 242);
+            this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddTorneo.Name = "btnAddTorneo";
+            this.btnAddTorneo.Size = new System.Drawing.Size(229, 70);
+            this.btnAddTorneo.TabIndex = 3;
+            this.btnAddTorneo.Text = "Agregar\r\nTorneo";
+            this.btnAddTorneo.UseVisualStyleBackColor = true;
+            this.btnAddTorneo.Click += new System.EventHandler(this.btnAddTorneo_Click);
+            // 
+            // btnBusqueda
+            // 
+            this.btnBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusqueda.FlatAppearance.BorderSize = 0;
+            this.btnBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBusqueda.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBusqueda.ForeColor = System.Drawing.Color.White;
+            this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
+            this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBusqueda.Location = new System.Drawing.Point(12, 178);
+            this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBusqueda.Name = "btnBusqueda";
+            this.btnBusqueda.Size = new System.Drawing.Size(229, 66);
+            this.btnBusqueda.TabIndex = 2;
+            this.btnBusqueda.Text = "Busqueda";
+            this.btnBusqueda.UseVisualStyleBackColor = true;
+            this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
             // btnInicio
             // 
@@ -251,28 +273,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // pnlContenedorFrm
-            // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
-            this.pnlContenedorFrm.TabIndex = 1;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
-            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 704);
-            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
-            this.lblEstado.TabIndex = 2;
-            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 

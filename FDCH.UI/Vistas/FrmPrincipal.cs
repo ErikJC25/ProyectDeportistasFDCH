@@ -44,14 +44,9 @@ namespace FDCH.UI.Vistas
             {
                 btnAddTorneo.Visible = false;
                 btnAddParticipa.Visible = false;
-                //btnActualizarbase.Visible = false;
                 btnupdateDrive.Visible = true;
                 btnGetBloqueo.Visible = false;
-            }
-            else // Habilita el botón si no es un consultor
-            {
-                btnActualizarbase.Enabled = true;
-                btnActualizarbase.BackColor = Color.White; // O el color que desees
+                btnGestionarEntidades.Visible = false;
             }
 
         }
@@ -289,10 +284,9 @@ namespace FDCH.UI.Vistas
                     // Habilitar funcionalidad
                     btnAddTorneo.Enabled = true;
                     btnAddParticipa.Enabled = true;
-                    //btnActualizarbase.Enabled = true;
-                    //btnActualizarbase.BackColor = Color.White;
+                    btnGestionarEntidades.Enabled = true;
                     btnupdateDrive.Enabled = true;
-                    btnupdateDrive.BackColor = Color.White;
+                    btnupdateDrive.BackColor = Color.MediumSpringGreen;
 
                     // Actualizar el estado de la UI
                     bloqueoActivo = true;
@@ -315,8 +309,7 @@ namespace FDCH.UI.Vistas
             // Revertir la interfaz de usuario a su estado inicial
             btnAddTorneo.Enabled = false;
             btnAddParticipa.Enabled = false;
-            //btnActualizarbase.Enabled = false;
-            //btnActualizarbase.BackColor = Color.Navy;
+            btnGestionarEntidades.Enabled = false;
             btnupdateDrive.Enabled = false;
             btnupdateDrive.BackColor = Color.Navy;
 

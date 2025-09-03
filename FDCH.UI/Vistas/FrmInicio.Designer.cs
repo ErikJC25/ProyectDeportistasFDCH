@@ -465,17 +465,17 @@
             // 
             // btnExportExcelGeneral
             // 
-            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
             this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportExcelGeneral.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcelGeneral.ForeColor = System.Drawing.Color.White;
             this.btnExportExcelGeneral.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1121, 6);
+            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1134, 11);
             this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcelGeneral.Name = "btnExportExcelGeneral";
-            this.btnExportExcelGeneral.Size = new System.Drawing.Size(60, 54);
+            this.btnExportExcelGeneral.Size = new System.Drawing.Size(50, 50);
             this.btnExportExcelGeneral.TabIndex = 4;
             this.btnExportExcelGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportExcelGeneral.UseVisualStyleBackColor = false;
