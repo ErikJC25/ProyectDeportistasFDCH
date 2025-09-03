@@ -65,16 +65,16 @@
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(241, 762);
+            this.pnlMenu.Size = new System.Drawing.Size(193, 610);
             this.pnlMenu.TabIndex = 0;
             // 
             // pnlOpcion
             // 
             this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
-            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 88);
             this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
             this.pnlOpcion.Name = "pnlOpcion";
-            this.pnlOpcion.Size = new System.Drawing.Size(12, 66);
+            this.pnlOpcion.Size = new System.Drawing.Size(10, 53);
             this.pnlOpcion.TabIndex = 7;
             // 
             // lblUsuarioActivo
@@ -83,10 +83,10 @@
             this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 668);
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 535);
             this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(193, 75);
             this.lblUsuarioActivo.TabIndex = 6;
             this.lblUsuarioActivo.Text = "Conectado";
             this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,11 +94,11 @@
             // pnlContenedorFrm
             // 
             this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(193, 0);
             this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
-            this.pnlContenedorFrm.TabIndex = 9;
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(957, 565);
+            this.pnlContenedorFrm.TabIndex = 1;
             // 
             // lblEstado
             // 
@@ -106,10 +106,10 @@
             this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 704);
+            this.lblEstado.Location = new System.Drawing.Point(193, 564);
             this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
+            this.lblEstado.Size = new System.Drawing.Size(957, 46);
             this.lblEstado.TabIndex = 2;
             this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -123,11 +123,11 @@
             this.btnGestionarEntidades.ForeColor = System.Drawing.Color.White;
             this.btnGestionarEntidades.Image = global::FDCH.UI.Properties.Resources.gestionar_entidades;
             this.btnGestionarEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGestionarEntidades.Location = new System.Drawing.Point(12, 382);
+            this.btnGestionarEntidades.Location = new System.Drawing.Point(10, 306);
             this.btnGestionarEntidades.Margin = new System.Windows.Forms.Padding(2);
             this.btnGestionarEntidades.Name = "btnGestionarEntidades";
-            this.btnGestionarEntidades.Size = new System.Drawing.Size(229, 70);
-            this.btnGestionarEntidades.TabIndex = 5;
+            this.btnGestionarEntidades.Size = new System.Drawing.Size(183, 56);
+            this.btnGestionarEntidades.TabIndex = 14;
             this.btnGestionarEntidades.Text = "Gestionar\r\nEntidades";
             this.btnGestionarEntidades.UseVisualStyleBackColor = true;
             this.btnGestionarEntidades.Click += new System.EventHandler(this.btnGestionarEntidades_Click);
@@ -142,11 +142,10 @@
             this.btnupdateDrive.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btnupdateDrive.FlatAppearance.BorderSize = 0;
             this.btnupdateDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnupdateDrive.Location = new System.Drawing.Point(48, 508);
-            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4);
+            this.btnupdateDrive.Location = new System.Drawing.Point(38, 406);
             this.btnupdateDrive.Name = "btnupdateDrive";
-            this.btnupdateDrive.Size = new System.Drawing.Size(50, 50);
-            this.btnupdateDrive.TabIndex = 6;
+            this.btnupdateDrive.Size = new System.Drawing.Size(40, 40);
+            this.btnupdateDrive.TabIndex = 13;
             this.btnupdateDrive.UseVisualStyleBackColor = false;
             this.btnupdateDrive.Click += new System.EventHandler(this.btnupdateDrive_Click);
             // 
@@ -159,11 +158,10 @@
             this.btnActualizarbase.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btnActualizarbase.FlatAppearance.BorderSize = 0;
             this.btnActualizarbase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarbase.Location = new System.Drawing.Point(139, 508);
-            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActualizarbase.Location = new System.Drawing.Point(111, 406);
             this.btnActualizarbase.Name = "btnActualizarbase";
-            this.btnActualizarbase.Size = new System.Drawing.Size(50, 50);
-            this.btnActualizarbase.TabIndex = 7;
+            this.btnActualizarbase.Size = new System.Drawing.Size(40, 40);
+            this.btnActualizarbase.TabIndex = 12;
             this.btnActualizarbase.UseVisualStyleBackColor = false;
             this.btnActualizarbase.Click += new System.EventHandler(this.btnActualizarbase_Click);
             // 
@@ -177,11 +175,11 @@
             this.btnGetBloqueo.ForeColor = System.Drawing.Color.White;
             this.btnGetBloqueo.Image = global::FDCH.UI.Properties.Resources.desbloqueado;
             this.btnGetBloqueo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 609);
+            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 487);
             this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetBloqueo.Name = "btnGetBloqueo";
-            this.btnGetBloqueo.Size = new System.Drawing.Size(241, 60);
-            this.btnGetBloqueo.TabIndex = 8;
+            this.btnGetBloqueo.Size = new System.Drawing.Size(193, 48);
+            this.btnGetBloqueo.TabIndex = 11;
             this.btnGetBloqueo.Text = "Obtener Bloqueo";
             this.btnGetBloqueo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGetBloqueo.UseVisualStyleBackColor = false;
@@ -197,11 +195,11 @@
             this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
             this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddParticipa.Location = new System.Drawing.Point(12, 312);
+            this.btnAddParticipa.Location = new System.Drawing.Point(10, 250);
             this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddParticipa.Name = "btnAddParticipa";
-            this.btnAddParticipa.Size = new System.Drawing.Size(229, 70);
-            this.btnAddParticipa.TabIndex = 4;
+            this.btnAddParticipa.Size = new System.Drawing.Size(183, 56);
+            this.btnAddParticipa.TabIndex = 10;
             this.btnAddParticipa.Text = "Agregar\r\nParticipación";
             this.btnAddParticipa.UseVisualStyleBackColor = true;
             this.btnAddParticipa.Click += new System.EventHandler(this.btnAddParticipa_Click);
@@ -216,11 +214,11 @@
             this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
             this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
             this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddTorneo.Location = new System.Drawing.Point(12, 242);
+            this.btnAddTorneo.Location = new System.Drawing.Point(10, 194);
             this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddTorneo.Name = "btnAddTorneo";
-            this.btnAddTorneo.Size = new System.Drawing.Size(229, 70);
-            this.btnAddTorneo.TabIndex = 3;
+            this.btnAddTorneo.Size = new System.Drawing.Size(183, 56);
+            this.btnAddTorneo.TabIndex = 9;
             this.btnAddTorneo.Text = "Agregar\r\nTorneo";
             this.btnAddTorneo.UseVisualStyleBackColor = true;
             this.btnAddTorneo.Click += new System.EventHandler(this.btnAddTorneo_Click);
@@ -234,11 +232,11 @@
             this.btnBusqueda.ForeColor = System.Drawing.Color.White;
             this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
             this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBusqueda.Location = new System.Drawing.Point(12, 178);
+            this.btnBusqueda.Location = new System.Drawing.Point(10, 142);
             this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.btnBusqueda.Name = "btnBusqueda";
-            this.btnBusqueda.Size = new System.Drawing.Size(229, 66);
-            this.btnBusqueda.TabIndex = 2;
+            this.btnBusqueda.Size = new System.Drawing.Size(183, 53);
+            this.btnBusqueda.TabIndex = 8;
             this.btnBusqueda.Text = "Busqueda";
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
@@ -252,10 +250,10 @@
             this.btnInicio.ForeColor = System.Drawing.Color.White;
             this.btnInicio.Image = global::FDCH.UI.Properties.Resources.home;
             this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInicio.Location = new System.Drawing.Point(12, 110);
+            this.btnInicio.Location = new System.Drawing.Point(10, 88);
             this.btnInicio.Margin = new System.Windows.Forms.Padding(2);
             this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(229, 66);
+            this.btnInicio.Size = new System.Drawing.Size(183, 53);
             this.btnInicio.TabIndex = 1;
             this.btnInicio.Text = "Inicio";
             this.btnInicio.UseVisualStyleBackColor = true;
@@ -269,16 +267,16 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(241, 110);
+            this.pictureBox1.Size = new System.Drawing.Size(193, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1438, 762);
+            this.ClientSize = new System.Drawing.Size(1150, 610);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.pnlContenedorFrm);
             this.Controls.Add(this.pnlMenu);
