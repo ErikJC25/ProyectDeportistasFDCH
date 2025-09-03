@@ -1,6 +1,7 @@
 ﻿using FDCH.Entidades; // Importamos la capa de entidades
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -1798,7 +1799,73 @@ namespace FDCH.Datos
         }
 
 
+        /// <summary>
+        /// Actualiza un registro de la tabla 'desempeno' usando los valores del objeto Desempeno.
+        /// Devuelve true si se afectó al menos una fila.
+        /// </summary>
+        public bool ActualizarDesempeno(Desempeno d)
+        {
+            if (d == null) throw new ArgumentNullException(nameof(d));
+            if (d.id_desempeno <= 0) throw new ArgumentException("El id_desempeno debe ser mayor que 0.", nameof(d));
 
+            // SQL parametrizado para evitar inyección y problemas de formato
+            const string sql = @"
+            UPDATE desempeno
+            SET
+                puntos         = @puntos,
+                medalla        = @medalla,
+                observaciones  = @observaciones,
+                tiempo         = @tiempo,
+                ubicacion      = @ubicacion,
+                id_deportista  = @id_deportista,
+                id_competencia = @id_competencia,
+                id_tecnico     = @id_tecnico
+            WHERE id_desempeno = @id_desempeno;
+        ";
+
+            // ---- Ajusta esto si tu DbService guarda la cadena de conexión de otra forma ----
+            // Ejemplo típico: existe un campo privado _connectionString en DbService
+            string connStr = GetConnectionString(); // si tu clase tiene un método así; si no, usa el campo existente
+
+            using (var conn = new SQLiteConnection(connStr))
+            {
+                conn.Open();
+
+                using (var tran = conn.BeginTransaction())
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = sql;
+                    cmd.CommandType = CommandType.Text;
+
+                    // Parametrizamos (si algún campo puede ser nulo, asignamos DBNull.Value)
+                    cmd.Parameters.AddWithValue("@puntos", (object)d.puntos ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@medalla", (object)d.medalla ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@observaciones", (object)d.observaciones ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@tiempo", (object)d.tiempo ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ubicacion", (object)d.ubicacion ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@id_deportista", d.id_deportista);
+                    cmd.Parameters.AddWithValue("@id_competencia", d.id_competencia);
+                    cmd.Parameters.AddWithValue("@id_tecnico", d.id_tecnico);
+                    cmd.Parameters.AddWithValue("@id_desempeno", d.id_desempeno);
+
+                    int filas = cmd.ExecuteNonQuery();
+                    tran.Commit();
+
+                    return filas > 0;
+                }
+            }
+        }
+
+        // Ejemplo auxiliar: si tu clase NO tiene GetConnectionString, reemplaza este método por el acceso real a la cadena
+        private string GetConnectionString()
+        {
+            // Si DbService ya tiene un campo o propiedad con la cadena, usa ese en lugar de construirla.
+            // Ejemplo usando una ruta relativa (ajusta según tu proyecto):
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string relativePath = System.IO.Path.Combine(baseDir, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db");
+            string fullPath = System.IO.Path.GetFullPath(relativePath);
+            return $"Data Source={fullPath};Version=3;";
+        }
 
 
 
