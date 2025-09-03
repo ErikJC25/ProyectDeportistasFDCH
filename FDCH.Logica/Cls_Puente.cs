@@ -330,6 +330,12 @@ namespace FDCH.Logica
             return _dbService.ActualizarEvento(evento);
         }
 
+        public bool ActualizarDesempeno(Desempeno desempeno)
+        {
+            // Delegar al DbService
+            return _dbService.ActualizarDesempeno(desempeno);
+        }
+
 
     }
 }
