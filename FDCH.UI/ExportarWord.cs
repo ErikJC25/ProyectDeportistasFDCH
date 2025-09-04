@@ -21,6 +21,7 @@ namespace FDCH.UI
 {
     internal static class ExportarWord
     {
+        /*
         public static async Task ExportarAWordAsync(DataGridView dataGridView, Form parentForm, string titulo, string rol)
         {
             try
@@ -311,5 +312,6 @@ namespace FDCH.UI
             headerWithImage.Append(new Paragraph(new Run(element)));
             headerPart.Header = headerWithImage;
         }
+        */
     }
 }

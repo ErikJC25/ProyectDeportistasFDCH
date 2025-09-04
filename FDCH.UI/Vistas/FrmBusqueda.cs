@@ -243,7 +243,7 @@ namespace FDCH.UI.Vistas
             try
             {
                 // Llamada al generador pasando la tabla, el form, el rol y el título
-                await FDCH.UI.ExportarWord.ExportarAWordAsync(dataGridView1, this, titulo, rol);
+                //await FDCH.UI.ExportarWord.ExportarAWordAsync(dataGridView1, this, titulo, rol);
             }
             finally
             {
