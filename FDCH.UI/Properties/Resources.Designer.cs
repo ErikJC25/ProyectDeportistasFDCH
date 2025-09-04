@@ -73,6 +73,16 @@ namespace FDCH.UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap auditoria {
+            get {
+                object obj = ResourceManager.GetObject("auditoria", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bloqueado {
             get {
                 object obj = ResourceManager.GetObject("bloqueado", resourceCulture);

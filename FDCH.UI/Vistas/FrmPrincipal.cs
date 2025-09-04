@@ -381,5 +381,12 @@ namespace FDCH.UI.Vistas
                 }
             }
         }
+
+        private void btnAuditoria_Click(object sender, EventArgs e)
+        {
+            pnlOpcion.Height = btnBusqueda.Height;
+            pnlOpcion.Top = btnBusqueda.Top;
+            AbrirFormularioEnPanel(new FrmAuditoria(this));
+        }
     }
 }

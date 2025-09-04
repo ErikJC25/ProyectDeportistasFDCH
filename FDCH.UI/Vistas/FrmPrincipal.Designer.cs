@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
+            this.lblUsuarioActivo = new System.Windows.Forms.Label();
+            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.btnAuditoria = new System.Windows.Forms.Button();
             this.btnGestionarEntidades = new System.Windows.Forms.Button();
             this.btnupdateDrive = new System.Windows.Forms.Button();
             this.btnActualizarbase = new System.Windows.Forms.Button();
@@ -37,12 +42,8 @@
             this.btnAddParticipa = new System.Windows.Forms.Button();
             this.btnAddTorneo = new System.Windows.Forms.Button();
             this.btnBusqueda = new System.Windows.Forms.Button();
-            this.pnlOpcion = new System.Windows.Forms.Panel();
-            this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.btnInicio = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.Navy;
+            this.pnlMenu.Controls.Add(this.btnAuditoria);
             this.pnlMenu.Controls.Add(this.btnGestionarEntidades);
             this.pnlMenu.Controls.Add(this.btnupdateDrive);
             this.pnlMenu.Controls.Add(this.btnActualizarbase);
@@ -68,23 +70,92 @@
             this.pnlMenu.Size = new System.Drawing.Size(241, 762);
             this.pnlMenu.TabIndex = 0;
             // 
+            // pnlOpcion
+            // 
+            this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
+            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlOpcion.Name = "pnlOpcion";
+            this.pnlOpcion.Size = new System.Drawing.Size(12, 65);
+            this.pnlOpcion.TabIndex = 7;
+            // 
+            // lblUsuarioActivo
+            // 
+            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
+            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 668);
+            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
+            this.lblUsuarioActivo.TabIndex = 6;
+            this.lblUsuarioActivo.Text = "Conectado";
+            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlContenedorFrm
+            // 
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
+            this.pnlContenedorFrm.TabIndex = 1;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(241, 704);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAuditoria
+            // 
+            this.btnAuditoria.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAuditoria.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAuditoria.Enabled = false;
+            this.btnAuditoria.FlatAppearance.BorderSize = 0;
+            this.btnAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAuditoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuditoria.ForeColor = System.Drawing.Color.White;
+            this.btnAuditoria.Image = global::FDCH.UI.Properties.Resources.auditoria;
+            this.btnAuditoria.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAuditoria.Location = new System.Drawing.Point(0, 435);
+            this.btnAuditoria.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAuditoria.Name = "btnAuditoria";
+            this.btnAuditoria.Size = new System.Drawing.Size(241, 65);
+            this.btnAuditoria.TabIndex = 15;
+            this.btnAuditoria.Text = "Historial\r\nCambios";
+            this.btnAuditoria.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnAuditoria.UseVisualStyleBackColor = true;
+            this.btnAuditoria.Click += new System.EventHandler(this.btnAuditoria_Click);
+            // 
             // btnGestionarEntidades
             // 
             this.btnGestionarEntidades.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnGestionarEntidades.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGestionarEntidades.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnGestionarEntidades.Enabled = false;
             this.btnGestionarEntidades.FlatAppearance.BorderSize = 0;
             this.btnGestionarEntidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGestionarEntidades.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGestionarEntidades.ForeColor = System.Drawing.Color.White;
             this.btnGestionarEntidades.Image = global::FDCH.UI.Properties.Resources.gestionar_entidades;
-            this.btnGestionarEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGestionarEntidades.Location = new System.Drawing.Point(12, 382);
+            this.btnGestionarEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGestionarEntidades.Location = new System.Drawing.Point(0, 370);
             this.btnGestionarEntidades.Margin = new System.Windows.Forms.Padding(2);
             this.btnGestionarEntidades.Name = "btnGestionarEntidades";
-            this.btnGestionarEntidades.Size = new System.Drawing.Size(229, 70);
+            this.btnGestionarEntidades.Size = new System.Drawing.Size(241, 65);
             this.btnGestionarEntidades.TabIndex = 14;
             this.btnGestionarEntidades.Text = "Gestionar\r\nEntidades";
+            this.btnGestionarEntidades.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnGestionarEntidades.UseVisualStyleBackColor = true;
             this.btnGestionarEntidades.Click += new System.EventHandler(this.btnGestionarEntidades_Click);
             // 
@@ -98,8 +169,8 @@
             this.btnupdateDrive.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btnupdateDrive.FlatAppearance.BorderSize = 0;
             this.btnupdateDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnupdateDrive.Location = new System.Drawing.Point(48, 508);
-            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnupdateDrive.Location = new System.Drawing.Point(52, 531);
+            this.btnupdateDrive.Margin = new System.Windows.Forms.Padding(4);
             this.btnupdateDrive.Name = "btnupdateDrive";
             this.btnupdateDrive.Size = new System.Drawing.Size(50, 50);
             this.btnupdateDrive.TabIndex = 13;
@@ -115,8 +186,8 @@
             this.btnActualizarbase.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.btnActualizarbase.FlatAppearance.BorderSize = 0;
             this.btnActualizarbase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarbase.Location = new System.Drawing.Point(139, 508);
-            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActualizarbase.Location = new System.Drawing.Point(143, 531);
+            this.btnActualizarbase.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizarbase.Name = "btnActualizarbase";
             this.btnActualizarbase.Size = new System.Drawing.Size(50, 50);
             this.btnActualizarbase.TabIndex = 12;
@@ -148,19 +219,21 @@
             // 
             this.btnAddParticipa.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddParticipa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddParticipa.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAddParticipa.Enabled = false;
             this.btnAddParticipa.FlatAppearance.BorderSize = 0;
             this.btnAddParticipa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddParticipa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddParticipa.ForeColor = System.Drawing.Color.White;
             this.btnAddParticipa.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddParticipa.Location = new System.Drawing.Point(12, 312);
+            this.btnAddParticipa.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddParticipa.Location = new System.Drawing.Point(0, 305);
             this.btnAddParticipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddParticipa.Name = "btnAddParticipa";
-            this.btnAddParticipa.Size = new System.Drawing.Size(229, 70);
+            this.btnAddParticipa.Size = new System.Drawing.Size(241, 65);
             this.btnAddParticipa.TabIndex = 10;
             this.btnAddParticipa.Text = "Agregar\r\nParticipación";
+            this.btnAddParticipa.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAddParticipa.UseVisualStyleBackColor = true;
             this.btnAddParticipa.Click += new System.EventHandler(this.btnAddParticipa_Click);
             // 
@@ -168,19 +241,21 @@
             // 
             this.btnAddTorneo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddTorneo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddTorneo.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAddTorneo.Enabled = false;
             this.btnAddTorneo.FlatAppearance.BorderSize = 0;
             this.btnAddTorneo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTorneo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTorneo.ForeColor = System.Drawing.Color.White;
             this.btnAddTorneo.Image = global::FDCH.UI.Properties.Resources.torneo;
-            this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddTorneo.Location = new System.Drawing.Point(12, 242);
+            this.btnAddTorneo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddTorneo.Location = new System.Drawing.Point(0, 240);
             this.btnAddTorneo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddTorneo.Name = "btnAddTorneo";
-            this.btnAddTorneo.Size = new System.Drawing.Size(229, 70);
+            this.btnAddTorneo.Size = new System.Drawing.Size(241, 65);
             this.btnAddTorneo.TabIndex = 9;
             this.btnAddTorneo.Text = "Agregar\r\nTorneo";
+            this.btnAddTorneo.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnAddTorneo.UseVisualStyleBackColor = true;
             this.btnAddTorneo.Click += new System.EventHandler(this.btnAddTorneo_Click);
             // 
@@ -188,60 +263,41 @@
             // 
             this.btnBusqueda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBusqueda.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBusqueda.FlatAppearance.BorderSize = 0;
             this.btnBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBusqueda.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBusqueda.ForeColor = System.Drawing.Color.White;
             this.btnBusqueda.Image = global::FDCH.UI.Properties.Resources.search;
-            this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBusqueda.Location = new System.Drawing.Point(12, 178);
+            this.btnBusqueda.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBusqueda.Location = new System.Drawing.Point(0, 175);
             this.btnBusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.btnBusqueda.Name = "btnBusqueda";
-            this.btnBusqueda.Size = new System.Drawing.Size(229, 66);
+            this.btnBusqueda.Size = new System.Drawing.Size(241, 65);
             this.btnBusqueda.TabIndex = 8;
             this.btnBusqueda.Text = "Busqueda";
+            this.btnBusqueda.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
-            // 
-            // pnlOpcion
-            // 
-            this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
-            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
-            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlOpcion.Name = "pnlOpcion";
-            this.pnlOpcion.Size = new System.Drawing.Size(12, 66);
-            this.pnlOpcion.TabIndex = 7;
-            // 
-            // lblUsuarioActivo
-            // 
-            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
-            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 668);
-            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
-            this.lblUsuarioActivo.TabIndex = 6;
-            this.lblUsuarioActivo.Text = "Conectado";
-            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnInicio
             // 
             this.btnInicio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnInicio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInicio.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnInicio.FlatAppearance.BorderSize = 0;
             this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio.ForeColor = System.Drawing.Color.White;
             this.btnInicio.Image = global::FDCH.UI.Properties.Resources.home;
-            this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInicio.Location = new System.Drawing.Point(12, 110);
+            this.btnInicio.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInicio.Location = new System.Drawing.Point(0, 110);
             this.btnInicio.Margin = new System.Windows.Forms.Padding(2);
             this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(229, 66);
+            this.btnInicio.Size = new System.Drawing.Size(241, 65);
             this.btnInicio.TabIndex = 1;
             this.btnInicio.Text = "Inicio";
+            this.btnInicio.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
@@ -257,28 +313,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // pnlContenedorFrm
-            // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
-            this.pnlContenedorFrm.TabIndex = 1;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
-            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 704);
-            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
-            this.lblEstado.TabIndex = 2;
-            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 
@@ -318,5 +352,6 @@
         private System.Windows.Forms.Button btnupdateDrive;
         private System.Windows.Forms.Button btnActualizarbase;
         private System.Windows.Forms.Button btnGestionarEntidades;
+        private System.Windows.Forms.Button btnAuditoria;
     }
 }

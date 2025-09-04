@@ -126,11 +126,6 @@ namespace FDCH.Logica
             return _dbService.InsertarHistorialCambio(cambio);
         }
 
-        public List<HistorialCambio> ObtenerHistorialCambios()
-        {
-            return _dbService.ObtenerHistorialCambios();
-        }
-
 
         public List<RegistroTotal> ObtenerRegistrosCompletos()
         {
@@ -335,6 +330,64 @@ namespace FDCH.Logica
             // Delegar al DbService
             return _dbService.ActualizarDesempeno(desempeno);
         }
+
+
+
+        public List<HistorialViewModel> ObtenerHistorialParaVista()
+        {
+            var historialDeDatos = _dbService.ObtenerHistorialCambios();
+            var historialParaVista = new List<HistorialViewModel>();
+
+            foreach (var registro in historialDeDatos)
+            {
+                string nombreRegistro = "N/A";
+                string nombreUsuario = _dbService.ObtenerNombreUsuarioPorId(registro.id_usuario);
+
+                switch (registro.tabla_afectada)
+                {
+                    case "Deportistas":
+                        nombreRegistro = _dbService.ObtenerNombreDeportistaPorId(registro.id_registro_afectado);
+                        break;
+                    case "Tecnicos":
+                        nombreRegistro = _dbService.ObtenerNombreTecnicoPorId(registro.id_registro_afectado);
+                        break;
+                    case "Eventos":
+                        nombreRegistro = _dbService.ObtenerNombreEventoPorId(registro.id_registro_afectado);
+                        break;
+                    case "Disciplinas":
+                        nombreRegistro = _dbService.ObtenerNombreDisciplinaPorId(registro.id_registro_afectado);
+                        break;
+                    case "Especialidades":
+                        nombreRegistro = _dbService.ObtenerNombreEspecialidadPorId(registro.id_registro_afectado);
+                        break;
+                    case "Competencias":
+                        nombreRegistro = _dbService.ObtenerNombreCompetenciaPorId(registro.id_registro_afectado);
+                        break;
+                    case "Desempeno":
+                        nombreRegistro = _dbService.ObtenerNombreDesempenoPorId(registro.id_registro_afectado);
+                        break;
+                    default:
+                        nombreRegistro = $"ID: {registro.id_registro_afectado}";
+                        break;
+                }
+
+                // El resto del código para añadir al historialParaVista...
+                historialParaVista.Add(new HistorialViewModel
+                {
+                    Id = registro.id_log,
+                    FechaHora = registro.fecha_cambio,
+                    Accion = registro.accion,
+                    TablaAfectada = registro.tabla_afectada,
+                    NombreRegistro = nombreRegistro,
+                    NombreUsuario = nombreUsuario
+                });
+            }
+
+            return historialParaVista;
+
+        }
+
+
 
 
     }

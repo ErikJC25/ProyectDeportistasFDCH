@@ -132,6 +132,7 @@
     <Compile Include="Especialidad.cs" />
     <Compile Include="Evento.cs" />
     <Compile Include="HistorialCambio.cs" />
+    <Compile Include="HistorialViewModel.cs" />
     <Compile Include="LockData.cs" />
     <Compile Include="LogData.cs" />
     <Compile Include="RegistroTotal.cs" />

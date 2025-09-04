@@ -157,6 +157,9 @@
   <data name="descargar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\descargar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gestionar_entidades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gestionar_entidades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="filtrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filtrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -205,7 +208,7 @@
   <data name="Logo_FDCH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo_FDCH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gestionar_entidades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gestionar_entidades.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="auditoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\auditoria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

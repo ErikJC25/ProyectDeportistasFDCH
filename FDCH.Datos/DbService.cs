@@ -978,43 +978,6 @@ namespace FDCH.Datos
             return nuevoId;
         }
 
-        // Consulta todos los registros del historial de cambios
-        public List<HistorialCambio> ObtenerHistorialCambios()
-        {
-            var lista = new List<HistorialCambio>();
-            using (var connection = GetConnection())
-            {
-                string query = "SELECT * FROM Historial_Cambios";
-                using (var command = new SQLiteCommand(query, connection))
-                {
-                    try
-                    {
-                        connection.Open();
-                        using (var reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                lista.Add(new HistorialCambio
-                                {
-                                    id_log = Convert.ToInt32(reader["id_log"]),
-                                    id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                                    tabla_afectada = reader["tabla_afectada"].ToString(),
-                                    id_registro_afectado = Convert.ToInt32(reader["id_registro_afectado"]),
-                                    accion = reader["accion"].ToString(),
-                                    fecha_cambio = Convert.ToDateTime(reader["fecha_cambio"])
-                                });
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error al obtener historial de cambios: " + ex.Message);
-                    }
-                }
-            }
-            return lista;
-        }
-
 
         public bool InsertarRegistroDeportistaCompleto(
             Deportista deportista,
@@ -1869,6 +1832,203 @@ namespace FDCH.Datos
 
 
 
+
+        // Obtiene todos los registros del historial
+        public List<HistorialCambio> ObtenerHistorialCambios()
+        {
+            var lista = new List<HistorialCambio>();
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM HistorialDeCambios ORDER BY fecha_hora DESC";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new HistorialCambio
+                            {
+                                id_log = Convert.ToInt32(reader["id"]),
+                                fecha_cambio = reader["fecha_hora"].ToString(),
+                                accion = reader["accion"].ToString(),
+                                tabla_afectada = reader["tabla_afectada"].ToString(),
+                                id_registro_afectado = Convert.ToInt32(reader["id_registro_afectado"]),
+                                id_usuario = Convert.ToInt32(reader["id_usuario"])
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        // Métodos de ayuda para obtener nombres
+        public string ObtenerNombreDeportistaPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombres, apellidos FROM Deportistas WHERE id_deportista = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nombre = $"{reader["nombres"]} {reader["apellidos"]}";
+                        }
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        
+        public string ObtenerNombreTecnicoPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombre_completo FROM Tecnicos WHERE id_tecnico = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = result.ToString();
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        public string ObtenerNombreUsuarioPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombre_usuario FROM Usuarios WHERE id_usuario = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = result.ToString();
+                    }
+                }
+            }
+            return nombre;
+        }
+
+
+        public string ObtenerNombreEventoPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombre_evento FROM Eventos WHERE id_evento = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = result.ToString();
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        public string ObtenerNombreDisciplinaPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombre_disciplina FROM Disciplinas WHERE id_disciplina = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = result.ToString();
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        public string ObtenerNombreEspecialidadPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT nombre_especialidad FROM Especialidades WHERE id_especialidad = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = result.ToString();
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        public string ObtenerNombreCompetenciaPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT categoria, division FROM Competencias WHERE id_competencia = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nombre = $"Categoría: {reader["categoria"]}, División: {reader["division"]}";
+                        }
+                    }
+                }
+            }
+            return nombre;
+        }
+
+        public string ObtenerNombreDesempenoPorId(int id)
+        {
+            string nombre = "N/A";
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT medalla FROM Desempeno WHERE id_desempeno = @id";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        nombre = $"Medalla: {result.ToString()}";
+                    }
+                }
+            }
+            return nombre;
+        }
 
 
 
