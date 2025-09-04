@@ -387,6 +387,8 @@
     <None Include="Resources\auditoria.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\editar2.png" />
+    <Content Include="Resources\Fondo Certificado FDCH.png" />
+    <Content Include="Resources\Fondo.png" />
     <Content Include="Resources\gestionar_entidades.png" />
     <None Include="Resources\cargando.gif" />
     <None Include="Resources\subidaArchivo.png" />

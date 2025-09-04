@@ -238,12 +238,12 @@ namespace FDCH.UI.Vistas
             Cursor = Cursors.WaitCursor;
 
             string titulo = "Lic. Santiago Buenaño";
-            string rol = "DIRECTOR TÉCNICO METODOLÓGICO (E)";
+            string rol = "DIRECTOR TÉCNICO METODOLÓGICO (e)";
 
             try
             {
                 // Llamada al generador pasando la tabla, el form, el rol y el título
-                //await FDCH.UI.ExportarWord.ExportarAWordAsync(dataGridView1, this, titulo, rol);
+                await FDCH.UI.ExportarWord.ExportarDesdePlantillaAsync(dataGridView1, this, titulo, rol);
             }
             finally
             {
@@ -251,6 +251,11 @@ namespace FDCH.UI.Vistas
                 Cursor = prevCursor;
                 btnExportarWord.Enabled = true;
             }
+        }
+
+        private void txtNombres_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
