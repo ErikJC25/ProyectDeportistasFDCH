@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Capa_Logica", "2.Capa_Logica", "{78CD5D1B-93E6-47D9-B0BA-18582FDCD425}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Capa_Presentacion", "3.Capa_Presentacion", "{5E7BF79C-3841-4272-8183-B4A31BAB6D6C}"
+	ProjectSection(SolutionItems) = preProject
+		FDCH.UI\Resources\TemplateCertificado.docx = FDCH.UI\Resources\TemplateCertificado.docx
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Capa_Entidades", "4.Capa_Entidades", "{29C7E476-34E7-45D7-989F-E8EAB0DBA7BE}"
 EndProject
