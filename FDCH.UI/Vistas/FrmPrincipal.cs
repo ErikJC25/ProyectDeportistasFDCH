@@ -47,6 +47,7 @@ namespace FDCH.UI.Vistas
                 btnupdateDrive.Visible = true;
                 btnGetBloqueo.Visible = false;
                 btnGestionarEntidades.Visible = false;
+                btnAuditoria.Visible = false;
             }
 
         }
@@ -285,6 +286,7 @@ namespace FDCH.UI.Vistas
                     btnAddTorneo.Enabled = true;
                     btnAddParticipa.Enabled = true;
                     btnGestionarEntidades.Enabled = true;
+                    btnAuditoria.Enabled = true;
                     btnupdateDrive.Enabled = true;
                     btnupdateDrive.BackColor = Color.MediumSpringGreen;
 
@@ -310,6 +312,7 @@ namespace FDCH.UI.Vistas
             btnAddTorneo.Enabled = false;
             btnAddParticipa.Enabled = false;
             btnGestionarEntidades.Enabled = false;
+            btnAuditoria.Enabled = false;
             btnupdateDrive.Enabled = false;
             btnupdateDrive.BackColor = Color.Navy;
 

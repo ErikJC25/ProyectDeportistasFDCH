@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlOpcion = new System.Windows.Forms.Panel();
-            this.lblUsuarioActivo = new System.Windows.Forms.Label();
-            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.btnAuditoria = new System.Windows.Forms.Button();
             this.btnGestionarEntidades = new System.Windows.Forms.Button();
             this.btnupdateDrive = new System.Windows.Forms.Button();
@@ -42,8 +38,12 @@
             this.btnAddParticipa = new System.Windows.Forms.Button();
             this.btnAddTorneo = new System.Windows.Forms.Button();
             this.btnBusqueda = new System.Windows.Forms.Button();
+            this.pnlOpcion = new System.Windows.Forms.Panel();
+            this.lblUsuarioActivo = new System.Windows.Forms.Label();
             this.btnInicio = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlContenedorFrm = new System.Windows.Forms.Panel();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -69,51 +69,6 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(241, 762);
             this.pnlMenu.TabIndex = 0;
-            // 
-            // pnlOpcion
-            // 
-            this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
-            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
-            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlOpcion.Name = "pnlOpcion";
-            this.pnlOpcion.Size = new System.Drawing.Size(12, 65);
-            this.pnlOpcion.TabIndex = 7;
-            // 
-            // lblUsuarioActivo
-            // 
-            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
-            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 668);
-            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
-            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
-            this.lblUsuarioActivo.TabIndex = 6;
-            this.lblUsuarioActivo.Text = "Conectado";
-            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlContenedorFrm
-            // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
-            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
-            this.pnlContenedorFrm.TabIndex = 1;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
-            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 704);
-            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
-            this.lblEstado.TabIndex = 2;
-            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAuditoria
             // 
@@ -280,6 +235,29 @@
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
+            // pnlOpcion
+            // 
+            this.pnlOpcion.BackColor = System.Drawing.Color.Crimson;
+            this.pnlOpcion.Location = new System.Drawing.Point(0, 110);
+            this.pnlOpcion.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlOpcion.Name = "pnlOpcion";
+            this.pnlOpcion.Size = new System.Drawing.Size(12, 65);
+            this.pnlOpcion.TabIndex = 7;
+            // 
+            // lblUsuarioActivo
+            // 
+            this.lblUsuarioActivo.BackColor = System.Drawing.Color.Blue;
+            this.lblUsuarioActivo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsuarioActivo.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuarioActivo.ForeColor = System.Drawing.Color.White;
+            this.lblUsuarioActivo.Location = new System.Drawing.Point(0, 668);
+            this.lblUsuarioActivo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuarioActivo.Name = "lblUsuarioActivo";
+            this.lblUsuarioActivo.Size = new System.Drawing.Size(241, 94);
+            this.lblUsuarioActivo.TabIndex = 6;
+            this.lblUsuarioActivo.Text = "Conectado";
+            this.lblUsuarioActivo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnInicio
             // 
             this.btnInicio.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -313,6 +291,28 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // pnlContenedorFrm
+            // 
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
+            this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContenedorFrm.Name = "pnlContenedorFrm";
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
+            this.pnlContenedorFrm.TabIndex = 1;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.White;
+            this.lblEstado.Location = new System.Drawing.Point(241, 704);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
+            this.lblEstado.TabIndex = 2;
+            this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmPrincipal
             // 
