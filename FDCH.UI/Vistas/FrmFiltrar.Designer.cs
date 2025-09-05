@@ -83,8 +83,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 75);
+            this.panel1.Size = new System.Drawing.Size(957, 60);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -92,9 +93,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(413, 13);
+            this.label1.Location = new System.Drawing.Point(330, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 46);
+            this.label1.Size = new System.Drawing.Size(295, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Filtrar Información";
             // 
@@ -139,14 +141,16 @@
             this.Observaciones,
             this.colEditar});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 149);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 119);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 558);
+            this.dataGridView1.Size = new System.Drawing.Size(957, 446);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // IdTecnico
             // 
@@ -462,9 +466,10 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
             this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiar.Location = new System.Drawing.Point(1134, 97);
+            this.btnLimpiar.Location = new System.Drawing.Point(907, 78);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(44, 30);
+            this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
             this.btnLimpiar.TabIndex = 10;
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -480,9 +485,10 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(1023, 97);
+            this.btnBuscar.Location = new System.Drawing.Point(818, 78);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(105, 30);
+            this.btnBuscar.Size = new System.Drawing.Size(84, 24);
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -495,9 +501,10 @@
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombres.Location = new System.Drawing.Point(567, 82);
+            this.txtNombres.Location = new System.Drawing.Point(454, 66);
+            this.txtNombres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(300, 28);
+            this.txtNombres.Size = new System.Drawing.Size(241, 24);
             this.txtNombres.TabIndex = 3;
             this.txtNombres.Text = "NOMBRES";
             this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
@@ -510,9 +517,10 @@
             this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtApellidos.Location = new System.Drawing.Point(254, 83);
+            this.txtApellidos.Location = new System.Drawing.Point(203, 66);
+            this.txtApellidos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(300, 28);
+            this.txtApellidos.Size = new System.Drawing.Size(241, 24);
             this.txtApellidos.TabIndex = 2;
             this.txtApellidos.Text = "APELLIDOS";
             this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
@@ -525,9 +533,10 @@
             this.txtCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCedula.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtCedula.Location = new System.Drawing.Point(18, 82);
+            this.txtCedula.Location = new System.Drawing.Point(14, 66);
+            this.txtCedula.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(219, 28);
+            this.txtCedula.Size = new System.Drawing.Size(176, 24);
             this.txtCedula.TabIndex = 1;
             this.txtCedula.Text = "CEDULA";
             this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
@@ -539,9 +548,10 @@
             this.chkAntiguoActual.AutoSize = true;
             this.chkAntiguoActual.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAntiguoActual.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkAntiguoActual.Location = new System.Drawing.Point(489, 120);
+            this.chkAntiguoActual.Location = new System.Drawing.Point(391, 96);
+            this.chkAntiguoActual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkAntiguoActual.Name = "chkAntiguoActual";
-            this.chkAntiguoActual.Size = new System.Drawing.Size(159, 23);
+            this.chkAntiguoActual.Size = new System.Drawing.Size(138, 20);
             this.chkAntiguoActual.TabIndex = 8;
             this.chkAntiguoActual.Text = "Antiguo a Actual";
             this.chkAntiguoActual.UseVisualStyleBackColor = true;
@@ -552,9 +562,10 @@
             this.chkMasculino.AutoSize = true;
             this.chkMasculino.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkMasculino.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkMasculino.Location = new System.Drawing.Point(18, 120);
+            this.chkMasculino.Location = new System.Drawing.Point(14, 96);
+            this.chkMasculino.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkMasculino.Name = "chkMasculino";
-            this.chkMasculino.Size = new System.Drawing.Size(109, 23);
+            this.chkMasculino.Size = new System.Drawing.Size(98, 20);
             this.chkMasculino.TabIndex = 5;
             this.chkMasculino.Text = "Masculino";
             this.chkMasculino.UseVisualStyleBackColor = true;
@@ -565,9 +576,10 @@
             this.chkFemenino.AutoSize = true;
             this.chkFemenino.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkFemenino.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkFemenino.Location = new System.Drawing.Point(153, 120);
+            this.chkFemenino.Location = new System.Drawing.Point(122, 96);
+            this.chkFemenino.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkFemenino.Name = "chkFemenino";
-            this.chkFemenino.Size = new System.Drawing.Size(107, 23);
+            this.chkFemenino.Size = new System.Drawing.Size(96, 20);
             this.chkFemenino.TabIndex = 6;
             this.chkFemenino.Text = "Femenino";
             this.chkFemenino.UseVisualStyleBackColor = true;
@@ -578,9 +590,10 @@
             this.chkAlfabeticamente.AutoSize = true;
             this.chkAlfabeticamente.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAlfabeticamente.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkAlfabeticamente.Location = new System.Drawing.Point(307, 120);
+            this.chkAlfabeticamente.Location = new System.Drawing.Point(246, 96);
+            this.chkAlfabeticamente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkAlfabeticamente.Name = "chkAlfabeticamente";
-            this.chkAlfabeticamente.Size = new System.Drawing.Size(155, 23);
+            this.chkAlfabeticamente.Size = new System.Drawing.Size(139, 20);
             this.chkAlfabeticamente.TabIndex = 7;
             this.chkAlfabeticamente.Text = "Alfabeticamente";
             this.chkAlfabeticamente.UseVisualStyleBackColor = true;
@@ -588,9 +601,9 @@
             // 
             // FrmFiltrar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1196, 707);
+            this.ClientSize = new System.Drawing.Size(957, 566);
             this.Controls.Add(this.chkAlfabeticamente);
             this.Controls.Add(this.chkFemenino);
             this.Controls.Add(this.chkMasculino);
@@ -603,6 +616,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmFiltrar";
             this.Text = "FrmFiltrar";
             this.panel1.ResumeLayout(false);
