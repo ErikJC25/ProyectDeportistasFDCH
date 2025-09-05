@@ -193,6 +193,26 @@ namespace FDCH.UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EjemploCertificado1 {
+            get {
+                object obj = ResourceManager.GetObject("EjemploCertificado1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EjemploCertificado2 {
+            get {
+                object obj = ResourceManager.GetObject("EjemploCertificado2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exportar {
             get {
                 object obj = ResourceManager.GetObject("exportar", resourceCulture);

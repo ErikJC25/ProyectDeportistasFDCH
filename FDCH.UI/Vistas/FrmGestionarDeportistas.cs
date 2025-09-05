@@ -13,16 +13,14 @@ namespace FDCH.UI.Vistas
 {
     public partial class FrmGestionarDeportistas : Form
     {
-        //Se instancia la capa lógica
-        private readonly Cls_Puente _puente = new Cls_Puente();
-        // referencia opcional al frm principal (si se pasa)
-        private readonly FrmPrincipal _frmprincipal;
-        public FrmGestionarDeportistas(FrmPrincipal parent = null)
+        Cls_Puente puente = new Cls_Puente();
+        FrmPrincipal _frmprincipal;
+        public FrmGestionarDeportistas(FrmPrincipal principal)
         {
             InitializeComponent();
 
             // Guardar la referencia si se pasó (si no, queda null y usaremos fallback)
-            _frmprincipal = parent;
+            _frmprincipal = principal;
         }
     }
 }

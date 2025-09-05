@@ -1,4 +1,5 @@
 ﻿using FDCH.Logica;
+using FDCH.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,8 @@ namespace FDCH.UI.Vistas
     {
         Cls_Puente puente = new Cls_Puente(); // Instancia de Cls_Puente
         public FrmPrincipal _frmprincipal;
-
+        //Director para los certificados
+        private Director _director;
 
         public FrmBusqueda(FrmPrincipal principal)
         {
@@ -237,8 +239,22 @@ namespace FDCH.UI.Vistas
             var prevCursor = Cursor;
             Cursor = Cursors.WaitCursor;
 
-            string titulo = "Lic. Santiago Buenaño";
-            string rol = "DIRECTOR TÉCNICO METODOLÓGICO (e)";
+            //Obtención de los datos del director
+
+            string titulo = "";
+            string rol = "";
+
+            try
+            {
+                _director = puente.ObtenerDirector() ?? new Director(); // si no existe, nuevo objeto
+                titulo = _director.titulo ?? "";
+                rol = _director.rol ?? "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cargando datos del director: " + ex.Message);
+            }
+
 
             try
             {

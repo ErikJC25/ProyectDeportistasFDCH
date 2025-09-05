@@ -29,5 +29,6 @@ namespace FDCH.UI.Vistas
         {
             var listaHistorial = puente.ObtenerHistorialParaVista();
             dataGridView1.DataSource = listaHistorial;
+        }
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="Competencia.cs" />
     <Compile Include="Deportista.cs" />
     <Compile Include="Desempeno.cs" />
+    <Compile Include="Director.cs" />
     <Compile Include="Disciplina.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Evento.cs" />

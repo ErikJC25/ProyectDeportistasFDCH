@@ -244,6 +244,12 @@
     <Compile Include="Vistas\FrmEditarCompetencia.Designer.cs">
       <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmEditarDirector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarDirector.Designer.cs">
+      <DependentUpon>FrmEditarDirector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmEditarEvento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +323,9 @@
     <EmbeddedResource Include="Vistas\FrmEditarCompetencia.resx">
       <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarDirector.resx">
+      <DependentUpon>FrmEditarDirector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmEditarEvento.resx">
       <DependentUpon>FrmEditarEvento.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,6 +396,8 @@
     <None Include="Resources\auditoria.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\editar2.png" />
+    <None Include="Resources\EjemploCertificado1.png" />
+    <None Include="Resources\EjemploCertificado2.png" />
     <Content Include="Resources\Fondo Certificado FDCH.png" />
     <Content Include="Resources\Fondo.png" />
     <Content Include="Resources\gestionar_entidades.png" />

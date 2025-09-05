@@ -44,21 +44,7 @@ namespace FDCH.UI.Vistas
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*  PARTE DE CODIGO MODIFICADA PARA QUE PERMITA ELEGIR SI DESEA EDITAR TORNEO O COMPETENCIA
             
-            // Verifica que el clic haya sido en la columna de tu botón (ej. "colEditar")
-            // y que no haya sido en la fila de encabezado.
-            if (e.ColumnIndex == dataGridView1.Columns["colEditar"].Index && e.RowIndex >= 0)
-            {
-                // 1. Obtén el objeto de datos completo de la fila
-                // DataBoundItem es la propiedad que contiene el objeto al que está enlazada la fila.
-                RegistroTotal registroCompleto = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
-
-                // 2. Pasa los datos (los IDs ocultos y la información visible) al formulario de edición.
-                _frmprincipal.AbrirFormularioEnPanel(new FrmEditarRegistro(registroCompleto));
-                this.Close();
-            }
-            */
             // Comprueba que la columna "colEditar" exista y que el clic sea en una fila de datos
             if (e.RowIndex < 0) return;
             if (!dataGridView1.Columns.Contains("colEditar")) return;

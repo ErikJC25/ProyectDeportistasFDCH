@@ -387,7 +387,15 @@ namespace FDCH.Logica
 
         }
 
+        public Director ObtenerDirector()
+        {
+            return _dbService.ObtenerDirector();
+        }
 
+        public bool ActualizarDirector(Director director)
+        {
+            return _dbService.ActualizarDirector(director);
+        }
 
 
     }

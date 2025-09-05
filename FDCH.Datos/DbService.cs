@@ -2034,7 +2034,106 @@ namespace FDCH.Datos
         }
 
 
+        /// <summary>
+        /// Obtiene el registro del Director (se espera un único registro).
+        /// Retorna null si no existe ningún registro en la tabla Director.
+        /// </summary>
+        public Director ObtenerDirector()
+        {
+            Director director = null;
 
+            using (SQLiteConnection connection = GetConnection())
+            {
+                string sql = "SELECT id_director, titulo, cargo FROM Director LIMIT 1;";
+                using (var cmd = new SQLiteCommand(sql, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                director = new Director
+                                {
+                                    id_director = Convert.ToInt32(reader["id_director"]),
+                                    titulo = reader["titulo"]?.ToString(),
+                                    // columna "cargo" mapeada a la propiedad "rol" en tu entidad
+                                    rol = reader["cargo"]?.ToString()
+                                };
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log (console por ahora). Puedes sustituirlo por tu sistema de logs.
+                        Console.WriteLine("Error en ObtenerDirector: " + ex.Message);
+                    }
+                }
+            }
+
+            return director;
+        }
+
+        /// <summary>
+        /// Actualiza el registro del Director. Si no existe registro con el id proporcionado,
+        /// intenta insertar uno nuevo (comportamiento "upsert" sencillo).
+        /// Devuelve true si la operación (update o insert) tuvo efecto.
+        /// </summary>
+        public bool ActualizarDirector(Director director)
+        {
+            if (director == null) throw new ArgumentNullException(nameof(director));
+
+            using (SQLiteConnection connection = GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Si el id_director está definido y > 0 intentamos UPDATE primero
+                    if (director.id_director > 0)
+                    {
+                        string updateSql = @"UPDATE Director 
+                                     SET titulo = @titulo, cargo = @cargo
+                                     WHERE id_director = @id_director;";
+                        using (var cmd = new SQLiteCommand(updateSql, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@titulo", director.titulo ?? string.Empty);
+                            cmd.Parameters.AddWithValue("@cargo", director.rol ?? string.Empty);
+                            cmd.Parameters.AddWithValue("@id_director", director.id_director);
+
+                            int rows = cmd.ExecuteNonQuery();
+                            if (rows > 0) return true;
+                            // si rows == 0, caerá a la inserción más abajo
+                        }
+                    }
+
+                    // Si no había id o el UPDATE no afectó filas, hacemos INSERT
+                    string insertSql = @"INSERT INTO Director (titulo, cargo) VALUES (@titulo, @cargo);
+                                 SELECT last_insert_rowid();";
+                    using (var cmdInsert = new SQLiteCommand(insertSql, connection))
+                    {
+                        cmdInsert.Parameters.AddWithValue("@titulo", director.titulo ?? string.Empty);
+                        cmdInsert.Parameters.AddWithValue("@cargo", director.rol ?? string.Empty);
+
+                        object result = cmdInsert.ExecuteScalar();
+                        if (result != null)
+                        {
+                            // actualizar el id en el objeto (opcional)
+                            director.id_director = Convert.ToInt32(result);
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error en ActualizarDirector: " + ex.Message);
+                    return false;
+                }
+            }
+        }
 
 
     }
