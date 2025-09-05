@@ -23,7 +23,7 @@ namespace FDCH.UI.Vistas
         // Carpeta de respaldos automáticos por tiempo
         private readonly string folderRespaldoPorTiempo = "1n9nClQJDUljOIZoo-e6z2earBzHYsTPr";
 
-        Usuario _usuarioAutenticado;
+        public Usuario _usuarioAutenticado;
         Form formularioActivo = null; // Referencia al form actual
 
         public bool bloqueoActivo = false;

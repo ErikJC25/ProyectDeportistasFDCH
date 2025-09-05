@@ -2015,15 +2015,18 @@ namespace FDCH.Datos
             string nombre = "N/A";
             using (var connection = GetConnection())
             {
-                string query = "SELECT medalla FROM Desempeno WHERE id_desempeno = @id";
+                string query = "SELECT puntos, tiempo, ubicacion FROM Desempeno WHERE id_desempeno = @id";
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id", id);
                     connection.Open();
                     var result = command.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
+                    using (var reader = command.ExecuteReader())
                     {
-                        nombre = $"Medalla: {result.ToString()}";
+                        if (reader.Read())
+                        {
+                            nombre = $"Puntos: {reader["puntos"]}, Tiempo: {reader["tiempo"]}, Ubicación: {reader["ubicacion"]}";
+                        }
                     }
                 }
             }

@@ -345,25 +345,25 @@ namespace FDCH.Logica
 
                 switch (registro.tabla_afectada)
                 {
-                    case "Deportistas":
+                    case "DEPORTISTAS":
                         nombreRegistro = _dbService.ObtenerNombreDeportistaPorId(registro.id_registro_afectado);
                         break;
-                    case "Tecnicos":
+                    case "TECNICOS":
                         nombreRegistro = _dbService.ObtenerNombreTecnicoPorId(registro.id_registro_afectado);
                         break;
-                    case "Eventos":
+                    case "TORNEOS":
                         nombreRegistro = _dbService.ObtenerNombreEventoPorId(registro.id_registro_afectado);
                         break;
-                    case "Disciplinas":
+                    case "DISCIPLINAS":
                         nombreRegistro = _dbService.ObtenerNombreDisciplinaPorId(registro.id_registro_afectado);
                         break;
-                    case "Especialidades":
+                    case "ESPECIALIDADES":
                         nombreRegistro = _dbService.ObtenerNombreEspecialidadPorId(registro.id_registro_afectado);
                         break;
-                    case "Competencias":
+                    case "COMPETENCIAS":
                         nombreRegistro = _dbService.ObtenerNombreCompetenciaPorId(registro.id_registro_afectado);
                         break;
-                    case "Desempeno":
+                    case "DESEMPENO":
                         nombreRegistro = _dbService.ObtenerNombreDesempenoPorId(registro.id_registro_afectado);
                         break;
                     default:
