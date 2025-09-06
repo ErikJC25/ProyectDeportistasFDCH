@@ -2136,5 +2136,61 @@ namespace FDCH.Datos
         }
 
 
+        public Dictionary<int, List<string>> ObtenerDisciplinasPorDeportista()
+        {
+            var resultado = new Dictionary<int, List<string>>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                // Consulta que junta Desempeño -> Competencias -> Especialidades -> Disciplinas
+                // y devuelve pares (id_deportista, nombre_disciplina).
+                // LEFT JOINs para no perder deportistas sin registros.
+                string sql = @"
+            SELECT d.id_deportista AS id_deportista, di.nombre_disciplina AS nombre_disciplina
+            FROM Deportistas d
+            LEFT JOIN Desempeno ds ON ds.id_deportista = d.id_deportista
+            LEFT JOIN Competencias c ON c.id_competencia = ds.id_competencia
+            LEFT JOIN Especialidades e ON e.id_especialidad = c.id_especialidad
+            LEFT JOIN Disciplinas di ON di.id_disciplina = e.id_disciplina
+            WHERE di.nombre_disciplina IS NOT NULL
+            ORDER BY d.id_deportista, di.nombre_disciplina;
+        ";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    try
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.IsDBNull(0) ? 0 : Convert.ToInt32(reader["id_deportista"]);
+                                string disciplina = reader.IsDBNull(1) ? null : reader["nombre_disciplina"].ToString();
+
+                                if (id == 0 || string.IsNullOrWhiteSpace(disciplina)) continue;
+
+                                if (!resultado.ContainsKey(id))
+                                    resultado[id] = new List<string>();
+
+                                // Evitar duplicados repetidos
+                                if (!resultado[id].Contains(disciplina))
+                                    resultado[id].Add(disciplina);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Loguea o muestra según tu estrategia; no lanzar para no romper UI inesperadamente.
+                        Console.WriteLine("Error en ObtenerDisciplinasPorDeportista: " + ex.Message);
+                    }
+                }
+            }
+
+            return resultado;
+        }
+
+
     }
 }
