@@ -64,10 +64,8 @@
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnExportExcelGeneral = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -113,14 +111,14 @@
             this.colEditar});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 71);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 64);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 635);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 642);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -442,41 +440,31 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.Blue;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(181, 14);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(782, 46);
+            this.label1.Size = new System.Drawing.Size(1146, 64);
             this.label1.TabIndex = 1;
             this.label1.Text = "Registro de resultados de Participaciones";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Blue;
-            this.panel1.Controls.Add(this.btnExportExcelGeneral);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 71);
-            this.panel1.TabIndex = 2;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnExportExcelGeneral
             // 
             this.btnExportExcelGeneral.BackColor = System.Drawing.Color.Blue;
             this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportExcelGeneral.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
             this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportExcelGeneral.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcelGeneral.ForeColor = System.Drawing.Color.White;
             this.btnExportExcelGeneral.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1134, 11);
+            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1146, 0);
             this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcelGeneral.Name = "btnExportExcelGeneral";
-            this.btnExportExcelGeneral.Size = new System.Drawing.Size(50, 50);
+            this.btnExportExcelGeneral.Size = new System.Drawing.Size(50, 64);
             this.btnExportExcelGeneral.TabIndex = 4;
             this.btnExportExcelGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportExcelGeneral.UseVisualStyleBackColor = false;
@@ -487,7 +475,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 706);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnExportExcelGeneral);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -496,8 +485,6 @@
             this.Text = "FrmInicio";
             this.Load += new System.EventHandler(this.FrmInicio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -506,7 +493,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnExportExcelGeneral;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDeportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTecnico;

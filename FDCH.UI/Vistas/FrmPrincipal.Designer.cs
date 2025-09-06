@@ -154,13 +154,14 @@
             this.btnGetBloqueo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnGetBloqueo.BackColor = System.Drawing.Color.Crimson;
             this.btnGetBloqueo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetBloqueo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGetBloqueo.FlatAppearance.BorderSize = 0;
             this.btnGetBloqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetBloqueo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetBloqueo.ForeColor = System.Drawing.Color.White;
             this.btnGetBloqueo.Image = global::FDCH.UI.Properties.Resources.desbloqueado;
             this.btnGetBloqueo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 609);
+            this.btnGetBloqueo.Location = new System.Drawing.Point(0, 608);
             this.btnGetBloqueo.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetBloqueo.Name = "btnGetBloqueo";
             this.btnGetBloqueo.Size = new System.Drawing.Size(241, 60);
@@ -294,23 +295,23 @@
             // 
             // pnlContenedorFrm
             // 
-            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContenedorFrm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedorFrm.Location = new System.Drawing.Point(241, 0);
             this.pnlContenedorFrm.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContenedorFrm.Name = "pnlContenedorFrm";
-            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 706);
+            this.pnlContenedorFrm.Size = new System.Drawing.Size(1197, 712);
             this.pnlContenedorFrm.TabIndex = 1;
             // 
             // lblEstado
             // 
-            this.lblEstado.BackColor = System.Drawing.Color.SlateBlue;
+            this.lblEstado.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblEstado.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblEstado.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstado.ForeColor = System.Drawing.Color.White;
-            this.lblEstado.Location = new System.Drawing.Point(241, 704);
+            this.lblEstado.Location = new System.Drawing.Point(241, 712);
             this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(1197, 58);
+            this.lblEstado.Size = new System.Drawing.Size(1197, 50);
             this.lblEstado.TabIndex = 2;
             this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -318,13 +319,12 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1438, 762);
-            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.pnlContenedorFrm);
+            this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Federación Deportiva de Chimborazo";
