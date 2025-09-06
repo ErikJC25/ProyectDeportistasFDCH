@@ -398,5 +398,11 @@ namespace FDCH.Logica
         }
 
 
+        public Dictionary<int, List<string>> ObtenerDisciplinasPorDeportista()
+        {
+            return _dbService.ObtenerDisciplinasPorDeportista();
+        }
+
+
     }
 }
