@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExportExcelGeneral = new System.Windows.Forms.Button();
             this.IdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +63,9 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportExcelGeneral = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -111,6 +111,7 @@
             this.TipoDiscapacidad,
             this.Observaciones,
             this.colEditar});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dataGridView1.Location = new System.Drawing.Point(0, 71);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -123,48 +124,6 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(181, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(782, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Registro de resultados de Participaciones";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Blue;
-            this.panel1.Controls.Add(this.btnExportExcelGeneral);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 71);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnExportExcelGeneral
-            // 
-            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.Blue;
-            this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
-            this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportExcelGeneral.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportExcelGeneral.ForeColor = System.Drawing.Color.White;
-            this.btnExportExcelGeneral.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1134, 11);
-            this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnExportExcelGeneral.Name = "btnExportExcelGeneral";
-            this.btnExportExcelGeneral.Size = new System.Drawing.Size(50, 50);
-            this.btnExportExcelGeneral.TabIndex = 4;
-            this.btnExportExcelGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelGeneral.UseVisualStyleBackColor = false;
-            this.btnExportExcelGeneral.Click += new System.EventHandler(this.btnExportExcelGeneral_Click);
             // 
             // IdDeportista
             // 
@@ -480,6 +439,48 @@
             this.colEditar.Text = "✏️";
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(181, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(782, 46);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Registro de resultados de Participaciones";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Blue;
+            this.panel1.Controls.Add(this.btnExportExcelGeneral);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1196, 71);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnExportExcelGeneral
+            // 
+            this.btnExportExcelGeneral.BackColor = System.Drawing.Color.Blue;
+            this.btnExportExcelGeneral.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportExcelGeneral.FlatAppearance.BorderSize = 0;
+            this.btnExportExcelGeneral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportExcelGeneral.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportExcelGeneral.ForeColor = System.Drawing.Color.White;
+            this.btnExportExcelGeneral.Image = global::FDCH.UI.Properties.Resources.dowload;
+            this.btnExportExcelGeneral.Location = new System.Drawing.Point(1134, 11);
+            this.btnExportExcelGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportExcelGeneral.Name = "btnExportExcelGeneral";
+            this.btnExportExcelGeneral.Size = new System.Drawing.Size(50, 50);
+            this.btnExportExcelGeneral.TabIndex = 4;
+            this.btnExportExcelGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcelGeneral.UseVisualStyleBackColor = false;
+            this.btnExportExcelGeneral.Click += new System.EventHandler(this.btnExportExcelGeneral_Click);
             // 
             // FrmInicio
             // 

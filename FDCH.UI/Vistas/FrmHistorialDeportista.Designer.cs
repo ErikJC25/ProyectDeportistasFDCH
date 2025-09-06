@@ -143,15 +143,16 @@
             this.TipoDiscapacidad,
             this.Observaciones,
             this.colEditar});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 110);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 112);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 526);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 529);
             this.dataGridView1.TabIndex = 1;
             // 
             // IdTecnico
@@ -468,12 +469,14 @@
             this.btnExportarDeportista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarDeportista.ForeColor = System.Drawing.Color.White;
             this.btnExportarDeportista.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportarDeportista.Location = new System.Drawing.Point(1121, 640);
+            this.btnExportarDeportista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarDeportista.Location = new System.Drawing.Point(1044, 645);
             this.btnExportarDeportista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarDeportista.Name = "btnExportarDeportista";
-            this.btnExportarDeportista.Size = new System.Drawing.Size(60, 60);
+            this.btnExportarDeportista.Size = new System.Drawing.Size(140, 50);
             this.btnExportarDeportista.TabIndex = 2;
-            this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarDeportista.Text = "Word";
+            this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportarDeportista.UseVisualStyleBackColor = false;
             this.btnExportarDeportista.Click += new System.EventHandler(this.btnExportarDeportista_Click);
             // 
@@ -486,19 +489,20 @@
             this.btnExportExcel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.ForeColor = System.Drawing.Color.White;
             this.btnExportExcel.Image = global::FDCH.UI.Properties.Resources.dowload;
-            this.btnExportExcel.Location = new System.Drawing.Point(1005, 640);
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(881, 645);
             this.btnExportExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(60, 60);
+            this.btnExportExcel.Size = new System.Drawing.Size(140, 50);
             this.btnExportExcel.TabIndex = 3;
-            this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Text = "Excel";
+            this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportExcel.UseVisualStyleBackColor = false;
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // FrmHistorialDeportista
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.btnExportarDeportista);

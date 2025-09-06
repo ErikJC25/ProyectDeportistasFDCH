@@ -332,6 +332,9 @@
     <EmbeddedResource Include="Vistas\FrmFiltrar.resx">
       <DependentUpon>FrmFiltrar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmGestionarDeportistas.resx">
+      <DependentUpon>FrmGestionarDeportistas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmHistorialDeportista.resx">
       <DependentUpon>FrmHistorialDeportista.cs</DependentUpon>
     </EmbeddedResource>

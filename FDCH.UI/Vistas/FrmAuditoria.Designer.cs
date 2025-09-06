@@ -67,7 +67,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_log,
@@ -76,6 +76,7 @@
             this.id_registro_afectado,
             this.accion,
             this.fecha_cambio});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(0, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -91,7 +92,6 @@
             this.id_log.MinimumWidth = 6;
             this.id_log.Name = "id_log";
             this.id_log.ReadOnly = true;
-            this.id_log.Width = 49;
             // 
             // id_usuario
             // 
@@ -100,7 +100,6 @@
             this.id_usuario.MinimumWidth = 6;
             this.id_usuario.Name = "id_usuario";
             this.id_usuario.ReadOnly = true;
-            this.id_usuario.Width = 97;
             // 
             // tabla_afectada
             // 
@@ -109,7 +108,6 @@
             this.tabla_afectada.MinimumWidth = 6;
             this.tabla_afectada.Name = "tabla_afectada";
             this.tabla_afectada.ReadOnly = true;
-            this.tabla_afectada.Width = 141;
             // 
             // id_registro_afectado
             // 
@@ -118,7 +116,6 @@
             this.id_registro_afectado.MinimumWidth = 6;
             this.id_registro_afectado.Name = "id_registro_afectado";
             this.id_registro_afectado.ReadOnly = true;
-            this.id_registro_afectado.Width = 154;
             // 
             // accion
             // 
@@ -127,7 +124,6 @@
             this.accion.MinimumWidth = 6;
             this.accion.Name = "accion";
             this.accion.ReadOnly = true;
-            this.accion.Width = 86;
             // 
             // fecha_cambio
             // 
@@ -136,7 +132,6 @@
             this.fecha_cambio.MinimumWidth = 6;
             this.fecha_cambio.Name = "fecha_cambio";
             this.fecha_cambio.ReadOnly = true;
-            this.fecha_cambio.Width = 124;
             // 
             // FrmAuditoria
             // 

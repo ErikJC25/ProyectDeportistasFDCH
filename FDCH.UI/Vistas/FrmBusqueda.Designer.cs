@@ -116,15 +116,16 @@
             this.TipoDiscapacidad,
             this.Observaciones,
             this.colEditar});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 114);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 141);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(957, 452);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 565);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -441,7 +442,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 60);
+            this.panel1.Size = new System.Drawing.Size(1196, 75);
             this.panel1.TabIndex = 3;
             // 
             // label1
@@ -449,10 +450,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(286, 11);
+            this.label1.Location = new System.Drawing.Point(358, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(396, 38);
+            this.label1.Size = new System.Drawing.Size(482, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Busqueda de Información";
             // 
@@ -462,10 +463,10 @@
             this.txtCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCedula.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtCedula.Location = new System.Drawing.Point(10, 72);
+            this.txtCedula.Location = new System.Drawing.Point(12, 90);
             this.txtCedula.Margin = new System.Windows.Forms.Padding(2);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(160, 25);
+            this.txtCedula.Size = new System.Drawing.Size(199, 29);
             this.txtCedula.TabIndex = 1;
             this.txtCedula.Text = "CEDULA";
             this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
@@ -478,10 +479,10 @@
             this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtApellidos.Location = new System.Drawing.Point(204, 71);
+            this.txtApellidos.Location = new System.Drawing.Point(255, 89);
             this.txtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(226, 25);
+            this.txtApellidos.Size = new System.Drawing.Size(282, 29);
             this.txtApellidos.TabIndex = 2;
             this.txtApellidos.Text = "APELLIDOS";
             this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
@@ -494,10 +495,10 @@
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombres.Location = new System.Drawing.Point(434, 70);
+            this.txtNombres.Location = new System.Drawing.Point(542, 88);
             this.txtNombres.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(229, 25);
+            this.txtNombres.Size = new System.Drawing.Size(285, 29);
             this.txtNombres.TabIndex = 3;
             this.txtNombres.Text = "NOMBRES";
             this.txtNombres.TextChanged += new System.EventHandler(this.txtNombres_TextChanged);
@@ -511,10 +512,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(176, 76);
+            this.label2.Location = new System.Drawing.Point(220, 95);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(19, 19);
+            this.label2.Size = new System.Drawing.Size(22, 24);
             this.label2.TabIndex = 5;
             this.label2.Text = "o";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -529,10 +530,10 @@
             this.btnFiltrar.ForeColor = System.Drawing.Color.White;
             this.btnFiltrar.Image = global::FDCH.UI.Properties.Resources.filtrar;
             this.btnFiltrar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFiltrar.Location = new System.Drawing.Point(860, 71);
+            this.btnFiltrar.Location = new System.Drawing.Point(1075, 89);
             this.btnFiltrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(87, 26);
+            this.btnFiltrar.Size = new System.Drawing.Size(109, 32);
             this.btnFiltrar.TabIndex = 6;
             this.btnFiltrar.Text = "Filtrado";
             this.btnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -548,10 +549,10 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
             this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiar.Location = new System.Drawing.Point(768, 72);
+            this.btnLimpiar.Location = new System.Drawing.Point(960, 90);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
+            this.btnLimpiar.Size = new System.Drawing.Size(44, 30);
             this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -567,10 +568,10 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(679, 71);
+            this.btnBuscar.Location = new System.Drawing.Point(849, 89);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(84, 24);
+            this.btnBuscar.Size = new System.Drawing.Size(105, 30);
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -587,10 +588,10 @@
             this.btnExportarWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarWord.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarWord.ForeColor = System.Drawing.Color.White;
-            this.btnExportarWord.Location = new System.Drawing.Point(808, 71);
+            this.btnExportarWord.Location = new System.Drawing.Point(1010, 89);
             this.btnExportarWord.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportarWord.Name = "btnExportarWord";
-            this.btnExportarWord.Size = new System.Drawing.Size(26, 26);
+            this.btnExportarWord.Size = new System.Drawing.Size(32, 32);
             this.btnExportarWord.TabIndex = 8;
             this.btnExportarWord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarWord.UseVisualStyleBackColor = false;
@@ -598,10 +599,9 @@
             // 
             // FrmBusqueda
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(957, 565);
+            this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.btnExportarWord);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.btnLimpiar);

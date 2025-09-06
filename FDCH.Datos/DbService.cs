@@ -1839,7 +1839,7 @@ namespace FDCH.Datos
             var lista = new List<HistorialCambio>();
             using (var connection = GetConnection())
             {
-                string query = "SELECT * FROM HistorialDeCambios ORDER BY fecha_hora DESC";
+                string query = "SELECT * FROM Historial_Cambios ORDER BY id_log DESC";
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     connection.Open();
