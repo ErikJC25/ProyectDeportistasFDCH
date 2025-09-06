@@ -81,6 +81,9 @@
             this.txbNombres.Size = new System.Drawing.Size(209, 25);
             this.txbNombres.TabIndex = 11;
             this.txbNombres.Text = "NOMBRES";
+            this.txbNombres.Enter += new System.EventHandler(this.txbNombres_Enter);
+            this.txbNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNombres_KeyPress);
+            this.txbNombres.Leave += new System.EventHandler(this.txbNombres_Leave);
             // 
             // txbApellidos
             // 
@@ -94,6 +97,9 @@
             this.txbApellidos.Size = new System.Drawing.Size(209, 25);
             this.txbApellidos.TabIndex = 10;
             this.txbApellidos.Text = "APELLIDOS";
+            this.txbApellidos.Enter += new System.EventHandler(this.txbApellidos_Enter);
+            this.txbApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbApellidos_KeyPress);
+            this.txbApellidos.Leave += new System.EventHandler(this.txbApellidos_Leave);
             // 
             // txbCedula
             // 
@@ -107,6 +113,9 @@
             this.txbCedula.Size = new System.Drawing.Size(131, 25);
             this.txbCedula.TabIndex = 9;
             this.txbCedula.Text = "CEDULA";
+            this.txbCedula.Enter += new System.EventHandler(this.txbCedula_Enter);
+            this.txbCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCedula_KeyPress);
+            this.txbCedula.Leave += new System.EventHandler(this.txbCedula_Leave);
             // 
             // dataGridView1
             // 

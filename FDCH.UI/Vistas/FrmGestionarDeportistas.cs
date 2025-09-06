@@ -99,16 +99,54 @@ namespace FDCH.UI.Vistas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string cedula = txbCedula.Text?.Trim();
-            string apellidos = txbApellidos.Text?.Trim();
-            string nombres = txbNombres.Text?.Trim();
+            // Definición de placeholders actuales
+            string placeholderCedula = "CEDULA";
+            string placeholderApellidos = "APELLIDOS";
+            string placeholderNombres = "NOMBRES";
 
-            // Si todos vacíos -> advertir
-            if (string.IsNullOrWhiteSpace(cedula) && string.IsNullOrWhiteSpace(apellidos) && string.IsNullOrWhiteSpace(nombres))
+            // Validar que al menos uno de los campos de búsqueda tenga un valor.
+            // Se elimina el espacio en blanco y se compara con el placeholder.
+            if ((string.IsNullOrWhiteSpace(txbCedula.Text) || txbCedula.Text == placeholderCedula && txbCedula.ForeColor == Color.DarkGray) &&
+                (string.IsNullOrWhiteSpace(txbApellidos.Text) || txbApellidos.Text == placeholderApellidos && txbApellidos.ForeColor == Color.DarkGray) &&
+                (string.IsNullOrWhiteSpace(txbNombres.Text) || txbNombres.Text == placeholderNombres && txbNombres.ForeColor == Color.DarkGray))
             {
-                MessageBox.Show("Ingrese al menos un criterio para buscar.", "Buscar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Por favor, ingrese al menos un valor en los campos Cédula, Apellidos o Nombres para realizar la búsqueda.",
+                                "Campos de Búsqueda Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si la validación falla
             }
+
+            string cedula;
+            string apellidos;
+            string nombres;
+
+            if (!string.IsNullOrWhiteSpace(txbCedula.Text) && txbCedula.Text != placeholderCedula && txbCedula.ForeColor != Color.DarkGray)
+            {
+                cedula = txbCedula.Text?.Trim();
+            }
+            else 
+            {
+                cedula = "";
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(txbApellidos.Text) && txbApellidos.Text != placeholderApellidos && txbApellidos.ForeColor != Color.DarkGray)
+            {
+                apellidos = txbApellidos.Text?.Trim();
+            }
+            else
+            {
+                apellidos = "";
+            }
+
+            if (!string.IsNullOrWhiteSpace(txbNombres.Text) && txbNombres.Text != placeholderNombres && txbNombres.ForeColor != Color.DarkGray)
+            {
+                nombres = txbNombres.Text?.Trim();
+            }
+            else
+            {
+                nombres = "";
+            }
+
 
             // Filtrar en memoria (si tu BD es grande preferir filtro SQL en capa datos)
             var filtrados = _listaDeportistas.Where(d =>
@@ -122,9 +160,12 @@ namespace FDCH.UI.Vistas
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txbCedula.Text = "";
-            txbApellidos.Text = "";
-            txbNombres.Text = "";
+            txbCedula.Text = "CEDULA";
+            txbCedula.ForeColor = Color.DarkGray;
+            txbApellidos.Text = "APELLIDOS";
+            txbApellidos.ForeColor = Color.DarkGray;
+            txbNombres.Text = "NOMBRES";
+            txbNombres.ForeColor = Color.DarkGray;
             // restaurar lista completa
             PoblarDataGrid(_listaDeportistas.OrderBy(d => d.nombres).ToList());
         }
@@ -240,5 +281,121 @@ namespace FDCH.UI.Vistas
             }
         }
 
+        private void txbCedula_Enter(object sender, EventArgs e)
+        {
+            if (txbCedula.Text == "CEDULA" && txbCedula.ForeColor == Color.DarkGray)
+            {
+                txbCedula.Text = "";
+                txbCedula.ForeColor = Color.Black;
+            }
+        }
+
+        private void txbCedula_Leave(object sender, EventArgs e)
+        {
+
+            if (txbCedula.Text == "")
+            {
+                txbCedula.Text = "CEDULA";
+                txbCedula.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txbApellidos_Enter(object sender, EventArgs e)
+        {
+            if (txbApellidos.Text == "APELLIDOS" && txbApellidos.ForeColor == Color.DarkGray)
+            {
+                txbApellidos.Text = "";
+                txbApellidos.ForeColor = Color.Black;
+            }
+        }
+
+        private void txbApellidos_Leave(object sender, EventArgs e)
+        {
+            if (txbApellidos.Text == "")
+            {
+                txbApellidos.Text = "APELLIDOS";
+                txbApellidos.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txbNombres_Enter(object sender, EventArgs e)
+        {
+            if (txbNombres.Text == "NOMBRES" && txbNombres.ForeColor == Color.DarkGray)
+            {
+                txbNombres.Text = "";
+                txbNombres.ForeColor = Color.Black;
+            }
+        }
+
+        private void txbNombres_Leave(object sender, EventArgs e)
+        {
+            if (txbNombres.Text == "")
+            {
+                txbNombres.Text = "NOMBRES";
+                txbNombres.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txbCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón
+                btnBuscar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el siguiente campos
+                txbApellidos.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txbApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el siguiente campos
+                txbNombres.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
+
+        private void txbNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada es la tecla Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llama al método que maneja el clic del botón
+                btnBuscar_Click(sender, e);
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Tab)
+            {
+                // Pone el foco de control en el boton Buscar
+                btnBuscar.Focus();
+
+                // Importante: establece e.Handled en true para evitar el sonido
+                // y para que la tecla Enter / Tab no se procese como un carácter de entrada.
+                e.Handled = true;
+            }
+        }
     }
 }
