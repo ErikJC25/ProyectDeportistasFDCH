@@ -38,7 +38,7 @@ namespace FDCH.UI.Vistas
 
         /// <summary>
         /// Carga inicial: deportistas y mapa de disciplinas (en una sola consulta).
-        /// Por defecto ordena por NOMBRES (como pediste).
+        /// Por defecto ahora ordena por id_deportista DESC (mayor -> menor).
         /// </summary>
         private void CargarDatosIniciales()
         {
@@ -50,8 +50,8 @@ namespace FDCH.UI.Vistas
                 // 2) traer disciplinas por deportista (UNA sola consulta)
                 _mapaDisciplinas = _puente.ObtenerDisciplinasPorDeportista() ?? new Dictionary<int, List<string>>();
 
-                // 3) mostrar ordenados por nombres
-                var ordenados = _listaDeportistas.OrderBy(d => d.nombres).ToList();
+                // 3) mostrar ordenados por id (mayor -> menor) por defecto
+                var ordenados = _listaDeportistas.OrderByDescending(d => d.id_deportista).ToList();
                 PoblarDataGrid(ordenados);
             }
             catch (Exception ex)
@@ -172,11 +172,23 @@ namespace FDCH.UI.Vistas
 
         private void btnOrdenarApellidos_Click(object sender, EventArgs e)
         {
+            txbCedula.Text = "CEDULA";
+            txbCedula.ForeColor = Color.DarkGray;
+            txbApellidos.Text = "APELLIDOS";
+            txbApellidos.ForeColor = Color.DarkGray;
+            txbNombres.Text = "NOMBRES";
+            txbNombres.ForeColor = Color.DarkGray;
             PoblarDataGrid(_listaDeportistas.OrderBy(d => d.apellidos).ToList());
         }
 
         private void btnOrdenarNombres_Click(object sender, EventArgs e)
         {
+            txbCedula.Text = "CEDULA";
+            txbCedula.ForeColor = Color.DarkGray;
+            txbApellidos.Text = "APELLIDOS";
+            txbApellidos.ForeColor = Color.DarkGray;
+            txbNombres.Text = "NOMBRES";
+            txbNombres.ForeColor = Color.DarkGray;
             PoblarDataGrid(_listaDeportistas.OrderBy(d => d.nombres).ToList());
         }
 
@@ -428,5 +440,24 @@ namespace FDCH.UI.Vistas
                 e.Handled = true;
             }
         }
+
+        /*
+         /// <summary>
+/// Ordena la grilla por id_deportista (mayor -> menor)
+/// </summary>
+private void btnOrdenarId_Click(object sender, EventArgs e)
+{
+    // restablecer placeholders por si estaban visibles
+    txbCedula.Text = "CEDULA";
+    txbCedula.ForeColor = Color.DarkGray;
+    txbApellidos.Text = "APELLIDOS";
+    txbApellidos.ForeColor = Color.DarkGray;
+    txbNombres.Text = "NOMBRES";
+    txbNombres.ForeColor = Color.DarkGray;
+
+    PoblarDataGrid(_listaDeportistas.OrderByDescending(d => d.id_deportista).ToList());
+}
+
+         * */
     }
 }
