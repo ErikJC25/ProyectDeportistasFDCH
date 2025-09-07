@@ -506,14 +506,15 @@
             // 
             // label18
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label18.AutoSize = true;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label18.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(413, 260);
+            this.label18.Location = new System.Drawing.Point(413, 246);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(99, 27);
+            this.label18.Size = new System.Drawing.Size(369, 41);
             this.label18.TabIndex = 2;
             this.label18.Text = "Record:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label18.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtRecord

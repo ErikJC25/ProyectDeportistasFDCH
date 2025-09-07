@@ -403,5 +403,13 @@ namespace FDCH.UI.Vistas
             pnlOpcion.Top = btnAuditoria.Top;
             AbrirFormularioEnPanel(new FrmAuditoria(this));
         }
+
+
+
+        public void EstablecerDimensionesPanelAInicio()
+        {
+            pnlOpcion.Height = btnInicio.Height;
+            pnlOpcion.Top = btnInicio.Top;
+        }
     }
 }

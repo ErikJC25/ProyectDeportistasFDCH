@@ -123,7 +123,7 @@ namespace FDCH.UI.Vistas
                     int idDeportista = registro.IdDeportista;
 
                     // 4. Abre el nuevo formulario y pásale el ID del deportista.
-                    _frmprincipal.AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista));
+                    _frmprincipal.AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista, _frmprincipal));
                     this.Close();
                 }
             }

@@ -491,6 +491,17 @@ namespace FDCH.UI.Vistas
                     {
                         deportistaParaGuardar.id_deportista = deportistaId;
                         _puente.ActualizarDeportista(deportistaParaGuardar);
+
+                        //Registrar el cambio en el historial
+                        HistorialCambio cambio = new HistorialCambio
+                        {
+                            id_usuario = _frmPrincipal._usuarioAutenticado.id_usuario,
+                            tabla_afectada = "Deportistas",
+                            id_registro_afectado = deportistaId,
+                            accion = "EDICION",
+                            fecha_cambio = DateTime.Now.ToString()
+                        };
+                        _puente.InsertarHistorialCambio(cambio);
                     }
                 }
                 if (deportistaId == 0) throw new Exception("No se pudo obtener/guardar el deportista.");

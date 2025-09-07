@@ -344,7 +344,10 @@ namespace FDCH.Logica
                 string nombreRegistro = "N/A";
                 string nombreUsuario = _dbService.ObtenerNombreUsuarioPorId(registro.id_usuario);
 
-                switch (registro.tabla_afectada)
+                // Convertir a mayúsculas para la comparación en el switch
+                string tablaAfectadaNormalizada = registro.tabla_afectada?.ToUpperInvariant() ?? "";
+
+                switch (tablaAfectadaNormalizada)
                 {
                     case "DEPORTISTAS":
                         nombreRegistro = _dbService.ObtenerNombreDeportistaPorId(registro.id_registro_afectado);

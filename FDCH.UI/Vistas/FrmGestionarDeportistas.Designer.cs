@@ -33,15 +33,6 @@
             this.txbApellidos = new System.Windows.Forms.TextBox();
             this.txbCedula = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnOrdenarNombres = new System.Windows.Forms.Button();
-            this.btnOrdenarApellidos = new System.Windows.Forms.Button();
-            this.btnSeparar = new System.Windows.Forms.Button();
-            this.btnFusionar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,34 +42,46 @@
             this.colTipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colIdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnOrdenarNombres = new System.Windows.Forms.Button();
+            this.btnOrdenarApellidos = new System.Windows.Forms.Button();
+            this.btnSeparar = new System.Windows.Forms.Button();
+            this.btnFusionar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(174, 77);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(253, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(19, 19);
+            this.tableLayoutPanel1.SetRowSpan(this.label2, 2);
+            this.label2.Size = new System.Drawing.Size(22, 24);
             this.label2.TabIndex = 14;
             this.label2.Text = "o";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txbNombres
             // 
+            this.txbNombres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbNombres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txbNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbNombres.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbNombres.Location = new System.Drawing.Point(410, 75);
-            this.txbNombres.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNombres.Location = new System.Drawing.Point(522, 83);
+            this.txbNombres.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbNombres.Name = "txbNombres";
-            this.txbNombres.Size = new System.Drawing.Size(209, 25);
+            this.tableLayoutPanel1.SetRowSpan(this.txbNombres, 2);
+            this.txbNombres.Size = new System.Drawing.Size(235, 29);
             this.txbNombres.TabIndex = 11;
             this.txbNombres.Text = "NOMBRES";
             this.txbNombres.Enter += new System.EventHandler(this.txbNombres_Enter);
@@ -87,14 +90,16 @@
             // 
             // txbApellidos
             // 
+            this.txbApellidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbApellidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txbApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbApellidos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbApellidos.Location = new System.Drawing.Point(197, 75);
-            this.txbApellidos.Margin = new System.Windows.Forms.Padding(2);
+            this.txbApellidos.Location = new System.Drawing.Point(281, 83);
+            this.txbApellidos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbApellidos.Name = "txbApellidos";
-            this.txbApellidos.Size = new System.Drawing.Size(209, 25);
+            this.tableLayoutPanel1.SetRowSpan(this.txbApellidos, 2);
+            this.txbApellidos.Size = new System.Drawing.Size(235, 29);
             this.txbApellidos.TabIndex = 10;
             this.txbApellidos.Text = "APELLIDOS";
             this.txbApellidos.Enter += new System.EventHandler(this.txbApellidos_Enter);
@@ -103,14 +108,16 @@
             // 
             // txbCedula
             // 
+            this.txbCedula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbCedula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txbCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbCedula.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbCedula.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbCedula.Location = new System.Drawing.Point(39, 75);
-            this.txbCedula.Margin = new System.Windows.Forms.Padding(2);
+            this.txbCedula.Location = new System.Drawing.Point(12, 83);
+            this.txbCedula.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbCedula.Name = "txbCedula";
-            this.txbCedula.Size = new System.Drawing.Size(131, 25);
+            this.tableLayoutPanel1.SetRowSpan(this.txbCedula, 2);
+            this.txbCedula.Size = new System.Drawing.Size(235, 29);
             this.txbCedula.TabIndex = 9;
             this.txbCedula.Text = "CEDULA";
             this.txbCedula.Enter += new System.EventHandler(this.txbCedula_Enter);
@@ -121,6 +128,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -133,44 +141,120 @@
             this.colTipoDiscapacidad,
             this.colEditar,
             this.colIdDeportista});
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 9);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(122, 115);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 132);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(958, 493);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 520);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // panel1
+            // colSeleccionar
             // 
-            this.panel1.BackColor = System.Drawing.Color.Green;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 55);
-            this.panel1.TabIndex = 18;
+            this.colSeleccionar.FillWeight = 70.10712F;
+            this.colSeleccionar.HeaderText = "SELECCIONAR";
+            this.colSeleccionar.MinimumWidth = 6;
+            this.colSeleccionar.Name = "colSeleccionar";
+            this.colSeleccionar.ReadOnly = true;
+            // 
+            // colCedula
+            // 
+            this.colCedula.DataPropertyName = "cedula";
+            this.colCedula.FillWeight = 92.04057F;
+            this.colCedula.HeaderText = "CEDULA";
+            this.colCedula.MinimumWidth = 6;
+            this.colCedula.Name = "colCedula";
+            this.colCedula.ReadOnly = true;
+            // 
+            // colNombres
+            // 
+            this.colNombres.DataPropertyName = "nombres";
+            this.colNombres.FillWeight = 139.7024F;
+            this.colNombres.HeaderText = "NOMBRES";
+            this.colNombres.MinimumWidth = 6;
+            this.colNombres.Name = "colNombres";
+            this.colNombres.ReadOnly = true;
+            // 
+            // colApellidos
+            // 
+            this.colApellidos.DataPropertyName = "apellidos";
+            this.colApellidos.FillWeight = 138.1022F;
+            this.colApellidos.HeaderText = "APELLIDOS";
+            this.colApellidos.MinimumWidth = 6;
+            this.colApellidos.Name = "colApellidos";
+            this.colApellidos.ReadOnly = true;
+            // 
+            // colDisciplinas
+            // 
+            this.colDisciplinas.FillWeight = 106.837F;
+            this.colDisciplinas.HeaderText = "DISCIPLINAS PARTICIPADAS";
+            this.colDisciplinas.MinimumWidth = 6;
+            this.colDisciplinas.Name = "colDisciplinas";
+            this.colDisciplinas.ReadOnly = true;
+            // 
+            // colGenero
+            // 
+            this.colGenero.DataPropertyName = "tipo_discapacidad";
+            this.colGenero.FillWeight = 70.1357F;
+            this.colGenero.HeaderText = "GENERO";
+            this.colGenero.MinimumWidth = 6;
+            this.colGenero.Name = "colGenero";
+            this.colGenero.ReadOnly = true;
+            // 
+            // colTipoDiscapacidad
+            // 
+            this.colTipoDiscapacidad.DataPropertyName = "tipo_discapacidad";
+            this.colTipoDiscapacidad.FillWeight = 116.8041F;
+            this.colTipoDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
+            this.colTipoDiscapacidad.MinimumWidth = 6;
+            this.colTipoDiscapacidad.Name = "colTipoDiscapacidad";
+            this.colTipoDiscapacidad.ReadOnly = true;
+            // 
+            // colEditar
+            // 
+            this.colEditar.FillWeight = 66.27096F;
+            this.colEditar.HeaderText = "EDITAR";
+            this.colEditar.MinimumWidth = 6;
+            this.colEditar.Name = "colEditar";
+            this.colEditar.ReadOnly = true;
+            this.colEditar.Text = "Editar";
+            this.colEditar.UseColumnTextForButtonValue = true;
+            // 
+            // colIdDeportista
+            // 
+            this.colIdDeportista.DataPropertyName = "id_deportista";
+            this.colIdDeportista.HeaderText = "IdDeportista";
+            this.colIdDeportista.MinimumWidth = 6;
+            this.colIdDeportista.Name = "colIdDeportista";
+            this.colIdDeportista.ReadOnly = true;
+            this.colIdDeportista.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Green;
+            this.tableLayoutPanel1.SetColumnSpan(this.label1, 9);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(421, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(343, 38);
+            this.label1.Size = new System.Drawing.Size(1196, 64);
             this.label1.TabIndex = 0;
             this.label1.Text = "Gestionar Deportistas";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnOrdenarNombres
             // 
+            this.btnOrdenarNombres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOrdenarNombres.BackColor = System.Drawing.Color.Green;
             this.btnOrdenarNombres.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOrdenarNombres.FlatAppearance.BorderSize = 0;
@@ -178,10 +262,10 @@
             this.btnOrdenarNombres.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarNombres.Location = new System.Drawing.Point(807, 77);
-            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarNombres.Location = new System.Drawing.Point(947, 66);
+            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrdenarNombres.Name = "btnOrdenarNombres";
-            this.btnOrdenarNombres.Size = new System.Drawing.Size(166, 24);
+            this.btnOrdenarNombres.Size = new System.Drawing.Size(235, 30);
             this.btnOrdenarNombres.TabIndex = 19;
             this.btnOrdenarNombres.Text = "Ordenar por Nombre";
             this.btnOrdenarNombres.UseVisualStyleBackColor = false;
@@ -189,6 +273,7 @@
             // 
             // btnOrdenarApellidos
             // 
+            this.btnOrdenarApellidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOrdenarApellidos.BackColor = System.Drawing.Color.Green;
             this.btnOrdenarApellidos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOrdenarApellidos.FlatAppearance.BorderSize = 0;
@@ -196,10 +281,10 @@
             this.btnOrdenarApellidos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarApellidos.Location = new System.Drawing.Point(977, 77);
-            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarApellidos.Location = new System.Drawing.Point(947, 100);
+            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
-            this.btnOrdenarApellidos.Size = new System.Drawing.Size(166, 24);
+            this.btnOrdenarApellidos.Size = new System.Drawing.Size(235, 30);
             this.btnOrdenarApellidos.TabIndex = 20;
             this.btnOrdenarApellidos.Text = "Ordenar por Apellido";
             this.btnOrdenarApellidos.UseVisualStyleBackColor = false;
@@ -207,6 +292,7 @@
             // 
             // btnSeparar
             // 
+            this.btnSeparar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnSeparar.BackColor = System.Drawing.Color.Green;
             this.btnSeparar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeparar.FlatAppearance.BorderSize = 0;
@@ -215,10 +301,10 @@
             this.btnSeparar.ForeColor = System.Drawing.Color.White;
             this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
             this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeparar.Location = new System.Drawing.Point(946, 633);
-            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSeparar.Location = new System.Drawing.Point(554, 654);
+            this.btnSeparar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSeparar.Name = "btnSeparar";
-            this.btnSeparar.Size = new System.Drawing.Size(134, 43);
+            this.btnSeparar.Size = new System.Drawing.Size(170, 50);
             this.btnSeparar.TabIndex = 23;
             this.btnSeparar.Text = "Separar";
             this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -227,6 +313,7 @@
             // 
             // btnFusionar
             // 
+            this.btnFusionar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFusionar.BackColor = System.Drawing.Color.Green;
             this.btnFusionar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFusionar.FlatAppearance.BorderSize = 0;
@@ -235,10 +322,10 @@
             this.btnFusionar.ForeColor = System.Drawing.Color.White;
             this.btnFusionar.Image = global::FDCH.UI.Properties.Resources.fusionar2;
             this.btnFusionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFusionar.Location = new System.Drawing.Point(765, 633);
-            this.btnFusionar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFusionar.Location = new System.Drawing.Point(313, 654);
+            this.btnFusionar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFusionar.Name = "btnFusionar";
-            this.btnFusionar.Size = new System.Drawing.Size(134, 43);
+            this.btnFusionar.Size = new System.Drawing.Size(170, 50);
             this.btnFusionar.TabIndex = 22;
             this.btnFusionar.Text = "Fusionar";
             this.btnFusionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,6 +334,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAgregar.BackColor = System.Drawing.Color.Green;
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
@@ -255,10 +343,10 @@
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
             this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(122, 636);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregar.Location = new System.Drawing.Point(27, 654);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(182, 40);
+            this.btnAgregar.Size = new System.Drawing.Size(205, 50);
             this.btnAgregar.TabIndex = 21;
             this.btnAgregar.Text = "Agregar Nuevo";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -266,6 +354,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLimpiar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpiar.FlatAppearance.BorderSize = 0;
@@ -273,10 +362,11 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
             this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiar.Location = new System.Drawing.Point(730, 79);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLimpiar.Location = new System.Drawing.Point(894, 83);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
+            this.tableLayoutPanel1.SetRowSpan(this.btnLimpiar, 2);
+            this.btnLimpiar.Size = new System.Drawing.Size(47, 30);
             this.btnLimpiar.TabIndex = 13;
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -284,6 +374,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuscar.FlatAppearance.BorderSize = 0;
@@ -292,113 +383,70 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(632, 79);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Location = new System.Drawing.Point(763, 83);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(94, 24);
+            this.tableLayoutPanel1.SetRowSpan(this.btnBuscar, 2);
+            this.btnBuscar.Size = new System.Drawing.Size(125, 30);
             this.btnBuscar.TabIndex = 12;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // colSeleccionar
+            // tableLayoutPanel1
             // 
-            this.colSeleccionar.HeaderText = "SELECCIONAR";
-            this.colSeleccionar.Name = "colSeleccionar";
-            this.colSeleccionar.ReadOnly = true;
-            this.colSeleccionar.Width = 90;
-            // 
-            // colCedula
-            // 
-            this.colCedula.DataPropertyName = "cedula";
-            this.colCedula.HeaderText = "CEDULA";
-            this.colCedula.Name = "colCedula";
-            this.colCedula.ReadOnly = true;
-            this.colCedula.Width = 110;
-            // 
-            // colNombres
-            // 
-            this.colNombres.DataPropertyName = "nombres";
-            this.colNombres.HeaderText = "NOMBRES";
-            this.colNombres.Name = "colNombres";
-            this.colNombres.ReadOnly = true;
-            this.colNombres.Width = 160;
-            // 
-            // colApellidos
-            // 
-            this.colApellidos.DataPropertyName = "apellidos";
-            this.colApellidos.HeaderText = "APELLIDOS";
-            this.colApellidos.Name = "colApellidos";
-            this.colApellidos.ReadOnly = true;
-            this.colApellidos.Width = 160;
-            // 
-            // colDisciplinas
-            // 
-            this.colDisciplinas.HeaderText = "DISCIPLINAS PARTICIPADAS";
-            this.colDisciplinas.Name = "colDisciplinas";
-            this.colDisciplinas.ReadOnly = true;
-            this.colDisciplinas.Width = 125;
-            // 
-            // colGenero
-            // 
-            this.colGenero.DataPropertyName = "tipo_discapacidad";
-            this.colGenero.HeaderText = "GENERO";
-            this.colGenero.Name = "colGenero";
-            this.colGenero.ReadOnly = true;
-            this.colGenero.Width = 80;
-            // 
-            // colTipoDiscapacidad
-            // 
-            this.colTipoDiscapacidad.DataPropertyName = "tipo_discapacidad";
-            this.colTipoDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
-            this.colTipoDiscapacidad.Name = "colTipoDiscapacidad";
-            this.colTipoDiscapacidad.ReadOnly = true;
-            // 
-            // colEditar
-            // 
-            this.colEditar.HeaderText = "EDITAR";
-            this.colEditar.Name = "colEditar";
-            this.colEditar.ReadOnly = true;
-            this.colEditar.Text = "Editar";
-            this.colEditar.UseColumnTextForButtonValue = true;
-            this.colEditar.Width = 70;
-            // 
-            // colIdDeportista
-            // 
-            this.colIdDeportista.DataPropertyName = "id_deportista";
-            this.colIdDeportista.HeaderText = "IdDeportista";
-            this.colIdDeportista.Name = "colIdDeportista";
-            this.colIdDeportista.ReadOnly = true;
-            this.colIdDeportista.Visible = false;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.ColumnCount = 9;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.010125F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.49619F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.4962F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.4962F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.4962F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.005088F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarApellidos, 7, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSeparar, 4, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarNombres, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnLimpiar, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnAgregar, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnFusionar, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txbNombres, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbApellidos, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbCedula, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1196, 706);
+            this.tableLayoutPanel1.TabIndex = 24;
             // 
             // FrmGestionarDeportistas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 706);
-            this.Controls.Add(this.btnSeparar);
-            this.Controls.Add(this.btnFusionar);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnOrdenarApellidos);
-            this.Controls.Add(this.btnOrdenarNombres);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbNombres);
-            this.Controls.Add(this.txbApellidos);
-            this.Controls.Add(this.txbCedula);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmGestionarDeportistas";
             this.Text = "FrmGestionarDeportistas";
             this.Load += new System.EventHandler(this.FrmGestionarDeportistas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -410,7 +458,6 @@
         private System.Windows.Forms.TextBox txbApellidos;
         private System.Windows.Forms.TextBox txbCedula;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOrdenarNombres;
         private System.Windows.Forms.Button btnOrdenarApellidos;
@@ -426,5 +473,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDiscapacidad;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdDeportista;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

@@ -407,7 +407,7 @@ namespace FDCH.UI.Vistas
                         HistorialCambio cambio = new HistorialCambio
                         {
                             id_usuario = _frmprincipal._usuarioAutenticado.id_usuario,
-                            tabla_afectada = "DEPORTISTAS",
+                            tabla_afectada = "Deportistas",
                             id_registro_afectado = deportistaId,
                             accion = "EDICION",
                             fecha_cambio = DateTime.Now.ToString()

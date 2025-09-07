@@ -1849,12 +1849,18 @@ namespace FDCH.Datos
                         {
                             lista.Add(new HistorialCambio
                             {
-                                id_log = Convert.ToInt32(reader["id"]),
-                                fecha_cambio = reader["fecha_hora"].ToString(),
-                                accion = reader["accion"].ToString(),
-                                tabla_afectada = reader["tabla_afectada"].ToString(),
-                                id_registro_afectado = Convert.ToInt32(reader["id_registro_afectado"]),
-                                id_usuario = Convert.ToInt32(reader["id_usuario"])
+                                // Manejo de nulos para id_log
+                                id_log = reader.IsDBNull(reader.GetOrdinal("id_log")) ? 0 : Convert.ToInt32(reader["id_log"]),
+                                // Manejo de nulos para id_usuario
+                                id_usuario = reader.IsDBNull(reader.GetOrdinal("id_usuario")) ? 0 : Convert.ToInt32(reader["id_usuario"]),
+                                // Manejo de nulos para tabla_afectada
+                                tabla_afectada = reader.IsDBNull(reader.GetOrdinal("tabla_afectada")) ? string.Empty : reader["tabla_afectada"].ToString(),
+                                // Manejo de nulos para id_registro_afectado
+                                id_registro_afectado = reader.IsDBNull(reader.GetOrdinal("id_registro_afectado")) ? 0 : Convert.ToInt32(reader["id_registro_afectado"]),
+                                // Manejo de nulos para accion
+                                accion = reader.IsDBNull(reader.GetOrdinal("accion")) ? string.Empty : reader["accion"].ToString(),
+                                // Manejo de nulos para fecha_cambio
+                                fecha_cambio = reader.IsDBNull(reader.GetOrdinal("fecha_cambio")) ? string.Empty : reader["fecha_cambio"].ToString()
                             });
                         }
                     }
@@ -1878,7 +1884,18 @@ namespace FDCH.Datos
                     {
                         if (reader.Read())
                         {
-                            nombre = $"{reader["nombres"]} {reader["apellidos"]}";
+                            // Validar cada campo antes de usarlo
+                            var nombres = reader["nombres"] != DBNull.Value ? reader["nombres"].ToString() : string.Empty;
+                            var apellidos = reader["apellidos"] != DBNull.Value ? reader["apellidos"].ToString() : string.Empty;
+
+                            // Construir el nombre completo, omitiendo espacios si un campo está vacío
+                            nombre = $"{nombres.Trim()} {apellidos.Trim()}".Trim();
+
+                            // Si ambos están vacíos, mantener el valor por defecto "N/A"
+                            if (string.IsNullOrEmpty(nombre))
+                            {
+                                nombre = "N/A";
+                            }
                         }
                     }
                 }
@@ -2002,7 +2019,11 @@ namespace FDCH.Datos
                     {
                         if (reader.Read())
                         {
-                            nombre = $"Categoría: {reader["categoria"]}, División: {reader["division"]}";
+                            // Validar cada campo
+                            var categoria = reader["categoria"] != DBNull.Value ? reader["categoria"].ToString() : "Sin categoría";
+                            var division = reader["division"] != DBNull.Value ? reader["division"].ToString() : "Sin división";
+
+                            nombre = $"Categoría: {categoria}, División: {division}";
                         }
                     }
                 }
@@ -2020,12 +2041,16 @@ namespace FDCH.Datos
                 {
                     command.Parameters.AddWithValue("@id", id);
                     connection.Open();
-                    var result = command.ExecuteScalar();
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            nombre = $"Puntos: {reader["puntos"]}, Tiempo: {reader["tiempo"]}, Ubicación: {reader["ubicacion"]}";
+                            // Validar cada campo
+                            var puntos = reader["puntos"] != DBNull.Value ? reader["puntos"].ToString() : "N/A";
+                            var tiempo = reader["tiempo"] != DBNull.Value ? reader["tiempo"].ToString() : "N/A";
+                            var ubicacion = reader["ubicacion"] != DBNull.Value ? reader["ubicacion"].ToString() : "N/A";
+
+                            nombre = $"Puntos: {puntos}, Tiempo: {tiempo}, Ubicación: {ubicacion}";
                         }
                     }
                 }

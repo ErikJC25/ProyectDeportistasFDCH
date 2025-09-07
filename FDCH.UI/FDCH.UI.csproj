@@ -366,6 +366,9 @@
     <EmbeddedResource Include="Vistas\FrmSeleccionEditor.resx">
       <DependentUpon>FrmSeleccionEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmSepararDeportistas.resx">
+      <DependentUpon>FrmSepararDeportistas.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
