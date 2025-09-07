@@ -2,6 +2,7 @@
 using FDCH.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FDCH.Logica
 {
@@ -243,14 +244,14 @@ namespace FDCH.Logica
             return _dbService.ObtenerEspecialidadPorId(idEspecialidad);
         }
 
-        
+
 
         public bool ActualizarDeportista(Deportista deportista)
         {
             return _dbService.ActualizarDeportista(deportista);
         }
 
-        
+
 
         public List<Deportista> ObtenerDeportistasPorFiltro(string filtro, string campo)
         {
@@ -404,5 +405,30 @@ namespace FDCH.Logica
         }
 
 
+        /// <summary>
+        /// Fusiona deportistas delegando la operación a DbService. idUsuario puede ser null.
+        /// </summary>
+        /*public bool FusionarDeportistas(Deportista deportistaFusionado, List<int> idsAEliminar, int? idUsuario = null)
+        {
+            return _dbService.FusionarDeportistasTransaction(deportistaFusionado, idsAEliminar, idUsuario);
+
+
+
+        }*/
+
+        public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
+        {
+            return _dbService.ActualizarIdDesempenoPorDeportista(oldId, newId);
+        }
+
+        public bool EliminarDeportistaPorId(int idDeportista)
+        {
+            return _dbService.EliminarDeportistaPorId(idDeportista);
+        }
+
+        public bool InsertarHistorialCambio(int idUsuario, string tabla, int idRegistro, string accion, string fecha)
+        {
+            return _dbService.InsertarHistorialCambio(idUsuario, tabla, idRegistro, accion, fecha);
+        }
     }
 }

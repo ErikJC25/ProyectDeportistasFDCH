@@ -344,6 +344,9 @@
     <EmbeddedResource Include="Vistas\FrmFiltrar.resx">
       <DependentUpon>FrmFiltrar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmFusionarDeportistas.resx">
+      <DependentUpon>FrmFusionarDeportistas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmGestionarDeportistas.resx">
       <DependentUpon>FrmGestionarDeportistas.cs</DependentUpon>
       <SubType>Designer</SubType>

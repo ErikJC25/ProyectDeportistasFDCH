@@ -183,7 +183,7 @@ namespace FDCH.UI.Vistas
 
         private void btnFusionar_Click(object sender, EventArgs e)
         {
-            var seleccionados = GetDeportistasSeleccionados();
+            var seleccionados = GetSelectedRowsDto();
 
             if (seleccionados.Count < 2)
             {
@@ -191,7 +191,6 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            // Abrir FrmFusionarDeportistas pasando la lista. Se asume que existe un constructor aceptando List<Deportista> y FrmPrincipal
             var frm = new FrmFusionarDeportistas(seleccionados, _frmPrincipal);
             _frmPrincipal.AbrirFormularioEnPanel(frm);
             this.Close();
@@ -199,7 +198,7 @@ namespace FDCH.UI.Vistas
 
         private void btnSeparar_Click(object sender, EventArgs e)
         {
-            var seleccionados = GetDeportistasSeleccionados();
+            var seleccionados = GetSelectedRowsDto();
 
             if (seleccionados.Count != 1)
             {
@@ -207,13 +206,13 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            var frm = new FrmSepararDeportistas(seleccionados.First(), _frmPrincipal);
-            _frmPrincipal.AbrirFormularioEnPanel(frm);
+            //var frm = new FrmSepararDeportistas(seleccionados.First(), _frmPrincipal);
+            //_frmPrincipal.AbrirFormularioEnPanel(frm);
             this.Close();
         }
 
 
-        /// <summary>
+        /*/// <summary>
         /// Devuelve la lista de Deportista marcados por checkbox en el datagrid.
         /// </summary>
         private List<Deportista> GetDeportistasSeleccionados()
@@ -233,6 +232,38 @@ namespace FDCH.UI.Vistas
                             if (deport != null) lista.Add(deport);
                         }
                     }
+                }
+            }
+            return lista;
+        }*/
+
+        /// <summary>
+        /// Devuelve la lista de DTOs con el contenido de las filas marcadas por checkbox en el datagrid.
+        /// </summary>
+        private List<SelectedRowDto> GetSelectedRowsDto()
+        {
+            var lista = new List<SelectedRowDto>();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // Si la columna colSeleccionar existe y su valor es true
+                if (row.Cells["colSeleccionar"].Value is bool sel && sel)
+                {
+                    // Obtener cada celda según los nombres de columnas del diseñador
+                    int id = 0;
+                    int.TryParse(row.Cells["colIdDeportista"].Value?.ToString(), out id);
+
+                    var dto = new SelectedRowDto
+                    {
+                        IdDeportista = id,
+                        Cedula = row.Cells["colCedula"].Value?.ToString() ?? "",
+                        Nombres = row.Cells["colNombres"].Value?.ToString() ?? "",
+                        Apellidos = row.Cells["colApellidos"].Value?.ToString() ?? "",
+                        DisciplinasParticipadas = row.Cells["colDisciplinas"].Value?.ToString() ?? "",
+                        Genero = row.Cells["colGenero"].Value?.ToString() ?? "",
+                        TipoDiscapacidad = row.Cells["colTipoDiscapacidad"].Value?.ToString() ?? ""
+                    };
+
+                    lista.Add(dto);
                 }
             }
             return lista;

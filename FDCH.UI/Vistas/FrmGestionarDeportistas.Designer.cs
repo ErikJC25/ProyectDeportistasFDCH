@@ -33,15 +33,6 @@
             this.txbApellidos = new System.Windows.Forms.TextBox();
             this.txbCedula = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDisciplinas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colIdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOrdenarNombres = new System.Windows.Forms.Button();
@@ -51,6 +42,15 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDisciplinas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colIdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(150, 76);
+            this.label2.Location = new System.Drawing.Point(174, 77);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 19);
@@ -75,7 +75,7 @@
             this.txbNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbNombres.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbNombres.Location = new System.Drawing.Point(386, 74);
+            this.txbNombres.Location = new System.Drawing.Point(410, 75);
             this.txbNombres.Margin = new System.Windows.Forms.Padding(2);
             this.txbNombres.Name = "txbNombres";
             this.txbNombres.Size = new System.Drawing.Size(209, 25);
@@ -91,7 +91,7 @@
             this.txbApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbApellidos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbApellidos.Location = new System.Drawing.Point(173, 74);
+            this.txbApellidos.Location = new System.Drawing.Point(197, 75);
             this.txbApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txbApellidos.Name = "txbApellidos";
             this.txbApellidos.Size = new System.Drawing.Size(209, 25);
@@ -107,7 +107,7 @@
             this.txbCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbCedula.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbCedula.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbCedula.Location = new System.Drawing.Point(15, 74);
+            this.txbCedula.Location = new System.Drawing.Point(39, 75);
             this.txbCedula.Margin = new System.Windows.Forms.Padding(2);
             this.txbCedula.Name = "txbCedula";
             this.txbCedula.Size = new System.Drawing.Size(131, 25);
@@ -130,11 +130,11 @@
             this.colApellidos,
             this.colDisciplinas,
             this.colGenero,
-            this.colDiscapacidad,
+            this.colTipoDiscapacidad,
             this.colEditar,
             this.colIdDeportista});
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 115);
+            this.dataGridView1.Location = new System.Drawing.Point(122, 115);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -142,9 +142,165 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(957, 396);
+            this.dataGridView1.Size = new System.Drawing.Size(958, 493);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Green;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1196, 55);
+            this.panel1.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(421, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(343, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Gestionar Deportistas";
+            // 
+            // btnOrdenarNombres
+            // 
+            this.btnOrdenarNombres.BackColor = System.Drawing.Color.Green;
+            this.btnOrdenarNombres.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenarNombres.FlatAppearance.BorderSize = 0;
+            this.btnOrdenarNombres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenarNombres.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
+            this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenarNombres.Location = new System.Drawing.Point(807, 77);
+            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarNombres.Name = "btnOrdenarNombres";
+            this.btnOrdenarNombres.Size = new System.Drawing.Size(166, 24);
+            this.btnOrdenarNombres.TabIndex = 19;
+            this.btnOrdenarNombres.Text = "Ordenar por Nombre";
+            this.btnOrdenarNombres.UseVisualStyleBackColor = false;
+            this.btnOrdenarNombres.Click += new System.EventHandler(this.btnOrdenarNombres_Click);
+            // 
+            // btnOrdenarApellidos
+            // 
+            this.btnOrdenarApellidos.BackColor = System.Drawing.Color.Green;
+            this.btnOrdenarApellidos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenarApellidos.FlatAppearance.BorderSize = 0;
+            this.btnOrdenarApellidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenarApellidos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
+            this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenarApellidos.Location = new System.Drawing.Point(977, 77);
+            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
+            this.btnOrdenarApellidos.Size = new System.Drawing.Size(166, 24);
+            this.btnOrdenarApellidos.TabIndex = 20;
+            this.btnOrdenarApellidos.Text = "Ordenar por Apellido";
+            this.btnOrdenarApellidos.UseVisualStyleBackColor = false;
+            this.btnOrdenarApellidos.Click += new System.EventHandler(this.btnOrdenarApellidos_Click);
+            // 
+            // btnSeparar
+            // 
+            this.btnSeparar.BackColor = System.Drawing.Color.Green;
+            this.btnSeparar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSeparar.FlatAppearance.BorderSize = 0;
+            this.btnSeparar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeparar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeparar.ForeColor = System.Drawing.Color.White;
+            this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
+            this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeparar.Location = new System.Drawing.Point(946, 633);
+            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSeparar.Name = "btnSeparar";
+            this.btnSeparar.Size = new System.Drawing.Size(134, 43);
+            this.btnSeparar.TabIndex = 23;
+            this.btnSeparar.Text = "Separar";
+            this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSeparar.UseVisualStyleBackColor = false;
+            this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
+            // 
+            // btnFusionar
+            // 
+            this.btnFusionar.BackColor = System.Drawing.Color.Green;
+            this.btnFusionar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFusionar.FlatAppearance.BorderSize = 0;
+            this.btnFusionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFusionar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFusionar.ForeColor = System.Drawing.Color.White;
+            this.btnFusionar.Image = global::FDCH.UI.Properties.Resources.fusionar2;
+            this.btnFusionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFusionar.Location = new System.Drawing.Point(765, 633);
+            this.btnFusionar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFusionar.Name = "btnFusionar";
+            this.btnFusionar.Size = new System.Drawing.Size(134, 43);
+            this.btnFusionar.TabIndex = 22;
+            this.btnFusionar.Text = "Fusionar";
+            this.btnFusionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFusionar.UseVisualStyleBackColor = false;
+            this.btnFusionar.Click += new System.EventHandler(this.btnFusionar_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.Green;
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregar.FlatAppearance.BorderSize = 0;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.Location = new System.Drawing.Point(122, 636);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(182, 40);
+            this.btnAgregar.TabIndex = 21;
+            this.btnAgregar.Text = "Agregar Nuevo";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiar.FlatAppearance.BorderSize = 0;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
+            this.btnLimpiar.Location = new System.Drawing.Point(730, 79);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
+            this.btnLimpiar.TabIndex = 13;
+            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.Location = new System.Drawing.Point(632, 79);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(94, 24);
+            this.btnBuscar.TabIndex = 12;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // colSeleccionar
             // 
@@ -192,12 +348,12 @@
             this.colGenero.ReadOnly = true;
             this.colGenero.Width = 80;
             // 
-            // colDiscapacidad
+            // colTipoDiscapacidad
             // 
-            this.colDiscapacidad.DataPropertyName = "tipo_discapacidad";
-            this.colDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
-            this.colDiscapacidad.Name = "colDiscapacidad";
-            this.colDiscapacidad.ReadOnly = true;
+            this.colTipoDiscapacidad.DataPropertyName = "tipo_discapacidad";
+            this.colTipoDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
+            this.colTipoDiscapacidad.Name = "colTipoDiscapacidad";
+            this.colTipoDiscapacidad.ReadOnly = true;
             // 
             // colEditar
             // 
@@ -216,167 +372,11 @@
             this.colIdDeportista.ReadOnly = true;
             this.colIdDeportista.Visible = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Green;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 55);
-            this.panel1.TabIndex = 18;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(306, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(343, 38);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Gestionar Deportistas";
-            // 
-            // btnOrdenarNombres
-            // 
-            this.btnOrdenarNombres.BackColor = System.Drawing.Color.Green;
-            this.btnOrdenarNombres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenarNombres.FlatAppearance.BorderSize = 0;
-            this.btnOrdenarNombres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarNombres.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarNombres.Location = new System.Drawing.Point(768, 59);
-            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrdenarNombres.Name = "btnOrdenarNombres";
-            this.btnOrdenarNombres.Size = new System.Drawing.Size(166, 24);
-            this.btnOrdenarNombres.TabIndex = 19;
-            this.btnOrdenarNombres.Text = "Ordenar por Nombre";
-            this.btnOrdenarNombres.UseVisualStyleBackColor = false;
-            this.btnOrdenarNombres.Click += new System.EventHandler(this.btnOrdenarNombres_Click);
-            // 
-            // btnOrdenarApellidos
-            // 
-            this.btnOrdenarApellidos.BackColor = System.Drawing.Color.Green;
-            this.btnOrdenarApellidos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenarApellidos.FlatAppearance.BorderSize = 0;
-            this.btnOrdenarApellidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarApellidos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarApellidos.Location = new System.Drawing.Point(768, 87);
-            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
-            this.btnOrdenarApellidos.Size = new System.Drawing.Size(166, 24);
-            this.btnOrdenarApellidos.TabIndex = 20;
-            this.btnOrdenarApellidos.Text = "Ordenar por Apellido";
-            this.btnOrdenarApellidos.UseVisualStyleBackColor = false;
-            this.btnOrdenarApellidos.Click += new System.EventHandler(this.btnOrdenarApellidos_Click);
-            // 
-            // btnSeparar
-            // 
-            this.btnSeparar.BackColor = System.Drawing.Color.Green;
-            this.btnSeparar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSeparar.FlatAppearance.BorderSize = 0;
-            this.btnSeparar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeparar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeparar.ForeColor = System.Drawing.Color.White;
-            this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
-            this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeparar.Location = new System.Drawing.Point(800, 518);
-            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSeparar.Name = "btnSeparar";
-            this.btnSeparar.Size = new System.Drawing.Size(134, 43);
-            this.btnSeparar.TabIndex = 23;
-            this.btnSeparar.Text = "Separar";
-            this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeparar.UseVisualStyleBackColor = false;
-            this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
-            // 
-            // btnFusionar
-            // 
-            this.btnFusionar.BackColor = System.Drawing.Color.Green;
-            this.btnFusionar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFusionar.FlatAppearance.BorderSize = 0;
-            this.btnFusionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFusionar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFusionar.ForeColor = System.Drawing.Color.White;
-            this.btnFusionar.Image = global::FDCH.UI.Properties.Resources.fusionar2;
-            this.btnFusionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFusionar.Location = new System.Drawing.Point(607, 518);
-            this.btnFusionar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnFusionar.Name = "btnFusionar";
-            this.btnFusionar.Size = new System.Drawing.Size(134, 43);
-            this.btnFusionar.TabIndex = 22;
-            this.btnFusionar.Text = "Fusionar";
-            this.btnFusionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFusionar.UseVisualStyleBackColor = false;
-            this.btnFusionar.Click += new System.EventHandler(this.btnFusionar_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Green;
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(11, 518);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(182, 40);
-            this.btnAgregar.TabIndex = 21;
-            this.btnAgregar.Text = "Agregar Nuevo";
-            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar.FlatAppearance.BorderSize = 0;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiar.Location = new System.Drawing.Point(706, 78);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
-            this.btnLimpiar.TabIndex = 13;
-            this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(608, 78);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(94, 24);
-            this.btnBuscar.TabIndex = 12;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
             // FrmGestionarDeportistas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 566);
+            this.ClientSize = new System.Drawing.Size(1196, 706);
             this.Controls.Add(this.btnSeparar);
             this.Controls.Add(this.btnFusionar);
             this.Controls.Add(this.btnAgregar);
@@ -412,19 +412,19 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnOrdenarNombres;
+        private System.Windows.Forms.Button btnOrdenarApellidos;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnFusionar;
+        private System.Windows.Forms.Button btnSeparar;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn colApellidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDisciplinas;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGenero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscapacidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDiscapacidad;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdDeportista;
-        private System.Windows.Forms.Button btnOrdenarNombres;
-        private System.Windows.Forms.Button btnOrdenarApellidos;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnFusionar;
-        private System.Windows.Forms.Button btnSeparar;
     }
 }

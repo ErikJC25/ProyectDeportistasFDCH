@@ -2191,6 +2191,228 @@ namespace FDCH.Datos
             return resultado;
         }
 
+        /*/// <summary>
+        /// Realiza la fusión de deportistas de forma transaccional y registra acciones en Historial_Cambios.
+        /// - Actualiza el deportista objetivo con los datos fusionados.
+        /// - Reasigna Desempeno de los ids a eliminar al targetId.
+        /// - Elimina los deportistas en idsAEliminar.
+        /// - Inserta registros en Historial_Cambios (una fila por actualización/elim.).
+        /// idUsuario puede ser null, en cuyo caso se insertará NULL en la tabla historial.
+        /// </summary>
+        public bool FusionarDeportistasTransaction(Deportista deportistaFusionado, List<int> idsAEliminar, int? idUsuario = null)
+        {
+            if (deportistaFusionado == null) throw new ArgumentNullException(nameof(deportistaFusionado));
+
+            int targetId = deportistaFusionado.id_deportista;
+            var ids = (idsAEliminar ?? new List<int>()).Where(x => x != targetId).Distinct().ToList();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) Update deportista objetivo
+                        string sqlUpdateDeportista = @"
+                    UPDATE Deportistas
+                    SET cedula = @Cedula,
+                        nombres = @Nombres,
+                        apellidos = @Apellidos,
+                        genero = @Genero,
+                        tipo_discapacidad = @TipoDiscapacidad
+                    WHERE id_deportista = @IdDeportista;
+                ";
+                        using (var cmd = new SQLiteCommand(sqlUpdateDeportista, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@Cedula", (object)deportistaFusionado.cedula ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Nombres", (object)deportistaFusionado.nombres ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Apellidos", (object)deportistaFusionado.apellidos ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@Genero", (object)deportistaFusionado.genero ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@TipoDiscapacidad", (object)deportistaFusionado.tipo_discapacidad ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@IdDeportista", targetId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Registrar en Historial_Cambios la actualización del target
+                        string insertHistSql = @"
+                    INSERT INTO Historial_Cambios (id_usuario, tabla_afectada, id_registro_afectado, accion, fecha_cambio)
+                    VALUES (@IdUsuario, @Tabla, @IdRegistro, @Accion, @Fecha);
+                ";
+                        using (var cmdHist = new SQLiteCommand(insertHistSql, connection, transaction))
+                        {
+                            cmdHist.Parameters.AddWithValue("@IdUsuario", idUsuario.HasValue ? (object)idUsuario.Value : DBNull.Value);
+                            cmdHist.Parameters.AddWithValue("@Tabla", "Deportistas");
+                            cmdHist.Parameters.AddWithValue("@IdRegistro", targetId);
+                            cmdHist.Parameters.AddWithValue("@Accion", "FUSION DEPORTISTAS");
+                            cmdHist.Parameters.AddWithValue("@Fecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmdHist.ExecuteNonQuery();
+                        }
+
+                        if (ids.Count > 0)
+                        {
+                            // Preparar parámetros IN (@id0,@id1,...)
+                            var inParams = new List<string>();
+                            for (int i = 0; i < ids.Count; i++) inParams.Add($"@id{i}");
+                            string whereIn = string.Join(",", inParams);
+
+                            // 2) Reasignar Desempeno -> set target where in (...)
+                            string sqlUpdateDesempeno = $"UPDATE Desempeno SET id_deportista = @TargetId WHERE id_deportista IN ({whereIn});";
+                            using (var cmdUpdDes = new SQLiteCommand(sqlUpdateDesempeno, connection, transaction))
+                            {
+                                cmdUpdDes.Parameters.AddWithValue("@TargetId", targetId);
+                                for (int i = 0; i < ids.Count; i++) cmdUpdDes.Parameters.AddWithValue(inParams[i], ids[i]);
+                                cmdUpdDes.ExecuteNonQuery();
+                            }
+
+                            // Registrar en Historial_Cambios la reasignación para cada id eliminado (opcionalmente podrías registrar cada desempeño,
+                            // pero registrar que se reasignaron desempeños por cada deportista eliminado es suficiente)
+                            using (var cmdHist = new SQLiteCommand(insertHistSql, connection, transaction))
+                            {
+                                // Preparametros fijos
+                                cmdHist.Parameters.Add(new SQLiteParameter("@IdUsuario", idUsuario.HasValue ? (object)idUsuario.Value : DBNull.Value));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Tabla", "Desempeno"));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@IdRegistro", 0)); // cambiar luego por id concreto si quieres
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Accion", "REASIGNAMIENTO POR FUSÌON"));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Fecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
+
+                                // Para evitar re-preparar la sentencia cada vez con nombres distintos, ejecutamos por cada id:
+                                for (int i = 0; i < ids.Count; i++)
+                                {
+                                    cmdHist.Parameters["@IdRegistro"].Value = ids[i]; // id_registro_afectado = deportista eliminado
+                                    cmdHist.ExecuteNonQuery();
+                                }
+                            }
+
+                            // 3) Eliminar deportistas (los idsToRemove)
+                            string sqlDelete = $"DELETE FROM Deportistas WHERE id_deportista IN ({whereIn});";
+                            using (var cmdDel = new SQLiteCommand(sqlDelete, connection, transaction))
+                            {
+                                for (int i = 0; i < ids.Count; i++) cmdDel.Parameters.AddWithValue(inParams[i], ids[i]);
+                                cmdDel.ExecuteNonQuery();
+                            }
+
+                            // Registrar eliminaciones en Historial_Cambios por cada deportista eliminado
+                            using (var cmdHist = new SQLiteCommand(insertHistSql, connection, transaction))
+                            {
+                                cmdHist.Parameters.Add(new SQLiteParameter("@IdUsuario", idUsuario.HasValue ? (object)idUsuario.Value : DBNull.Value));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Tabla", "Deportistas"));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@IdRegistro", 0));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Accion", "ELIMINACION POR FUSION"));
+                                cmdHist.Parameters.Add(new SQLiteParameter("@Fecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")));
+
+                                for (int i = 0; i < ids.Count; i++)
+                                {
+                                    cmdHist.Parameters["@IdRegistro"].Value = ids[i];
+                                    cmdHist.ExecuteNonQuery();
+                                }
+                            }
+                        }
+
+                        // Si llegamos hasta aquí todo está bien -> Commit
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        try { transaction.Rollback(); } catch { }
+                        Console.WriteLine("Error FusionarDeportistasTransaction: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+         */
+
+        public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string sql = "UPDATE Desempeno SET id_deportista = @newId WHERE id_deportista = @oldId";
+                        using (var cmd = new SQLiteCommand(sql, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@newId", newId);
+                            cmd.Parameters.AddWithValue("@oldId", oldId);
+                            cmd.ExecuteNonQuery();
+                        }
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en ActualizarIdDesempenoPorDeportista: " + ex.Message);
+                        try { tran.Rollback(); } catch { }
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool EliminarDeportistaPorId(int idDeportista)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string sql = "DELETE FROM Deportistas WHERE id_deportista = @id";
+                        using (var cmd = new SQLiteCommand(sql, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@id", idDeportista);
+                            cmd.ExecuteNonQuery();
+                        }
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en EliminarDeportistaPorId: " + ex.Message);
+                        try { tran.Rollback(); } catch { }
+                        return false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Inserta un registro en Historial_Cambios.
+        /// </summary>
+        public bool InsertarHistorialCambio(int idUsuario, string tabla, int idRegistro, string accion, string fecha)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                try
+                {
+                    string sql = "INSERT INTO Historial_Cambios (id_usuario, tabla_afectada, id_registro_afectado, accion, fecha_cambio) " +
+                                 "VALUES (@idUsuario, @tabla, @idRegistro, @accion, @fecha)";
+                    using (var cmd = new SQLiteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idUsuario", idUsuario == 0 ? (object)DBNull.Value : idUsuario);
+                        cmd.Parameters.AddWithValue("@tabla", tabla ?? "");
+                        cmd.Parameters.AddWithValue("@idRegistro", idRegistro);
+                        cmd.Parameters.AddWithValue("@accion", accion ?? "");
+                        cmd.Parameters.AddWithValue("@fecha", fecha ?? DateTime.UtcNow.ToString("o"));
+                        cmd.ExecuteNonQuery();
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error en InsertarHistorialCambio: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
+
 
     }
 }
