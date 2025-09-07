@@ -411,6 +411,7 @@
     <Content Include="FDCH.ico" />
     <None Include="Resources\separar.png" />
     <None Include="Resources\auditoria.png" />
+    <None Include="Resources\dowload32.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\editar2.png" />
     <None Include="Resources\EjemploCertificado1.png" />

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -65,43 +64,40 @@
             this.TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportarDeportista = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.Controls.Add(this.lblNombre);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1196, 112);
-            this.panel1.TabIndex = 0;
             // 
             // lblNombre
             // 
-            this.lblNombre.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(412, 25);
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNombre.BackColor = System.Drawing.Color.Transparent;
+            this.lblNombre.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.Color.Black;
+            this.lblNombre.Location = new System.Drawing.Point(12, 64);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(736, 69);
+            this.lblNombre.Size = new System.Drawing.Size(826, 54);
             this.lblNombre.TabIndex = 0;
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.tableLayoutPanel1.SetColumnSpan(this.label1, 6);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Arial Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(17, 20);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(398, 40);
+            this.label1.Size = new System.Drawing.Size(1196, 64);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Registros del Deportista:";
+            this.label1.Text = "Registros del Deportista Seleccionado";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
             // 
@@ -143,16 +139,17 @@
             this.TipoDiscapacidad,
             this.Observaciones,
             this.colEditar});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 6);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 112);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 118);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1196, 529);
+            this.dataGridView1.Size = new System.Drawing.Size(1196, 588);
             this.dataGridView1.TabIndex = 1;
             // 
             // IdTecnico
@@ -460,20 +457,46 @@
             this.colEditar.UseColumnTextForButtonValue = true;
             this.colEditar.Width = 125;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.019219F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.28319F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.61504F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.039192F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnExportarDeportista, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnExportExcel, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblNombre, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.411215F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.58878F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1196, 706);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
             // btnExportarDeportista
             // 
+            this.btnExportarDeportista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportarDeportista.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnExportarDeportista.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarDeportista.FlatAppearance.BorderSize = 0;
             this.btnExportarDeportista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarDeportista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarDeportista.ForeColor = System.Drawing.Color.White;
-            this.btnExportarDeportista.Image = global::FDCH.UI.Properties.Resources.dowload;
+            this.btnExportarDeportista.Image = global::FDCH.UI.Properties.Resources.dowload32;
             this.btnExportarDeportista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarDeportista.Location = new System.Drawing.Point(1044, 645);
+            this.btnExportarDeportista.Location = new System.Drawing.Point(1072, 75);
             this.btnExportarDeportista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarDeportista.Name = "btnExportarDeportista";
-            this.btnExportarDeportista.Size = new System.Drawing.Size(140, 50);
+            this.btnExportarDeportista.Size = new System.Drawing.Size(110, 32);
             this.btnExportarDeportista.TabIndex = 2;
             this.btnExportarDeportista.Text = "Word";
             this.btnExportarDeportista.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -482,18 +505,19 @@
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.BackColor = System.Drawing.Color.Green;
+            this.btnExportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportExcel.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnExportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportExcel.FlatAppearance.BorderSize = 0;
             this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportExcel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportExcel.Image = global::FDCH.UI.Properties.Resources.dowload;
+            this.btnExportExcel.Image = global::FDCH.UI.Properties.Resources.dowload32;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(881, 645);
+            this.btnExportExcel.Location = new System.Drawing.Point(956, 75);
             this.btnExportExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(140, 50);
+            this.btnExportExcel.Size = new System.Drawing.Size(110, 32);
             this.btnExportExcel.TabIndex = 3;
             this.btnExportExcel.Text = "Excel";
             this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -504,25 +528,20 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1196, 706);
-            this.Controls.Add(this.btnExportExcel);
-            this.Controls.Add(this.btnExportarDeportista);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmHistorialDeportista";
             this.Text = "FrmHistorialDeportista";
             this.Load += new System.EventHandler(this.FrmHistorialDeportista_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -561,5 +580,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

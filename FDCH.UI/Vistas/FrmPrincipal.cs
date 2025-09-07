@@ -296,6 +296,10 @@ namespace FDCH.UI.Vistas
                     btnGetBloqueo.Text = "Liberar Bloqueo";
                     btnGetBloqueo.Image = FDCH.UI.Properties.Resources.bloqueado;
 
+                    // Reposicionar el panel indicador
+                    pnlOpcion.Height = btnInicio.Height;
+                    pnlOpcion.Top = btnInicio.Top;
+                    // Refrescar el formulario de inicio para mostrar botones de edición
                     AbrirFormularioEnPanel(new FrmInicio(this));
                     break;
             }
@@ -326,6 +330,9 @@ namespace FDCH.UI.Vistas
 
         private void btnGestionarEntidades_Click(object sender, EventArgs e)
         {
+            pnlOpcion.Height = btnGestionarEntidades.Height;
+            pnlOpcion.Top = btnGestionarEntidades.Top;
+
             // Opciones personalizadas
             string[] opciones = new string[] { "Gestionar Deportistas", "Gestionar Técnicos", "Gestionar Disciplinas y Especialidades", "Editar Director (Certificados)" };
 
@@ -392,8 +399,8 @@ namespace FDCH.UI.Vistas
 
         private void btnAuditoria_Click(object sender, EventArgs e)
         {
-            pnlOpcion.Height = btnBusqueda.Height;
-            pnlOpcion.Top = btnBusqueda.Top;
+            pnlOpcion.Height = btnAuditoria.Height;
+            pnlOpcion.Top = btnAuditoria.Top;
             AbrirFormularioEnPanel(new FrmAuditoria(this));
         }
     }
