@@ -460,10 +460,10 @@
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombres.Location = new System.Drawing.Point(577, 72);
+            this.txtNombres.Location = new System.Drawing.Point(577, 74);
             this.txtNombres.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(298, 28);
+            this.txtNombres.Size = new System.Drawing.Size(298, 24);
             this.txtNombres.TabIndex = 3;
             this.txtNombres.Text = "NOMBRES";
             this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
@@ -478,10 +478,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtApellidos, 2);
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtApellidos.Location = new System.Drawing.Point(271, 72);
+            this.txtApellidos.Location = new System.Drawing.Point(271, 74);
             this.txtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(302, 28);
+            this.txtApellidos.Size = new System.Drawing.Size(302, 24);
             this.txtApellidos.TabIndex = 2;
             this.txtApellidos.Text = "APELLIDOS";
             this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
@@ -496,10 +496,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtCedula, 2);
             this.txtCedula.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCedula.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtCedula.Location = new System.Drawing.Point(10, 72);
+            this.txtCedula.Location = new System.Drawing.Point(10, 74);
             this.txtCedula.Margin = new System.Windows.Forms.Padding(2);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(257, 28);
+            this.txtCedula.Size = new System.Drawing.Size(257, 24);
             this.txtCedula.TabIndex = 1;
             this.txtCedula.Text = "CEDULA";
             this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
@@ -515,7 +515,7 @@
             this.chkAntiguoActual.Location = new System.Drawing.Point(460, 111);
             this.chkAntiguoActual.Margin = new System.Windows.Forms.Padding(2);
             this.chkAntiguoActual.Name = "chkAntiguoActual";
-            this.chkAntiguoActual.Size = new System.Drawing.Size(159, 23);
+            this.chkAntiguoActual.Size = new System.Drawing.Size(138, 20);
             this.chkAntiguoActual.TabIndex = 8;
             this.chkAntiguoActual.Text = "Antiguo a Actual";
             this.chkAntiguoActual.UseVisualStyleBackColor = true;
@@ -529,7 +529,7 @@
             this.chkMasculino.Location = new System.Drawing.Point(10, 111);
             this.chkMasculino.Margin = new System.Windows.Forms.Padding(2);
             this.chkMasculino.Name = "chkMasculino";
-            this.chkMasculino.Size = new System.Drawing.Size(109, 23);
+            this.chkMasculino.Size = new System.Drawing.Size(98, 20);
             this.chkMasculino.TabIndex = 5;
             this.chkMasculino.Text = "Masculino";
             this.chkMasculino.UseVisualStyleBackColor = true;
@@ -543,7 +543,7 @@
             this.chkFemenino.Location = new System.Drawing.Point(141, 111);
             this.chkFemenino.Margin = new System.Windows.Forms.Padding(2);
             this.chkFemenino.Name = "chkFemenino";
-            this.chkFemenino.Size = new System.Drawing.Size(107, 23);
+            this.chkFemenino.Size = new System.Drawing.Size(96, 20);
             this.chkFemenino.TabIndex = 6;
             this.chkFemenino.Text = "Femenino";
             this.chkFemenino.UseVisualStyleBackColor = true;
@@ -557,7 +557,7 @@
             this.chkAlfabeticamente.Location = new System.Drawing.Point(271, 111);
             this.chkAlfabeticamente.Margin = new System.Windows.Forms.Padding(2);
             this.chkAlfabeticamente.Name = "chkAlfabeticamente";
-            this.chkAlfabeticamente.Size = new System.Drawing.Size(155, 23);
+            this.chkAlfabeticamente.Size = new System.Drawing.Size(139, 20);
             this.chkAlfabeticamente.TabIndex = 7;
             this.chkAlfabeticamente.Text = "Alfabeticamente";
             this.chkAlfabeticamente.UseVisualStyleBackColor = true;
@@ -662,6 +662,7 @@
             this.btnExportarWord.TabIndex = 11;
             this.btnExportarWord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarWord.UseVisualStyleBackColor = false;
+            this.btnExportarWord.Click += new System.EventHandler(this.btnExportarWord_Click);
             // 
             // FrmFiltrar
             // 

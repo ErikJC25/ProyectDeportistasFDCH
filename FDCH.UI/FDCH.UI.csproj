@@ -226,6 +226,30 @@
     <Compile Include="Vistas\FrmAddTorneo.Designer.cs">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevaDisciplina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevaDisciplina.Designer.cs">
+      <DependentUpon>FrmAgregarNuevaDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevaEspecialidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevaEspecialidad.Designer.cs">
+      <DependentUpon>FrmAgregarNuevaEspecialidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevoDeportista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevoDeportista.Designer.cs">
+      <DependentUpon>FrmAgregarNuevoDeportista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevoTecnico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmAgregarNuevoTecnico.Designer.cs">
+      <DependentUpon>FrmAgregarNuevoTecnico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,17 +268,41 @@
     <Compile Include="Vistas\FrmEditarCompetencia.Designer.cs">
       <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmEditarDeportista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarDeportista.Designer.cs">
+      <DependentUpon>FrmEditarDeportista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmEditarDirector.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vistas\FrmEditarDirector.Designer.cs">
       <DependentUpon>FrmEditarDirector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmEditarDisciplina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarDisciplina.Designer.cs">
+      <DependentUpon>FrmEditarDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarEspecialidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarEspecialidad.Designer.cs">
+      <DependentUpon>FrmEditarEspecialidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmEditarEvento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vistas\FrmEditarEvento.Designer.cs">
       <DependentUpon>FrmEditarEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarTecnico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmEditarTecnico.Designer.cs">
+      <DependentUpon>FrmEditarTecnico.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FrmFiltrar.cs">
       <SubType>Form</SubType>
@@ -326,6 +374,18 @@
     <EmbeddedResource Include="Vistas\FrmAddTorneo.resx">
       <DependentUpon>FrmAddTorneo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmAgregarNuevaDisciplina.resx">
+      <DependentUpon>FrmAgregarNuevaDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmAgregarNuevaEspecialidad.resx">
+      <DependentUpon>FrmAgregarNuevaEspecialidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmAgregarNuevoDeportista.resx">
+      <DependentUpon>FrmAgregarNuevoDeportista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmAgregarNuevoTecnico.resx">
+      <DependentUpon>FrmAgregarNuevoTecnico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmAuditoria.resx">
       <DependentUpon>FrmAuditoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,11 +395,23 @@
     <EmbeddedResource Include="Vistas\FrmEditarCompetencia.resx">
       <DependentUpon>FrmEditarCompetencia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarDeportista.resx">
+      <DependentUpon>FrmEditarDeportista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmEditarDirector.resx">
       <DependentUpon>FrmEditarDirector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarDisciplina.resx">
+      <DependentUpon>FrmEditarDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarEspecialidad.resx">
+      <DependentUpon>FrmEditarEspecialidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmEditarEvento.resx">
       <DependentUpon>FrmEditarEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmEditarTecnico.resx">
+      <DependentUpon>FrmEditarTecnico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmFiltrar.resx">
       <DependentUpon>FrmFiltrar.cs</DependentUpon>
@@ -415,9 +487,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\tecnico.png" />
     <None Include="Resources\separar.png" />
     <None Include="Resources\auditoria.png" />
     <None Include="Resources\dowload32.png" />
+    <None Include="Resources\deportista.png" />
+    <None Include="Resources\disciplinas.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\editar2.png" />
     <None Include="Resources\EjemploCertificado1.png" />

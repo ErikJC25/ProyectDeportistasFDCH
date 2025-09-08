@@ -15,6 +15,9 @@ namespace FDCH.UI.Vistas
     public partial class FrmFiltrar : Form
     {
         public FrmPrincipal _frmprincipal;
+        //Director para los certificados
+        private Director _director;
+        Cls_Puente puente = new Cls_Puente(); // Instancia de Cls_Puente
         public FrmFiltrar(FrmBusqueda frmBuscar, FrmPrincipal frmprincipal)
         {
             InitializeComponent();
@@ -326,6 +329,43 @@ namespace FDCH.UI.Vistas
                         // Cancel: no hacer nada
                     }
                 }
+            }
+        }
+
+        private async void btnExportarWord_Click(object sender, EventArgs e)
+        {
+            // Deshabilitar botón / feedback
+            btnExportarWord.Enabled = false;
+            var prevCursor = Cursor;
+            Cursor = Cursors.WaitCursor;
+
+            //Obtención de los datos del director
+
+            string titulo = "";
+            string rol = "";
+
+            try
+            {
+                _director = puente.ObtenerDirector() ?? new Director(); // si no existe, nuevo objeto
+                titulo = _director.titulo ?? "";
+                rol = _director.rol ?? "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cargando datos del director: " + ex.Message);
+            }
+
+
+            try
+            {
+                // Llamada al generador pasando la tabla, el form, el rol y el título
+                await FDCH.UI.ExportarWord.ExportarDesdePlantillaAsync(dataGridView1, this, titulo, rol);
+            }
+            finally
+            {
+                // Restaurar estado UI
+                Cursor = prevCursor;
+                btnExportarWord.Enabled = true;
             }
         }
     }

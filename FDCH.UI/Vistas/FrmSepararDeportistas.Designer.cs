@@ -34,6 +34,12 @@
             this.txtOrigCedula = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewTargets = new System.Windows.Forms.DataGridView();
+            this.colT_Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colT_Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colT_Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colT_Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colT_TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colT_Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtOrigGenero = new System.Windows.Forms.TextBox();
@@ -45,12 +51,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnSeparar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.colT_Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colT_Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colT_Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colT_Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colT_TipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colT_Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAddRow = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTargets)).BeginInit();
@@ -126,6 +126,46 @@
             this.dataGridViewTargets.Size = new System.Drawing.Size(906, 352);
             this.dataGridViewTargets.TabIndex = 1;
             this.dataGridViewTargets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTargets_CellContentClick);
+            this.dataGridViewTargets.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTargets_CellEndEdit);
+            this.dataGridViewTargets.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewTargets_EditingControlShowing);
+            // 
+            // colT_Cedula
+            // 
+            this.colT_Cedula.HeaderText = "CEDULA";
+            this.colT_Cedula.Name = "colT_Cedula";
+            this.colT_Cedula.Width = 132;
+            // 
+            // colT_Nombres
+            // 
+            this.colT_Nombres.HeaderText = "NOMBRES";
+            this.colT_Nombres.Name = "colT_Nombres";
+            this.colT_Nombres.Width = 200;
+            // 
+            // colT_Apellidos
+            // 
+            this.colT_Apellidos.HeaderText = "APELLIDOS";
+            this.colT_Apellidos.Name = "colT_Apellidos";
+            this.colT_Apellidos.Width = 200;
+            // 
+            // colT_Genero
+            // 
+            this.colT_Genero.HeaderText = "GENERO";
+            this.colT_Genero.Name = "colT_Genero";
+            this.colT_Genero.Width = 125;
+            // 
+            // colT_TipoDiscapacidad
+            // 
+            this.colT_TipoDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
+            this.colT_TipoDiscapacidad.Name = "colT_TipoDiscapacidad";
+            this.colT_TipoDiscapacidad.Width = 125;
+            // 
+            // colT_Eliminar
+            // 
+            this.colT_Eliminar.HeaderText = "ELIMINAR";
+            this.colT_Eliminar.Name = "colT_Eliminar";
+            this.colT_Eliminar.Text = "Eliminar";
+            this.colT_Eliminar.UseColumnTextForButtonValue = true;
+            this.colT_Eliminar.Width = 75;
             // 
             // label4
             // 
@@ -262,44 +302,6 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // colT_Cedula
-            // 
-            this.colT_Cedula.HeaderText = "CEDULA";
-            this.colT_Cedula.Name = "colT_Cedula";
-            this.colT_Cedula.Width = 132;
-            // 
-            // colT_Nombres
-            // 
-            this.colT_Nombres.HeaderText = "NOMBRES";
-            this.colT_Nombres.Name = "colT_Nombres";
-            this.colT_Nombres.Width = 200;
-            // 
-            // colT_Apellidos
-            // 
-            this.colT_Apellidos.HeaderText = "APELLIDOS";
-            this.colT_Apellidos.Name = "colT_Apellidos";
-            this.colT_Apellidos.Width = 200;
-            // 
-            // colT_Genero
-            // 
-            this.colT_Genero.HeaderText = "GENERO";
-            this.colT_Genero.Name = "colT_Genero";
-            this.colT_Genero.Width = 125;
-            // 
-            // colT_TipoDiscapacidad
-            // 
-            this.colT_TipoDiscapacidad.HeaderText = "TIPO DISCAPACIDAD";
-            this.colT_TipoDiscapacidad.Name = "colT_TipoDiscapacidad";
-            this.colT_TipoDiscapacidad.Width = 125;
-            // 
-            // colT_Eliminar
-            // 
-            this.colT_Eliminar.HeaderText = "ELIMINAR";
-            this.colT_Eliminar.Name = "colT_Eliminar";
-            this.colT_Eliminar.Text = "Eliminar";
-            this.colT_Eliminar.UseColumnTextForButtonValue = true;
-            this.colT_Eliminar.Width = 75;
-            // 
             // btnAddRow
             // 
             this.btnAddRow.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -344,7 +346,7 @@
             this.Controls.Add(this.dataGridViewTargets);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmSepararDeportistas";
             this.Text = "FrmSepararDeportistas";
             this.Load += new System.EventHandler(this.FrmSepararDeportistas_Load);

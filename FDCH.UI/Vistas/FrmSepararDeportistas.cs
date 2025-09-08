@@ -17,6 +17,7 @@ namespace FDCH.UI.Vistas
         private readonly SelectedRowDto _originalRow;
         private readonly FrmPrincipal _frmPrincipal;
         private readonly Cls_Puente _puente = new Cls_Puente();
+        private TextBox _currentEditingTextBox = null;
         public FrmSepararDeportistas(SelectedRowDto originalRow, FrmPrincipal principal)
         {
             InitializeComponent();
@@ -135,6 +136,48 @@ namespace FDCH.UI.Vistas
             catch (Exception ex)
             {
                 MessageBox.Show("Error al separar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridViewTargets_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            // Si el control de edición es un TextBox (celdas textuales), configurarlo
+            if (e.Control is TextBox tb)
+            {
+                
+
+                // Guardamos referencia al TextBox actual
+                _currentEditingTextBox = tb;
+
+                // Forzar mayúsculas en tiempo de edición
+                tb.CharacterCasing = CharacterCasing.Upper;
+
+                
+            }
+            else
+            {
+                // Si el control actual no es TextBox, desuscribir el anterior si existe
+                if (_currentEditingTextBox != null)
+                {
+
+                    _currentEditingTextBox = null;
+                }
+            }
+        }
+
+        private void dataGridViewTargets_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            var cell = dataGridViewTargets.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.Value != null)
+            {
+                string val = cell.Value.ToString();
+                string upper = val.ToUpperInvariant();
+                if (val != upper)
+                {
+                    cell.Value = upper;
+                }
             }
         }
     }

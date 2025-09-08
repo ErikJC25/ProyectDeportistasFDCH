@@ -347,13 +347,13 @@ namespace FDCH.UI.Vistas
                 }
                 else if (idx == 1)
                 {
-                    btn.BackColor = Color.Blue;
+                    btn.BackColor = Color.SteelBlue;
                     btn.ForeColor = Color.White;
                     btn.FlatStyle = FlatStyle.Flat;
                 }
                 else if (idx == 2)
                 {
-                    btn.BackColor = Color.Orange;
+                    btn.BackColor = Color.SandyBrown;
                     btn.ForeColor = Color.White;
                     btn.FlatStyle = FlatStyle.Flat;
                 }

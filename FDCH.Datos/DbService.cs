@@ -2550,12 +2550,37 @@ namespace FDCH.Datos
             return nuevoId != 0;
         }
 
+        //Nuevo método para insertar en el historial que se usa en la operacion de separar deportistas
+        private bool InsertarHistorialCambioEnTransaccion(SQLiteConnection conn, SQLiteTransaction tran, int idUsuario, string tabla, int idRegistro, string accion, string fecha)
+        {
+            if (conn == null) throw new ArgumentNullException(nameof(conn));
+            if (tran == null) throw new ArgumentNullException(nameof(tran));
 
-        // --------------------------
-        // SEPARAR DEPORTISTA
-        // --------------------------
-        // idOriginal: id del deportista que vamos a "separar" (duplicar sus desempeños hacia nuevos deportistas)
-        // nuevos: lista de objetos Deportista (sin id) que se crearán y a cada uno se le duplicarán los desempeños del original
+            try
+            {
+                string sql = "INSERT INTO Historial_Cambios (id_usuario, tabla_afectada, id_registro_afectado, accion, fecha_cambio) " +
+                             "VALUES (@idUsuario, @tabla, @idRegistro, @accion, @fecha);";
+
+                using (var cmd = new SQLiteCommand(sql, conn, tran))
+                {
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario == 0 ? (object)DBNull.Value : idUsuario);
+                    cmd.Parameters.AddWithValue("@tabla", tabla ?? "");
+                    cmd.Parameters.AddWithValue("@idRegistro", idRegistro);
+                    cmd.Parameters.AddWithValue("@accion", accion ?? "");
+                    cmd.Parameters.AddWithValue("@fecha", fecha ?? DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log para depuración; no se traga la excepción aquí para que el llamador decida
+                Console.WriteLine("Error en InsertarHistorialCambioEnTransaccion: " + ex.Message);
+                return false;
+            }
+        }
+
         public bool SepararDeportista_DuplicarDesempenosYEliminarOriginal(int idOriginal, List<Deportista> nuevos, int idUsuario)
         {
             if (idOriginal <= 0) return false;
@@ -2574,8 +2599,8 @@ namespace FDCH.Datos
                         {
                             long nuevoId = 0;
                             string insertSql = @"INSERT INTO Deportistas (cedula, nombres, apellidos, genero, tipo_discapacidad)
-                                         VALUES (@cedula, @nombres, @apellidos, @genero, @tipo_discapacidad);
-                                         SELECT last_insert_rowid();";
+                                     VALUES (@cedula, @nombres, @apellidos, @genero, @tipo_discapacidad);
+                                     SELECT last_insert_rowid();";
                             using (var cmdIns = new SQLiteCommand(insertSql, conn, tran))
                             {
                                 cmdIns.Parameters.AddWithValue("@cedula", (object)nuevo.cedula ?? DBNull.Value);
@@ -2605,9 +2630,13 @@ namespace FDCH.Datos
 
                             nuevosIds.Add((int)nuevoId);
 
-                            // Registrar en historial la creación del nuevo deportista (opcional pero útil para trazabilidad)
+                            // Registrar en historial la creación del nuevo deportista usando la misma transacción/conexión
                             string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                            InsertarHistorialCambio(idUsuario, "Deportistas", (int)nuevoId, "DEPORTISTA RESULTANTE DE SEPARACION", fecha);
+                            bool okHist = InsertarHistorialCambioEnTransaccion(conn, tran, idUsuario, "Deportistas", (int)nuevoId, "RESULTANTE DE SEPARACION", fecha);
+                            if (!okHist)
+                            {
+                                throw new Exception($"No se pudo insertar el historial para el deportista creado con id {nuevoId}.");
+                            }
                         }
 
                         // 2) Eliminar todos los desempeños originales del deportista original
@@ -2625,6 +2654,7 @@ namespace FDCH.Datos
                             cmdDelDep.Parameters.AddWithValue("@idOriginal", idOriginal);
                             cmdDelDep.ExecuteNonQuery();
                         }
+
 
                         tran.Commit();
                         return true;
