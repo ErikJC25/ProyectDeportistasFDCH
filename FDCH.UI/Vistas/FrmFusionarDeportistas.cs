@@ -27,21 +27,18 @@ namespace FDCH.UI.Vistas
             _seleccionados = seleccionados ?? throw new ArgumentNullException(nameof(seleccionados));
             _frmPrincipal = principal ?? throw new ArgumentNullException(nameof(principal));
 
-            // Configura DataGrid (si no lo hiciste en diseñador)
             dataGridViewSeleccionados.AutoGenerateColumns = false;
-
-            // Cargar la lista en el grid
             CargarGridDesdeSeleccionados();
 
-            // Rellenar campos predeterminados con datos del primer registro (puedes cambiar)
+            // Prefill con el primer seleccionado
             if (_seleccionados.Count > 0)
             {
-                var primer = _seleccionados[0];
-                txbCedula.Text = primer.Cedula;
-                txbNombres.Text = primer.Nombres;
-                txbApellidos.Text = primer.Apellidos;
-                txbGenero.Text = primer.Genero;
-                txbTipoDiscapacidad.Text = primer.TipoDiscapacidad;
+                var p = _seleccionados[0];
+                txbCedula.Text = p.Cedula ?? string.Empty;
+                txbNombres.Text = p.Nombres ?? string.Empty;
+                txbApellidos.Text = p.Apellidos ?? string.Empty;
+                txbGenero.Text = p.Genero ?? string.Empty;
+                txbTipoDiscapacidad.Text = p.TipoDiscapacidad ?? string.Empty;
             }
         }
 
@@ -50,19 +47,21 @@ namespace FDCH.UI.Vistas
             dataGridViewSeleccionados.Rows.Clear();
             foreach (var s in _seleccionados)
             {
-                int idx = dataGridViewSeleccionados.Rows.Add(
-                    s.Cedula,
-                    s.Nombres,
-                    s.Apellidos,
-                    s.DisciplinasParticipadas,
-                    s.Genero,
-                    s.TipoDiscapacidad,
-                    s.IdDeportista
-                );
-                // Guarda DTO entero en Tag por si lo necesitas
-                dataGridViewSeleccionados.Rows[idx].Tag = s;
+                int idx = dataGridViewSeleccionados.Rows.Add();
+                var row = dataGridViewSeleccionados.Rows[idx];
+                row.Cells["colCedula"].Value = s.Cedula ?? "";
+                row.Cells["colNombres"].Value = s.Nombres ?? "";
+                row.Cells["colApellidos"].Value = s.Apellidos ?? "";
+                row.Cells["colDisciplinas"].Value = s.DisciplinasParticipadas ?? "";
+                row.Cells["colGenero"].Value = s.Genero ?? "";
+                row.Cells["colTipoDiscapacidad"].Value = s.TipoDiscapacidad ?? "";
+                row.Cells["colIdDeportista"].Value = s.IdDeportista;
+                row.Tag = s;
             }
+            dataGridViewSeleccionados.ClearSelection();
+            dataGridViewSeleccionados.ReadOnly = true;
         }
+
 
         private void FrmFusionarDeportistas_Load(object sender, EventArgs e)
         {
@@ -117,92 +116,35 @@ namespace FDCH.UI.Vistas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            /// Volver al formulario de gestión
             _frmPrincipal.AbrirFormularioEnPanel(new FrmGestionarDeportistas(_frmPrincipal));
             this.Close();
         }
-
-        /// <summary>
-        /// Intentamos obtener el id del usuario actual desde el FrmPrincipal por reflexión,
-        /// buscando propiedades comunes. Si no se encuentra, devuelve null y el historial se insertará con id_usuario = NULL.
-        /// </summary>
-        private int? ObtenerIdUsuarioDesdePrincipal()
-        {
-            try
-            {
-                // Intentamos algunas propiedades comunes que podrías tener en FrmPrincipal
-                var posibles = new string[] { "UsuarioActual", "usuarioActual", "Usuario", "User", "IdUsuario", "IdUsuarioActual", "idUsuario", "Id" };
-
-                foreach (var name in posibles)
-                {
-                    var prop = _frmPrincipal.GetType().GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
-                    if (prop != null)
-                    {
-                        var val = prop.GetValue(_frmPrincipal);
-                        if (val == null) continue;
-
-                        // Si la propiedad es un objeto Usuario con id_usuario
-                        var t = val.GetType();
-                        var idProp = t.GetProperty("id_usuario") ?? t.GetProperty("Id") ?? t.GetProperty("IdUsuario") ?? t.GetProperty("idUsuario");
-                        if (idProp != null)
-                        {
-                            var idVal = idProp.GetValue(val);
-                            if (idVal != null && int.TryParse(idVal.ToString(), out int idInt)) return idInt;
-                        }
-
-                        // Si la propiedad ya es int
-                        if (val is int vi) return vi;
-                        if (int.TryParse(val.ToString(), out int v2)) return v2;
-                    }
-                }
-            }
-            catch
-            {
-                // no crítico - devolvemos null
-            }
-            return null;
-        }
+        
         private void btnFusionar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validar campos obligatorios (cedula, nombres, apellidos, genero)
+                // Validaciones
                 var cedula = txbCedula.Text?.Trim();
                 var nombres = txbNombres.Text?.Trim();
                 var apellidos = txbApellidos.Text?.Trim();
                 var genero = txbGenero.Text?.Trim();
                 var tipoDiscapacidad = txbTipoDiscapacidad.Text?.Trim();
 
-                if (string.IsNullOrWhiteSpace(cedula) ||
+                if (
                     string.IsNullOrWhiteSpace(nombres) ||
                     string.IsNullOrWhiteSpace(apellidos) ||
                     string.IsNullOrWhiteSpace(genero))
                 {
-                    MessageBox.Show("Los campos Cédula, Nombres, Apellidos y Género son obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Los campos Nombres, Apellidos y Género son obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var confirma = MessageBox.Show("¿Confirma que desea fusionar los deportistas seleccionados en un solo registro?", "Confirmar Fusión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirma = MessageBox.Show("¿Confirma crear un nuevo deportista fusionado y reasignar desempeños a este nuevo registro?", "Confirmar Fusión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirma != DialogResult.Yes) return;
 
-                // ID objetivo: primer id de la lista
-                int idObjetivo = _seleccionados[0].IdDeportista;
-                var idsAEliminar = _seleccionados.Skip(1).Select(x => x.IdDeportista).Where(id => id != 0 && id != idObjetivo).ToList();
-
-                if (idObjetivo == 0)
+                var nuevo = new Deportista
                 {
-                    MessageBox.Show("El deportista objetivo no tiene un id válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Intentar obtener idUsuario del FrmPrincipal si existe (int) -- fallback 0
-                int idUsuario = ObtenerIdUsuarioDesdeFrmPrincipal(_frmPrincipal);
-
-                // 1) Actualizar el registro del deportista objetivo con los datos nuevos (si lo deseas)
-                // Creamos entidad Deportista con la información fusionada
-                Deportista deportistaFusionado = new Deportista
-                {
-                    id_deportista = idObjetivo,
                     cedula = cedula,
                     nombres = nombres,
                     apellidos = apellidos,
@@ -210,49 +152,33 @@ namespace FDCH.UI.Vistas
                     tipo_discapacidad = tipoDiscapacidad
                 };
 
-                // Lógica: actualizar deportista objetivo (si tienes método ActualizarDeportista en puente)
-                bool okUpdate = _puente.ActualizarDeportista(deportistaFusionado);
-                if (!okUpdate)
+                var idsAntiguos = _seleccionados.Select(s => s.IdDeportista).Where(id => id > 0).Distinct().ToList();
+                if (idsAntiguos.Count < 1)
                 {
-                    MessageBox.Show("No se pudo actualizar la información del deportista objetivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se han podido obtener ids válidos de los deportistas seleccionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // 2) Transferir dependencias: para cada id a eliminar, actualizar Desempeno -> id_deportista = idObjetivo
-                foreach (var idOld in idsAEliminar)
+                // Obtener id de usuario logeado desde FrmPrincipal (estructura que ya tienes)
+                int idUsuario = 0;
+                try
                 {
-                    bool okUpdDes = _puente.ActualizarIdDesempenoPorDeportista(idOld, idObjetivo);
-                    if (!okUpdDes)
-                    {
-                        MessageBox.Show($"Error al reasignar desempeños desde id {idOld}. Operación interrumpida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    if (_frmPrincipal?._usuarioAutenticado != null)
+                        idUsuario = _frmPrincipal._usuarioAutenticado.id_usuario;
+                }
+                catch { idUsuario = 0; }
+
+                bool ok = _puente.FusionarDeportistas(idsAntiguos, nuevo, idUsuario, out int nuevoId);
+
+                if (!ok || nuevoId == 0)
+                {
+                    MessageBox.Show("Ocurrió un error al fusionar. Revisa logs o permisos de BD.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                // 3) Eliminar los deportistas suprimidos
-                foreach (var idDel in idsAEliminar)
-                {
-                    bool okDel = _puente.EliminarDeportistaPorId(idDel);
-                    if (!okDel)
-                    {
-                        MessageBox.Show($"Error al eliminar deportista con id {idDel}. Operación interrumpida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
+                MessageBox.Show($"Fusión exitosa", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 4) Insertar entrada en historial (registro único por operación y registros de borrado)
-                string fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                // Registrar acción de FUSION sobre el id objetivo
-                _puente.InsertarHistorialCambio(idUsuario, "Deportistas", idObjetivo, "FUSION", fecha);
-                // Registrar acciones de DELETE_FUSION para cada eliminado
-                foreach (var idDel in idsAEliminar)
-                {
-                    _puente.InsertarHistorialCambio(idUsuario, "Deportistas", idDel, "DELETE_FUSION", fecha);
-                }
-
-                MessageBox.Show("Fusión completada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Volver al FrmGestionarDeportistas para refrescar la vista
+                // Volver al gestor y refrescar la vista
                 _frmPrincipal.AbrirFormularioEnPanel(new FrmGestionarDeportistas(_frmPrincipal));
                 this.Close();
             }
@@ -262,38 +188,6 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        /// <summary>
-        /// Intenta obtener el id de usuario desde FrmPrincipal utilizando reflexión (por si tienes una propiedad pública).
-        /// Si no encuentra, devuelve 0.
-        /// </summary>
-        private int ObtenerIdUsuarioDesdeFrmPrincipal(FrmPrincipal principal)
-        {
-            try
-            {
-                if (principal == null) return 0;
-                // Intentamos buscar una propiedad pública llamada "UsuarioActual" o "IdUsuario" o "Usuario"
-                var t = principal.GetType();
-                var prop = t.GetProperty("UsuarioActual") ?? t.GetProperty("IdUsuario") ?? t.GetProperty("Usuario");
-                if (prop != null)
-                {
-                    var val = prop.GetValue(principal);
-                    if (val == null) return 0;
-
-                    // Si es entero directo:
-                    if (val is int i) return i;
-
-                    // Si es un objeto Usuario con id_usuario:
-                    var propId = val.GetType().GetProperty("id_usuario");
-                    if (propId != null)
-                    {
-                        var idVal = propId.GetValue(val);
-                        if (idVal is int ii) return ii;
-                    }
-                }
-            }
-            catch { /* silencioso: si no se puede obtener, devolvemos 0 */ }
-
-            return 0;
-        }
+        
     }
 }

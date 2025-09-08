@@ -419,7 +419,7 @@ namespace FDCH.Logica
 
         }*/
 
-        public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
+        /*public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
         {
             return _dbService.ActualizarIdDesempenoPorDeportista(oldId, newId);
         }
@@ -427,11 +427,17 @@ namespace FDCH.Logica
         public bool EliminarDeportistaPorId(int idDeportista)
         {
             return _dbService.EliminarDeportistaPorId(idDeportista);
-        }
+        }*/
 
         public bool InsertarHistorialCambio(int idUsuario, string tabla, int idRegistro, string accion, string fecha)
         {
             return _dbService.InsertarHistorialCambio(idUsuario, tabla, idRegistro, accion, fecha);
         }
+
+        public bool FusionarDeportistas(List<int> idsAntiguos, Deportista nuevo, int idUsuarioQueHaceLaAccion, out int nuevoId)
+        {
+            return _dbService.FusionarDeportistas(idsAntiguos, nuevo, idUsuarioQueHaceLaAccion, out nuevoId);
+        }
+
     }
 }

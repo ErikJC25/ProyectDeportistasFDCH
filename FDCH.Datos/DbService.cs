@@ -2349,7 +2349,7 @@ namespace FDCH.Datos
         }
          */
 
-        public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
+        /*public bool ActualizarIdDesempenoPorDeportista(int oldId, int newId)
         {
             using (var conn = GetConnection())
             {
@@ -2404,7 +2404,7 @@ namespace FDCH.Datos
                     }
                 }
             }
-        }
+        }*/
 
         /// <summary>
         /// Inserta un registro en Historial_Cambios.
@@ -2436,6 +2436,121 @@ namespace FDCH.Datos
                 }
             }
         }
+
+
+        /// <summary>
+        /// Fusiona deportistas creando un nuevo deportista con los datos en 'nuevo',
+        /// reasigna desempeños de los ids en idsAntiguos al nuevoId, elimina los deportistas antiguos
+        /// y, una vez exitoso el commit, registra una sola entrada en Historial_Cambios usando
+        /// el método InsertarHistorialCambio(int idUsuario, string tabla, int idRegistro, string accion, string fecha).
+        /// Devuelve true si todo fue exitoso y devuelve el nuevoId por out.
+        /// </summary>
+        public bool FusionarDeportistas(List<int> idsAntiguos, Deportista nuevo, int idUsuarioQueHaceLaAccion, out int nuevoId)
+        {
+            nuevoId = 0;
+
+            if (nuevo == null) return false;
+            if (idsAntiguos == null || idsAntiguos.Count == 0) return false;
+
+            // Normalizar la lista: eliminar ceros y duplicados
+            var ids = idsAntiguos.Where(x => x > 0).Distinct().ToList();
+            if (ids.Count == 0) return false;
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) Insertar nuevo deportista y obtener nuevoId
+                        string insertSql = @"
+                    INSERT INTO Deportistas (cedula, nombres, apellidos, genero, tipo_discapacidad)
+                    VALUES (@cedula, @nombres, @apellidos, @genero, @tipo_discapacidad);
+                    SELECT last_insert_rowid();
+                ";
+
+                        using (var cmdIns = new SQLiteCommand(insertSql, conn, tran))
+                        {
+                            cmdIns.Parameters.AddWithValue("@cedula", (object)nuevo.cedula ?? DBNull.Value);
+                            cmdIns.Parameters.AddWithValue("@nombres", (object)nuevo.nombres ?? DBNull.Value);
+                            cmdIns.Parameters.AddWithValue("@apellidos", (object)nuevo.apellidos ?? DBNull.Value);
+                            cmdIns.Parameters.AddWithValue("@genero", (object)nuevo.genero ?? DBNull.Value);
+                            cmdIns.Parameters.AddWithValue("@tipo_discapacidad", (object)nuevo.tipo_discapacidad ?? DBNull.Value);
+
+                            object scalar = cmdIns.ExecuteScalar();
+                            if (scalar == null) throw new Exception("No se obtuvo id del nuevo deportista.");
+                            nuevoId = Convert.ToInt32(scalar);
+                        }
+
+                        // 2) Reasignar desempeños: UPDATE Desempeno SET id_deportista = nuevoId WHERE id_deportista = old
+                        string updateDesSql = @"UPDATE Desempeno SET id_deportista = @nuevoId WHERE id_deportista = @oldId;";
+
+                        using (var cmdUpd = new SQLiteCommand(updateDesSql, conn, tran))
+                        {
+                            // Crear parámetros explícitos (no usar Add(...) que devuelve índice)
+                            var pNuevo = new SQLiteParameter("@nuevoId", System.Data.DbType.Int32) { Value = nuevoId };
+                            var pOld = new SQLiteParameter("@oldId", System.Data.DbType.Int32) { Value = 0 }; // valor inicial
+                            cmdUpd.Parameters.Add(pNuevo);
+                            cmdUpd.Parameters.Add(pOld);
+
+                            foreach (var oldId in ids)
+                            {
+                                if (oldId == nuevoId) continue; // por seguridad
+                                pOld.Value = oldId;
+                                cmdUpd.ExecuteNonQuery();
+                            }
+                        }
+
+                        // 3) Eliminar deportistas antiguos (excepto si alguno coincide con nuevoId)
+                        string deleteSql = @"DELETE FROM Deportistas WHERE id_deportista = @id;";
+
+                        using (var cmdDel = new SQLiteCommand(deleteSql, conn, tran))
+                        {
+                            var pDel = new SQLiteParameter("@id", System.Data.DbType.Int32) { Value = 0 };
+                            cmdDel.Parameters.Add(pDel);
+
+                            foreach (var oldId in ids)
+                            {
+                                if (oldId == nuevoId) continue;
+                                pDel.Value = oldId;
+                                cmdDel.ExecuteNonQuery();
+                            }
+                        }
+
+                        // 4) Commit de la transacción
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        try { tran.Rollback(); } catch { /* ignorar */ }
+                        Console.WriteLine("Error en FusionarDeportistas (transacción): " + ex.Message);
+                        nuevoId = 0;
+                        return false;
+                    }
+                }
+            }
+
+            // 5) Registrar en historial (fuera de la transacción, usando tu método existente)
+            try
+            {
+                //string fecha = DateTime.Now.ToString();
+                bool histOk = InsertarHistorialCambio(idUsuarioQueHaceLaAccion == 0 ? 0 : idUsuarioQueHaceLaAccion,
+                                                      "Deportistas", nuevoId, "DEPORTISTA FUSIONADO", DateTime.Now.ToString());
+                if (!histOk)
+                {
+                    Console.WriteLine("Advertencia: no se pudo insertar registro en Historial_Cambios tras la fusión.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error insertando historial después de FusionarDeportistas: " + ex.Message);
+            }
+
+            return nuevoId != 0;
+        }
+
+
 
 
 

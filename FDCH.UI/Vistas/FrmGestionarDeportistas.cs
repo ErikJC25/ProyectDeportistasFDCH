@@ -441,23 +441,17 @@ namespace FDCH.UI.Vistas
             }
         }
 
-        /*
-         /// <summary>
-/// Ordena la grilla por id_deportista (mayor -> menor)
-/// </summary>
-private void btnOrdenarId_Click(object sender, EventArgs e)
-{
-    // restablecer placeholders por si estaban visibles
-    txbCedula.Text = "CEDULA";
-    txbCedula.ForeColor = Color.DarkGray;
-    txbApellidos.Text = "APELLIDOS";
-    txbApellidos.ForeColor = Color.DarkGray;
-    txbNombres.Text = "NOMBRES";
-    txbNombres.ForeColor = Color.DarkGray;
+        private void btnOrdenarId_Click(object sender, EventArgs e)
+        {
+            txbCedula.Text = "CEDULA";
+            txbCedula.ForeColor = Color.DarkGray;
+            txbApellidos.Text = "APELLIDOS";
+            txbApellidos.ForeColor = Color.DarkGray;
+            txbNombres.Text = "NOMBRES";
+            txbNombres.ForeColor = Color.DarkGray;
 
-    PoblarDataGrid(_listaDeportistas.OrderByDescending(d => d.id_deportista).ToList());
-}
+            PoblarDataGrid(_listaDeportistas.OrderByDescending(d => d.id_deportista).ToList());
+        }
 
-         * */
     }
 }
