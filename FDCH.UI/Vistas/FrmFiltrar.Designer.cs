@@ -73,6 +73,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnExportarWord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +82,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.MediumBlue;
-            this.tableLayoutPanel1.SetColumnSpan(this.label1, 10);
+            this.tableLayoutPanel1.SetColumnSpan(this.label1, 11);
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -133,7 +134,7 @@
             this.TipoDiscapacidad,
             this.Observaciones,
             this.colEditar});
-            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 10);
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 11);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dataGridView1.Location = new System.Drawing.Point(0, 141);
@@ -459,10 +460,10 @@
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombres.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombres.Location = new System.Drawing.Point(597, 72);
+            this.txtNombres.Location = new System.Drawing.Point(577, 72);
             this.txtNombres.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(308, 28);
+            this.txtNombres.Size = new System.Drawing.Size(298, 28);
             this.txtNombres.TabIndex = 3;
             this.txtNombres.Text = "NOMBRES";
             this.txtNombres.Enter += new System.EventHandler(this.txtNombres_Enter);
@@ -477,10 +478,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtApellidos, 2);
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellidos.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtApellidos.Location = new System.Drawing.Point(280, 72);
+            this.txtApellidos.Location = new System.Drawing.Point(271, 72);
             this.txtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(313, 28);
+            this.txtApellidos.Size = new System.Drawing.Size(302, 28);
             this.txtApellidos.TabIndex = 2;
             this.txtApellidos.Text = "APELLIDOS";
             this.txtApellidos.Enter += new System.EventHandler(this.txtApellidos_Enter);
@@ -498,7 +499,7 @@
             this.txtCedula.Location = new System.Drawing.Point(10, 72);
             this.txtCedula.Margin = new System.Windows.Forms.Padding(2);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(266, 28);
+            this.txtCedula.Size = new System.Drawing.Size(257, 28);
             this.txtCedula.TabIndex = 1;
             this.txtCedula.Text = "CEDULA";
             this.txtCedula.Enter += new System.EventHandler(this.txtCedula_Enter);
@@ -511,7 +512,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.chkAntiguoActual, 2);
             this.chkAntiguoActual.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAntiguoActual.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkAntiguoActual.Location = new System.Drawing.Point(476, 111);
+            this.chkAntiguoActual.Location = new System.Drawing.Point(460, 111);
             this.chkAntiguoActual.Margin = new System.Windows.Forms.Padding(2);
             this.chkAntiguoActual.Name = "chkAntiguoActual";
             this.chkAntiguoActual.Size = new System.Drawing.Size(159, 23);
@@ -539,7 +540,7 @@
             this.chkFemenino.AutoSize = true;
             this.chkFemenino.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkFemenino.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkFemenino.Location = new System.Drawing.Point(145, 111);
+            this.chkFemenino.Location = new System.Drawing.Point(141, 111);
             this.chkFemenino.Margin = new System.Windows.Forms.Padding(2);
             this.chkFemenino.Name = "chkFemenino";
             this.chkFemenino.Size = new System.Drawing.Size(107, 23);
@@ -553,7 +554,7 @@
             this.chkAlfabeticamente.AutoSize = true;
             this.chkAlfabeticamente.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkAlfabeticamente.ForeColor = System.Drawing.Color.DarkGray;
-            this.chkAlfabeticamente.Location = new System.Drawing.Point(280, 111);
+            this.chkAlfabeticamente.Location = new System.Drawing.Point(271, 111);
             this.chkAlfabeticamente.Margin = new System.Windows.Forms.Padding(2);
             this.chkAlfabeticamente.Name = "chkAlfabeticamente";
             this.chkAlfabeticamente.Size = new System.Drawing.Size(155, 23);
@@ -564,17 +565,18 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 10;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8074684F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.02368F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.99326F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.86429F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.64581F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.02887F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.54957F));
+            this.tableLayoutPanel1.ColumnCount = 11;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8097726F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.06084F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.03034F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.91812F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.67904F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.11456F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.58253F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8025193F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8048092F));
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnLimpiar, 8, 1);
@@ -586,6 +588,7 @@
             this.tableLayoutPanel1.Controls.Add(this.chkMasculino, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtCedula, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtApellidos, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnExportarWord, 9, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -608,7 +611,7 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
             this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiar.Location = new System.Drawing.Point(1138, 87);
+            this.btnLimpiar.Location = new System.Drawing.Point(1104, 87);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.tableLayoutPanel1.SetRowSpan(this.btnLimpiar, 2);
@@ -629,7 +632,7 @@
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.Location = new System.Drawing.Point(1029, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(995, 87);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.tableLayoutPanel1.SetRowSpan(this.btnBuscar, 2);
@@ -639,6 +642,26 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // btnExportarWord
+            // 
+            this.btnExportarWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarWord.BackColor = System.Drawing.SystemColors.Window;
+            this.btnExportarWord.BackgroundImage = global::FDCH.UI.Properties.Resources.exportar;
+            this.btnExportarWord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExportarWord.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportarWord.FlatAppearance.BorderSize = 0;
+            this.btnExportarWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarWord.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarWord.ForeColor = System.Drawing.Color.White;
+            this.btnExportarWord.Location = new System.Drawing.Point(1152, 86);
+            this.btnExportarWord.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportarWord.Name = "btnExportarWord";
+            this.tableLayoutPanel1.SetRowSpan(this.btnExportarWord, 2);
+            this.btnExportarWord.Size = new System.Drawing.Size(32, 32);
+            this.btnExportarWord.TabIndex = 11;
+            this.btnExportarWord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarWord.UseVisualStyleBackColor = false;
             // 
             // FrmFiltrar
             // 
@@ -702,5 +725,6 @@
         private System.Windows.Forms.CheckBox chkFemenino;
         private System.Windows.Forms.CheckBox chkAlfabeticamente;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnExportarWord;
     }
 }
