@@ -18,6 +18,9 @@ namespace FDCH.UI.Vistas
         Deportista deportista = new Deportista(); // Instancia de Deportista
         int idDeportista;
 
+        //Director para los certificados
+        private Director _director;
+
         FrmPrincipal _frmprincipal;
 
         public FrmHistorialDeportista(int idDeportista, FrmPrincipal principal)
@@ -55,9 +58,41 @@ namespace FDCH.UI.Vistas
             ExportarExcel.ExportarAExcel(dataGridView1);
         }
 
-        private void btnExportarDeportista_Click(object sender, EventArgs e)
+        private async void btnExportarDeportista_Click(object sender, EventArgs e)
         {
-            //ExportarWord.ExportarAWord(dataGridView1);
+            // Deshabilitar botón / feedback
+            btnExportarDeportista.Enabled = false;
+            var prevCursor = Cursor;
+            Cursor = Cursors.WaitCursor;
+
+            //Obtención de los datos del director
+
+            string titulo = "";
+            string rol = "";
+
+            try
+            {
+                _director = puente.ObtenerDirector() ?? new Director(); // si no existe, nuevo objeto
+                titulo = _director.titulo ?? "";
+                rol = _director.rol ?? "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cargando datos del director: " + ex.Message);
+            }
+
+
+            try
+            {
+                // Llamada al generador pasando la tabla, el form, el rol y el título
+                await FDCH.UI.ExportarWord.ExportarDesdePlantillaAsync(dataGridView1, this, titulo, rol);
+            }
+            finally
+            {
+                // Restaurar estado UI
+                Cursor = prevCursor;
+                btnExportarDeportista.Enabled = true;
+            }
         }
 
 

@@ -2534,9 +2534,9 @@ namespace FDCH.Datos
             // 5) Registrar en historial (fuera de la transacción, usando tu método existente)
             try
             {
-                //string fecha = DateTime.Now.ToString();
+                string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 bool histOk = InsertarHistorialCambio(idUsuarioQueHaceLaAccion == 0 ? 0 : idUsuarioQueHaceLaAccion,
-                                                      "Deportistas", nuevoId, "DEPORTISTA FUSIONADO", DateTime.Now.ToString());
+                                                      "Deportistas", nuevoId, "DEPORTISTA FUSIONADO", fecha);
                 if (!histOk)
                 {
                     Console.WriteLine("Advertencia: no se pudo insertar registro en Historial_Cambios tras la fusión.");
@@ -2551,7 +2551,93 @@ namespace FDCH.Datos
         }
 
 
+        // --------------------------
+        // SEPARAR DEPORTISTA
+        // --------------------------
+        // idOriginal: id del deportista que vamos a "separar" (duplicar sus desempeños hacia nuevos deportistas)
+        // nuevos: lista de objetos Deportista (sin id) que se crearán y a cada uno se le duplicarán los desempeños del original
+        public bool SepararDeportista_DuplicarDesempenosYEliminarOriginal(int idOriginal, List<Deportista> nuevos, int idUsuario)
+        {
+            if (idOriginal <= 0) return false;
+            if (nuevos == null || nuevos.Count == 0) return false;
 
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) Para cada nuevo deportista: insertar y luego duplicar los desempeños del original hacia el nuevo id
+                        List<int> nuevosIds = new List<int>();
+                        foreach (var nuevo in nuevos)
+                        {
+                            long nuevoId = 0;
+                            string insertSql = @"INSERT INTO Deportistas (cedula, nombres, apellidos, genero, tipo_discapacidad)
+                                         VALUES (@cedula, @nombres, @apellidos, @genero, @tipo_discapacidad);
+                                         SELECT last_insert_rowid();";
+                            using (var cmdIns = new SQLiteCommand(insertSql, conn, tran))
+                            {
+                                cmdIns.Parameters.AddWithValue("@cedula", (object)nuevo.cedula ?? DBNull.Value);
+                                cmdIns.Parameters.AddWithValue("@nombres", (object)nuevo.nombres ?? DBNull.Value);
+                                cmdIns.Parameters.AddWithValue("@apellidos", (object)nuevo.apellidos ?? DBNull.Value);
+                                cmdIns.Parameters.AddWithValue("@genero", (object)nuevo.genero ?? DBNull.Value);
+                                cmdIns.Parameters.AddWithValue("@tipo_discapacidad", (object)nuevo.tipo_discapacidad ?? DBNull.Value);
+
+                                var res = cmdIns.ExecuteScalar();
+                                nuevoId = (res == null) ? 0 : Convert.ToInt64(res);
+                            }
+
+                            if (nuevoId == 0) throw new Exception("No se pudo insertar uno de los deportistas nuevos.");
+
+                            // Duplicar desempeños: insert SELECT copiando columnas excepto id_desempeno y reemplazando id_deportista por nuevoId
+                            string dupSql = @"
+                        INSERT INTO Desempeno (puntos, medalla, observaciones, tiempo, ubicacion, id_deportista, id_competencia, id_tecnico)
+                        SELECT puntos, medalla, observaciones, tiempo, ubicacion, @nuevoId, id_competencia, id_tecnico
+                        FROM Desempeno
+                        WHERE id_deportista = @idOriginal;";
+                            using (var cmdDup = new SQLiteCommand(dupSql, conn, tran))
+                            {
+                                cmdDup.Parameters.AddWithValue("@nuevoId", nuevoId);
+                                cmdDup.Parameters.AddWithValue("@idOriginal", idOriginal);
+                                cmdDup.ExecuteNonQuery();
+                            }
+
+                            nuevosIds.Add((int)nuevoId);
+
+                            // Registrar en historial la creación del nuevo deportista (opcional pero útil para trazabilidad)
+                            string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                            InsertarHistorialCambio(idUsuario, "Deportistas", (int)nuevoId, "DEPORTISTA RESULTANTE DE SEPARACION", fecha);
+                        }
+
+                        // 2) Eliminar todos los desempeños originales del deportista original
+                        string delDesemSql = "DELETE FROM Desempeno WHERE id_deportista = @idOriginal;";
+                        using (var cmdDelDes = new SQLiteCommand(delDesemSql, conn, tran))
+                        {
+                            cmdDelDes.Parameters.AddWithValue("@idOriginal", idOriginal);
+                            cmdDelDes.ExecuteNonQuery();
+                        }
+
+                        // 3) Eliminar el deportista original
+                        string delDepSql = "DELETE FROM Deportistas WHERE id_deportista = @idOriginal;";
+                        using (var cmdDelDep = new SQLiteCommand(delDepSql, conn, tran))
+                        {
+                            cmdDelDep.Parameters.AddWithValue("@idOriginal", idOriginal);
+                            cmdDelDep.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        try { tran.Rollback(); } catch { }
+                        Console.WriteLine("Error en SepararDeportista_DuplicarDesempenosYEliminarOriginal: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
 
 
     }

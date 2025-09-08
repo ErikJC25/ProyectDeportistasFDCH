@@ -218,8 +218,8 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            //var frm = new FrmSepararDeportistas(seleccionados.First(), _frmPrincipal);
-            //_frmPrincipal.AbrirFormularioEnPanel(frm);
+            var frm = new FrmSepararDeportistas(seleccionados.First(), _frmPrincipal);
+            _frmPrincipal.AbrirFormularioEnPanel(frm);
             this.Close();
         }
 

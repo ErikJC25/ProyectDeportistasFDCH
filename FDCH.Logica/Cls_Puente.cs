@@ -439,5 +439,10 @@ namespace FDCH.Logica
             return _dbService.FusionarDeportistas(idsAntiguos, nuevo, idUsuarioQueHaceLaAccion, out nuevoId);
         }
 
+        public bool SepararDeportista(int idOriginal, List<Deportista> nuevos, int idUsuario)
+        {
+            return _dbService.SepararDeportista_DuplicarDesempenosYEliminarOriginal(idOriginal, nuevos, idUsuario);
+        }
+
     }
 }
