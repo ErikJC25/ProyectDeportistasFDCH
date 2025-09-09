@@ -18,7 +18,7 @@ namespace FDCH.Datos
         //private static readonly string DbPath = @"C:\Ruta\A\TuProyecto\Data\deportistas.db";
 
         // Ruta relativa a la raíz del proyecto
-        private static readonly string DbPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos", DbFileName));
+        private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Archivos", DbFileName);
         //bryan private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "semifinal.db");
 
         // Ruta absoluta (a nivel local, para todos los usuarios)

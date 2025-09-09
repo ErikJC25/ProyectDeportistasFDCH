@@ -23,15 +23,19 @@ namespace FDCH.UI
             if (_service != null) return _service;
 
             // Se define la ruta base, que es el directorio de la base de datos.
-            string dbDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos"));
+            string dbDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Archivos");
 
-            // credentialsPath ahora apunta a esa carpeta.
+            // credentials.json está dentro de la carpeta Archivos
             string credentialsPath = Path.Combine(dbDirectory, "credentials.json");
-            // tokenPath también apunta a esa carpeta para que se cree allí.
+
+            // ⚡ Aquí indicamos la carpeta "token.json" (Google la usará como directorio)
             string tokenPath = Path.Combine(dbDirectory, "token.json");
 
             if (!File.Exists(credentialsPath))
-                throw new FileNotFoundException("No se encontró el archivo credentials.json en la ruta de la base de datos.", credentialsPath);
+                throw new FileNotFoundException(
+                    "No se encontró el archivo credentials.json en la carpeta Archivos.",
+                    credentialsPath
+                );
 
             UserCredential credential;
             using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
@@ -41,7 +45,7 @@ namespace FDCH.UI
                     Scopes,
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(tokenPath, true) // Aquí se especifica la ruta para el token.
+                    new FileDataStore(tokenPath, true) // ✅ token.json = carpeta
                 ).Result;
             }
 
@@ -53,6 +57,7 @@ namespace FDCH.UI
 
             return _service;
         }
+
 
         // 🔹 Calcular hash MD5 de un archivo
         public static string CalcularMD5(string filePath)
