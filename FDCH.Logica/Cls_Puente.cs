@@ -444,5 +444,15 @@ namespace FDCH.Logica
             return _dbService.SepararDeportista_DuplicarDesempenosYEliminarOriginal(idOriginal, nuevos, idUsuario);
         }
 
+        // Devuelve diccionario: id_tecnico -> lista de disciplinas dirigidas (eficiente: UNA consulta)
+        public Dictionary<int, List<string>> ObtenerDisciplinasPorTecnico(bool orderDesc = false)
+        {
+            return _dbService.ObtenerDisciplinasPorTecnico(orderDesc);
+        }
+
+        public bool ActualizarTecnico(Tecnico tecnico)
+        {
+            return _dbService.ActualizarTecnico(tecnico);
+        }
     }
 }
