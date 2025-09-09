@@ -135,9 +135,8 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            // Abrir FrmFusionarTecnicos — asumo que existe y acepta la lista de DTOs y FrmPrincipal
-            //var frm = new FrmFusionarTecnicos(seleccionados, _frmPrincipal);
-            //_frmPrincipal.AbrirFormularioEnPanel(frm);
+            var frm = new FrmFusionarTecnicos(seleccionados, _frmPrincipal);
+            _frmPrincipal.AbrirFormularioEnPanel(frm);
             this.Close();
         }
 

@@ -151,9 +151,11 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-                string dbPath = Path.GetFullPath(
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db")
-                );
+
+                string dbPath = DbService.GetDbPath(); // ✅ siempre en "Archivos\BDCompetencias.db"
+
+
+
 
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
@@ -238,7 +240,7 @@ namespace FDCH.UI.Vistas
                 File.Delete(tempPath);
 
                 // Eliminar respaldos viejos de 7 días
-                DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 7);
+                DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 30);
 
                 Console.WriteLine($"[Respaldo automático] Subido correctamente. ID: {fileId}");
             }

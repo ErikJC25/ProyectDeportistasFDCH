@@ -18,7 +18,7 @@ namespace FDCH.Datos
         //private static readonly string DbPath = @"C:\Ruta\A\TuProyecto\Data\deportistas.db";
 
         // Ruta relativa a la raíz del proyecto
-        private static readonly string DbPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../FDCH.Datos/Archivos", DbFileName));
+        private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Archivos", DbFileName);
         //bryan private static readonly string DbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "semifinal.db");
 
         // Ruta absoluta (a nivel local, para todos los usuarios)
@@ -2753,6 +2753,89 @@ namespace FDCH.Datos
             }
             return rowsAffected > 0;
         }
+
+        public bool FusionarTecnicosCrearNuevoYReasignar(List<int> idsViejos, Tecnico nuevoTecnico, int idUsuario)
+        {
+            if (idsViejos == null || idsViejos.Count < 2) return false;
+            if (nuevoTecnico == null) return false;
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) Insertar nuevo técnico
+                        long nuevoId = 0;
+                        string insertSql = "INSERT INTO Tecnicos (nombre_completo) VALUES (@nombre); SELECT last_insert_rowid();";
+                        using (var cmdIns = new SQLiteCommand(insertSql, conn, tran))
+                        {
+                            cmdIns.Parameters.AddWithValue("@nombre", nuevoTecnico.nombre_completo ?? (object)DBNull.Value);
+                            var res = cmdIns.ExecuteScalar();
+                            nuevoId = res == null ? 0 : Convert.ToInt64(res);
+                        }
+
+                        if (nuevoId == 0) throw new Exception("No se pudo insertar el nuevo técnico.");
+
+                        // 2) Reasignar desempeños: UPDATE Desempeno SET id_tecnico = nuevoId WHERE id_tecnico IN (...)
+                        // Construir parámetros dinámicos para la lista IN
+                        var idParams = new List<string>();
+                        for (int i = 0; i < idsViejos.Count; i++)
+                        {
+                            idParams.Add($"@id{i}");
+                        }
+                        string inClause = string.Join(", ", idParams);
+                        string updateSql = $"UPDATE Desempeno SET id_tecnico = @nuevoId WHERE id_tecnico IN ({inClause});";
+                        using (var cmdUpd = new SQLiteCommand(updateSql, conn, tran))
+                        {
+                            cmdUpd.Parameters.AddWithValue("@nuevoId", nuevoId);
+                            for (int i = 0; i < idsViejos.Count; i++)
+                            {
+                                cmdUpd.Parameters.AddWithValue(idParams[i], idsViejos[i]);
+                            }
+                            cmdUpd.ExecuteNonQuery();
+                        }
+
+                        // 3) Eliminar los técnicos viejos (usar la misma IN)
+                        string deleteSql = $"DELETE FROM Tecnicos WHERE id_tecnico IN ({inClause});";
+                        using (var cmdDel = new SQLiteCommand(deleteSql, conn, tran))
+                        {
+                            for (int i = 0; i < idsViejos.Count; i++)
+                            {
+                                cmdDel.Parameters.AddWithValue(idParams[i], idsViejos[i]);
+                            }
+                            cmdDel.ExecuteNonQuery();
+                        }
+
+                        // 4) Registrar en Historial_Cambios solo el técnico resultante (nuevoId)
+                        string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                        string histSql = "INSERT INTO Historial_Cambios (id_usuario, tabla_afectada, id_registro_afectado, accion, fecha_cambio) " +
+                                         "VALUES (@idUsuario, @tabla, @idRegistro, @accion, @fecha);";
+                        using (var cmdHist = new SQLiteCommand(histSql, conn, tran))
+                        {
+                            cmdHist.Parameters.AddWithValue("@idUsuario", idUsuario == 0 ? (object)DBNull.Value : idUsuario);
+                            cmdHist.Parameters.AddWithValue("@tabla", "Tecnicos");
+                            cmdHist.Parameters.AddWithValue("@idRegistro", (int)nuevoId);
+                            cmdHist.Parameters.AddWithValue("@accion", "TECNICO FUSIONADO");
+                            cmdHist.Parameters.AddWithValue("@fecha", fecha);
+                            cmdHist.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        try { tran.Rollback(); } catch { }
+                        Console.WriteLine("Error en FusionarTecnicosCrearNuevoYReasignar: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+
 
     }
 }
