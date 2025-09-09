@@ -106,12 +106,14 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-
                 if (string.IsNullOrWhiteSpace(txtNombres.Text) || string.IsNullOrWhiteSpace(txtApellidos.Text))
                 {
                     MessageBox.Show("Los campos Nombres y Apellidos son obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                var confirma = MessageBox.Show("¿Está seguro de agregar este nuevo deportista?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirma != DialogResult.Yes) return;
 
                 // Construir entidad
                 var deportista = new Deportista
@@ -136,7 +138,7 @@ namespace FDCH.UI.Vistas
 
                 if (nuevoId <= 0)
                 {
-                    MessageBox.Show("No se pudo insertar el deportista. Verifique los datos o consulte el log.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo insertar el deportista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

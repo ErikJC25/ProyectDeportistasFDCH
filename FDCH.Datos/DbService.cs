@@ -2670,5 +2670,89 @@ namespace FDCH.Datos
         }
 
 
+        public Dictionary<int, List<string>> ObtenerDisciplinasPorTecnico(bool orderDesc = false)
+        {
+            var resultado = new Dictionary<int, List<string>>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                // Orden por id_tecnico (asc o desc) y luego por nombre_disciplina para consistencia al agregar.
+                string orderDirection = orderDesc ? "DESC" : "ASC";
+
+                string sql = $@"
+            SELECT t.id_tecnico AS id_tecnico, di.nombre_disciplina AS nombre_disciplina
+            FROM Tecnicos t
+            LEFT JOIN Desempeno ds ON ds.id_tecnico = t.id_tecnico
+            LEFT JOIN Competencias c ON c.id_competencia = ds.id_competencia
+            LEFT JOIN Especialidades e ON e.id_especialidad = c.id_especialidad
+            LEFT JOIN Disciplinas di ON di.id_disciplina = e.id_disciplina
+            ORDER BY t.id_tecnico {orderDirection}, di.nombre_disciplina;
+        ";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    try
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // id_tecnico no debería ser null si existe la fila, pero chequeamos
+                                if (reader.IsDBNull(0)) continue;
+                                int id = Convert.ToInt32(reader["id_tecnico"]);
+                                string disciplina = reader.IsDBNull(1) ? null : reader["nombre_disciplina"].ToString();
+
+                                // Asegurar la clave existe (incluso si disciplina == null)
+                                if (!resultado.ContainsKey(id))
+                                    resultado[id] = new List<string>();
+
+                                // Si hay disciplina válida, agregar sin duplicados
+                                if (!string.IsNullOrWhiteSpace(disciplina) && !resultado[id].Contains(disciplina))
+                                {
+                                    resultado[id].Add(disciplina);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error en ObtenerDisciplinasPorTecnico: " + ex.Message);
+                        // En caso de error devolvemos al menos el diccionario parcial (o vacío).
+                    }
+                }
+            }
+
+            return resultado;
+        }
+
+
+        public bool ActualizarTecnico(Tecnico tecnico)
+        {
+            string query = "UPDATE Tecnicos SET nombre_completo = @nombre_completo WHERE id_tecnico = @id_tecnico";
+            int rowsAffected = 0;
+
+            using (SQLiteConnection connection = GetConnection())
+            {
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id_tecnico", tecnico.id_tecnico);
+                    command.Parameters.AddWithValue("@nombre_completo", tecnico.nombre_completo);
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error al actualizar técnico: " + ex.Message);
+                    }
+                }
+            }
+            return rowsAffected > 0;
+        }
+
     }
 }

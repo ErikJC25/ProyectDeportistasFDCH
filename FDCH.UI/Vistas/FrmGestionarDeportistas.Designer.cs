@@ -32,6 +32,11 @@
             this.txbNombres = new System.Windows.Forms.TextBox();
             this.txbApellidos = new System.Windows.Forms.TextBox();
             this.txbCedula = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnOrdenarNombres = new System.Windows.Forms.Button();
+            this.btnOrdenarApellidos = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSeparar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,18 +47,13 @@
             this.colTipoDiscapacidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colIdDeportista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnOrdenarNombres = new System.Windows.Forms.Button();
-            this.btnOrdenarApellidos = new System.Windows.Forms.Button();
-            this.btnSeparar = new System.Windows.Forms.Button();
-            this.btnFusionar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnFusionar = new System.Windows.Forms.Button();
+            this.btnOrdenarId = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnOrdenarId = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -121,6 +121,122 @@
             this.txbCedula.Enter += new System.EventHandler(this.txbCedula_Enter);
             this.txbCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCedula_KeyPress);
             this.txbCedula.Leave += new System.EventHandler(this.txbCedula_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Green;
+            this.tableLayoutPanel1.SetColumnSpan(this.label1, 9);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(897, 52);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Gestionar Deportistas";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnOrdenarNombres
+            // 
+            this.btnOrdenarNombres.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOrdenarNombres.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnOrdenarNombres.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenarNombres.FlatAppearance.BorderSize = 0;
+            this.btnOrdenarNombres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenarNombres.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
+            this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenarNombres.Location = new System.Drawing.Point(14, 83);
+            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarNombres.Name = "btnOrdenarNombres";
+            this.btnOrdenarNombres.Size = new System.Drawing.Size(176, 24);
+            this.btnOrdenarNombres.TabIndex = 19;
+            this.btnOrdenarNombres.Text = "Ordenar por Nombre";
+            this.btnOrdenarNombres.UseVisualStyleBackColor = false;
+            this.btnOrdenarNombres.Click += new System.EventHandler(this.btnOrdenarNombres_Click);
+            // 
+            // btnOrdenarApellidos
+            // 
+            this.btnOrdenarApellidos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOrdenarApellidos.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnOrdenarApellidos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenarApellidos.FlatAppearance.BorderSize = 0;
+            this.btnOrdenarApellidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenarApellidos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
+            this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenarApellidos.Location = new System.Drawing.Point(231, 83);
+            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
+            this.btnOrdenarApellidos.Size = new System.Drawing.Size(176, 24);
+            this.btnOrdenarApellidos.TabIndex = 20;
+            this.btnOrdenarApellidos.Text = "Ordenar por Apellido";
+            this.btnOrdenarApellidos.UseVisualStyleBackColor = false;
+            this.btnOrdenarApellidos.Click += new System.EventHandler(this.btnOrdenarApellidos_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.ColumnCount = 9;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.215115F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.71314F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.136F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.3556F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.36291F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.217239F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSeparar, 4, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnAgregar, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnFusionar, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.txbNombres, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbApellidos, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txbCedula, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarNombres, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarApellidos, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarId, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnLimpiar, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 6, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(897, 574);
+            this.tableLayoutPanel1.TabIndex = 24;
+            // 
+            // btnSeparar
+            // 
+            this.btnSeparar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSeparar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnSeparar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSeparar.FlatAppearance.BorderSize = 0;
+            this.btnSeparar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeparar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeparar.ForeColor = System.Drawing.Color.White;
+            this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
+            this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeparar.Location = new System.Drawing.Point(459, 531);
+            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSeparar.Name = "btnSeparar";
+            this.btnSeparar.Size = new System.Drawing.Size(128, 41);
+            this.btnSeparar.TabIndex = 23;
+            this.btnSeparar.Text = "Separar";
+            this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSeparar.UseVisualStyleBackColor = false;
+            this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
             // 
             // dataGridView1
             // 
@@ -234,80 +350,26 @@
             this.colIdDeportista.ReadOnly = true;
             this.colIdDeportista.Visible = false;
             // 
-            // label1
+            // btnAgregar
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Green;
-            this.tableLayoutPanel1.SetColumnSpan(this.label1, 9);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(897, 52);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Gestionar Deportistas";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnOrdenarNombres
-            // 
-            this.btnOrdenarNombres.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOrdenarNombres.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnOrdenarNombres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenarNombres.FlatAppearance.BorderSize = 0;
-            this.btnOrdenarNombres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarNombres.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarNombres.Location = new System.Drawing.Point(14, 83);
-            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrdenarNombres.Name = "btnOrdenarNombres";
-            this.btnOrdenarNombres.Size = new System.Drawing.Size(176, 24);
-            this.btnOrdenarNombres.TabIndex = 19;
-            this.btnOrdenarNombres.Text = "Ordenar por Nombre";
-            this.btnOrdenarNombres.UseVisualStyleBackColor = false;
-            this.btnOrdenarNombres.Click += new System.EventHandler(this.btnOrdenarNombres_Click);
-            // 
-            // btnOrdenarApellidos
-            // 
-            this.btnOrdenarApellidos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOrdenarApellidos.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnOrdenarApellidos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenarApellidos.FlatAppearance.BorderSize = 0;
-            this.btnOrdenarApellidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarApellidos.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarApellidos.Location = new System.Drawing.Point(231, 83);
-            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
-            this.btnOrdenarApellidos.Size = new System.Drawing.Size(176, 24);
-            this.btnOrdenarApellidos.TabIndex = 20;
-            this.btnOrdenarApellidos.Text = "Ordenar por Apellido";
-            this.btnOrdenarApellidos.UseVisualStyleBackColor = false;
-            this.btnOrdenarApellidos.Click += new System.EventHandler(this.btnOrdenarApellidos_Click);
-            // 
-            // btnSeparar
-            // 
-            this.btnSeparar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSeparar.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnSeparar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSeparar.FlatAppearance.BorderSize = 0;
-            this.btnSeparar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeparar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeparar.ForeColor = System.Drawing.Color.White;
-            this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
-            this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeparar.Location = new System.Drawing.Point(459, 531);
-            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSeparar.Name = "btnSeparar";
-            this.btnSeparar.Size = new System.Drawing.Size(128, 41);
-            this.btnSeparar.TabIndex = 23;
-            this.btnSeparar.Text = "Separar";
-            this.btnSeparar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeparar.UseVisualStyleBackColor = false;
-            this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAgregar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregar.FlatAppearance.BorderSize = 0;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.Color.White;
+            this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.Location = new System.Drawing.Point(25, 531);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(154, 41);
+            this.btnAgregar.TabIndex = 21;
+            this.btnAgregar.Text = "Agregar Nuevo";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnFusionar
             // 
@@ -330,26 +392,24 @@
             this.btnFusionar.UseVisualStyleBackColor = false;
             this.btnFusionar.Click += new System.EventHandler(this.btnFusionar_Click);
             // 
-            // btnAgregar
+            // btnOrdenarId
             // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAgregar.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(25, 531);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(154, 41);
-            this.btnAgregar.TabIndex = 21;
-            this.btnAgregar.Text = "Agregar Nuevo";
-            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnOrdenarId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOrdenarId.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnOrdenarId.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenarId.FlatAppearance.BorderSize = 0;
+            this.btnOrdenarId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenarId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenarId.ForeColor = System.Drawing.Color.White;
+            this.btnOrdenarId.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenarId.Location = new System.Drawing.Point(435, 83);
+            this.btnOrdenarId.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOrdenarId.Name = "btnOrdenarId";
+            this.btnOrdenarId.Size = new System.Drawing.Size(176, 24);
+            this.btnOrdenarId.TabIndex = 24;
+            this.btnOrdenarId.Text = "Recién Agregados";
+            this.btnOrdenarId.UseVisualStyleBackColor = false;
+            this.btnOrdenarId.Click += new System.EventHandler(this.btnOrdenarId_Click);
             // 
             // btnLimpiar
             // 
@@ -393,66 +453,6 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.ColumnCount = 9;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.215115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.71314F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.136F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.3556F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.36291F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.217239F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnSeparar, 4, 5);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnAgregar, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btnFusionar, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txbNombres, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txbApellidos, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txbCedula, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarNombres, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarApellidos, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnOrdenarId, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnLimpiar, 7, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 6, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(897, 574);
-            this.tableLayoutPanel1.TabIndex = 24;
-            // 
-            // btnOrdenarId
-            // 
-            this.btnOrdenarId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOrdenarId.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnOrdenarId.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenarId.FlatAppearance.BorderSize = 0;
-            this.btnOrdenarId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarId.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenarId.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarId.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarId.Location = new System.Drawing.Point(435, 83);
-            this.btnOrdenarId.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOrdenarId.Name = "btnOrdenarId";
-            this.btnOrdenarId.Size = new System.Drawing.Size(176, 24);
-            this.btnOrdenarId.TabIndex = 24;
-            this.btnOrdenarId.Text = "Recién Agregados";
-            this.btnOrdenarId.UseVisualStyleBackColor = false;
-            this.btnOrdenarId.Click += new System.EventHandler(this.btnOrdenarId_Click);
-            // 
             // FrmGestionarDeportistas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,9 +463,9 @@
             this.Name = "FrmGestionarDeportistas";
             this.Text = "FrmGestionarDeportistas";
             this.Load += new System.EventHandler(this.FrmGestionarDeportistas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,13 +477,15 @@
         private System.Windows.Forms.TextBox txbNombres;
         private System.Windows.Forms.TextBox txbApellidos;
         private System.Windows.Forms.TextBox txbCedula;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOrdenarNombres;
         private System.Windows.Forms.Button btnOrdenarApellidos;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnFusionar;
         private System.Windows.Forms.Button btnSeparar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnOrdenarId;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombres;
@@ -493,7 +495,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoDiscapacidad;
         private System.Windows.Forms.DataGridViewButtonColumn colEditar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdDeportista;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnOrdenarId;
     }
 }

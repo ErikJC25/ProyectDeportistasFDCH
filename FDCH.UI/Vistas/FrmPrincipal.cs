@@ -379,7 +379,7 @@ namespace FDCH.UI.Vistas
                     }
                     else if (dlg.SelectedIndex == 1)
                     {
-                        AbrirFormularioEnPanel(new FrmGestionarDeportistas(this));
+                        AbrirFormularioEnPanel(new FrmGestionarTecnicos(this));
                     }
                     else if (dlg.SelectedIndex == 2)
                     {
