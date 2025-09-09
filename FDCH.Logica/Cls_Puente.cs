@@ -454,5 +454,12 @@ namespace FDCH.Logica
         {
             return _dbService.ActualizarTecnico(tecnico);
         }
+
+        public bool FusionarTecnicosCrearNuevoYReasignar(List<int> idsViejos, Tecnico nuevoTecnico, int idUsuario)
+        {
+            return _dbService.FusionarTecnicosCrearNuevoYReasignar(idsViejos, nuevoTecnico, idUsuario);
+        }
+
+
     }
 }

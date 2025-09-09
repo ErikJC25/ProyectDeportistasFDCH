@@ -82,7 +82,7 @@
             this.label2.Location = new System.Drawing.Point(10, 64);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 33);
+            this.label2.Size = new System.Drawing.Size(252, 33);
             this.label2.TabIndex = 2;
             this.label2.Text = "Fila Seleccionada";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -95,7 +95,7 @@
             this.txtOrigCedula.Font = new System.Drawing.Font("Arial", 12F);
             this.txtOrigCedula.ForeColor = System.Drawing.Color.DarkGray;
             this.txtOrigCedula.Location = new System.Drawing.Point(136, 106);
-            this.txtOrigCedula.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOrigCedula.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrigCedula.Name = "txtOrigCedula";
             this.txtOrigCedula.ReadOnly = true;
             this.txtOrigCedula.Size = new System.Drawing.Size(246, 30);
@@ -129,11 +129,11 @@
             this.colT_Eliminar});
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridViewTargets, 7);
             this.dataGridViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewTargets.Location = new System.Drawing.Point(263, 322);
-            this.dataGridViewTargets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewTargets.Location = new System.Drawing.Point(270, 322);
+            this.dataGridViewTargets.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewTargets.Name = "dataGridViewTargets";
             this.dataGridViewTargets.RowHeadersWidth = 51;
-            this.dataGridViewTargets.Size = new System.Drawing.Size(920, 331);
+            this.dataGridViewTargets.Size = new System.Drawing.Size(913, 331);
             this.dataGridViewTargets.TabIndex = 1;
             this.dataGridViewTargets.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTargets_CellContentClick);
             this.dataGridViewTargets.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTargets_CellEndEdit);
@@ -213,7 +213,7 @@
             this.txtOrigGenero.Font = new System.Drawing.Font("Arial", 12F);
             this.txtOrigGenero.ForeColor = System.Drawing.Color.DarkGray;
             this.txtOrigGenero.Location = new System.Drawing.Point(499, 106);
-            this.txtOrigGenero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOrigGenero.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrigGenero.Name = "txtOrigGenero";
             this.txtOrigGenero.ReadOnly = true;
             this.txtOrigGenero.Size = new System.Drawing.Size(252, 30);
@@ -227,7 +227,7 @@
             this.txtOrigTipoDiscapacidad.Font = new System.Drawing.Font("Arial", 12F);
             this.txtOrigTipoDiscapacidad.ForeColor = System.Drawing.Color.DarkGray;
             this.txtOrigTipoDiscapacidad.Location = new System.Drawing.Point(937, 106);
-            this.txtOrigTipoDiscapacidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOrigTipoDiscapacidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrigTipoDiscapacidad.Name = "txtOrigTipoDiscapacidad";
             this.txtOrigTipoDiscapacidad.ReadOnly = true;
             this.txtOrigTipoDiscapacidad.Size = new System.Drawing.Size(246, 30);
@@ -255,7 +255,7 @@
             this.txtOrigNombres.Font = new System.Drawing.Font("Arial", 12F);
             this.txtOrigNombres.ForeColor = System.Drawing.Color.DarkGray;
             this.txtOrigNombres.Location = new System.Drawing.Point(136, 149);
-            this.txtOrigNombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOrigNombres.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrigNombres.Multiline = true;
             this.txtOrigNombres.Name = "txtOrigNombres";
             this.txtOrigNombres.ReadOnly = true;
@@ -271,7 +271,7 @@
             this.txtOrigApellidos.Font = new System.Drawing.Font("Arial", 12F);
             this.txtOrigApellidos.ForeColor = System.Drawing.Color.DarkGray;
             this.txtOrigApellidos.Location = new System.Drawing.Point(759, 149);
-            this.txtOrigApellidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOrigApellidos.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrigApellidos.Multiline = true;
             this.txtOrigApellidos.Name = "txtOrigApellidos";
             this.txtOrigApellidos.ReadOnly = true;
@@ -333,10 +333,10 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Indigo;
-            this.btnCancelar.Location = new System.Drawing.Point(263, 664);
+            this.btnCancelar.Location = new System.Drawing.Point(270, 664);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(228, 40);
+            this.btnCancelar.Size = new System.Drawing.Size(221, 40);
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -356,7 +356,7 @@
             this.btnAddRow.Location = new System.Drawing.Point(10, 465);
             this.btnAddRow.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAddRow.Name = "btnAddRow";
-            this.btnAddRow.Size = new System.Drawing.Size(245, 45);
+            this.btnAddRow.Size = new System.Drawing.Size(252, 45);
             this.btnAddRow.TabIndex = 30;
             this.btnAddRow.Text = "Agregar nueva fila";
             this.btnAddRow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -368,8 +368,8 @@
             this.tableLayoutPanel1.ColumnCount = 11;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.009793F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.5961F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.5961F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.58372F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.43318F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.5961F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());

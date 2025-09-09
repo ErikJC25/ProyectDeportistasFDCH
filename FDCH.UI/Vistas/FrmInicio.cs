@@ -27,10 +27,12 @@ namespace FDCH.UI.Vistas
             {
                 dataGridView1.Columns["colEditar"].Visible = false;
             }
+
         }
 
         private void FrmInicio_Load(object sender, EventArgs e)
         {
+            _frmprincipal.EstablecerDimensionesPanelAInicio();
             CargarDatosEnDataGridView();
         }
 
