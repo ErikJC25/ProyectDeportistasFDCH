@@ -77,6 +77,18 @@ namespace FDCH.UI.Vistas
                     disciplinasTexto = string.Join(", ", listDisc.OrderBy(x => x));
                 }
 
+                // Construir DTO que representará la fila (útil para pasar al formulario de edición)
+                var dto = new SelectedRowDto
+                {
+                    IdDeportista = d.id_deportista,
+                    Cedula = d.cedula ?? "",
+                    Nombres = d.nombres ?? "",
+                    Apellidos = d.apellidos ?? "",
+                    DisciplinasParticipadas = disciplinasTexto,
+                    Genero = d.genero ?? "",
+                    TipoDiscapacidad = d.tipo_discapacidad ?? ""
+                };
+
                 // Añadir fila. El orden de columnas debe coincidir con el diseñador.
                 int rowIndex = dataGridView1.Rows.Add(false, // seleccionar checkbox
                                                    d.cedula ?? "",
@@ -87,8 +99,9 @@ namespace FDCH.UI.Vistas
                                                    d.tipo_discapacidad ?? "",
                                                    "Editar", // texto del botón
                                                    d.id_deportista); // columna oculta id
-                // guardar objeto como Tag para uso futuro
-                dataGridView1.Rows[rowIndex].Tag = d;
+
+                // guardar DTO en Tag para recuperarlo directamente al editar
+                dataGridView1.Rows[rowIndex].Tag = dto;
             }
         }
 
@@ -300,26 +313,32 @@ namespace FDCH.UI.Vistas
             else if (colName == "colEditar")
             {
                 // Al pulsar editar: abrir el formulario de edición correspondiente.
-                // Aquí intentamos obtener el primer RegistroTotal de ese deportista para editar el desempeño.
                 var row = dataGridView1.Rows[e.RowIndex];
-                if (!int.TryParse(row.Cells["colIdDeportista"].Value?.ToString(), out int idDeportista))
+
+                SelectedRowDto dto = null;
+                if (row.Tag is SelectedRowDto tagDto)
                 {
-                    MessageBox.Show("No se pudo identificar el deportista a editar.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    dto = tagDto;
+                }
+                else
+                {
+                    // fallback: construir DTO desde celdas
+                    int id = 0;
+                    int.TryParse(row.Cells["colIdDeportista"].Value?.ToString(), out id);
+                    dto = new SelectedRowDto
+                    {
+                        IdDeportista = id,
+                        Cedula = row.Cells["colCedula"].Value?.ToString() ?? "",
+                        Nombres = row.Cells["colNombres"].Value?.ToString() ?? "",
+                        Apellidos = row.Cells["colApellidos"].Value?.ToString() ?? "",
+                        DisciplinasParticipadas = row.Cells["colDisciplinas"].Value?.ToString() ?? "",
+                        Genero = row.Cells["colGenero"].Value?.ToString() ?? "",
+                        TipoDiscapacidad = row.Cells["colTipoDiscapacidad"].Value?.ToString() ?? ""
+                    };
                 }
 
-                // Obtener registros completos de ese deportista. Usamos el primer registro como entrada.
-                var registros = _puente.ObtenerRegistrosCompletosIdDeportista(idDeportista);
-                if (registros == null || registros.Count == 0)
-                {
-                    MessageBox.Show("No existen participaciones (desempeños) para ese deportista.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Abrir FrmEditarCompetencia con el primer registro (si deseas permitir elegir registro,
-                // podrías mostrar una lista de participaciones antes de abrir).
-                var registro = registros.First();
-                _frmPrincipal.AbrirFormularioEnPanel(new FrmEditarCompetencia(registro, _frmPrincipal));
+                // Abrir editor pasando DTO
+                _frmPrincipal.AbrirFormularioEnPanel(new FrmEditarDeportista(dto, _frmPrincipal));
                 this.Close();
             }
         }
@@ -453,5 +472,10 @@ namespace FDCH.UI.Vistas
             PoblarDataGrid(_listaDeportistas.OrderByDescending(d => d.id_deportista).ToList());
         }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            _frmPrincipal.AbrirFormularioEnPanel(new FrmAgregarNuevoDeportista(_frmPrincipal));
+            this.Close();
+        }
     }
 }

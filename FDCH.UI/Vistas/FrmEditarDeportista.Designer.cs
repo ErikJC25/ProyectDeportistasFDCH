@@ -71,6 +71,7 @@
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label7
             // 
@@ -248,6 +249,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmEditarDeportista";
             this.Text = "FrmEditarDeportista";
+            this.Load += new System.EventHandler(this.FrmEditarDeportista_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
