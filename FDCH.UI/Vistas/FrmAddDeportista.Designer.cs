@@ -110,7 +110,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(369, 41);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Cédula:";
+            this.label2.Text = "Cédula";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -122,7 +122,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(369, 41);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Nombres:";
+            this.label3.Text = "Nombres *";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -135,7 +135,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(369, 41);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Apellidos:";
+            this.label4.Text = "Apellidos *";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
@@ -147,7 +147,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(369, 41);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Genero";
+            this.label5.Text = "Genero *";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtGenero
@@ -176,7 +176,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(369, 41);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Modalidad:";
+            this.label6.Text = "Modalidad *";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label6.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -206,7 +206,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(369, 41);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Especialidad:";
+            this.label7.Text = "Especialidad *";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -218,7 +218,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(369, 41);
             this.label8.TabIndex = 2;
-            this.label8.Text = "Puntos:";
+            this.label8.Text = "Puntos";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPuntos
@@ -247,7 +247,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(369, 41);
             this.label9.TabIndex = 2;
-            this.label9.Text = "Ubicación:";
+            this.label9.Text = "Ubicación";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label9.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -277,7 +277,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(369, 41);
             this.label10.TabIndex = 2;
-            this.label10.Text = "Tiempo / Marca:";
+            this.label10.Text = "Tiempo / Marca";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTimeMarca
@@ -306,7 +306,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(369, 41);
             this.label11.TabIndex = 2;
-            this.label11.Text = "Observaciones:";
+            this.label11.Text = "Observaciones";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label12
@@ -318,7 +318,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(369, 41);
             this.label12.TabIndex = 2;
-            this.label12.Text = "Categoría:";
+            this.label12.Text = "Categoría";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label12.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -348,7 +348,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(369, 41);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Disciplina:";
+            this.label13.Text = "Disciplina *";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label14
@@ -360,7 +360,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(369, 41);
             this.label14.TabIndex = 2;
-            this.label14.Text = "Medalla:";
+            this.label14.Text = "Medalla";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtMedalla
@@ -389,7 +389,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(369, 41);
             this.label15.TabIndex = 2;
-            this.label15.Text = "# Participantes:";
+            this.label15.Text = "# Participantes";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label15.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -419,7 +419,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(369, 41);
             this.label16.TabIndex = 2;
-            this.label16.Text = "Discapacidad:";
+            this.label16.Text = "Discapacidad";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtDiscapacidad
@@ -448,7 +448,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(369, 41);
             this.label17.TabIndex = 2;
-            this.label17.Text = "División:";
+            this.label17.Text = "División";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtDivision
@@ -513,7 +513,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(369, 41);
             this.label18.TabIndex = 2;
-            this.label18.Text = "Record:";
+            this.label18.Text = "Record";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label18.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -543,7 +543,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(369, 41);
             this.label19.TabIndex = 2;
-            this.label19.Text = "Técnico:";
+            this.label19.Text = "Técnico";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cmbEspecialidad
