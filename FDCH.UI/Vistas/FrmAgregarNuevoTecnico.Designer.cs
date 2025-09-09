@@ -49,7 +49,7 @@
             this.btnAgregarNuevo.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarNuevo.ForeColor = System.Drawing.Color.White;
             this.btnAgregarNuevo.Location = new System.Drawing.Point(416, 531);
-            this.btnAgregarNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregarNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregarNuevo.Name = "btnAgregarNuevo";
             this.btnAgregarNuevo.Size = new System.Drawing.Size(240, 59);
             this.btnAgregarNuevo.TabIndex = 30;
@@ -63,7 +63,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnCancelar.Location = new System.Drawing.Point(4, 531);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(198, 59);
             this.btnCancelar.TabIndex = 29;
@@ -95,7 +95,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.txtNombreCompleto, 3);
             this.txtNombreCompleto.Font = new System.Drawing.Font("Arial", 12F);
             this.txtNombreCompleto.Location = new System.Drawing.Point(4, 324);
-            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreCompleto.Name = "txtNombreCompleto";
             this.txtNombreCompleto.Size = new System.Drawing.Size(652, 30);
             this.txtNombreCompleto.TabIndex = 19;
@@ -191,7 +191,7 @@
             this.ClientSize = new System.Drawing.Size(1197, 712);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAgregarNuevoTecnico";
             this.Text = "FrmAgregarNuevoTecnico";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
