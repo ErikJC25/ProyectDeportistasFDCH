@@ -485,9 +485,9 @@ namespace FDCH.Logica
             return _dbService.EliminarEspecialidadPorId(idEsp);
         }
 
-        public bool FusionarEspecialidades(List<int> idsAUnir, string nombreFusion, int idUsuario)
+        public bool FusionarEspecialidadesCrearNuevoYReasignar(List<int> idsViejos, Especialidad nueva, int idUsuario)
         {
-            return _dbService.FusionarEspecialidades(idsAUnir, nombreFusion, idUsuario);
+            return _dbService.FusionarEspecialidadesCrearNuevoYReasignar(idsViejos, nueva, idUsuario);
         }
 
 

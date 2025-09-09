@@ -152,14 +152,12 @@ namespace FDCH.UI.Vistas
                 return;
             }
 
-            /*var frm = new FrmFusionarEspecialidades(seleccionadas, _puente, ObtenerIdUsuarioActual());
-            var r = frm.ShowDialog(this);
-            if (r == DialogResult.OK)
-            {
-                // refrescar detalle (si había una disciplina seleccionada)
-                if (cmbDisciplinas.SelectedValue is int idDisc) CargarEspecialidadesDeDisciplina(idDisc);
-            }
-            */
+            string nombreDisciplina = cmbDisciplinas.Text;
+
+            var frm = new FrmFusionarEspecialidades(seleccionadas, _frmPrincipal, nombreDisciplina);
+            _frmPrincipal.AbrirFormularioEnPanel(frm);
+            this.Close();
+
         }
 
         private void btnBuscarDisciplina_Click(object sender, EventArgs e)
@@ -207,7 +205,7 @@ namespace FDCH.UI.Vistas
 
         private void btnFusionarDisciplina_Click(object sender, EventArgs e)
         {
-            /*
+            
             var seleccionadas = GetSelectedDisciplinasDto();
             if (seleccionadas.Count < 2)
             {
@@ -216,14 +214,9 @@ namespace FDCH.UI.Vistas
             }
 
             // Abrir FrmFusionarDisciplinas (debes implementarlo). Le pasamos la lista de DTOs y el idUsuario.
-            var frm = new FrmFusionarDisciplinas(seleccionadas, _puente, ObtenerIdUsuarioActual());
-            var r = frm.ShowDialog(this);
-            if (r == DialogResult.OK)
-            {
-                // refrescar
-                CargarDisciplinasInicial();
-            }
-            */
+            var frm = new FrmFusionarDisciplinas(seleccionadas, _frmPrincipal);
+            _frmPrincipal.AbrirFormularioEnPanel(frm);
+            this.Close();
         }
 
         private List<SelectedDisciplinaDto> GetSelectedDisciplinasDto()

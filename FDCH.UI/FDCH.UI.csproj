@@ -321,6 +321,18 @@
     <Compile Include="Vistas\FrmFusionarDeportistas.Designer.cs">
       <DependentUpon>FrmFusionarDeportistas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FrmFusionarDisciplinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmFusionarDisciplinas.Designer.cs">
+      <DependentUpon>FrmFusionarDisciplinas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FrmFusionarEspecialidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\FrmFusionarEspecialidades.Designer.cs">
+      <DependentUpon>FrmFusionarEspecialidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmFusionarTecnicos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -447,6 +459,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmFusionarDeportistas.resx">
       <DependentUpon>FrmFusionarDeportistas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmFusionarDisciplinas.resx">
+      <DependentUpon>FrmFusionarDisciplinas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FrmFusionarEspecialidades.resx">
+      <DependentUpon>FrmFusionarEspecialidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmFusionarTecnicos.resx">
       <DependentUpon>FrmFusionarTecnicos.cs</DependentUpon>
