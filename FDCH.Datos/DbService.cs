@@ -653,7 +653,7 @@ namespace FDCH.Datos
             var lista = new List<Disciplina>();
             using (var connection = GetConnection())
             {
-                string query = "SELECT * FROM Disciplinas";
+                string query = "SELECT id_disciplina, nombre_disciplina FROM Disciplinas ORDER BY id_disciplina DESC;";
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     try
@@ -2842,12 +2842,10 @@ namespace FDCH.Datos
             var lista = new List<Especialidad>();
             using (var conn = GetConnection())
             {
-                string sql = @"
-            SELECT id_especialidad, nombre_especialidad, modalidad, id_disciplina
-            FROM Especialidades
-            WHERE id_disciplina = @idDisc
-            ORDER BY nombre_especialidad COLLATE NOCASE;
-        ";
+                string sql = @"SELECT id_especialidad, nombre_especialidad, modalidad, id_disciplina
+                       FROM Especialidades
+                       WHERE id_disciplina = @idDisc
+                       ORDER BY id_especialidad DESC;";
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@idDisc", idDisciplina);
@@ -2861,7 +2859,7 @@ namespace FDCH.Datos
                                 lista.Add(new Especialidad
                                 {
                                     id_especialidad = Convert.ToInt32(reader["id_especialidad"]),
-                                    nombre_especialidad = reader["nombre_especialidad"].ToString(),
+                                    nombre_especialidad = reader["nombre_especialidad"]?.ToString(),
                                     modalidad = reader["modalidad"] == DBNull.Value ? null : reader["modalidad"].ToString(),
                                     id_disciplina = Convert.ToInt32(reader["id_disciplina"])
                                 });
@@ -2877,6 +2875,226 @@ namespace FDCH.Datos
             return lista;
         }
 
+        public bool ActualizarDisciplina(Disciplina disc)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "UPDATE Disciplinas SET nombre_disciplina = @nombre WHERE id_disciplina = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", disc.nombre_disciplina ?? "");
+                    cmd.Parameters.AddWithValue("@id", disc.id_disciplina);
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                        return c > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error ActualizarDisciplina: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool EliminarDisciplinaPorId(int idDisc)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "DELETE FROM Disciplinas WHERE id_disciplina = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", idDisc);
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                        return c > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error EliminarDisciplinaPorId: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // Fusionar disciplinas: crea nueva disciplina, reasigna especialidades, elimina antiguas, inserta historial (una entrada por la nueva)
+        public bool FusionarDisciplinas(List<int> idsAUnir, string nombreFusion, int idUsuario)
+        {
+            if (idsAUnir == null || idsAUnir.Count < 2) return false;
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) crear nueva disciplina
+                        string insertSql = "INSERT INTO Disciplinas (nombre_disciplina) VALUES (@nombre); SELECT last_insert_rowid();";
+                        int nuevoId;
+                        using (var cmd = new SQLiteCommand(insertSql, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", nombreFusion ?? "");
+                            var res = cmd.ExecuteScalar();
+                            nuevoId = res == null ? 0 : Convert.ToInt32(res);
+                        }
+                        if (nuevoId == 0) throw new Exception("No se pudo crear disciplina fusionada.");
+
+                        // 2) reasignar Especialidades que pertenezcan a las disciplinas antiguas hacia la nueva
+                        string idsList = string.Join(",", idsAUnir);
+                        string updEsp = $"UPDATE Especialidades SET id_disciplina = @nuevoId WHERE id_disciplina IN ({idsList});";
+                        using (var cmdUpd = new SQLiteCommand(updEsp, conn, tran))
+                        {
+                            cmdUpd.Parameters.AddWithValue("@nuevoId", nuevoId);
+                            cmdUpd.ExecuteNonQuery();
+                        }
+
+                        // 3) eliminar disciplinas antiguas (excepto la creada si por alguna casualidad coincide)
+                        string delSql = $"DELETE FROM Disciplinas WHERE id_disciplina IN ({idsList}) AND id_disciplina != @nuevoId;";
+                        using (var cmdDel = new SQLiteCommand(delSql, conn, tran))
+                        {
+                            cmdDel.Parameters.AddWithValue("@nuevoId", nuevoId);
+                            cmdDel.ExecuteNonQuery();
+                        }
+
+                        // 4) Registrar en historial sólo la disciplina resultante
+                        string fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        InsertarHistorialCambio(idUsuario, "Disciplinas", nuevoId, "FUSION", fecha);
+
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        try { tran.Rollback(); } catch { }
+                        Console.WriteLine("Error FusionarDisciplinas: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        public bool ActualizarEspecialidad(Especialidad esp)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "UPDATE Especialidades SET nombre_especialidad = @nombre, modalidad = @modalidad WHERE id_especialidad = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", esp.nombre_especialidad ?? "");
+                    cmd.Parameters.AddWithValue("@modalidad", (object)esp.modalidad ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@id", esp.id_especialidad);
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                        return c > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error ActualizarEspecialidad: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool EliminarEspecialidadPorId(int idEsp)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "DELETE FROM Especialidades WHERE id_especialidad = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", idEsp);
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                        return c > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error EliminarEspecialidadPorId: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // Fusionar especialidades: crear nueva, reasignar Competencias -> id_especialidad, eliminar antiguas, registrar historial
+        public bool FusionarEspecialidades(List<int> idsAUnir, string nombreFusion, int idUsuario)
+        {
+            if (idsAUnir == null || idsAUnir.Count < 2) return false;
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // 1) Crear nueva especialidad (necesitas id_disciplina; tomamos la del primer id)
+                        // Obtener id_disciplina del primero (fallback a 0)
+                        int idDisc = 0;
+                        string q0 = "SELECT id_disciplina FROM Especialidades WHERE id_especialidad = @id LIMIT 1;";
+                        using (var c0 = new SQLiteCommand(q0, conn, tran))
+                        {
+                            c0.Parameters.AddWithValue("@id", idsAUnir[0]);
+                            using (var r = c0.ExecuteReader())
+                            {
+                                if (r.Read() && !r.IsDBNull(0)) idDisc = Convert.ToInt32(r[0]);
+                            }
+                        }
+
+                        string insertSql = "INSERT INTO Especialidades (nombre_especialidad, modalidad, id_disciplina) VALUES (@nombre, NULL, @idDisc); SELECT last_insert_rowid();";
+                        int nuevoId;
+                        using (var cmd = new SQLiteCommand(insertSql, conn, tran))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", nombreFusion ?? "");
+                            cmd.Parameters.AddWithValue("@idDisc", idDisc);
+                            var res = cmd.ExecuteScalar();
+                            nuevoId = res == null ? 0 : Convert.ToInt32(res);
+                        }
+                        if (nuevoId == 0) throw new Exception("No se pudo crear la especialidad fusionada.");
+
+                        // 2) reasignar Competencias que usen las especialidades antiguas hacia la nueva
+                        string idsList = string.Join(",", idsAUnir);
+                        string updComp = $"UPDATE Competencias SET id_especialidad = @nuevoId WHERE id_especialidad IN ({idsList});";
+                        using (var cmdUpd = new SQLiteCommand(updComp, conn, tran))
+                        {
+                            cmdUpd.Parameters.AddWithValue("@nuevoId", nuevoId);
+                            cmdUpd.ExecuteNonQuery();
+                        }
+
+                        // 3) eliminar especialidades antiguas
+                        string delSql = $"DELETE FROM Especialidades WHERE id_especialidad IN ({idsList}) AND id_especialidad != @nuevoId;";
+                        using (var cmdDel = new SQLiteCommand(delSql, conn, tran))
+                        {
+                            cmdDel.Parameters.AddWithValue("@nuevoId", nuevoId);
+                            cmdDel.ExecuteNonQuery();
+                        }
+
+                        // 4) registrar historial para la nueva
+                        string fecha = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        InsertarHistorialCambio(idUsuario, "Especialidades", nuevoId, "FUSION", fecha);
+
+                        tran.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        try { tran.Rollback(); } catch { }
+                        Console.WriteLine("Error FusionarEspecialidades: " + ex.Message);
+                        return false;
+                    }
+                }
+            }
+        }
 
 
 

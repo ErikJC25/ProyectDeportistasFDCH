@@ -137,6 +137,8 @@
     <Compile Include="LockData.cs" />
     <Compile Include="LogData.cs" />
     <Compile Include="RegistroTotal.cs" />
+    <Compile Include="SelectedDisciplinaDto.cs" />
+    <Compile Include="SelectedEspecialidadDto.cs" />
     <Compile Include="SelectedRowDto.cs" />
     <Compile Include="Tecnico.cs" />
     <Compile Include="TecnicoRowDto.cs" />
