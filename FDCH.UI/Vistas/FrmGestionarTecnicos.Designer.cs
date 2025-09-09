@@ -36,13 +36,13 @@
             this.btnOrdenarAlfabeticamente = new System.Windows.Forms.Button();
             this.btnOrdenarId = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnFusionar = new System.Windows.Forms.Button();
             this.colSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colNombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDisciplinas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colIdTecnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnFusionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -133,12 +133,12 @@
             this.btnOrdenarAlfabeticamente.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenarAlfabeticamente.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarAlfabeticamente.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenarAlfabeticamente.Location = new System.Drawing.Point(545, 60);
+            this.btnOrdenarAlfabeticamente.Location = new System.Drawing.Point(588, 60);
             this.btnOrdenarAlfabeticamente.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrdenarAlfabeticamente.Name = "btnOrdenarAlfabeticamente";
-            this.btnOrdenarAlfabeticamente.Size = new System.Drawing.Size(190, 24);
+            this.btnOrdenarAlfabeticamente.Size = new System.Drawing.Size(147, 24);
             this.btnOrdenarAlfabeticamente.TabIndex = 23;
-            this.btnOrdenarAlfabeticamente.Text = "Ordenar Alfabéticamente";
+            this.btnOrdenarAlfabeticamente.Text = "Orden Alfabético";
             this.btnOrdenarAlfabeticamente.UseVisualStyleBackColor = false;
             this.btnOrdenarAlfabeticamente.Click += new System.EventHandler(this.btnOrdenarAlfabeticamente_Click);
             // 
@@ -157,7 +157,7 @@
             this.btnOrdenarId.Name = "btnOrdenarId";
             this.btnOrdenarId.Size = new System.Drawing.Size(147, 24);
             this.btnOrdenarId.TabIndex = 25;
-            this.btnOrdenarId.Text = "Recién Agregados";
+            this.btnOrdenarId.Text = "Orden Agregación";
             this.btnOrdenarId.UseVisualStyleBackColor = false;
             this.btnOrdenarId.Click += new System.EventHandler(this.btnOrdenarId_Click);
             // 
@@ -178,6 +178,42 @@
             this.dataGridView1.Size = new System.Drawing.Size(660, 137);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // colSeleccionar
+            // 
+            this.colSeleccionar.HeaderText = "SELECCIONAR";
+            this.colSeleccionar.Name = "colSeleccionar";
+            this.colSeleccionar.ReadOnly = true;
+            // 
+            // colNombreCompleto
+            // 
+            this.colNombreCompleto.HeaderText = "NOMBRE COMPLETO";
+            this.colNombreCompleto.Name = "colNombreCompleto";
+            this.colNombreCompleto.ReadOnly = true;
+            this.colNombreCompleto.Width = 225;
+            // 
+            // colDisciplinas
+            // 
+            this.colDisciplinas.HeaderText = "DISCIPLINAS DIRIGIDAS";
+            this.colDisciplinas.Name = "colDisciplinas";
+            this.colDisciplinas.ReadOnly = true;
+            this.colDisciplinas.Width = 200;
+            // 
+            // colEditar
+            // 
+            this.colEditar.HeaderText = "EDITAR";
+            this.colEditar.Name = "colEditar";
+            this.colEditar.ReadOnly = true;
+            this.colEditar.Text = "Editar";
+            this.colEditar.UseColumnTextForButtonValue = true;
+            this.colEditar.Width = 75;
+            // 
+            // colIdTecnico
+            // 
+            this.colIdTecnico.HeaderText = "colIdTecnico";
+            this.colIdTecnico.Name = "colIdTecnico";
+            this.colIdTecnico.ReadOnly = true;
+            this.colIdTecnico.Visible = false;
             // 
             // btnAgregar
             // 
@@ -220,42 +256,6 @@
             this.btnFusionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFusionar.UseVisualStyleBackColor = false;
             this.btnFusionar.Click += new System.EventHandler(this.btnFusionar_Click);
-            // 
-            // colSeleccionar
-            // 
-            this.colSeleccionar.HeaderText = "SELECCIONAR";
-            this.colSeleccionar.Name = "colSeleccionar";
-            this.colSeleccionar.ReadOnly = true;
-            // 
-            // colNombreCompleto
-            // 
-            this.colNombreCompleto.HeaderText = "NOMBRE COMPLETO";
-            this.colNombreCompleto.Name = "colNombreCompleto";
-            this.colNombreCompleto.ReadOnly = true;
-            this.colNombreCompleto.Width = 225;
-            // 
-            // colDisciplinas
-            // 
-            this.colDisciplinas.HeaderText = "DISCIPLINAS DIRIGIDAS";
-            this.colDisciplinas.Name = "colDisciplinas";
-            this.colDisciplinas.ReadOnly = true;
-            this.colDisciplinas.Width = 200;
-            // 
-            // colEditar
-            // 
-            this.colEditar.HeaderText = "EDITAR";
-            this.colEditar.Name = "colEditar";
-            this.colEditar.ReadOnly = true;
-            this.colEditar.Text = "Editar";
-            this.colEditar.UseColumnTextForButtonValue = true;
-            this.colEditar.Width = 75;
-            // 
-            // colIdTecnico
-            // 
-            this.colIdTecnico.HeaderText = "colIdTecnico";
-            this.colIdTecnico.Name = "colIdTecnico";
-            this.colIdTecnico.ReadOnly = true;
-            this.colIdTecnico.Visible = false;
             // 
             // FrmGestionarTecnicos
             // 

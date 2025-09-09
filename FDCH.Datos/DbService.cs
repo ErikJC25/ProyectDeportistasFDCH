@@ -1021,6 +1021,7 @@ namespace FDCH.Datos
             }
         }
 
+        /*  FUE REEMPLAZADO POR UNA VERSION MAS ROBUSTA Y QUE ORDENA POR ID EN LA LINEA DE CODIGO 2840
         public List<Especialidad> ObtenerEspecialidadesPorDisciplina(int idDisciplina)
         {
             var especialidades = new List<Especialidad>();
@@ -1054,7 +1055,7 @@ namespace FDCH.Datos
                 }
             }
             return especialidades;
-        }
+        }*/
 
         public int ObtenerIdDisciplinaPorNombre(string nombre)
         {
@@ -2834,6 +2835,48 @@ namespace FDCH.Datos
                 }
             }
         }
+
+
+        public List<Especialidad> ObtenerEspecialidadesPorDisciplina(int idDisciplina)
+        {
+            var lista = new List<Especialidad>();
+            using (var conn = GetConnection())
+            {
+                string sql = @"
+            SELECT id_especialidad, nombre_especialidad, modalidad, id_disciplina
+            FROM Especialidades
+            WHERE id_disciplina = @idDisc
+            ORDER BY nombre_especialidad COLLATE NOCASE;
+        ";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idDisc", idDisciplina);
+                    try
+                    {
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new Especialidad
+                                {
+                                    id_especialidad = Convert.ToInt32(reader["id_especialidad"]),
+                                    nombre_especialidad = reader["nombre_especialidad"].ToString(),
+                                    modalidad = reader["modalidad"] == DBNull.Value ? null : reader["modalidad"].ToString(),
+                                    id_disciplina = Convert.ToInt32(reader["id_disciplina"])
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error ObtenerEspecialidadesPorDisciplina: " + ex.Message);
+                    }
+                }
+            }
+            return lista;
+        }
+
 
 
 

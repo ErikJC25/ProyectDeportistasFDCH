@@ -385,7 +385,7 @@ namespace FDCH.UI.Vistas
                     }
                     else if (dlg.SelectedIndex == 2)
                     {
-                        AbrirFormularioEnPanel(new FrmGestionarDeportistas(this));
+                        AbrirFormularioEnPanel(new FrmGestionarDisciplinasEspecialidades(this));
                     }
                     else if (dlg.SelectedIndex == 3)
                     {

@@ -407,7 +407,7 @@
             this.btnOrdenarId.Name = "btnOrdenarId";
             this.btnOrdenarId.Size = new System.Drawing.Size(176, 24);
             this.btnOrdenarId.TabIndex = 24;
-            this.btnOrdenarId.Text = "Recién Agregados";
+            this.btnOrdenarId.Text = "Orden Agregación";
             this.btnOrdenarId.UseVisualStyleBackColor = false;
             this.btnOrdenarId.Click += new System.EventHandler(this.btnOrdenarId_Click);
             // 
