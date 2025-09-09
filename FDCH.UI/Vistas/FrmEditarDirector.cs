@@ -79,7 +79,6 @@ namespace FDCH.UI.Vistas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            _frmprincipal.EstablecerDimensionesPanelAInicio();
             _frmprincipal.AbrirFormularioEnPanel(new FrmInicio(_frmprincipal));
         }
     }
