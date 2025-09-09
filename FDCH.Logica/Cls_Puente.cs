@@ -460,6 +460,35 @@ namespace FDCH.Logica
             return _dbService.FusionarTecnicosCrearNuevoYReasignar(idsViejos, nuevoTecnico, idUsuario);
         }
 
+        public bool ActualizarDisciplina(Disciplina disc)
+        {
+            return _dbService.ActualizarDisciplina(disc);
+        }
+
+        public bool EliminarDisciplinaPorId(int idDisc)
+        {
+            return _dbService.EliminarDisciplinaPorId(idDisc);
+        }
+
+        public bool FusionarDisciplinas(List<int> idsAUnir, string nombreFusion, int idUsuario)
+        {
+            return _dbService.FusionarDisciplinas(idsAUnir, nombreFusion, idUsuario);
+        }
+
+        public bool ActualizarEspecialidad(Especialidad esp)
+        {
+            return _dbService.ActualizarEspecialidad(esp);
+        }
+
+        public bool EliminarEspecialidadPorId(int idEsp)
+        {
+            return _dbService.EliminarEspecialidadPorId(idEsp);
+        }
+
+        public bool FusionarEspecialidades(List<int> idsAUnir, string nombreFusion, int idUsuario)
+        {
+            return _dbService.FusionarEspecialidades(idsAUnir, nombreFusion, idUsuario);
+        }
 
 
     }
