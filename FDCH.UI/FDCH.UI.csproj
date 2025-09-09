@@ -528,6 +528,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FDCH.ico" />
+    <None Include="Resources\Mateo_López.png" />
     <None Include="Resources\temporalmente.png" />
     <None Include="Resources\tecnico.png" />
     <None Include="Resources\separar.png" />
@@ -537,10 +538,14 @@
     <None Include="Resources\disciplinas.png" />
     <None Include="Resources\ayuda.png" />
     <None Include="Resources\ayuda64.png" />
+    <None Include="Resources\Bryan_Lema.png" />
     <Content Include="Resources\editar.png" />
     <Content Include="Resources\editar2.png" />
     <None Include="Resources\EjemploCertificado1.png" />
     <None Include="Resources\EjemploCertificado2.png" />
+    <None Include="Resources\Erik_Yumi.png" />
+    <None Include="Resources\ESPOCH.png" />
+    <None Include="Resources\FIE.png" />
     <Content Include="Resources\Fondo Certificado FDCH.png" />
     <Content Include="Resources\Fondo.png" />
     <None Include="Resources\fusionar.png" />
