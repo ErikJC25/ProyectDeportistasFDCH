@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//
+using System.Diagnostics;
+using System.IO; // Necesario para Path
 
 namespace FDCH.UI.Vistas
 {
@@ -47,5 +50,36 @@ namespace FDCH.UI.Vistas
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Define el nombre de tu archivo PDF
+            string nombreArchivoPdf = "ManualUsuario.pdf";
+
+            // Obtiene la ruta del directorio donde se encuentra el ejecutable de tu aplicación
+            // Esto es crucial para las rutas relativas.
+            string rutaDirectorioApp = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Combina la ruta base, la subcarpeta y el nombre del archivo.
+            string rutaCompletaPdf = Path.Combine(rutaDirectorioApp, "Archivos", nombreArchivoPdf);
+
+            // Verifica si el archivo existe antes de intentar abrirlo
+            if (File.Exists(rutaCompletaPdf))
+            {
+                try
+                {
+                    // Abre el archivo PDF usando el programa predeterminado del sistema
+                    Process.Start(rutaCompletaPdf);
+                }
+                catch (Exception ex)
+                {
+                    // Maneja cualquier error que pueda ocurrir al intentar abrir el archivo
+                    MessageBox.Show($"Error al intentar abrir el archivo PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"El archivo PDF '{nombreArchivoPdf}' no se encontró en la ruta esperada: '{rutaCompletaPdf}'", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
