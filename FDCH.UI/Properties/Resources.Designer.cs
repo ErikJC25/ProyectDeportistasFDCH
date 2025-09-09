@@ -83,6 +83,26 @@ namespace FDCH.UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ayuda {
+            get {
+                object obj = ResourceManager.GetObject("ayuda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ayuda64 {
+            get {
+                object obj = ResourceManager.GetObject("ayuda64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bloqueado {
             get {
                 object obj = ResourceManager.GetObject("bloqueado", resourceCulture);
@@ -263,6 +283,16 @@ namespace FDCH.UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fondo_info {
+            get {
+                object obj = ResourceManager.GetObject("fondo_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondo_inicio {
             get {
                 object obj = ResourceManager.GetObject("fondo_inicio", resourceCulture);
@@ -426,6 +456,16 @@ namespace FDCH.UI.Properties {
         internal static System.Drawing.Bitmap tecnico {
             get {
                 object obj = ResourceManager.GetObject("tecnico", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap temporalmente {
+            get {
+                object obj = ResourceManager.GetObject("temporalmente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

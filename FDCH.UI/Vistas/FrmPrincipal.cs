@@ -411,5 +411,10 @@ namespace FDCH.UI.Vistas
             pnlOpcion.Height = btnInicio.Height;
             pnlOpcion.Top = btnInicio.Top;
         }
+
+        private void btnAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioEnPanel(new FrmInformacion(this));
+        }
     }
 }
