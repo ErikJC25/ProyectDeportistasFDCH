@@ -343,7 +343,7 @@ namespace FDCH.UI.Vistas
             {
                 if (idx == 0)
                 {
-                    btn.BackColor = Color.Green;
+                    btn.BackColor = Color.MediumSeaGreen;
                     btn.ForeColor = Color.White;
                     btn.FlatStyle = FlatStyle.Flat;
                 }
@@ -361,7 +361,7 @@ namespace FDCH.UI.Vistas
                 }
                 else if (idx == 3)
                 {
-                    btn.BackColor = Color.MediumVioletRed;
+                    btn.BackColor = Color.PaleVioletRed;
                     btn.ForeColor = Color.White;
                     btn.FlatStyle = FlatStyle.Flat;
                 }

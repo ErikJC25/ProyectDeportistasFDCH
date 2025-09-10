@@ -122,9 +122,12 @@ namespace FDCH.UI.Vistas
                     };
                 }
 
-                //var frm = new FrmEditarEspecialidad(dto, _puente);
-                //var r = frm.ShowDialog(this);
-                //if (r == DialogResult.OK && cmbDisciplinas.SelectedValue is int idDisc2) CargarEspecialidadesDeDisciplina(idDisc2);
+                string nombreDisciplina = cmbDisciplinas.Text;
+
+                var frm = new FrmEditarEspecialidad(dto, _frmPrincipal, nombreDisciplina);
+                _frmPrincipal.AbrirFormularioEnPanel(frm);
+                this.Close();
+
             }
         }
 
@@ -193,14 +196,9 @@ namespace FDCH.UI.Vistas
 
         private void btnAgregarDisciplina_Click(object sender, EventArgs e)
         {
-            /*
-            // Abrir formulario agregar (implementar FrmAgregarDisciplina si quieres)
-            var frm = new FrmAgregarDisciplina(_puente, this); // puede ser una simple ventana modal
-            frm.ShowDialog(this);
-
-            // refrescar
-            CargarDisciplinasInicial();
-            */
+            var frm = new FrmAgregarNuevaDisciplina(_frmPrincipal);
+            _frmPrincipal.AbrirFormularioEnPanel(frm);
+            this.Close();
         }
 
         private void btnFusionarDisciplina_Click(object sender, EventArgs e)
@@ -259,11 +257,10 @@ namespace FDCH.UI.Vistas
                     dto = new SelectedDisciplinaDto { IdDisciplina = id, NombreDisciplina = row.Cells["colNombreDisciplina"].Value?.ToString() ?? "" };
                 }
                 
-                /*
-                var frm = new FrmEditarDisciplina(dto, _puente);
-                var r = frm.ShowDialog(this);
-                if (r == DialogResult.OK) CargarDisciplinasInicial();
-                */
+                
+                var frm = new FrmEditarDisciplina(dto, _frmPrincipal);
+                _frmPrincipal.AbrirFormularioEnPanel(frm);
+                this.Close();
 
             }
         }
@@ -338,16 +335,18 @@ namespace FDCH.UI.Vistas
 
         private void btnAgregarEspecialidad_Click(object sender, EventArgs e)
         {
-            /*
+            
             // abrir formulario de agregar especialidad — necesita seleccionar disciplina primero
             if (cmbDisciplinas.SelectedItem is Disciplina disc)
             {
-                var frm = new FrmAgregarEspecialidad(disc.id_disciplina, _puente);
-                var r = frm.ShowDialog(this);
-                if (r == DialogResult.OK) CargarEspecialidadesDeDisciplina(disc.id_disciplina);
+                string nombreDisciplina = cmbDisciplinas.Text;
+
+                var frm = new FrmAgregarNuevaEspecialidad(_frmPrincipal, nombreDisciplina);
+                _frmPrincipal.AbrirFormularioEnPanel(frm);
+                this.Close();
             }
             else MessageBox.Show("Seleccione primero una disciplina.", "Agregar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            */
+            
         }
 
         private List<SelectedEspecialidadDto> GetSelectedEspecialidadesDto()

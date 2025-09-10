@@ -47,13 +47,13 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.Color.Tomato;
-            this.btnCancelar.Location = new System.Drawing.Point(4, 531);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(3, 432);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(198, 59);
+            this.btnCancelar.Size = new System.Drawing.Size(148, 48);
             this.btnCancelar.TabIndex = 43;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label3
             // 
@@ -62,10 +62,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(4, 160);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(3, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(404, 160);
+            this.label3.Size = new System.Drawing.Size(302, 130);
             this.label3.TabIndex = 42;
             this.label3.Text = "Nombre Disciplina:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -78,10 +77,9 @@
             this.txtNombreDisciplina.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtNombreDisciplina, 3);
             this.txtNombreDisciplina.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtNombreDisciplina.Location = new System.Drawing.Point(4, 324);
-            this.txtNombreDisciplina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombreDisciplina.Location = new System.Drawing.Point(3, 263);
             this.txtNombreDisciplina.Name = "txtNombreDisciplina";
-            this.txtNombreDisciplina.Size = new System.Drawing.Size(652, 30);
+            this.txtNombreDisciplina.Size = new System.Drawing.Size(489, 26);
             this.txtNombreDisciplina.TabIndex = 41;
             this.txtNombreDisciplina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreDisciplina_KeyPress);
             // 
@@ -92,10 +90,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Tomato;
-            this.label2.Location = new System.Drawing.Point(4, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(652, 160);
+            this.label2.Size = new System.Drawing.Size(489, 130);
             this.label2.TabIndex = 40;
             this.label2.Text = "Edición de la disciplina seleccionada";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,7 +108,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1197, 64);
+            this.label1.Size = new System.Drawing.Size(898, 52);
             this.label1.TabIndex = 2;
             this.label1.Text = "Editar Disciplina";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,10 +119,10 @@
             this.pictureBox1.BackgroundImage = global::FDCH.UI.Properties.Resources.disciplinas;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 64);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 52);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(531, 648);
+            this.pictureBox1.Size = new System.Drawing.Size(399, 526);
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
@@ -135,10 +132,9 @@
             this.btnGuardarCambios.BackColor = System.Drawing.Color.Tomato;
             this.btnGuardarCambios.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardarCambios.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarCambios.Location = new System.Drawing.Point(416, 531);
-            this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardarCambios.Location = new System.Drawing.Point(311, 432);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
-            this.btnGuardarCambios.Size = new System.Drawing.Size(240, 59);
+            this.btnGuardarCambios.Size = new System.Drawing.Size(181, 48);
             this.btnGuardarCambios.TabIndex = 44;
             this.btnGuardarCambios.Text = "Guardar Cambios";
             this.btnGuardarCambios.UseVisualStyleBackColor = false;
@@ -155,11 +151,12 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1197, 712);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(898, 578);
             this.tableLayoutPanel1.TabIndex = 45;
             // 
             // tableLayoutPanel2
@@ -174,26 +171,27 @@
             this.tableLayoutPanel2.Controls.Add(this.txtNombreDisciplina, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnCancelar, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(534, 67);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(401, 54);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(660, 642);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(495, 522);
             this.tableLayoutPanel2.TabIndex = 46;
             // 
             // FrmEditarDisciplina
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 712);
+            this.ClientSize = new System.Drawing.Size(898, 578);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmEditarDisciplina";
             this.Text = "FrmEditarDisciplina";
+            this.Load += new System.EventHandler(this.FrmEditarDisciplina_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
