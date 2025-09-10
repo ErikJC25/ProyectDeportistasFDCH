@@ -33,12 +33,12 @@
             this.btnOrdenAgregacionEspecialidad = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvEspecialidades = new System.Windows.Forms.DataGridView();
-            this.colIdEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdDiscRelacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditarEsp = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colModalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNombreEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSeleccionarEsp = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNombreEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditarEsp = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colIdDiscRelacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdEspecialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgregarEspecialidad = new System.Windows.Forms.Button();
             this.txtNombreEspecialidad = new System.Windows.Forms.TextBox();
@@ -46,19 +46,19 @@
             this.btnLimpiarEspecialidad = new System.Windows.Forms.Button();
             this.cmbDisciplinas = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLimpiarDisciplina = new System.Windows.Forms.Button();
-            this.btnOrdenAlfabeticoDisciplinas = new System.Windows.Forms.Button();
-            this.btnBuscarDisciplina = new System.Windows.Forms.Button();
-            this.dgvDisciplinas = new System.Windows.Forms.DataGridView();
-            this.colIdDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditarDisc = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colNombreDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSeleccionarDisc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnOrdenAgregacionDisciplinas = new System.Windows.Forms.Button();
-            this.txtNombreDisciplina = new System.Windows.Forms.TextBox();
-            this.btnAgregarDisciplina = new System.Windows.Forms.Button();
-            this.btnFusionarDisciplina = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnFusionarDisciplina = new System.Windows.Forms.Button();
+            this.btnAgregarDisciplina = new System.Windows.Forms.Button();
+            this.txtNombreDisciplina = new System.Windows.Forms.TextBox();
+            this.btnOrdenAgregacionDisciplinas = new System.Windows.Forms.Button();
+            this.dgvDisciplinas = new System.Windows.Forms.DataGridView();
+            this.colSeleccionarDisc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colNombreDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditarDisc = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colIdDisciplina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBuscarDisciplina = new System.Windows.Forms.Button();
+            this.btnOrdenAlfabeticoDisciplinas = new System.Windows.Forms.Button();
+            this.btnLimpiarDisciplina = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidades)).BeginInit();
@@ -79,10 +79,10 @@
             this.btnFusionarEspecialidad.ForeColor = System.Drawing.Color.SandyBrown;
             this.btnFusionarEspecialidad.Image = global::FDCH.UI.Properties.Resources.fusionar2;
             this.btnFusionarEspecialidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFusionarEspecialidad.Location = new System.Drawing.Point(969, 329);
+            this.btnFusionarEspecialidad.Location = new System.Drawing.Point(976, 329);
             this.btnFusionarEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFusionarEspecialidad.Name = "btnFusionarEspecialidad";
-            this.btnFusionarEspecialidad.Size = new System.Drawing.Size(225, 48);
+            this.btnFusionarEspecialidad.Size = new System.Drawing.Size(218, 48);
             this.btnFusionarEspecialidad.TabIndex = 27;
             this.btnFusionarEspecialidad.Text = "Fusionar Esp.";
             this.btnFusionarEspecialidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -99,10 +99,10 @@
             this.btnOrdenAlfabeticoEspecialidad.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenAlfabeticoEspecialidad.ForeColor = System.Drawing.Color.SandyBrown;
             this.btnOrdenAlfabeticoEspecialidad.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenAlfabeticoEspecialidad.Location = new System.Drawing.Point(740, 106);
+            this.btnOrdenAlfabeticoEspecialidad.Location = new System.Drawing.Point(753, 106);
             this.btnOrdenAlfabeticoEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrdenAlfabeticoEspecialidad.Name = "btnOrdenAlfabeticoEspecialidad";
-            this.btnOrdenAlfabeticoEspecialidad.Size = new System.Drawing.Size(223, 30);
+            this.btnOrdenAlfabeticoEspecialidad.Size = new System.Drawing.Size(217, 30);
             this.btnOrdenAlfabeticoEspecialidad.TabIndex = 26;
             this.btnOrdenAlfabeticoEspecialidad.Text = "Orden Alfabético";
             this.btnOrdenAlfabeticoEspecialidad.UseVisualStyleBackColor = false;
@@ -118,10 +118,10 @@
             this.btnOrdenAgregacionEspecialidad.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenAgregacionEspecialidad.ForeColor = System.Drawing.Color.SandyBrown;
             this.btnOrdenAgregacionEspecialidad.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenAgregacionEspecialidad.Location = new System.Drawing.Point(969, 106);
+            this.btnOrdenAgregacionEspecialidad.Location = new System.Drawing.Point(976, 106);
             this.btnOrdenAgregacionEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrdenAgregacionEspecialidad.Name = "btnOrdenAgregacionEspecialidad";
-            this.btnOrdenAgregacionEspecialidad.Size = new System.Drawing.Size(225, 30);
+            this.btnOrdenAgregacionEspecialidad.Size = new System.Drawing.Size(218, 30);
             this.btnOrdenAgregacionEspecialidad.TabIndex = 25;
             this.btnOrdenAgregacionEspecialidad.Text = "Orden Agregación";
             this.btnOrdenAgregacionEspecialidad.UseVisualStyleBackColor = false;
@@ -164,26 +164,31 @@
             this.dgvEspecialidades.RowHeadersVisible = false;
             this.dgvEspecialidades.RowHeadersWidth = 51;
             this.tableLayoutPanel2.SetRowSpan(this.dgvEspecialidades, 3);
-            this.dgvEspecialidades.Size = new System.Drawing.Size(958, 248);
+            this.dgvEspecialidades.Size = new System.Drawing.Size(965, 248);
             this.dgvEspecialidades.TabIndex = 1;
             this.dgvEspecialidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspecialidades_CellContentClick);
             this.dgvEspecialidades.SelectionChanged += new System.EventHandler(this.dgvEspecialidades_SelectionChanged);
             // 
-            // colIdEspecialidad
+            // colSeleccionarEsp
             // 
-            this.colIdEspecialidad.HeaderText = "colIdEspecialidad";
-            this.colIdEspecialidad.MinimumWidth = 6;
-            this.colIdEspecialidad.Name = "colIdEspecialidad";
-            this.colIdEspecialidad.ReadOnly = true;
-            this.colIdEspecialidad.Visible = false;
+            this.colSeleccionarEsp.HeaderText = "SELECCIONAR";
+            this.colSeleccionarEsp.MinimumWidth = 6;
+            this.colSeleccionarEsp.Name = "colSeleccionarEsp";
+            this.colSeleccionarEsp.ReadOnly = true;
             // 
-            // colIdDiscRelacion
+            // colNombreEspecialidad
             // 
-            this.colIdDiscRelacion.HeaderText = "colIdDiscRelacion";
-            this.colIdDiscRelacion.MinimumWidth = 6;
-            this.colIdDiscRelacion.Name = "colIdDiscRelacion";
-            this.colIdDiscRelacion.ReadOnly = true;
-            this.colIdDiscRelacion.Visible = false;
+            this.colNombreEspecialidad.HeaderText = "NOMBRE ESPECIALIDAD";
+            this.colNombreEspecialidad.MinimumWidth = 6;
+            this.colNombreEspecialidad.Name = "colNombreEspecialidad";
+            this.colNombreEspecialidad.ReadOnly = true;
+            // 
+            // colModalidad
+            // 
+            this.colModalidad.HeaderText = "MODALIDAD";
+            this.colModalidad.MinimumWidth = 6;
+            this.colModalidad.Name = "colModalidad";
+            this.colModalidad.ReadOnly = true;
             // 
             // colEditarEsp
             // 
@@ -194,26 +199,21 @@
             this.colEditarEsp.Text = "Editar";
             this.colEditarEsp.UseColumnTextForButtonValue = true;
             // 
-            // colModalidad
+            // colIdDiscRelacion
             // 
-            this.colModalidad.HeaderText = "MODALIDAD";
-            this.colModalidad.MinimumWidth = 6;
-            this.colModalidad.Name = "colModalidad";
-            this.colModalidad.ReadOnly = true;
+            this.colIdDiscRelacion.HeaderText = "colIdDiscRelacion";
+            this.colIdDiscRelacion.MinimumWidth = 6;
+            this.colIdDiscRelacion.Name = "colIdDiscRelacion";
+            this.colIdDiscRelacion.ReadOnly = true;
+            this.colIdDiscRelacion.Visible = false;
             // 
-            // colNombreEspecialidad
+            // colIdEspecialidad
             // 
-            this.colNombreEspecialidad.HeaderText = "NOMBRE ESPECIALIDAD";
-            this.colNombreEspecialidad.MinimumWidth = 6;
-            this.colNombreEspecialidad.Name = "colNombreEspecialidad";
-            this.colNombreEspecialidad.ReadOnly = true;
-            // 
-            // colSeleccionarEsp
-            // 
-            this.colSeleccionarEsp.HeaderText = "SELECCIONAR";
-            this.colSeleccionarEsp.MinimumWidth = 6;
-            this.colSeleccionarEsp.Name = "colSeleccionarEsp";
-            this.colSeleccionarEsp.ReadOnly = true;
+            this.colIdEspecialidad.HeaderText = "colIdEspecialidad";
+            this.colIdEspecialidad.MinimumWidth = 6;
+            this.colIdEspecialidad.Name = "colIdEspecialidad";
+            this.colIdEspecialidad.ReadOnly = true;
+            this.colIdEspecialidad.Visible = false;
             // 
             // label3
             // 
@@ -225,7 +225,7 @@
             this.label3.Location = new System.Drawing.Point(4, 38);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(729, 27);
+            this.label3.Size = new System.Drawing.Size(742, 27);
             this.label3.TabIndex = 1;
             this.label3.Text = "Seleccione una disciplina para mostrar sus especialidades";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -241,10 +241,10 @@
             this.btnAgregarEspecialidad.ForeColor = System.Drawing.Color.SandyBrown;
             this.btnAgregarEspecialidad.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAgregarEspecialidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarEspecialidad.Location = new System.Drawing.Point(969, 243);
+            this.btnAgregarEspecialidad.Location = new System.Drawing.Point(976, 243);
             this.btnAgregarEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarEspecialidad.Name = "btnAgregarEspecialidad";
-            this.btnAgregarEspecialidad.Size = new System.Drawing.Size(225, 48);
+            this.btnAgregarEspecialidad.Size = new System.Drawing.Size(218, 48);
             this.btnAgregarEspecialidad.TabIndex = 30;
             this.btnAgregarEspecialidad.Text = "Agregar Nueva Esp.";
             this.btnAgregarEspecialidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -261,7 +261,7 @@
             this.txtNombreEspecialidad.Location = new System.Drawing.Point(4, 107);
             this.txtNombreEspecialidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreEspecialidad.Name = "txtNombreEspecialidad";
-            this.txtNombreEspecialidad.Size = new System.Drawing.Size(520, 29);
+            this.txtNombreEspecialidad.Size = new System.Drawing.Size(515, 29);
             this.txtNombreEspecialidad.TabIndex = 31;
             this.txtNombreEspecialidad.Text = "NOMBRE ESPECIALIDAD";
             this.txtNombreEspecialidad.Enter += new System.EventHandler(this.txtNombreEspecialidad_Enter);
@@ -279,10 +279,10 @@
             this.btnBuscarEspecialidad.ForeColor = System.Drawing.Color.White;
             this.btnBuscarEspecialidad.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscarEspecialidad.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscarEspecialidad.Location = new System.Drawing.Point(531, 106);
+            this.btnBuscarEspecialidad.Location = new System.Drawing.Point(526, 106);
             this.btnBuscarEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscarEspecialidad.Name = "btnBuscarEspecialidad";
-            this.btnBuscarEspecialidad.Size = new System.Drawing.Size(105, 30);
+            this.btnBuscarEspecialidad.Size = new System.Drawing.Size(125, 30);
             this.btnBuscarEspecialidad.TabIndex = 32;
             this.btnBuscarEspecialidad.Text = "Buscar";
             this.btnBuscarEspecialidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,10 +299,10 @@
             this.btnLimpiarEspecialidad.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiarEspecialidad.ForeColor = System.Drawing.Color.White;
             this.btnLimpiarEspecialidad.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiarEspecialidad.Location = new System.Drawing.Point(642, 106);
+            this.btnLimpiarEspecialidad.Location = new System.Drawing.Point(657, 106);
             this.btnLimpiarEspecialidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpiarEspecialidad.Name = "btnLimpiarEspecialidad";
-            this.btnLimpiarEspecialidad.Size = new System.Drawing.Size(40, 30);
+            this.btnLimpiarEspecialidad.Size = new System.Drawing.Size(50, 30);
             this.btnLimpiarEspecialidad.TabIndex = 33;
             this.btnLimpiarEspecialidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLimpiarEspecialidad.UseVisualStyleBackColor = false;
@@ -316,7 +316,7 @@
             this.cmbDisciplinas.Location = new System.Drawing.Point(4, 69);
             this.cmbDisciplinas.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDisciplinas.Name = "cmbDisciplinas";
-            this.cmbDisciplinas.Size = new System.Drawing.Size(520, 30);
+            this.cmbDisciplinas.Size = new System.Drawing.Size(515, 30);
             this.cmbDisciplinas.TabIndex = 34;
             this.cmbDisciplinas.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplinas_SelectedIndexChanged);
             // 
@@ -324,12 +324,12 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Tomato;
             this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.82399F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.84057F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.01796F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.07902F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.07902F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.000044F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.07969F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.07969F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFusionarDisciplina, 5, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnAgregarDisciplina, 5, 3);
@@ -352,64 +352,98 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1197, 316);
             this.tableLayoutPanel1.TabIndex = 41;
             // 
-            // btnLimpiarDisciplina
+            // label1
             // 
-            this.btnLimpiarDisciplina.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLimpiarDisciplina.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnLimpiarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiarDisciplina.FlatAppearance.BorderSize = 0;
-            this.btnLimpiarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarDisciplina.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiarDisciplina.Image = global::FDCH.UI.Properties.Resources.limpiar;
-            this.btnLimpiarDisciplina.Location = new System.Drawing.Point(642, 41);
-            this.btnLimpiarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLimpiarDisciplina.Name = "btnLimpiarDisciplina";
-            this.btnLimpiarDisciplina.Size = new System.Drawing.Size(40, 30);
-            this.btnLimpiarDisciplina.TabIndex = 36;
-            this.btnLimpiarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiarDisciplina.UseVisualStyleBackColor = false;
-            this.btnLimpiarDisciplina.Click += new System.EventHandler(this.btnLimpiarDisciplina_Click);
+            this.label1.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label1, 6);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Arial Black", 16F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1197, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Gestionar Disciplinas";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnOrdenAlfabeticoDisciplinas
+            // btnFusionarDisciplina
             // 
-            this.btnOrdenAlfabeticoDisciplinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOrdenAlfabeticoDisciplinas.BackColor = System.Drawing.SystemColors.Control;
-            this.btnOrdenAlfabeticoDisciplinas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenAlfabeticoDisciplinas.FlatAppearance.BorderSize = 0;
-            this.btnOrdenAlfabeticoDisciplinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenAlfabeticoDisciplinas.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenAlfabeticoDisciplinas.ForeColor = System.Drawing.Color.Tomato;
-            this.btnOrdenAlfabeticoDisciplinas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenAlfabeticoDisciplinas.Location = new System.Drawing.Point(740, 41);
-            this.btnOrdenAlfabeticoDisciplinas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOrdenAlfabeticoDisciplinas.Name = "btnOrdenAlfabeticoDisciplinas";
-            this.btnOrdenAlfabeticoDisciplinas.Size = new System.Drawing.Size(223, 30);
-            this.btnOrdenAlfabeticoDisciplinas.TabIndex = 38;
-            this.btnOrdenAlfabeticoDisciplinas.Text = "Orden Alfabético";
-            this.btnOrdenAlfabeticoDisciplinas.UseVisualStyleBackColor = false;
-            this.btnOrdenAlfabeticoDisciplinas.Click += new System.EventHandler(this.btnOrdenAlfabeticoDisciplinas_Click);
+            this.btnFusionarDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFusionarDisciplina.BackColor = System.Drawing.SystemColors.Control;
+            this.btnFusionarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFusionarDisciplina.FlatAppearance.BorderSize = 0;
+            this.btnFusionarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFusionarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFusionarDisciplina.ForeColor = System.Drawing.Color.Tomato;
+            this.btnFusionarDisciplina.Image = global::FDCH.UI.Properties.Resources.fusionar2;
+            this.btnFusionarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFusionarDisciplina.Location = new System.Drawing.Point(976, 251);
+            this.btnFusionarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFusionarDisciplina.Name = "btnFusionarDisciplina";
+            this.btnFusionarDisciplina.Size = new System.Drawing.Size(218, 48);
+            this.btnFusionarDisciplina.TabIndex = 39;
+            this.btnFusionarDisciplina.Text = "Fusionar Dis.";
+            this.btnFusionarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFusionarDisciplina.UseVisualStyleBackColor = false;
+            this.btnFusionarDisciplina.Click += new System.EventHandler(this.btnFusionarDisciplina_Click);
             // 
-            // btnBuscarDisciplina
+            // btnAgregarDisciplina
             // 
-            this.btnBuscarDisciplina.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBuscarDisciplina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnBuscarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarDisciplina.FlatAppearance.BorderSize = 0;
-            this.btnBuscarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarDisciplina.ForeColor = System.Drawing.Color.White;
-            this.btnBuscarDisciplina.Image = global::FDCH.UI.Properties.Resources.busqueda;
-            this.btnBuscarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscarDisciplina.Location = new System.Drawing.Point(531, 41);
-            this.btnBuscarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBuscarDisciplina.Name = "btnBuscarDisciplina";
-            this.btnBuscarDisciplina.Size = new System.Drawing.Size(105, 30);
-            this.btnBuscarDisciplina.TabIndex = 35;
-            this.btnBuscarDisciplina.Text = "Buscar";
-            this.btnBuscarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscarDisciplina.UseVisualStyleBackColor = false;
-            this.btnBuscarDisciplina.Click += new System.EventHandler(this.btnBuscarDisciplina_Click);
+            this.btnAgregarDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregarDisciplina.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAgregarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarDisciplina.FlatAppearance.BorderSize = 0;
+            this.btnAgregarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarDisciplina.ForeColor = System.Drawing.Color.Tomato;
+            this.btnAgregarDisciplina.Image = global::FDCH.UI.Properties.Resources.mas;
+            this.btnAgregarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarDisciplina.Location = new System.Drawing.Point(976, 171);
+            this.btnAgregarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarDisciplina.Name = "btnAgregarDisciplina";
+            this.btnAgregarDisciplina.Size = new System.Drawing.Size(218, 48);
+            this.btnAgregarDisciplina.TabIndex = 40;
+            this.btnAgregarDisciplina.Text = "Agregar Nueva Dis.";
+            this.btnAgregarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarDisciplina.UseVisualStyleBackColor = false;
+            this.btnAgregarDisciplina.Click += new System.EventHandler(this.btnAgregarDisciplina_Click);
+            // 
+            // txtNombreDisciplina
+            // 
+            this.txtNombreDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNombreDisciplina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtNombreDisciplina.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombreDisciplina.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtNombreDisciplina.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNombreDisciplina.Location = new System.Drawing.Point(4, 42);
+            this.txtNombreDisciplina.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreDisciplina.Name = "txtNombreDisciplina";
+            this.txtNombreDisciplina.Size = new System.Drawing.Size(515, 29);
+            this.txtNombreDisciplina.TabIndex = 34;
+            this.txtNombreDisciplina.Text = "NOMBRE DISCIPLINA";
+            this.txtNombreDisciplina.Enter += new System.EventHandler(this.txtNombreDisciplina_Enter);
+            this.txtNombreDisciplina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreDisciplina_KeyPress);
+            this.txtNombreDisciplina.Leave += new System.EventHandler(this.txtNombreDisciplina_Leave);
+            // 
+            // btnOrdenAgregacionDisciplinas
+            // 
+            this.btnOrdenAgregacionDisciplinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOrdenAgregacionDisciplinas.BackColor = System.Drawing.SystemColors.Control;
+            this.btnOrdenAgregacionDisciplinas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenAgregacionDisciplinas.FlatAppearance.BorderSize = 0;
+            this.btnOrdenAgregacionDisciplinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenAgregacionDisciplinas.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenAgregacionDisciplinas.ForeColor = System.Drawing.Color.Tomato;
+            this.btnOrdenAgregacionDisciplinas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenAgregacionDisciplinas.Location = new System.Drawing.Point(976, 41);
+            this.btnOrdenAgregacionDisciplinas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrdenAgregacionDisciplinas.Name = "btnOrdenAgregacionDisciplinas";
+            this.btnOrdenAgregacionDisciplinas.Size = new System.Drawing.Size(218, 30);
+            this.btnOrdenAgregacionDisciplinas.TabIndex = 37;
+            this.btnOrdenAgregacionDisciplinas.Text = "Orden Agregación";
+            this.btnOrdenAgregacionDisciplinas.UseVisualStyleBackColor = false;
+            this.btnOrdenAgregacionDisciplinas.Click += new System.EventHandler(this.btnOrdenAgregacionDisciplinas_Click);
             // 
             // dgvDisciplinas
             // 
@@ -431,18 +465,24 @@
             this.dgvDisciplinas.RowHeadersWidth = 51;
             this.tableLayoutPanel1.SetRowSpan(this.dgvDisciplinas, 3);
             this.dgvDisciplinas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDisciplinas.Size = new System.Drawing.Size(958, 233);
+            this.dgvDisciplinas.Size = new System.Drawing.Size(965, 233);
             this.dgvDisciplinas.TabIndex = 0;
             this.dgvDisciplinas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDisciplinas_CellContentClick);
             this.dgvDisciplinas.SelectionChanged += new System.EventHandler(this.dgvDisciplinas_SelectionChanged);
             // 
-            // colIdDisciplina
+            // colSeleccionarDisc
             // 
-            this.colIdDisciplina.HeaderText = "colIdDisciplina";
-            this.colIdDisciplina.MinimumWidth = 6;
-            this.colIdDisciplina.Name = "colIdDisciplina";
-            this.colIdDisciplina.ReadOnly = true;
-            this.colIdDisciplina.Visible = false;
+            this.colSeleccionarDisc.HeaderText = "SELECCIONAR";
+            this.colSeleccionarDisc.MinimumWidth = 6;
+            this.colSeleccionarDisc.Name = "colSeleccionarDisc";
+            this.colSeleccionarDisc.ReadOnly = true;
+            // 
+            // colNombreDisciplina
+            // 
+            this.colNombreDisciplina.HeaderText = "NOMBRE DISCIPLINA";
+            this.colNombreDisciplina.MinimumWidth = 6;
+            this.colNombreDisciplina.Name = "colNombreDisciplina";
+            this.colNombreDisciplina.ReadOnly = true;
             // 
             // colEditarDisc
             // 
@@ -453,121 +493,81 @@
             this.colEditarDisc.Text = "Editar";
             this.colEditarDisc.UseColumnTextForButtonValue = true;
             // 
-            // colNombreDisciplina
+            // colIdDisciplina
             // 
-            this.colNombreDisciplina.HeaderText = "NOMBRE DISCIPLINA";
-            this.colNombreDisciplina.MinimumWidth = 6;
-            this.colNombreDisciplina.Name = "colNombreDisciplina";
-            this.colNombreDisciplina.ReadOnly = true;
+            this.colIdDisciplina.HeaderText = "colIdDisciplina";
+            this.colIdDisciplina.MinimumWidth = 6;
+            this.colIdDisciplina.Name = "colIdDisciplina";
+            this.colIdDisciplina.ReadOnly = true;
+            this.colIdDisciplina.Visible = false;
             // 
-            // colSeleccionarDisc
+            // btnBuscarDisciplina
             // 
-            this.colSeleccionarDisc.HeaderText = "SELECCIONAR";
-            this.colSeleccionarDisc.MinimumWidth = 6;
-            this.colSeleccionarDisc.Name = "colSeleccionarDisc";
-            this.colSeleccionarDisc.ReadOnly = true;
+            this.btnBuscarDisciplina.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBuscarDisciplina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnBuscarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarDisciplina.FlatAppearance.BorderSize = 0;
+            this.btnBuscarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarDisciplina.ForeColor = System.Drawing.Color.White;
+            this.btnBuscarDisciplina.Image = global::FDCH.UI.Properties.Resources.busqueda;
+            this.btnBuscarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarDisciplina.Location = new System.Drawing.Point(526, 41);
+            this.btnBuscarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBuscarDisciplina.Name = "btnBuscarDisciplina";
+            this.btnBuscarDisciplina.Size = new System.Drawing.Size(125, 30);
+            this.btnBuscarDisciplina.TabIndex = 35;
+            this.btnBuscarDisciplina.Text = "Buscar";
+            this.btnBuscarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarDisciplina.UseVisualStyleBackColor = false;
+            this.btnBuscarDisciplina.Click += new System.EventHandler(this.btnBuscarDisciplina_Click);
             // 
-            // btnOrdenAgregacionDisciplinas
+            // btnOrdenAlfabeticoDisciplinas
             // 
-            this.btnOrdenAgregacionDisciplinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOrdenAgregacionDisciplinas.BackColor = System.Drawing.SystemColors.Control;
-            this.btnOrdenAgregacionDisciplinas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrdenAgregacionDisciplinas.FlatAppearance.BorderSize = 0;
-            this.btnOrdenAgregacionDisciplinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenAgregacionDisciplinas.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrdenAgregacionDisciplinas.ForeColor = System.Drawing.Color.Tomato;
-            this.btnOrdenAgregacionDisciplinas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOrdenAgregacionDisciplinas.Location = new System.Drawing.Point(969, 41);
-            this.btnOrdenAgregacionDisciplinas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOrdenAgregacionDisciplinas.Name = "btnOrdenAgregacionDisciplinas";
-            this.btnOrdenAgregacionDisciplinas.Size = new System.Drawing.Size(225, 30);
-            this.btnOrdenAgregacionDisciplinas.TabIndex = 37;
-            this.btnOrdenAgregacionDisciplinas.Text = "Orden Agregación";
-            this.btnOrdenAgregacionDisciplinas.UseVisualStyleBackColor = false;
-            this.btnOrdenAgregacionDisciplinas.Click += new System.EventHandler(this.btnOrdenAgregacionDisciplinas_Click);
+            this.btnOrdenAlfabeticoDisciplinas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOrdenAlfabeticoDisciplinas.BackColor = System.Drawing.SystemColors.Control;
+            this.btnOrdenAlfabeticoDisciplinas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrdenAlfabeticoDisciplinas.FlatAppearance.BorderSize = 0;
+            this.btnOrdenAlfabeticoDisciplinas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdenAlfabeticoDisciplinas.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrdenAlfabeticoDisciplinas.ForeColor = System.Drawing.Color.Tomato;
+            this.btnOrdenAlfabeticoDisciplinas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOrdenAlfabeticoDisciplinas.Location = new System.Drawing.Point(753, 41);
+            this.btnOrdenAlfabeticoDisciplinas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrdenAlfabeticoDisciplinas.Name = "btnOrdenAlfabeticoDisciplinas";
+            this.btnOrdenAlfabeticoDisciplinas.Size = new System.Drawing.Size(217, 30);
+            this.btnOrdenAlfabeticoDisciplinas.TabIndex = 38;
+            this.btnOrdenAlfabeticoDisciplinas.Text = "Orden Alfabético";
+            this.btnOrdenAlfabeticoDisciplinas.UseVisualStyleBackColor = false;
+            this.btnOrdenAlfabeticoDisciplinas.Click += new System.EventHandler(this.btnOrdenAlfabeticoDisciplinas_Click);
             // 
-            // txtNombreDisciplina
+            // btnLimpiarDisciplina
             // 
-            this.txtNombreDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombreDisciplina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtNombreDisciplina.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombreDisciplina.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtNombreDisciplina.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNombreDisciplina.Location = new System.Drawing.Point(4, 42);
-            this.txtNombreDisciplina.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreDisciplina.Name = "txtNombreDisciplina";
-            this.txtNombreDisciplina.Size = new System.Drawing.Size(520, 29);
-            this.txtNombreDisciplina.TabIndex = 34;
-            this.txtNombreDisciplina.Text = "NOMBRE DISCIPLINA";
-            this.txtNombreDisciplina.Enter += new System.EventHandler(this.txtNombreDisciplina_Enter);
-            this.txtNombreDisciplina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreDisciplina_KeyPress);
-            this.txtNombreDisciplina.Leave += new System.EventHandler(this.txtNombreDisciplina_Leave);
-            // 
-            // btnAgregarDisciplina
-            // 
-            this.btnAgregarDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregarDisciplina.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAgregarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregarDisciplina.FlatAppearance.BorderSize = 0;
-            this.btnAgregarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarDisciplina.ForeColor = System.Drawing.Color.Tomato;
-            this.btnAgregarDisciplina.Image = global::FDCH.UI.Properties.Resources.mas;
-            this.btnAgregarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarDisciplina.Location = new System.Drawing.Point(969, 171);
-            this.btnAgregarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAgregarDisciplina.Name = "btnAgregarDisciplina";
-            this.btnAgregarDisciplina.Size = new System.Drawing.Size(225, 48);
-            this.btnAgregarDisciplina.TabIndex = 40;
-            this.btnAgregarDisciplina.Text = "Agregar Nueva Dis.";
-            this.btnAgregarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarDisciplina.UseVisualStyleBackColor = false;
-            this.btnAgregarDisciplina.Click += new System.EventHandler(this.btnAgregarDisciplina_Click);
-            // 
-            // btnFusionarDisciplina
-            // 
-            this.btnFusionarDisciplina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFusionarDisciplina.BackColor = System.Drawing.SystemColors.Control;
-            this.btnFusionarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFusionarDisciplina.FlatAppearance.BorderSize = 0;
-            this.btnFusionarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFusionarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFusionarDisciplina.ForeColor = System.Drawing.Color.Tomato;
-            this.btnFusionarDisciplina.Image = global::FDCH.UI.Properties.Resources.fusionar2;
-            this.btnFusionarDisciplina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFusionarDisciplina.Location = new System.Drawing.Point(969, 251);
-            this.btnFusionarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnFusionarDisciplina.Name = "btnFusionarDisciplina";
-            this.btnFusionarDisciplina.Size = new System.Drawing.Size(225, 48);
-            this.btnFusionarDisciplina.TabIndex = 39;
-            this.btnFusionarDisciplina.Text = "Fusionar Dis.";
-            this.btnFusionarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFusionarDisciplina.UseVisualStyleBackColor = false;
-            this.btnFusionarDisciplina.Click += new System.EventHandler(this.btnFusionarDisciplina_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.label1, 6);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1197, 38);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Gestionar Disciplinas";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLimpiarDisciplina.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLimpiarDisciplina.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnLimpiarDisciplina.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpiarDisciplina.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarDisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarDisciplina.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarDisciplina.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarDisciplina.Image = global::FDCH.UI.Properties.Resources.limpiar;
+            this.btnLimpiarDisciplina.Location = new System.Drawing.Point(657, 41);
+            this.btnLimpiarDisciplina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLimpiarDisciplina.Name = "btnLimpiarDisciplina";
+            this.btnLimpiarDisciplina.Size = new System.Drawing.Size(50, 30);
+            this.btnLimpiarDisciplina.TabIndex = 36;
+            this.btnLimpiarDisciplina.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpiarDisciplina.UseVisualStyleBackColor = false;
+            this.btnLimpiarDisciplina.Click += new System.EventHandler(this.btnLimpiarDisciplina_Click);
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.SandyBrown;
             this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.82F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.84F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.02F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.08F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.08F));
             this.tableLayoutPanel2.Controls.Add(this.dgvEspecialidades, 0, 4);
@@ -620,7 +620,7 @@
             this.ClientSize = new System.Drawing.Size(1197, 712);
             this.Controls.Add(this.tableLayoutPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmGestionarDisciplinasEspecialidades";
             this.Text = "FrmGestionarDisciplinasEspecialidades";
             this.Load += new System.EventHandler(this.FrmGestionarDisciplinasEspecialidades_Load);
