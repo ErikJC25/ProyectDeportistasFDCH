@@ -18,8 +18,10 @@ namespace FDCH.UI.Vistas
         private readonly FrmPrincipal _frmPrincipal;
         public FrmAgregarNuevoTecnico(FrmPrincipal principal)
         {
-            _frmPrincipal = principal ?? throw new ArgumentNullException(nameof(principal));
+            
             InitializeComponent();
+            _frmPrincipal = principal ?? throw new ArgumentNullException(nameof(principal));
+
         }
 
         private void txtNombreCompleto_KeyPress(object sender, KeyPressEventArgs e)
