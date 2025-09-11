@@ -79,7 +79,7 @@
             this.txbNombres.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNombres.ForeColor = System.Drawing.Color.DarkGray;
             this.txbNombres.Location = new System.Drawing.Point(421, 54);
-            this.txbNombres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNombres.Margin = new System.Windows.Forms.Padding(2);
             this.txbNombres.Name = "txbNombres";
             this.txbNombres.Size = new System.Drawing.Size(204, 25);
             this.txbNombres.TabIndex = 11;
@@ -96,7 +96,7 @@
             this.txbApellidos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbApellidos.ForeColor = System.Drawing.Color.DarkGray;
             this.txbApellidos.Location = new System.Drawing.Point(222, 54);
-            this.txbApellidos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txbApellidos.Name = "txbApellidos";
             this.txbApellidos.Size = new System.Drawing.Size(195, 25);
             this.txbApellidos.TabIndex = 10;
@@ -113,7 +113,7 @@
             this.txbCedula.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbCedula.ForeColor = System.Drawing.Color.DarkGray;
             this.txbCedula.Location = new System.Drawing.Point(10, 54);
-            this.txbCedula.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbCedula.Margin = new System.Windows.Forms.Padding(2);
             this.txbCedula.Name = "txbCedula";
             this.txbCedula.Size = new System.Drawing.Size(185, 25);
             this.txbCedula.TabIndex = 9;
@@ -149,7 +149,7 @@
             this.btnOrdenarNombres.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarNombres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOrdenarNombres.Location = new System.Drawing.Point(14, 83);
-            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOrdenarNombres.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrdenarNombres.Name = "btnOrdenarNombres";
             this.btnOrdenarNombres.Size = new System.Drawing.Size(176, 24);
             this.btnOrdenarNombres.TabIndex = 19;
@@ -168,7 +168,7 @@
             this.btnOrdenarApellidos.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarApellidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOrdenarApellidos.Location = new System.Drawing.Point(231, 83);
-            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOrdenarApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrdenarApellidos.Name = "btnOrdenarApellidos";
             this.btnOrdenarApellidos.Size = new System.Drawing.Size(176, 24);
             this.btnOrdenarApellidos.TabIndex = 20;
@@ -205,7 +205,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnBuscar, 6, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
@@ -230,7 +230,7 @@
             this.btnSeparar.Image = global::FDCH.UI.Properties.Resources.separar2;
             this.btnSeparar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeparar.Location = new System.Drawing.Point(455, 516);
-            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSeparar.Margin = new System.Windows.Forms.Padding(2);
             this.btnSeparar.Name = "btnSeparar";
             this.btnSeparar.Size = new System.Drawing.Size(136, 56);
             this.btnSeparar.TabIndex = 23;
@@ -270,6 +270,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(897, 405);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // colSeleccionar
@@ -365,7 +366,7 @@
             this.btnAgregar.Image = global::FDCH.UI.Properties.Resources.mas;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.Location = new System.Drawing.Point(16, 516);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(173, 56);
             this.btnAgregar.TabIndex = 21;
@@ -388,7 +389,7 @@
             this.btnFusionar.Image = global::FDCH.UI.Properties.Resources.fusionar2;
             this.btnFusionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFusionar.Location = new System.Drawing.Point(248, 516);
-            this.btnFusionar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFusionar.Margin = new System.Windows.Forms.Padding(2);
             this.btnFusionar.Name = "btnFusionar";
             this.btnFusionar.Size = new System.Drawing.Size(143, 56);
             this.btnFusionar.TabIndex = 22;
@@ -409,7 +410,7 @@
             this.btnOrdenarId.ForeColor = System.Drawing.Color.White;
             this.btnOrdenarId.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOrdenarId.Location = new System.Drawing.Point(435, 83);
-            this.btnOrdenarId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOrdenarId.Margin = new System.Windows.Forms.Padding(2);
             this.btnOrdenarId.Name = "btnOrdenarId";
             this.btnOrdenarId.Size = new System.Drawing.Size(176, 24);
             this.btnOrdenarId.TabIndex = 24;
@@ -428,7 +429,7 @@
             this.btnLimpiar.ForeColor = System.Drawing.Color.White;
             this.btnLimpiar.Image = global::FDCH.UI.Properties.Resources.limpiar;
             this.btnLimpiar.Location = new System.Drawing.Point(847, 68);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.tableLayoutPanel1.SetRowSpan(this.btnLimpiar, 2);
             this.btnLimpiar.Size = new System.Drawing.Size(35, 24);
@@ -449,7 +450,7 @@
             this.btnBuscar.Image = global::FDCH.UI.Properties.Resources.busqueda;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.Location = new System.Drawing.Point(749, 68);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.tableLayoutPanel1.SetRowSpan(this.btnBuscar, 2);
             this.btnBuscar.Size = new System.Drawing.Size(94, 24);

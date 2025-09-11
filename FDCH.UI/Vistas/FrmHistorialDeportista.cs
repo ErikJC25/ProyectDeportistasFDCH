@@ -48,7 +48,18 @@ namespace FDCH.UI.Vistas
             // Llama al método y asigna los datos al DataGridView
             List<RegistroTotal> registros = puente.ObtenerRegistrosCompletosIdDeportista(idDeportista);
 
-            lblNombre.Text = registros[0].Nombres + " " + registros[0].Apellidos;
+            try
+            {
+                lblNombre.Text = registros[0].Nombres + " " + registros[0].Apellidos;
+            }
+            catch
+            {
+                deportista = new Deportista();
+                deportista = puente.ObtenerDeportistaPorId(idDeportista);
+                lblNombre.Text = deportista.nombres + " " + deportista.apellidos + " no cuenta con participaciones en torneos";
+            }
+
+            
 
             dataGridView1.DataSource = registros;
         }
