@@ -417,6 +417,7 @@ namespace FDCH.Logica
                         break;
                     case "DESEMPENO":
                         nombreRegistro = _dbService.ObtenerNombreDesempenoPorId(registro.id_registro_afectado);
+                        registro.tabla_afectada = "Desempeño"; // Corregir el nombre de la tabla para la vista
                         break;
                     default:
                         nombreRegistro = $"ID: {registro.id_registro_afectado}";

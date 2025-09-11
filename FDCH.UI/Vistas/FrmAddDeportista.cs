@@ -537,7 +537,18 @@ namespace FDCH.UI.Vistas
                     id_competencia = competenciaId, // Usamos el ID de competencia
                     id_tecnico = tecnicoId          // Usamos el ID del técnico
                 };
-                puente.InsertarDesempeno(desempeno);
+                int desempenoId = puente.InsertarDesempeno(desempeno);
+
+                //Registrar la participacion en el historial
+                HistorialCambio nuevoDesempeno = new HistorialCambio
+                {
+                    id_usuario = _frmprincipal._usuarioAutenticado.id_usuario,
+                    tabla_afectada = "Desempeno",
+                    id_registro_afectado = desempenoId,
+                    accion = "AGREGACION",
+                    fecha_cambio = DateTime.Now.ToString()
+                };
+                puente.InsertarHistorialCambio(nuevoDesempeno);
 
                 // --- (Mensajes de éxito y opción de continuar se mantienen igual) ---
                 MessageBox.Show("Registro guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
