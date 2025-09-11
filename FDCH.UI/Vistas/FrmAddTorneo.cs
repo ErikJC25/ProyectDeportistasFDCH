@@ -182,6 +182,17 @@ namespace FDCH.UI.Vistas
 
             if (resultado > 0)
             {
+                //Registrar la agregacion en el historial
+                HistorialCambio cambio = new HistorialCambio
+                {
+                    id_usuario = _frmprincipal._usuarioAutenticado.id_usuario,
+                    tabla_afectada = "Torneos",
+                    id_registro_afectado = resultado,
+                    accion = "AGREGADO",
+                    fecha_cambio = DateTime.Now.ToString()
+                };
+
+                puente.InsertarHistorialCambio(cambio);
                 MessageBox.Show("Torneo agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _frmprincipal.AbrirFormularioEnPanel(new FrmAddDeportista(resultado, _frmprincipal));
                 this.Close();

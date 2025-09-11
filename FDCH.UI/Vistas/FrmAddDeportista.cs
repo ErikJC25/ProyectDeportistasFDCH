@@ -389,6 +389,17 @@ namespace FDCH.UI.Vistas
                 if (deportistaActual == null)
                 {
                     deportistaId = puente.InsertarDeportista(deportistaParaGuardar);
+
+                    //Registrar la agregacion en el historial
+                    HistorialCambio cambio = new HistorialCambio
+                    {
+                        id_usuario = _frmprincipal._usuarioAutenticado.id_usuario,
+                        tabla_afectada = "Deportistas",
+                        id_registro_afectado = deportistaId,
+                        accion = "AGREGADO",
+                        fecha_cambio = DateTime.Now.ToString()
+                    };
+                    puente.InsertarHistorialCambio(cambio);
                 }
                 else
                 {
