@@ -56,9 +56,10 @@
             this.btnGuardarCambios.BackColor = System.Drawing.Color.Green;
             this.btnGuardarCambios.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardarCambios.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarCambios.Location = new System.Drawing.Point(327, 477);
+            this.btnGuardarCambios.Location = new System.Drawing.Point(434, 588);
+            this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
-            this.btnGuardarCambios.Size = new System.Drawing.Size(189, 41);
+            this.btnGuardarCambios.Size = new System.Drawing.Size(252, 50);
             this.btnGuardarCambios.TabIndex = 30;
             this.btnGuardarCambios.Text = "Guardar Cambios";
             this.btnGuardarCambios.UseVisualStyleBackColor = false;
@@ -69,9 +70,10 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.Color.Green;
-            this.btnCancelar.Location = new System.Drawing.Point(3, 477);
+            this.btnCancelar.Location = new System.Drawing.Point(4, 588);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(156, 41);
+            this.btnCancelar.Size = new System.Drawing.Size(207, 50);
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -84,9 +86,10 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(3, 387);
+            this.label7.Location = new System.Drawing.Point(4, 477);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(318, 43);
+            this.label7.Size = new System.Drawing.Size(422, 53);
             this.label7.TabIndex = 28;
             this.label7.Text = "Tipo de Discapacidad:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -99,9 +102,10 @@
             this.txtTipoDiscapacidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtTipoDiscapacidad, 3);
             this.txtTipoDiscapacidad.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtTipoDiscapacidad.Location = new System.Drawing.Point(3, 433);
+            this.txtTipoDiscapacidad.Location = new System.Drawing.Point(4, 534);
+            this.txtTipoDiscapacidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTipoDiscapacidad.Name = "txtTipoDiscapacidad";
-            this.txtTipoDiscapacidad.Size = new System.Drawing.Size(513, 26);
+            this.txtTipoDiscapacidad.Size = new System.Drawing.Size(682, 30);
             this.txtTipoDiscapacidad.TabIndex = 27;
             this.txtTipoDiscapacidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTipoDiscapacidad_KeyPress);
             // 
@@ -111,9 +115,10 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(3, 301);
+            this.label6.Location = new System.Drawing.Point(4, 371);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(156, 43);
+            this.label6.Size = new System.Drawing.Size(207, 53);
             this.label6.TabIndex = 26;
             this.label6.Text = "Género:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,9 +131,10 @@
             this.txtGenero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtGenero, 3);
             this.txtGenero.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtGenero.Location = new System.Drawing.Point(3, 347);
+            this.txtGenero.Location = new System.Drawing.Point(4, 428);
+            this.txtGenero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtGenero.Name = "txtGenero";
-            this.txtGenero.Size = new System.Drawing.Size(513, 26);
+            this.txtGenero.Size = new System.Drawing.Size(682, 30);
             this.txtGenero.TabIndex = 25;
             this.txtGenero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGenero_KeyPress);
             // 
@@ -138,9 +144,10 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(3, 215);
+            this.label5.Location = new System.Drawing.Point(4, 265);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 43);
+            this.label5.Size = new System.Drawing.Size(207, 53);
             this.label5.TabIndex = 24;
             this.label5.Text = "Apellidos:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,9 +160,10 @@
             this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtApellidos, 3);
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtApellidos.Location = new System.Drawing.Point(3, 261);
+            this.txtApellidos.Location = new System.Drawing.Point(4, 322);
+            this.txtApellidos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(513, 26);
+            this.txtApellidos.Size = new System.Drawing.Size(682, 30);
             this.txtApellidos.TabIndex = 23;
             this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
@@ -165,9 +173,10 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(3, 129);
+            this.label4.Location = new System.Drawing.Point(4, 159);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(156, 43);
+            this.label4.Size = new System.Drawing.Size(207, 53);
             this.label4.TabIndex = 22;
             this.label4.Text = "Nombres:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,9 +189,10 @@
             this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtNombres, 3);
             this.txtNombres.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtNombres.Location = new System.Drawing.Point(3, 175);
+            this.txtNombres.Location = new System.Drawing.Point(4, 216);
+            this.txtNombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(513, 26);
+            this.txtNombres.Size = new System.Drawing.Size(682, 30);
             this.txtNombres.TabIndex = 21;
             this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombres_KeyPress);
             // 
@@ -192,9 +202,10 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 43);
+            this.label3.Location = new System.Drawing.Point(4, 53);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 43);
+            this.label3.Size = new System.Drawing.Size(207, 53);
             this.label3.TabIndex = 20;
             this.label3.Text = "Cédula:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -207,9 +218,10 @@
             this.txtCedula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtCedula, 3);
             this.txtCedula.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtCedula.Location = new System.Drawing.Point(3, 89);
+            this.txtCedula.Location = new System.Drawing.Point(4, 110);
+            this.txtCedula.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(513, 26);
+            this.txtCedula.Size = new System.Drawing.Size(682, 30);
             this.txtCedula.TabIndex = 19;
             this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
             // 
@@ -220,9 +232,10 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Green;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(4, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(513, 43);
+            this.label2.Size = new System.Drawing.Size(682, 53);
             this.label2.TabIndex = 18;
             this.label2.Text = "Edición de los datos del deportista seleccionado";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,7 +251,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(898, 52);
+            this.label1.Size = new System.Drawing.Size(1197, 64);
             this.label1.TabIndex = 2;
             this.label1.Text = "Editar Deportista";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -248,10 +261,11 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Green;
             this.pictureBox1.BackgroundImage = global::FDCH.UI.Properties.Resources.deportista;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 52);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 64);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(375, 526);
+            this.pictureBox1.Size = new System.Drawing.Size(501, 647);
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
@@ -266,12 +280,12 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(898, 578);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1197, 711);
             this.tableLayoutPanel1.TabIndex = 31;
             // 
             // tableLayoutPanel2
@@ -294,8 +308,8 @@
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.txtApellidos, 0, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(377, 54);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(504, 66);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 12;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
@@ -310,16 +324,17 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333332F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(519, 522);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(690, 643);
             this.tableLayoutPanel2.TabIndex = 32;
             // 
             // FrmEditarDeportista
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 578);
+            this.ClientSize = new System.Drawing.Size(1197, 711);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmEditarDeportista";
             this.Text = "FrmEditarDeportista";
             this.Load += new System.EventHandler(this.FrmEditarDeportista_Load);
