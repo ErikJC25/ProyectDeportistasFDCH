@@ -255,7 +255,7 @@ namespace FDCH.UI.Vistas
             if (bloqueoActivo)
             {
                 await LiberarBloqueo();
-                AbrirFormularioEnPanel(new FrmInicio(this));
+                
                 MessageBox.Show("🔓 Bloqueo liberado. Ya no puede editar registros ni subir la base de datos.");
                 return;
             }
@@ -327,7 +327,7 @@ namespace FDCH.UI.Vistas
             btnGetBloqueo.Text = "Obtener Bloqueo";
             btnGetBloqueo.Image = FDCH.UI.Properties.Resources.desbloqueado;
 
-            
+            AbrirFormularioEnPanel(new FrmInicio(this));
         }
 
         private void btnGestionarEntidades_Click(object sender, EventArgs e)

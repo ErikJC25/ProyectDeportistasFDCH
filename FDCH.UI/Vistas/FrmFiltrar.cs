@@ -332,6 +332,30 @@ namespace FDCH.UI.Vistas
             }
         }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica que el clic fue en la fila de datos (no en el encabezado).
+            // Y que la columna no es la primera columna en blanco (la de la selección de fila).
+            if (e.RowIndex >= 0 && e.ColumnIndex > 0)
+            {
+                // 1. Obtén el objeto de datos completo de la fila seleccionada.
+                // Reemplaza "colNombreDeportista" con el nombre de tu columna
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Apellidos" || dataGridView1.Columns[e.ColumnIndex].Name == "Nombres")
+                {
+                    // 2. Obtén el objeto de datos completo de la fila seleccionada.
+                    RegistroTotal registro = (RegistroTotal)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+                    // 3. Extrae el ID del deportista desde el objeto.
+                    int idDeportista = registro.IdDeportista;
+
+                    // 4. Abre el nuevo formulario y pásale el ID del deportista.
+                    _frmprincipal.AbrirFormularioEnPanel(new FrmHistorialDeportista(idDeportista, _frmprincipal));
+                    this.Close();
+                }
+            }
+        }
+
+
         private async void btnExportarWord_Click(object sender, EventArgs e)
         {
             // Deshabilitar botón / feedback

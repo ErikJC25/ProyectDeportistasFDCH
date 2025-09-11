@@ -143,15 +143,15 @@ namespace FDCH.Logica
                 if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
                 {
                     // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
-                    registro.MesInicioEvento = fechaInicio.ToString("MMMM");
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM").ToUpper();
                     registro.AnioInicioEvento = fechaInicio.Year.ToString();
                 }
                 else
                 {
                     // Manejar el caso de que el formato de fecha sea inválido
                     // Asignar un valor por defecto o mostrar un error
-                    registro.MesInicioEvento = "Desconocido";
-                    registro.AnioInicioEvento = "Desconocido";
+                    registro.MesInicioEvento = "DESCONOCIDO";
+                    registro.AnioInicioEvento = "DESCONOCIDO";
                 }
             }
             return listaRegistros;
@@ -172,15 +172,15 @@ namespace FDCH.Logica
                 if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
                 {
                     // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
-                    registro.MesInicioEvento = fechaInicio.ToString("MMMM");
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM").ToUpper();
                     registro.AnioInicioEvento = fechaInicio.Year.ToString();
                 }
                 else
                 {
                     // Manejar el caso de que el formato de fecha sea inválido
                     // Asignar un valor por defecto o mostrar un error
-                    registro.MesInicioEvento = "Desconocido";
-                    registro.AnioInicioEvento = "Desconocido";
+                    registro.MesInicioEvento = "DESCONOCIDO";
+                    registro.AnioInicioEvento = "DESCONOCIDO";
                 }
             }
             return listaRegistros;
@@ -303,12 +303,60 @@ namespace FDCH.Logica
 
         public List<RegistroTotal> BuscarParticipacionesDeportista(string clausula, List<System.Data.SQLite.SQLiteParameter> parametros)
         {
-            return _dbService.BuscarRegistrosDeportista(clausula, parametros);
+            List<RegistroTotal> listaRegistros = _dbService.BuscarRegistrosDeportista(clausula, parametros);
+            
+            // Recorremos la lista para calcular los campos extras
+            foreach (var registro in listaRegistros)
+            {
+                // Variable para almacenar la fecha parseada
+                DateTime fechaInicio;
+
+                // Intenta convertir el string a DateTime de forma segura
+                // El formato "dd/MM/yyyy" es crucial para que la conversión funcione
+                if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
+                {
+                    // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM").ToUpper();
+                    registro.AnioInicioEvento = fechaInicio.Year.ToString();
+                }
+                else
+                {
+                    // Manejar el caso de que el formato de fecha sea inválido
+                    // Asignar un valor por defecto o mostrar un error
+                    registro.MesInicioEvento = "DESCONOCIDO";
+                    registro.AnioInicioEvento = "DESCONOCIDO";
+                }
+            }
+            return listaRegistros;
         }
 
         public List<RegistroTotal> BuscarParticipacionesDeportistaFiltrado(string clausula, List<System.Data.SQLite.SQLiteParameter> parametros, string clausulaOrder)
         {
-            return _dbService.BuscarRegistrosDeportistaFiltrado(clausula, parametros, clausulaOrder);
+            List<RegistroTotal> listaRegistros = _dbService.BuscarRegistrosDeportistaFiltrado(clausula, parametros, clausulaOrder);
+
+            // Recorremos la lista para calcular los campos extras
+            foreach (var registro in listaRegistros)
+            {
+                // Variable para almacenar la fecha parseada
+                DateTime fechaInicio;
+
+                // Intenta convertir el string a DateTime de forma segura
+                // El formato "dd/MM/yyyy" es crucial para que la conversión funcione
+                if (DateTime.TryParseExact(registro.FechaInicio, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out fechaInicio))
+                {
+                    // Si la conversión es exitosa, ahora puedes usar el objeto DateTime
+                    registro.MesInicioEvento = fechaInicio.ToString("MMMM").ToUpper();
+                    registro.AnioInicioEvento = fechaInicio.Year.ToString();
+                }
+                else
+                {
+                    // Manejar el caso de que el formato de fecha sea inválido
+                    // Asignar un valor por defecto o mostrar un error
+                    registro.MesInicioEvento = "DESCONOCIDO";
+                    registro.AnioInicioEvento = "DESCONOCIDO";
+                }
+            }
+            return listaRegistros;
         }
 
 
