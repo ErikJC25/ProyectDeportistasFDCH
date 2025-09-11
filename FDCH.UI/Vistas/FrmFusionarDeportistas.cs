@@ -140,7 +140,7 @@ namespace FDCH.UI.Vistas
                     return;
                 }
 
-                var confirma = MessageBox.Show("¿Confirma crear un nuevo deportista fusionado y reasignar desempeños a este nuevo registro?", "Confirmar Fusión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirma = MessageBox.Show("¿Confirma crear un nuevo deportista fusionado y reasignar las participaciones en torneos a este nuevo registro?", "Confirmar Fusión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirma != DialogResult.Yes) return;
 
                 var nuevo = new Deportista

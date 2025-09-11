@@ -118,7 +118,7 @@ namespace FDCH.UI.Vistas
                 int idUsuario = 0;
                 if (_frmPrincipal?._usuarioAutenticado != null) idUsuario = _frmPrincipal._usuarioAutenticado.id_usuario;
 
-                var confirm = MessageBox.Show("¿Confirma que desea crear los nuevos deportistas duplicando los desempeños del original y eliminar el original?", "Confirmar Separación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirm = MessageBox.Show("¿Confirma que desea crear los nuevos deportistas y que obtengan las participaciones en torneos del original?", "Confirmar Separación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm != DialogResult.Yes) return;
 
                 bool ok = _puente.SepararDeportista(idOriginal, nuevos, idUsuario);

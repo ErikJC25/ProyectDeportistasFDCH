@@ -53,7 +53,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.label1.BackColor = System.Drawing.Color.Green;
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 2);
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold);
@@ -68,7 +68,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pictureBox1.BackColor = System.Drawing.Color.Green;
             this.pictureBox1.BackgroundImage = global::FDCH.UI.Properties.Resources.deportista;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -85,7 +85,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.label2, 3);
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label2.ForeColor = System.Drawing.Color.Green;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(684, 53);
@@ -103,7 +103,7 @@
             this.txtCedula.Font = new System.Drawing.Font("Arial", 12F);
             this.txtCedula.Location = new System.Drawing.Point(3, 109);
             this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Size = new System.Drawing.Size(684, 30);
+            this.txtCedula.Size = new System.Drawing.Size(684, 26);
             this.txtCedula.TabIndex = 4;
             this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
             // 
@@ -143,7 +143,7 @@
             this.txtNombres.Font = new System.Drawing.Font("Arial", 12F);
             this.txtNombres.Location = new System.Drawing.Point(3, 215);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(684, 30);
+            this.txtNombres.Size = new System.Drawing.Size(684, 26);
             this.txtNombres.TabIndex = 6;
             this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombres_KeyPress);
             // 
@@ -170,7 +170,7 @@
             this.txtApellidos.Font = new System.Drawing.Font("Arial", 12F);
             this.txtApellidos.Location = new System.Drawing.Point(3, 321);
             this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Size = new System.Drawing.Size(684, 30);
+            this.txtApellidos.Size = new System.Drawing.Size(684, 26);
             this.txtApellidos.TabIndex = 8;
             this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
@@ -197,7 +197,7 @@
             this.txtGenero.Font = new System.Drawing.Font("Arial", 12F);
             this.txtGenero.Location = new System.Drawing.Point(3, 427);
             this.txtGenero.Name = "txtGenero";
-            this.txtGenero.Size = new System.Drawing.Size(684, 30);
+            this.txtGenero.Size = new System.Drawing.Size(684, 26);
             this.txtGenero.TabIndex = 10;
             this.txtGenero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGenero_KeyPress);
             // 
@@ -225,7 +225,7 @@
             this.txtTipoDiscapacidad.Font = new System.Drawing.Font("Arial", 12F);
             this.txtTipoDiscapacidad.Location = new System.Drawing.Point(3, 533);
             this.txtTipoDiscapacidad.Name = "txtTipoDiscapacidad";
-            this.txtTipoDiscapacidad.Size = new System.Drawing.Size(684, 30);
+            this.txtTipoDiscapacidad.Size = new System.Drawing.Size(684, 26);
             this.txtTipoDiscapacidad.TabIndex = 12;
             this.txtTipoDiscapacidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTipoDiscapacidad_KeyPress);
             // 
@@ -233,7 +233,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnCancelar.ForeColor = System.Drawing.Color.Green;
             this.btnCancelar.Location = new System.Drawing.Point(3, 588);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(209, 48);
@@ -245,7 +245,7 @@
             // btnAgregarNuevo
             // 
             this.btnAgregarNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregarNuevo.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnAgregarNuevo.BackColor = System.Drawing.Color.Green;
             this.btnAgregarNuevo.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarNuevo.ForeColor = System.Drawing.Color.White;
             this.btnAgregarNuevo.Location = new System.Drawing.Point(433, 588);

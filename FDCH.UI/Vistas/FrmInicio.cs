@@ -79,7 +79,7 @@ namespace FDCH.UI.Vistas
                     t.SetToolTip(btn, $"Abrir: {btn.Text}");
                 };
 
-                using (var dlg = new FrmSeleccionEditor("Opciones de Edición", "Seleccione la acción para este registro", opciones, customizer))
+                using (var dlg = new FrmSeleccionEditor("Edición del Registro", "Seleccione el aspecto a editar", opciones, customizer))
                 {
                     var r = dlg.ShowDialog(this);
                     if (r == DialogResult.OK)

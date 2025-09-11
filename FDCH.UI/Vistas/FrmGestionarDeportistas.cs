@@ -480,6 +480,7 @@ namespace FDCH.UI.Vistas
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            /*
             // Verifica que el clic fue en la fila de datos (no en el encabezado).
             // Y que la columna no es la primera columna en blanco (la de la selección de fila).
             if (e.RowIndex >= 0 && e.ColumnIndex > 0)
@@ -504,6 +505,7 @@ namespace FDCH.UI.Vistas
                     this.Close();
                 }
             }
+            */
         }
     }
 }

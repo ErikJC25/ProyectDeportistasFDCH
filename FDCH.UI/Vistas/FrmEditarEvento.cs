@@ -202,7 +202,7 @@ namespace FDCH.UI.Vistas
                 }
 
                 // Preguntar si esta seguro de agregar el torneo
-                var confirmResult = MessageBox.Show("¿Está seguro de agregar este torneo?", "Confirmar Agregar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirmResult = MessageBox.Show("¿Está seguro de la edición este torneo?", "Confirmar Edición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirmResult != DialogResult.Yes)
                 {
                     return; // Si el usuario selecciona "No", se detiene el proceso
@@ -244,7 +244,7 @@ namespace FDCH.UI.Vistas
                 // 7) Resultado
                 if (actualizado)
                 {
-                    MessageBox.Show("Evento actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tornero actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Si se pasó la referencia al FrmPrincipal, seguir exactamente el patrón usado en otros formularios:
                     if (_frmprincipal != null)
