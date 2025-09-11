@@ -594,7 +594,7 @@ namespace FDCH.UI.Vistas
                     return;
                 }
 
-                MessageBox.Show("Desempeño actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Participación actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Cerrar y volver a FrmInicio dentro del panel principal (misma lógica que otros forms)
                 this.Close();
