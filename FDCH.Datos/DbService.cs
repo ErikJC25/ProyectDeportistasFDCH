@@ -69,39 +69,39 @@ namespace FDCH.Datos
 
                                 //SIGUIENTE BLOQUE PARA PROBAR SIN HASH DE CONTRASEÑAS (BORRAR AL FINAL)
 
-                                if (contrasena == reader["contrasena_hash"].ToString())
-                                {
-                                    // Si coinciden, se crea el objeto Usuario con los datos de la BD
-                                    usuarioEncontrado = new Usuario
-                                    {
-                                        id_usuario = Convert.ToInt32(reader["id_usuario"]),
-                                        nombre_usuario = reader["nombre_usuario"].ToString(),
-                                        contrasena_hash = reader["contrasena_hash"].ToString(),
-                                        rol = reader["rol"].ToString()
-                                    };
-                                }
-
-
-
-                                //DESCOMENTAR EL SIGUIETE BLOQUE PARA HACER HASH DE CONTRASEÑAS (FINAL)
-
-                                //// Se obtiene el hash de la contraseña almacenada
-                                //string contrasenaHashAlmacenada = reader["contrasena_hash"].ToString();
-                                //// Se calcula el hash de la contraseña ingresada
-                                //string contrasenaHashIngresada = CalcularSHA256(contrasena);
-
-                                //// Se compara el hash ingresado con el almacenado
-                                //if (contrasenaHashIngresada == contrasenaHashAlmacenada)
+                                //if (contrasena == reader["contrasena_hash"].ToString())
                                 //{
                                 //    // Si coinciden, se crea el objeto Usuario con los datos de la BD
                                 //    usuarioEncontrado = new Usuario
                                 //    {
                                 //        id_usuario = Convert.ToInt32(reader["id_usuario"]),
                                 //        nombre_usuario = reader["nombre_usuario"].ToString(),
-                                //        contrasena_hash = contrasenaHashAlmacenada,
+                                //        contrasena_hash = reader["contrasena_hash"].ToString(),
                                 //        rol = reader["rol"].ToString()
                                 //    };
                                 //}
+
+
+
+                                //DESCOMENTAR EL SIGUIETE BLOQUE PARA HACER HASH DE CONTRASEÑAS (FINAL)
+
+                                // Se obtiene el hash de la contraseña almacenada
+                                string contrasenaHashAlmacenada = reader["contrasena_hash"].ToString();
+                                // Se calcula el hash de la contraseña ingresada
+                                string contrasenaHashIngresada = CalcularSHA256(contrasena);
+
+                                // Se compara el hash ingresado con el almacenado
+                                if (contrasenaHashIngresada == contrasenaHashAlmacenada)
+                                {
+                                    // Si coinciden, se crea el objeto Usuario con los datos de la BD
+                                    usuarioEncontrado = new Usuario
+                                    {
+                                        id_usuario = Convert.ToInt32(reader["id_usuario"]),
+                                        nombre_usuario = reader["nombre_usuario"].ToString(),
+                                        contrasena_hash = contrasenaHashAlmacenada,
+                                        rol = reader["rol"].ToString()
+                                    };
+                                }
                             }
                         }
                     }
