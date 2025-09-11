@@ -156,11 +156,7 @@
   <ItemGroup>
     <Compile Include="Cls_Puente.cs" />
     <Compile Include="DriveService.cs" />
-    <Compile Include="ExportDocxService.cs" />
-    <Compile Include="ExportService.cs" />
-    <Compile Include="LockManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VersionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FDCH.Datos\FDCH.Datos.csproj">
