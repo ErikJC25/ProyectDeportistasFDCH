@@ -45,13 +45,12 @@
             // btnAgregarNuevo
             // 
             this.btnAgregarNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregarNuevo.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAgregarNuevo.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnAgregarNuevo.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarNuevo.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarNuevo.Location = new System.Drawing.Point(416, 531);
-            this.btnAgregarNuevo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgregarNuevo.Location = new System.Drawing.Point(311, 432);
             this.btnAgregarNuevo.Name = "btnAgregarNuevo";
-            this.btnAgregarNuevo.Size = new System.Drawing.Size(240, 59);
+            this.btnAgregarNuevo.Size = new System.Drawing.Size(181, 48);
             this.btnAgregarNuevo.TabIndex = 30;
             this.btnAgregarNuevo.Text = "Agregar Nuevo";
             this.btnAgregarNuevo.UseVisualStyleBackColor = false;
@@ -61,11 +60,10 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnCancelar.Location = new System.Drawing.Point(4, 531);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(3, 432);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(198, 59);
+            this.btnCancelar.Size = new System.Drawing.Size(148, 48);
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -78,10 +76,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(4, 160);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(3, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(404, 160);
+            this.label3.Size = new System.Drawing.Size(302, 130);
             this.label3.TabIndex = 20;
             this.label3.Text = "Nombre Completo:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -94,10 +91,9 @@
             this.txtNombreCompleto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txtNombreCompleto, 3);
             this.txtNombreCompleto.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtNombreCompleto.Location = new System.Drawing.Point(4, 324);
-            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreCompleto.Location = new System.Drawing.Point(3, 263);
             this.txtNombreCompleto.Name = "txtNombreCompleto";
-            this.txtNombreCompleto.Size = new System.Drawing.Size(652, 30);
+            this.txtNombreCompleto.Size = new System.Drawing.Size(489, 26);
             this.txtNombreCompleto.TabIndex = 19;
             this.txtNombreCompleto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCompleto_KeyPress);
             // 
@@ -107,11 +103,10 @@
             this.tableLayoutPanel2.SetColumnSpan(this.label2, 3);
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(4, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(652, 160);
+            this.label2.Size = new System.Drawing.Size(489, 130);
             this.label2.TabIndex = 18;
             this.label2.Text = "Ingrese los datos del nuevo técnico";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,7 +114,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 2);
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Arial Black", 19.8F, System.Drawing.FontStyle.Bold);
@@ -127,21 +122,21 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1197, 64);
+            this.label1.Size = new System.Drawing.Size(898, 52);
             this.label1.TabIndex = 2;
             this.label1.Text = "Agregar Nuevo Técnico";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.pictureBox1.BackgroundImage = global::FDCH.UI.Properties.Resources.tecnico;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 64);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 52);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(531, 648);
+            this.pictureBox1.Size = new System.Drawing.Size(399, 526);
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
@@ -155,11 +150,12 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1197, 712);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(898, 578);
             this.tableLayoutPanel1.TabIndex = 31;
             // 
             // tableLayoutPanel2
@@ -175,24 +171,24 @@
             this.tableLayoutPanel2.Controls.Add(this.txtNombreCompleto, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnCancelar, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(534, 67);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(401, 54);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(660, 642);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(495, 522);
             this.tableLayoutPanel2.TabIndex = 32;
             // 
             // FrmAgregarNuevoTecnico
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 712);
+            this.ClientSize = new System.Drawing.Size(898, 578);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAgregarNuevoTecnico";
             this.Text = "FrmAgregarNuevoTecnico";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
