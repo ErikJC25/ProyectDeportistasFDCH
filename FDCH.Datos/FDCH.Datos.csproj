@@ -175,6 +175,7 @@
     <Content Include="Archivos\token.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Archivos\ManualUsuario.pdf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

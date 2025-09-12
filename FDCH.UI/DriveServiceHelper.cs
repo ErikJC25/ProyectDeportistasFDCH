@@ -71,6 +71,7 @@ namespace FDCH.UI
         }
 
         // 🔹 Subir archivo con timestamp y evitar duplicados
+        // 🔹 Subir archivo con timestamp y evitar duplicados
         public static async Task<string> UploadFile(string filePath, string folderId = null)
         {
             var service = GetDriveService();
@@ -113,8 +114,74 @@ namespace FDCH.UI
 
             var uploadedFile = request.ResponseBody;
             Console.WriteLine($"✅ Archivo subido: {uploadedFile.Id}");
+
+            // 🔹 Ejecutar la eliminación de archivos antiguos en segundo plano
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    // Cambia 60 por los días que quieras conservar
+                    await DeleteOldFilesAsync(60); // para eliminar archivos de hace 1 hora
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"⚠ Error al eliminar archivos antiguos: {ex.Message}");
+                }
+            });
+
             return uploadedFile.Id;
         }
+
+
+
+        // 🔹 Eliminar archivos .db y .json antiguos de Drive de forma optimizada
+        public static async Task DeleteOldFilesAsync(int daysToKeep = 60)
+        {
+            var service = GetDriveService();
+
+            // Fecha límite: cualquier archivo más viejo se borrará
+            DateTime limitDate = DateTime.UtcNow.AddDays(-daysToKeep);
+
+            // Formato ISO 8601 para la query de Drive
+            string limitDateStr = limitDate.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+            // Query: solo archivos .db o .json que no estén en la papelera y creados antes de limitDate
+            string query = $"trashed = false and (name contains '.db' or name contains '.json') and createdTime < '{limitDateStr}'";
+
+            string pageToken = null;
+            int totalDeleted = 0;
+
+            do
+            {
+                var request = service.Files.List();
+                request.Q = query;
+                request.Fields = "nextPageToken, files(id, name, createdTime)";
+                request.PageSize = 1000;
+                request.PageToken = pageToken;
+
+                var result = request.Execute();
+
+                if (result.Files != null && result.Files.Count > 0)
+                {
+                    // Borrado en paralelo para acelerar
+                    var deleteTasks = result.Files.Select(f =>
+                    {
+                        Console.WriteLine($"🗑 Eliminando: {f.Name}");
+                        return service.Files.Delete(f.Id).ExecuteAsync();
+                    });
+
+                    await Task.WhenAll(deleteTasks);
+                    totalDeleted += result.Files.Count;
+                }
+
+                pageToken = result.NextPageToken;
+            } while (pageToken != null);
+
+            Console.WriteLine($"✅ Eliminación completada. Total archivos eliminados: {totalDeleted}");
+        }
+
+
 
         // 🔹 Descargar archivo desde Drive
         public static async Task DownloadFile(string fileId, string saveToPath)
@@ -160,28 +227,45 @@ namespace FDCH.UI
         }
 
         // 🔹 Eliminar backups viejos
-        public static void DeleteOldBackups(string folderId, int daysToKeep = 7)
+        public static void DeleteOldBackups(string folderId, int daysToKeep = 60)
         {
             var service = GetDriveService();
+
             string query = $"'{folderId}' in parents and trashed = false";
             var request = service.Files.List();
             request.Q = query;
-            request.Fields = "files(id, name, createdTime)";
+            request.Fields = "nextPageToken, files(id, name, createdTime)";
+            request.PageSize = 1000;
 
-            var result = request.Execute();
-            var files = result.Files;
-
+            string pageToken = null;
+            int totalDeleted = 0;
             DateTime limitDate = DateTime.UtcNow.AddDays(-daysToKeep);
 
-            foreach (var file in files)
+            do
             {
-                if (file.CreatedTimeDateTimeOffset?.UtcDateTime < limitDate)
+                request.PageToken = pageToken;
+                var result = request.Execute();
+                var files = result.Files;
+
+                if (files != null && files.Count > 0)
                 {
-                    service.Files.Delete(file.Id).Execute();
-                    Console.WriteLine($"🗑 Eliminado: {file.Name}");
+                    var oldFiles = files.Where(f => f.CreatedTimeDateTimeOffset?.UtcDateTime < limitDate).ToList();
+
+                    foreach (var f in oldFiles)
+                    {
+                        Console.WriteLine($"🗑 Eliminando: {f.Name}");
+                        service.Files.Delete(f.Id).Execute();
+                        totalDeleted++;
+                    }
                 }
-            }
+
+                pageToken = result.NextPageToken;
+            } while (pageToken != null);
+
+            Console.WriteLine($"✅ Eliminación completada. Total archivos eliminados: {totalDeleted}");
         }
+
+
 
         // 🔹 Lock con toggle
         public enum LockResult

@@ -219,7 +219,7 @@ namespace FDCH.UI.Vistas
 
         private System.Windows.Forms.Timer respaldoTimer;
 
-        
+
 
         private async Task HacerRespaldoAutomatico()
         {
@@ -239,8 +239,18 @@ namespace FDCH.UI.Vistas
                 // Eliminar temporal
                 File.Delete(tempPath);
 
-                // Eliminar respaldos viejos de 7 días
-                DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 30);
+                // 🔹 Eliminar respaldos viejos de 60 días en segundo plano
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 60);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"⚠ Error eliminando respaldos antiguos: {ex.Message}");
+                    }
+                });
 
                 Console.WriteLine($"[Respaldo automático] Subido correctamente. ID: {fileId}");
             }
@@ -249,6 +259,8 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
+
+
 
         private async void btnGetBloqueo_Click(object sender, EventArgs e)
         {
