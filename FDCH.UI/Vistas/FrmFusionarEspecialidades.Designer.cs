@@ -93,7 +93,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtNuevoNombre, 3);
             this.txtNuevoNombre.Font = new System.Drawing.Font("Arial", 12F);
             this.txtNuevoNombre.Location = new System.Drawing.Point(15, 494);
-            this.txtNuevoNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNuevoNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNuevoNombre.Name = "txtNuevoNombre";
             this.txtNuevoNombre.Size = new System.Drawing.Size(1165, 30);
             this.txtNuevoNombre.TabIndex = 43;
@@ -141,7 +141,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridViewSeleccionados, 3);
             this.dataGridViewSeleccionados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewSeleccionados.Location = new System.Drawing.Point(15, 152);
-            this.dataGridViewSeleccionados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewSeleccionados.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewSeleccionados.Name = "dataGridViewSeleccionados";
             this.dataGridViewSeleccionados.ReadOnly = true;
             this.dataGridViewSeleccionados.RowHeadersWidth = 51;
@@ -232,7 +232,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtNuevaModalidad, 3);
             this.txtNuevaModalidad.Font = new System.Drawing.Font("Arial", 12F);
             this.txtNuevaModalidad.Location = new System.Drawing.Point(15, 580);
-            this.txtNuevaModalidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNuevaModalidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtNuevaModalidad.Name = "txtNuevaModalidad";
             this.txtNuevaModalidad.Size = new System.Drawing.Size(1165, 30);
             this.txtNuevaModalidad.TabIndex = 48;
@@ -270,6 +270,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtNuevoNombre, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label4, 1, 5);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -293,7 +294,7 @@
             this.ClientSize = new System.Drawing.Size(1197, 712);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmFusionarEspecialidades";
             this.Text = "FrmFusionarEspecialidades";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeleccionados)).EndInit();
