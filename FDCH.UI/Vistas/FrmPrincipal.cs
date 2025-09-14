@@ -151,11 +151,7 @@ namespace FDCH.UI.Vistas
         {
             try
             {
-
                 string dbPath = DbService.GetDbPath(); // ✅ siempre en "Archivos\BDCompetencias.db"
-
-
-
 
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
@@ -164,6 +160,20 @@ namespace FDCH.UI.Vistas
                 if (!string.IsNullOrEmpty(lastFileId))
                 {
                     await DriveServiceHelper.DownloadFile(lastFileId, dbPath);
+
+                    // 🔹 Llamar limpieza en paralelo (solo después de bajar la BD más actual)
+                    Task.Run(async () =>
+                    {
+                        try
+                        {
+                            await DriveServiceHelper.DeleteOldFilesAsync(30); // 🧪 pruebas: 1 día
+                                                                             // En producción: 30
+                        }
+                        catch (Exception ex2)
+                        {
+                            Console.WriteLine($"⚠ Error eliminando respaldos antiguos: {ex2.Message}");
+                        }
+                    });
 
                     if (formularioActivo != null)
                     {
@@ -179,6 +189,7 @@ namespace FDCH.UI.Vistas
                 MessageBox.Show($"Error al actualizar BD: {ex.Message}");
             }
         }
+
 
         private async void btnupdateDrive_Click(object sender, EventArgs e)
         {
@@ -239,19 +250,6 @@ namespace FDCH.UI.Vistas
                 // Eliminar temporal
                 File.Delete(tempPath);
 
-                // 🔹 Eliminar respaldos viejos de 60 días en segundo plano
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        DriveServiceHelper.DeleteOldBackups(folderRespaldoPorTiempo, 60);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"⚠ Error eliminando respaldos antiguos: {ex.Message}");
-                    }
-                });
-
                 Console.WriteLine($"[Respaldo automático] Subido correctamente. ID: {fileId}");
             }
             catch (Exception ex)
@@ -259,6 +257,7 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
+
 
 
 

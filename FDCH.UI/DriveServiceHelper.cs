@@ -115,28 +115,13 @@ namespace FDCH.UI
             var uploadedFile = request.ResponseBody;
             Console.WriteLine($"✅ Archivo subido: {uploadedFile.Id}");
 
-            // 🔹 Ejecutar la eliminación de archivos antiguos en segundo plano
-            _ = Task.Run(async () =>
-            {
-                try
-                {
-                    // Cambia 60 por los días que quieras conservar
-                    await DeleteOldFilesAsync(60); // para eliminar archivos de hace 1 hora
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"⚠ Error al eliminar archivos antiguos: {ex.Message}");
-                }
-            });
-
             return uploadedFile.Id;
         }
 
 
 
         // 🔹 Eliminar archivos .db y .json antiguos de Drive de forma optimizada
-        public static async Task DeleteOldFilesAsync(int daysToKeep = 60)
+        public static async Task DeleteOldFilesAsync(int daysToKeep = 30)
         {
             var service = GetDriveService();
 
@@ -224,45 +209,6 @@ namespace FDCH.UI
                 Console.WriteLine($"Último archivo .db: {file.Name} ({file.Id})");
 
             return file?.Id;
-        }
-
-        // 🔹 Eliminar backups viejos
-        public static void DeleteOldBackups(string folderId, int daysToKeep = 60)
-        {
-            var service = GetDriveService();
-
-            string query = $"'{folderId}' in parents and trashed = false";
-            var request = service.Files.List();
-            request.Q = query;
-            request.Fields = "nextPageToken, files(id, name, createdTime)";
-            request.PageSize = 1000;
-
-            string pageToken = null;
-            int totalDeleted = 0;
-            DateTime limitDate = DateTime.UtcNow.AddDays(-daysToKeep);
-
-            do
-            {
-                request.PageToken = pageToken;
-                var result = request.Execute();
-                var files = result.Files;
-
-                if (files != null && files.Count > 0)
-                {
-                    var oldFiles = files.Where(f => f.CreatedTimeDateTimeOffset?.UtcDateTime < limitDate).ToList();
-
-                    foreach (var f in oldFiles)
-                    {
-                        Console.WriteLine($"🗑 Eliminando: {f.Name}");
-                        service.Files.Delete(f.Id).Execute();
-                        totalDeleted++;
-                    }
-                }
-
-                pageToken = result.NextPageToken;
-            } while (pageToken != null);
-
-            Console.WriteLine($"✅ Eliminación completada. Total archivos eliminados: {totalDeleted}");
         }
 
 
