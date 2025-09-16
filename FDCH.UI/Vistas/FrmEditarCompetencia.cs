@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FDCH.UI.Vistas
 {
@@ -590,7 +592,7 @@ namespace FDCH.UI.Vistas
                 bool actualizado = _puente.ActualizarDesempeno(desempeno);
                 if (!actualizado)
                 {
-                    MessageBox.Show("No se pudo actualizar el desempeño. Revise la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo actualizar el desempeño.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

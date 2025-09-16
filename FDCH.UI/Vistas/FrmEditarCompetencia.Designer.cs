@@ -241,7 +241,6 @@
             this.txtDiscapacidad.Name = "txtDiscapacidad";
             this.txtDiscapacidad.Size = new System.Drawing.Size(330, 26);
             this.txtDiscapacidad.TabIndex = 57;
-            this.txtDiscapacidad.Text = "NINGUNA";
             // 
             // txtTimeMarca
             // 
@@ -256,7 +255,6 @@
             this.txtTimeMarca.Name = "txtTimeMarca";
             this.txtTimeMarca.Size = new System.Drawing.Size(383, 26);
             this.txtTimeMarca.TabIndex = 55;
-            this.txtTimeMarca.Text = "55 SEG / 120 KG";
             // 
             // label16
             // 
@@ -336,7 +334,6 @@
             this.txtRecord.Name = "txtRecord";
             this.txtRecord.Size = new System.Drawing.Size(409, 26);
             this.txtRecord.TabIndex = 51;
-            this.txtRecord.Text = "10";
             // 
             // txtParticipantes
             // 
@@ -352,7 +349,6 @@
             this.txtParticipantes.Name = "txtParticipantes";
             this.txtParticipantes.Size = new System.Drawing.Size(330, 26);
             this.txtParticipantes.TabIndex = 50;
-            this.txtParticipantes.Text = "12";
             // 
             // txtCategoria
             // 
@@ -367,7 +363,6 @@
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(409, 26);
             this.txtCategoria.TabIndex = 48;
-            this.txtCategoria.Text = "SUB21 / MENOR...";
             // 
             // label18
             // 
@@ -395,7 +390,6 @@
             this.txtUbicacion.Name = "txtUbicacion";
             this.txtUbicacion.Size = new System.Drawing.Size(409, 26);
             this.txtUbicacion.TabIndex = 54;
-            this.txtUbicacion.Text = "3";
             // 
             // label15
             // 
@@ -437,7 +431,6 @@
             this.txtModalidad.Name = "txtModalidad";
             this.txtModalidad.Size = new System.Drawing.Size(330, 26);
             this.txtModalidad.TabIndex = 47;
-            this.txtModalidad.Text = "INDIVIDUAL / EQUIPO";
             // 
             // label9
             // 
@@ -478,7 +471,6 @@
             this.txtDivision.Name = "txtDivision";
             this.txtDivision.Size = new System.Drawing.Size(383, 26);
             this.txtDivision.TabIndex = 49;
-            this.txtDivision.Text = "55 KG";
             // 
             // txtMedalla
             // 
@@ -494,7 +486,6 @@
             this.txtMedalla.Name = "txtMedalla";
             this.txtMedalla.Size = new System.Drawing.Size(330, 26);
             this.txtMedalla.TabIndex = 53;
-            this.txtMedalla.Text = "ORO / PLATA / BRONCE";
             // 
             // txtObservacion
             // 
@@ -524,7 +515,6 @@
             this.txtPuntos.Name = "txtPuntos";
             this.txtPuntos.Size = new System.Drawing.Size(383, 26);
             this.txtPuntos.TabIndex = 52;
-            this.txtPuntos.Text = "5";
             // 
             // label17
             // 
@@ -592,7 +582,6 @@
             this.txtGenero.Name = "txtGenero";
             this.txtGenero.Size = new System.Drawing.Size(330, 26);
             this.txtGenero.TabIndex = 44;
-            this.txtGenero.Text = "MASCULINO / FEMENINO";
             // 
             // label8
             // 

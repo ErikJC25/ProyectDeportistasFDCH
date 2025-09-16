@@ -1767,14 +1767,14 @@ namespace FDCH.Datos
         /// Actualiza un registro de la tabla 'desempeno' usando los valores del objeto Desempeno.
         /// Devuelve true si se afectó al menos una fila.
         /// </summary>
-        public bool ActualizarDesempeno(Desempeno d)
+        /*public bool ActualizarDesempeno(Desempeno d)
         {
             if (d == null) throw new ArgumentNullException(nameof(d));
             if (d.id_desempeno <= 0) throw new ArgumentException("El id_desempeno debe ser mayor que 0.", nameof(d));
 
             // SQL parametrizado para evitar inyección y problemas de formato
             const string sql = @"
-            UPDATE desempeno
+            UPDATE Desempeno
             SET
                 puntos         = @puntos,
                 medalla        = @medalla,
@@ -1818,7 +1818,73 @@ namespace FDCH.Datos
                     return filas > 0;
                 }
             }
+        }*/
+
+        public bool ActualizarDesempeno(Desempeno d)
+        {
+            if (d == null) throw new ArgumentNullException(nameof(d));
+            if (d.id_desempeno <= 0) throw new ArgumentException("El id_desempeno debe ser mayor que 0.", nameof(d));
+
+            const string sql = @"
+        UPDATE Desempeno
+        SET
+            puntos         = @puntos,
+            medalla        = @medalla,
+            observaciones  = @observaciones,
+            tiempo         = @tiempo,
+            ubicacion      = @ubicacion,
+            id_deportista  = @id_deportista,
+            id_competencia = @id_competencia,
+            id_tecnico     = @id_tecnico
+        WHERE id_desempeno = @id_desempeno;
+    ";
+
+            try
+            {
+                using (var conn = GetConnection()) // usa tu método existente
+                {
+                    conn.Open();
+
+                    using (var tran = conn.BeginTransaction())
+                    using (var cmd = new SQLiteCommand(sql, conn, tran))
+                    {
+                        // Strings -> DBNull cuando sean null
+                        object objPuntos = (object)d.puntos ?? DBNull.Value;
+                        object objMedalla = (object)d.medalla ?? DBNull.Value;
+                        object objObserv = (object)d.observaciones ?? DBNull.Value;
+                        object objTiempo = (object)d.tiempo ?? DBNull.Value;
+                        object objUbic = (object)d.ubicacion ?? DBNull.Value;
+
+                        // FK ints -> DBNull si <= 0 (asume que 0 significa 'no asignado')
+                        object objIdDeportista = (d.id_deportista > 0) ? (object)d.id_deportista : DBNull.Value;
+                        object objIdCompetencia = (d.id_competencia > 0) ? (object)d.id_competencia : DBNull.Value;
+                        object objIdTecnico = (d.id_tecnico > 0) ? (object)d.id_tecnico : DBNull.Value;
+
+                        cmd.Parameters.AddWithValue("@puntos", objPuntos);
+                        cmd.Parameters.AddWithValue("@medalla", objMedalla);
+                        cmd.Parameters.AddWithValue("@observaciones", objObserv);
+                        cmd.Parameters.AddWithValue("@tiempo", objTiempo);
+                        cmd.Parameters.AddWithValue("@ubicacion", objUbic);
+                        cmd.Parameters.AddWithValue("@id_deportista", objIdDeportista);
+                        cmd.Parameters.AddWithValue("@id_competencia", objIdCompetencia);
+                        cmd.Parameters.AddWithValue("@id_tecnico", objIdTecnico);
+                        cmd.Parameters.AddWithValue("@id_desempeno", d.id_desempeno);
+
+                        int filas = cmd.ExecuteNonQuery();
+                        tran.Commit();
+
+                        return filas > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // intenta loggear para diagnóstico. No lanzar si quieres manejar en UI.
+                Console.WriteLine("Error en ActualizarDesempeno: " + ex.Message);
+                return false;
+            }
         }
+
 
         // Ejemplo auxiliar: si tu clase NO tiene GetConnectionString, reemplaza este método por el acceso real a la cadena
         private string GetConnectionString()
