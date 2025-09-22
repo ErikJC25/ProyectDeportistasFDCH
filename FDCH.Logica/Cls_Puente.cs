@@ -403,7 +403,7 @@ namespace FDCH.Logica
                     case "TECNICOS":
                         nombreRegistro = _dbService.ObtenerNombreTecnicoPorId(registro.id_registro_afectado);
                         break;
-                    case "TORNEOS":
+                    case "EVENTOS":
                         nombreRegistro = _dbService.ObtenerNombreEventoPorId(registro.id_registro_afectado);
                         break;
                     case "DISCIPLINAS":
@@ -416,7 +416,7 @@ namespace FDCH.Logica
                         nombreRegistro = _dbService.ObtenerNombreCompetenciaPorId(registro.id_registro_afectado);
                         break;
                     case "DESEMPENO":
-                        nombreRegistro = _dbService.ObtenerNombreDesempenoPorId(registro.id_registro_afectado);
+                        nombreRegistro = _dbService.ObtenerResumenDesempenoPorId(registro.id_registro_afectado);
                         registro.tabla_afectada = "Participación"; // Corregir el nombre de la tabla para la vista
                         break;
                     default:

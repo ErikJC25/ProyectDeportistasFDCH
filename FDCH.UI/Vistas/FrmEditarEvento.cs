@@ -244,7 +244,17 @@ namespace FDCH.UI.Vistas
                 // 7) Resultado
                 if (actualizado)
                 {
-                    MessageBox.Show("Tornero actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Torneo actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Registrar el cambio en el historial
+                    HistorialCambio cambio = new HistorialCambio
+                    {
+                        id_usuario = _frmprincipal._usuarioAutenticado.id_usuario,
+                        tabla_afectada = "Eventos",
+                        id_registro_afectado = _registro.IdEvento,
+                        accion = "TORNEO EDITADO",
+                        fecha_cambio = DateTime.Now.ToString()
+                    };
+                    _puente.InsertarHistorialCambio(cambio);
 
                     // Si se pasó la referencia al FrmPrincipal, seguir exactamente el patrón usado en otros formularios:
                     if (_frmprincipal != null)

@@ -3227,6 +3227,69 @@ namespace FDCH.Datos
             }
         }
 
+        /// <summary>
+        /// Devuelve una cadena con: "nombre_evento, nombre_deportista, nombre_especialidad"
+        /// para el desempeño indicado. Si alguna parte no existe se omite en el resultado.
+        /// </summary>
+        public string ObtenerResumenDesempenoPorId(int idDesempeno)
+        {
+            if (idDesempeno <= 0) return string.Empty;
+
+            try
+            {
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+
+                    // Unimos Desempeno -> Competencias -> Eventos -> Especialidades
+                    // y también Desempeno -> Deportistas para el nombre completo del deportista.
+                    const string sql = @"
+                SELECT
+                    e.nombre_evento AS nombre_evento,
+                    COALESCE(d.nombres, '') || ' ' || COALESCE(d.apellidos, '') AS nombre_deportista,
+                    esp.nombre_especialidad AS nombre_especialidad
+                FROM Desempeno ds
+                LEFT JOIN Competencias c ON ds.id_competencia = c.id_competencia
+                LEFT JOIN Eventos e ON c.id_evento = e.id_evento
+                LEFT JOIN Especialidades esp ON c.id_especialidad = esp.id_especialidad
+                LEFT JOIN Deportistas d ON ds.id_deportista = d.id_deportista
+                WHERE ds.id_desempeno = @idDesempeno
+                LIMIT 1;
+            ";
+
+                    using (var cmd = new SQLiteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idDesempeno", idDesempeno);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.Read()) return string.Empty;
+
+                            string nombreEvento = reader.IsDBNull(0) ? "" : reader.GetString(0).Trim();
+                            string nombreDeportista = reader.IsDBNull(1) ? "" : reader.GetString(1).Trim();
+                            string nombreEspecialidad = reader.IsDBNull(2) ? "" : reader.GetString(2).Trim();
+
+                            // Normalizar espacios: si nombreDeportista está vacío, evitar devolver solo un espacio.
+                            nombreDeportista = string.IsNullOrWhiteSpace(nombreDeportista) ? "" : System.Text.RegularExpressions.Regex.Replace(nombreDeportista, @"\s+", " ");
+
+                            // Construir la salida con las partes no vacías, separadas por ", "
+                            var partes = new List<string>();
+                            if (!string.IsNullOrWhiteSpace(nombreEvento)) partes.Add(nombreEvento);
+                            if (!string.IsNullOrWhiteSpace(nombreDeportista)) partes.Add(nombreDeportista);
+                            if (!string.IsNullOrWhiteSpace(nombreEspecialidad)) partes.Add(nombreEspecialidad);
+
+                            return string.Join(", ", partes);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Loguea el error según tu estrategia (Console, archivo, etc.).
+                Console.WriteLine($"Error en ObtenerResumenDesempenoPorId({idDesempeno}): {ex.Message}");
+                return string.Empty;
+            }
+        }
 
 
     }

@@ -494,6 +494,7 @@ namespace FDCH.UI.Vistas
                         deportistaParaGuardar.id_deportista = deportistaId;
                         _puente.ActualizarDeportista(deportistaParaGuardar);
 
+                        /*
                         //Registrar el cambio en el historial
                         HistorialCambio cambio = new HistorialCambio
                         {
@@ -504,6 +505,7 @@ namespace FDCH.UI.Vistas
                             fecha_cambio = DateTime.Now.ToString()
                         };
                         _puente.InsertarHistorialCambio(cambio);
+                        */
                     }
                 }
                 if (deportistaId == 0) throw new Exception("No se pudo obtener/guardar el deportista.");
@@ -592,9 +594,20 @@ namespace FDCH.UI.Vistas
                 bool actualizado = _puente.ActualizarDesempeno(desempeno);
                 if (!actualizado)
                 {
-                    MessageBox.Show("No se pudo actualizar el desempeño.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo actualizar la participación del deportista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                //Registrar el cambio en el historial
+                HistorialCambio cambio = new HistorialCambio
+                {
+                    id_usuario = _frmPrincipal._usuarioAutenticado.id_usuario,
+                    tabla_afectada = "Desempeno",
+                    id_registro_afectado = _registro.IdDesempeno,
+                    accion = "PARTICIPACION EDITADA",
+                    fecha_cambio = DateTime.Now.ToString()
+                };
+                _puente.InsertarHistorialCambio(cambio);
 
                 MessageBox.Show("Participación actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
