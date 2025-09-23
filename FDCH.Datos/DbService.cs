@@ -1818,7 +1818,7 @@ namespace FDCH.Datos
                     return filas > 0;
                 }
             }
-        }*/
+        }
 
         public bool ActualizarDesempeno(Desempeno d)
         {
@@ -1895,6 +1895,73 @@ namespace FDCH.Datos
             string relativePath = System.IO.Path.Combine(baseDir, @"..\..\..\FDCH.Datos\Archivos\BDCompetencias.db");
             string fullPath = System.IO.Path.GetFullPath(relativePath);
             return $"Data Source={fullPath};Version=3;";
+        }
+        */
+
+        public bool ActualizarDesempeno(Desempeno d)
+        {
+            if (d == null) throw new ArgumentNullException(nameof(d));
+            if (d.id_desempeno <= 0) throw new ArgumentException("El id_desempeno debe ser mayor que 0.", nameof(d));
+
+            const string sql = @"
+        UPDATE Desempeno
+        SET
+            puntos         = @puntos,
+            medalla        = @medalla,
+            observaciones  = @observaciones,
+            tiempo         = @tiempo,
+            ubicacion      = @ubicacion,
+            id_deportista  = @id_deportista,
+            id_competencia = @id_competencia,
+            id_tecnico     = @id_tecnico
+        WHERE id_desempeno = @id_desempeno;
+    ";
+
+            try
+            {
+                // DEBUG: información de ruta/archivo antes de abrir
+                string dbPath = GetDbPath();
+                Console.WriteLine("[ActualizarDesempeno] DbPath: " + dbPath + " | Exists: " + File.Exists(dbPath));
+
+                // Fuerza limpieza de pools si hubo conexiones residuales
+                ForzarReconectar();
+
+                using (var conn = GetConnection())
+                {
+                    conn.Open(); // aquí es donde salta "unable to open database file" si hay problema con la ruta/permisos
+
+                    using (var cmd = new SQLiteCommand(sql, conn))
+                    {
+                        // parámetros (usar DBNull si es null / 0)
+                        cmd.Parameters.AddWithValue("@puntos", (object)d.puntos ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@medalla", (object)d.medalla ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@observaciones", (object)d.observaciones ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@tiempo", (object)d.tiempo ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@ubicacion", (object)d.ubicacion ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@id_deportista", d.id_deportista > 0 ? (object)d.id_deportista : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@id_competencia", d.id_competencia > 0 ? (object)d.id_competencia : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@id_tecnico", d.id_tecnico > 0 ? (object)d.id_tecnico : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@id_desempeno", d.id_desempeno);
+
+                        int filas = cmd.ExecuteNonQuery();
+                        Console.WriteLine("[ActualizarDesempeno] Filas afectadas: " + filas);
+                        return filas > 0;
+                    }
+                }
+            }
+            catch (SQLiteException sqlex)
+            {
+                // Mostrar más detalle de SQLite para diagnóstico
+                Console.WriteLine("[ActualizarDesempeno] SQLiteException. ErrorCode: " + sqlex.ErrorCode + " - " + sqlex.Message);
+                if (sqlex.InnerException != null) Console.WriteLine("Inner: " + sqlex.InnerException.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[ActualizarDesempeno] Exception: " + ex.Message);
+                if (ex.InnerException != null) Console.WriteLine("Inner: " + ex.InnerException.Message);
+                return false;
+            }
         }
 
 
