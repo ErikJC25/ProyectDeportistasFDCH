@@ -128,6 +128,9 @@ namespace FDCH.UI.Vistas
                 // Cancelar el cierre temporalmente para realizar la operación asíncrona
                 e.Cancel = true;
 
+                // Sube los cambios antes de liberar el bloqueo
+                btnupdateDrive_Click(sender, e);
+
                 // Ejecuta la liberación del bloqueo
                 await LiberarBloqueo();
 
@@ -266,8 +269,10 @@ namespace FDCH.UI.Vistas
         {
             if (bloqueoActivo)
             {
+                // Actualizar la base de datos antes de liberar el bloqueo
+                btnupdateDrive_Click(sender, e);
+
                 await LiberarBloqueo();
-                
                 MessageBox.Show("🔓 Bloqueo liberado. Ya no puede editar registros ni subir la base de datos.");
                 return;
             }
@@ -315,6 +320,7 @@ namespace FDCH.UI.Vistas
                     pnlOpcion.Top = btnInicio.Top;
                     // Refrescar el formulario de inicio para mostrar botones de edición
                     AbrirFormularioEnPanel(new FrmInicio(this));
+                    btnActualizarbase_Click(sender, e);
                     break;
             }
         }
