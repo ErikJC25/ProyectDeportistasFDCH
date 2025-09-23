@@ -53,6 +53,7 @@ namespace FDCH.UI.Vistas
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             AbrirFormularioEnPanel(new FrmInicio(this));
+            btnActualizarbase_Click(sender, e);
 
             respaldoTimer = new System.Windows.Forms.Timer();
             respaldoTimer.Interval = 600000; // 1 hora en milisegundos
