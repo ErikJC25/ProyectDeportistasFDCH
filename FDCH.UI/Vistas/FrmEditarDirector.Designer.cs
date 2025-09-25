@@ -45,14 +45,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +87,7 @@
             this.txbRolActual.Margin = new System.Windows.Forms.Padding(2);
             this.txbRolActual.Name = "txbRolActual";
             this.txbRolActual.ReadOnly = true;
-            this.txbRolActual.Size = new System.Drawing.Size(575, 26);
+            this.txbRolActual.Size = new System.Drawing.Size(575, 30);
             this.txbRolActual.TabIndex = 30;
             // 
             // label10
@@ -146,10 +146,10 @@
             this.label3.BackColor = System.Drawing.Color.Gold;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(525, 211);
+            this.label3.Location = new System.Drawing.Point(508, 211);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 23);
+            this.label3.Size = new System.Drawing.Size(86, 28);
             this.label3.TabIndex = 42;
             this.label3.Text = "Cargo";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -177,7 +177,7 @@
             this.label6.Location = new System.Drawing.Point(392, 478);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 23);
+            this.label6.Size = new System.Drawing.Size(86, 28);
             this.label6.TabIndex = 44;
             this.label6.Text = "Cargo";
             // 
@@ -188,10 +188,10 @@
             this.label7.BackColor = System.Drawing.Color.Turquoise;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(392, 455);
+            this.label7.Location = new System.Drawing.Point(392, 450);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 23);
+            this.label7.Size = new System.Drawing.Size(189, 28);
             this.label7.TabIndex = 45;
             this.label7.Text = "Título y nombre";
             // 
@@ -207,7 +207,7 @@
             this.txbTituloActual.Margin = new System.Windows.Forms.Padding(2);
             this.txbTituloActual.Name = "txbTituloActual";
             this.txbTituloActual.ReadOnly = true;
-            this.txbTituloActual.Size = new System.Drawing.Size(575, 26);
+            this.txbTituloActual.Size = new System.Drawing.Size(575, 30);
             this.txbTituloActual.TabIndex = 46;
             // 
             // label2
@@ -232,11 +232,11 @@
             this.txbRolNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tableLayoutPanel2.SetColumnSpan(this.txbRolNuevo, 3);
             this.txbRolNuevo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRolNuevo.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbRolNuevo.ForeColor = System.Drawing.Color.Black;
             this.txbRolNuevo.Location = new System.Drawing.Point(7, 350);
             this.txbRolNuevo.Margin = new System.Windows.Forms.Padding(2);
             this.txbRolNuevo.Name = "txbRolNuevo";
-            this.txbRolNuevo.Size = new System.Drawing.Size(575, 26);
+            this.txbRolNuevo.Size = new System.Drawing.Size(575, 30);
             this.txbRolNuevo.TabIndex = 48;
             // 
             // label4
@@ -260,11 +260,11 @@
             this.txbTituloNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tableLayoutPanel2.SetColumnSpan(this.txbTituloNuevo, 3);
             this.txbTituloNuevo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTituloNuevo.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbTituloNuevo.ForeColor = System.Drawing.Color.Black;
             this.txbTituloNuevo.Location = new System.Drawing.Point(7, 464);
             this.txbTituloNuevo.Margin = new System.Windows.Forms.Padding(2);
             this.txbTituloNuevo.Name = "txbTituloNuevo";
-            this.txbTituloNuevo.Size = new System.Drawing.Size(575, 26);
+            this.txbTituloNuevo.Size = new System.Drawing.Size(575, 30);
             this.txbTituloNuevo.TabIndex = 50;
             // 
             // label8
@@ -318,19 +318,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(598, 644);
             this.tableLayoutPanel3.TabIndex = 46;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::FDCH.UI.Properties.Resources.EjemploCertificado2;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 318);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.tableLayoutPanel3.SetRowSpan(this.pictureBox2, 3);
-            this.pictureBox2.Size = new System.Drawing.Size(388, 216);
-            this.pictureBox2.TabIndex = 41;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::FDCH.UI.Properties.Resources.EjemploCertificado1;
@@ -344,6 +331,19 @@
             this.pictureBox1.Size = new System.Drawing.Size(598, 131);
             this.pictureBox1.TabIndex = 40;
             this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::FDCH.UI.Properties.Resources.EjemploCertificado2;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 318);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.tableLayoutPanel3.SetRowSpan(this.pictureBox2, 3);
+            this.pictureBox2.Size = new System.Drawing.Size(388, 216);
+            this.pictureBox2.TabIndex = 41;
+            this.pictureBox2.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
@@ -414,8 +414,8 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

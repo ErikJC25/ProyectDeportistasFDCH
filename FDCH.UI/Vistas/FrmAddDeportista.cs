@@ -32,7 +32,6 @@ namespace FDCH.UI.Vistas
             if (objEvento != null)
             {
                 cmbTorneo.SelectedValue = objEvento.id_evento;
-                cmbTorneo.Enabled = false;
             }
         }
 
@@ -558,6 +557,8 @@ namespace FDCH.UI.Vistas
                 {
                     LimpiarFormulario();
                     cmbTorneo.SelectedValue = _idEvento; // Mantenemos el torneo seleccionado
+                    CargarDisciplinas();
+                    CargarTecnicos();
                 }
                 else
                 {
@@ -604,6 +605,7 @@ namespace FDCH.UI.Vistas
 
                 // --- Restablece la sección de Disciplina ---
                 cmbDisciplina.SelectedIndex = -1;
+                cmbDisciplina.Text = "";
                 // El ComboBox de especialidad también se vacía y deshabilita
                 cmbEspecialidad.DataSource = null;
                 cmbEspecialidad.Text = "";
