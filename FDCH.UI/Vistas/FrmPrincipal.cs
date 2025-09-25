@@ -56,7 +56,7 @@ namespace FDCH.UI.Vistas
             btnActualizarbase_Click(sender, e);
 
             respaldoTimer = new System.Windows.Forms.Timer();
-            respaldoTimer.Interval = 600000; // 1 hora en milisegundos
+            respaldoTimer.Interval = 600000; // 15 minutos en milisegundos
             respaldoTimer.Tick += async (s, ev) => await HacerRespaldoAutomatico();
             respaldoTimer.Start();
         }
@@ -236,22 +236,41 @@ namespace FDCH.UI.Vistas
 
 
 
+        private string ultimoHash = string.Empty;
+
         private async Task HacerRespaldoAutomatico()
         {
             try
             {
                 string dbPath = DbService.GetDbPath();
-                string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
 
-                // Copiar a archivo temporal para evitar bloqueos
+                // 🔹 Calcular hash del archivo actual
+                string nuevoHash;
+                using (var md5 = System.Security.Cryptography.MD5.Create())
+                using (var stream = File.OpenRead(dbPath))
+                {
+                    var hashBytes = md5.ComputeHash(stream);
+                    nuevoHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                }
+
+                // ✅ Evita duplicados: solo respalda si el hash cambió
+                if (nuevoHash == ultimoHash)
+                {
+                    Console.WriteLine("⚠ No hubo cambios en la BD (hash igual), se omite respaldo.");
+                    return;
+                }
+
+                ultimoHash = nuevoHash;
+
+                // Copiar a archivo temporal
+                string tempPath = Path.Combine(Path.GetDirectoryName(dbPath), "BDCompetencias_temp.db");
                 SQLiteConnection.ClearAllPools();
                 DbService.ForzarReconectar();
                 File.Copy(dbPath, tempPath, true);
 
-                // Subir al Drive en la carpeta de respaldo por tiempo
+                // Subir al Drive
                 string fileId = await DriveServiceHelper.UploadFile(tempPath, folderRespaldoPorTiempo);
 
-                // Eliminar temporal
                 File.Delete(tempPath);
 
                 Console.WriteLine($"[Respaldo automático] Subido correctamente. ID: {fileId}");
@@ -261,6 +280,8 @@ namespace FDCH.UI.Vistas
                 Console.WriteLine($"Error en respaldo automático: {ex.Message}");
             }
         }
+
+
 
 
 
