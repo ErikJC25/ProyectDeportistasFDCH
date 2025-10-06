@@ -240,7 +240,7 @@ namespace FDCH.UI
                 File.Delete(tempReadPath);
 
                 // Otro usuario tiene el bloqueo y sigue vigente
-                if (currentUser != usuario && lockTime.AddMinutes(30) > now)
+                if (currentUser != usuario)
                     return LockResult.AlreadyLocked;
 
                 // Si el mismo usuario tenía el lock, lo liberamos
@@ -333,7 +333,7 @@ namespace FDCH.UI
 
             File.Delete(tempReadPath);
 
-            return currentUser == usuario && lockTime.AddMinutes(30) > DateTime.UtcNow;
+            return currentUser == usuario;
         }
 
         // 🔹 Subir o actualizar archivo
