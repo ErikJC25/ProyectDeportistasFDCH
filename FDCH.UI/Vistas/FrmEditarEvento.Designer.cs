@@ -78,10 +78,10 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(382, 583);
+            this.btnGuardar.Location = new System.Drawing.Point(377, 583);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(265, 40);
+            this.btnGuardar.Size = new System.Drawing.Size(271, 40);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar cambios";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@
             this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label17.Location = new System.Drawing.Point(9, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(121, 53);
+            this.label17.Size = new System.Drawing.Size(119, 53);
             this.label17.TabIndex = 18;
             this.label17.Text = "Nombre:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,9 +120,9 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label16.Location = new System.Drawing.Point(382, 201);
+            this.label16.Location = new System.Drawing.Point(377, 201);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 22);
+            this.label16.Size = new System.Drawing.Size(55, 27);
             this.label16.TabIndex = 7;
             this.label16.Text = "Fin:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -136,7 +136,7 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Location = new System.Drawing.Point(9, 201);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(121, 22);
+            this.label15.Size = new System.Drawing.Size(119, 27);
             this.label15.TabIndex = 5;
             this.label15.Text = "Inicio:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -148,11 +148,11 @@
             this.txbFechaInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txbFechaInicio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbFechaInicio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbFechaInicio.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbFechaInicio.Location = new System.Drawing.Point(136, 203);
+            this.txbFechaInicio.ForeColor = System.Drawing.Color.Black;
+            this.txbFechaInicio.Location = new System.Drawing.Point(134, 203);
             this.txbFechaInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbFechaInicio.Name = "txbFechaInicio";
-            this.txbFechaInicio.Size = new System.Drawing.Size(209, 26);
+            this.txbFechaInicio.Size = new System.Drawing.Size(206, 30);
             this.txbFechaInicio.TabIndex = 1;
             this.txbFechaInicio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -163,11 +163,11 @@
             this.txbFechaFin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txbFechaFin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbFechaFin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbFechaFin.ForeColor = System.Drawing.Color.DarkGray;
-            this.txbFechaFin.Location = new System.Drawing.Point(434, 203);
+            this.txbFechaFin.ForeColor = System.Drawing.Color.Black;
+            this.txbFechaFin.Location = new System.Drawing.Point(438, 203);
             this.txbFechaFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbFechaFin.Name = "txbFechaFin";
-            this.txbFechaFin.Size = new System.Drawing.Size(213, 26);
+            this.txbFechaFin.Size = new System.Drawing.Size(210, 30);
             this.txbFechaFin.TabIndex = 2;
             this.txbFechaFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -179,7 +179,7 @@
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label10.Location = new System.Drawing.Point(9, 255);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(121, 61);
+            this.label10.Size = new System.Drawing.Size(119, 61);
             this.label10.TabIndex = 22;
             this.label10.Text = "Lugar:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,13 +192,13 @@
             this.txbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txbNombre, 5);
             this.txbNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNombre.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbNombre.ForeColor = System.Drawing.Color.Black;
             this.txbNombre.Location = new System.Drawing.Point(9, 55);
             this.txbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbNombre.Multiline = true;
             this.txbNombre.Name = "txbNombre";
             this.tableLayoutPanel2.SetRowSpan(this.txbNombre, 2);
-            this.txbNombre.Size = new System.Drawing.Size(638, 72);
+            this.txbNombre.Size = new System.Drawing.Size(639, 72);
             this.txbNombre.TabIndex = 16;
             // 
             // txbLugar
@@ -209,11 +209,11 @@
             this.txbLugar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txbLugar, 5);
             this.txbLugar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbLugar.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbLugar.ForeColor = System.Drawing.Color.Black;
             this.txbLugar.Location = new System.Drawing.Point(9, 318);
             this.txbLugar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbLugar.Name = "txbLugar";
-            this.txbLugar.Size = new System.Drawing.Size(638, 26);
+            this.txbLugar.Size = new System.Drawing.Size(639, 30);
             this.txbLugar.TabIndex = 17;
             // 
             // label4
@@ -225,7 +225,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label4.Location = new System.Drawing.Point(9, 364);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(336, 58);
+            this.label4.Size = new System.Drawing.Size(331, 58);
             this.label4.TabIndex = 23;
             this.label4.Text = "Tipo Evento:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,11 +238,11 @@
             this.txbTipoEvento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txbTipoEvento, 5);
             this.txbTipoEvento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTipoEvento.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbTipoEvento.ForeColor = System.Drawing.Color.Black;
             this.txbTipoEvento.Location = new System.Drawing.Point(9, 424);
             this.txbTipoEvento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbTipoEvento.Name = "txbTipoEvento";
-            this.txbTipoEvento.Size = new System.Drawing.Size(638, 26);
+            this.txbTipoEvento.Size = new System.Drawing.Size(639, 30);
             this.txbTipoEvento.TabIndex = 19;
             // 
             // label2
@@ -254,7 +254,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label2.Location = new System.Drawing.Point(9, 475);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(336, 49);
+            this.label2.Size = new System.Drawing.Size(331, 49);
             this.label2.TabIndex = 24;
             this.label2.Text = "Nivel Evento:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -267,11 +267,11 @@
             this.txbNivelEvento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tableLayoutPanel2.SetColumnSpan(this.txbNivelEvento, 5);
             this.txbNivelEvento.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNivelEvento.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbNivelEvento.ForeColor = System.Drawing.Color.Black;
             this.txbNivelEvento.Location = new System.Drawing.Point(9, 526);
             this.txbNivelEvento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbNivelEvento.Name = "txbNivelEvento";
-            this.txbNivelEvento.Size = new System.Drawing.Size(638, 26);
+            this.txbNivelEvento.Size = new System.Drawing.Size(639, 30);
             this.txbNivelEvento.TabIndex = 20;
             // 
             // btnCancelar
@@ -287,7 +287,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(9, 583);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(336, 40);
+            this.btnCancelar.Size = new System.Drawing.Size(331, 40);
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -361,7 +361,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 57);
+            this.label3.Size = new System.Drawing.Size(119, 57);
             this.label3.TabIndex = 27;
             this.label3.Text = "Fecha";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

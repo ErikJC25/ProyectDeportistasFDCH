@@ -82,7 +82,7 @@
             this.txbRolActual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tableLayoutPanel2.SetColumnSpan(this.txbRolActual, 3);
             this.txbRolActual.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRolActual.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbRolActual.ForeColor = System.Drawing.Color.Gray;
             this.txbRolActual.Location = new System.Drawing.Point(7, 65);
             this.txbRolActual.Margin = new System.Windows.Forms.Padding(2);
             this.txbRolActual.Name = "txbRolActual";
@@ -95,7 +95,7 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label10.ForeColor = System.Drawing.Color.DarkGray;
             this.label10.Location = new System.Drawing.Point(7, 6);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
@@ -202,7 +202,7 @@
             this.txbTituloActual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tableLayoutPanel2.SetColumnSpan(this.txbTituloActual, 3);
             this.txbTituloActual.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTituloActual.ForeColor = System.Drawing.Color.DarkGray;
+            this.txbTituloActual.ForeColor = System.Drawing.Color.Gray;
             this.txbTituloActual.Location = new System.Drawing.Point(7, 179);
             this.txbTituloActual.Margin = new System.Windows.Forms.Padding(2);
             this.txbTituloActual.Name = "txbTituloActual";
@@ -216,7 +216,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.label2, 2);
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label2.ForeColor = System.Drawing.Color.DarkGray;
             this.label2.Location = new System.Drawing.Point(7, 120);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
